@@ -11,8 +11,9 @@
 </head>
 <body>
 	<c:url value="/views/include/nav.jsp" var="nav"/>
-	<%-- <c:import url="${nav }"/> --%>
-	<%@ include file="/views/include/nav.jsp" %>
+	<c:import url="${nav}"/>
+	<!-- c태그 이상시 아래의 include 태그 활성화 -->
+	<%-- <%@ include file="/views/include/nav.jsp" %> --%>
 	<a>부트스트랩 적용 전이라 이상한 페이지</a>
 </body>
 </html>
