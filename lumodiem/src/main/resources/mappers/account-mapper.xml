@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 무슨 의도로 만들어진 파일입니다~ 라는 뜻 -->
+<!-- 
+	1. jar
+	2. mybatis config 만들기 - properties 바깥에 만들고 안쪽에 불러서 쓴다.
+	3. mapper 만들기
+	4. sessionTemplate 만들기.
+ -->
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="accountMapper">
+	<!-- 줄 바꾸기 띄어쓰기 mybatis가 알아서 해결해줌 -->
+	<!-- vo는 카멜케이스, DB는 _가 있어서 그거 호환 해주기 -->
+	<!-- <resultMap type="com.gn.board.vo.Board" id="boardMap"> -->
+	<!-- 별칭 설정 -->
+	<resultMap type="accountVo" id="accountMap">
+		<!-- 
+			컬럼명과 필드명을 1대1로 써준다.
+		 	vo의 필드명과 테이블의 컬럼명이 다르기 때문에 맞춰즌 것!
+		 -->
+		<result property="accountNo" column="account_no"/>
+		<result property="accountName" column="account_name"/>
+		<result property="accountId" column="account_id"/>
+		<result property="accountPw" column="account_pw"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="accountSsn" column="account_ssn"/>
+		<result property="accountAddress" column="account_address"/>
+		<result property="accountPhone" column="account_phone"/>
+		<result property="accountEmail" column="account_email"/>
+		<result property="accountGrade" column="account_grade"/>
+		<result property="accountRegDate" column="account_reg_date"/>
+	</resultMap>
+	<!-- 속성으로 위에 있는 resultMap="위에 쓴 아이디" -->
+	<!-- 이거까지 해줘야 컬럼명, 필드명 호환된다. -->
+	<!-- <select id="boardList" resultType="com.gn.board.vo.Board" resultMap="boardMap"> -->
+	<!-- 별칭 설정 -->
+	<!-- 반환 받는 애가 List처럼 여러개 필요할 경우 resultType으로 vo 써줘야한다. -->
+	<!-- <select id="boardList" resultType="boardVo" resultMap="boardMap"> -->
+	<!-- useGeneratedKeys=true, keyProperty= PK값이 들어갈 수 있는 필드로! -->
+	<insert id="accountInsert" parameterType="accountVo" useGeneratedKeys="true" keyProperty="accountNo">
+		INSERT INTO `account`(account_name ,account_id ,account_pw ,account_nickname ,account_ssn ,account_address ,account_phone ,account_email ,account_grade ,account_reg_date)
+		VALUES(#{accountName} ,#{accountId} ,#{accountPw} ,#{accountNickname} ,#{accountSsn} ,#{accountAddress} ,#{accountPhone} ,#{accountEmail} ,#{accountGrade} ,#{accountRegDate})
+	</insert>
+	<select id="loginSelect" parameterType="accountVo" resultMap="accountMap">
+		SELECT * FROM `account` WHERE account_id=#{accountId} and account_pw=#{accountPw}
+	</select>
+	
+</mapper>
