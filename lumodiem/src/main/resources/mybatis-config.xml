@@ -12,7 +12,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- 별칭 설정 -->
 	<typeAliases>
-		<typeAlias type="com.gn.board.vo.Board" alias="boardVo"/>
+		<!-- <typeAlias type="com.gn.board.vo.Board" alias="boardVo"/> -->
+		<typeAlias type="com.lumodiem.account.vo.Account" alias="accountVo"/>
 	</typeAliases>
 	
 	<!-- 연결하는 DB 설정 시작 -->
@@ -35,7 +36,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 쿼리문이 들어가있는 xml파일을 mapper라고 한다. 그것들을 모아둔 공간+태그 -->
 	<mappers>
 		<!-- SQL을 작성하는 xml 파일 -->
-		<mapper resource="/mappers/board-mapper.xml"/>
+		<!-- <mapper resource="/mappers/board-mapper.xml"/> -->
+		<mapper resource="/mappers/account-mapper.xml"/>
 		<!-- 추가하려면 아래처럼 하면 좋다. -->
 		<!-- <mapper resource="/mappers/member-mapper.xml"/> -->
 	</mappers>
