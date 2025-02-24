@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/accountCreate")
-public class AccountCreateServlet extends HttpServlet {
+@WebServlet("/accountLogin")
+public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AccountCreateServlet() {
+    public loginServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/account/create.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
 		view.forward(request, response);
 	}
 
