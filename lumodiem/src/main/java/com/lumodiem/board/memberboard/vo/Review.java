@@ -7,17 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-//Lombok
+// Lombok
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class ReviewAttach {
+public class Review {
 
-	private int attachNo; // 첨부파일 번호
-	private String attachOri; // 기존파일명
-	private String attachNew; // 변경 파일명
-	private String attachPath; // 경로
+	private int reviewNo; // 리뷰번호
+	private int accountNo; // 회원번호
+	private int resNo; // 예약번호
+	private int klassDateNo; // 클래스 예약일 목록번호
+	private String reviewTxt; // 리뷰 번호
+
 }
