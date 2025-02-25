@@ -23,12 +23,14 @@ public class KlassBoardCreateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String klassName = request.getParameter("klass_name");
 		String accountNickname = request.getParameter("account_nickname");
-		String klassAddress = request.getParameter("account_address");
+		String klassAddress = request.getParameter("klass_address");
 		int klassMax = Integer.parseInt(request.getParameter("klass_max"));
 		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
 		String klassTxt = request.getParameter("klass_txt");
+		int accountNo = Integer.parseInt(request.getParameter("account_no"));
 		
 //		Klass klass = new Klass();
+		
 		
 		Klass option = Klass.builder()
 					.klassName(klassName)
@@ -37,13 +39,21 @@ public class KlassBoardCreateServlet extends HttpServlet {
 					.klassMax(klassMax)
 					.klassPrice(klassPrice)
 					.klassTxt(klassTxt)
+					.accountNo(accountNo)
+					.klassStatus("R")
 					.build();
-		
+		System.out.println(option);
 		int result = new HostBoardService().insertBoard(option);
-		
+		if(result > 0) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		request.setCharacterEncoding("UTF-8");
+//		response.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

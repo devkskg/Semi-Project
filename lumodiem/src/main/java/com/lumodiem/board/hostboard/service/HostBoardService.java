@@ -12,6 +12,11 @@ public class HostBoardService {
 	public int insertBoard(Klass option) {
 		SqlSession session = getSqlSession();
 		int result = new HostBoardDao().insertBoard(session, option);
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
 		session.close();
 		return result;
 	}
