@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.gn.board.service.BoardService;
 import com.gn.board.vo.Attach;
 
-@WebServlet("/filePath")
+@WebServlet("/filePat")
 public class FilePathServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
