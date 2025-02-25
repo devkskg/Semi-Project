@@ -12,5 +12,5 @@ public class Chat {
 	private int klassNo;
 	private int accountNo;
 	private String chatTxt;
-	
+
 }

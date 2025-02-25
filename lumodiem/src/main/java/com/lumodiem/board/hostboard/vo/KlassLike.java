@@ -12,5 +12,5 @@ public class KlassLike {
 	private int klassLikeNo;
 	private int accountNo;
 	private int klassNo;
-	
+
 }

@@ -13,5 +13,5 @@ public class KlassDate {
 	private String klassStart;
 	private String klassEnd;
 	private int klassCount;
-	
+
 }
