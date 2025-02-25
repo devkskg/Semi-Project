@@ -19,8 +19,8 @@
 		<result property="attachPath" column="attach_path"/>
 	</resultMap>
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
-		INSERT INTO `review`(review_name ,reviewTxt)
-		VALUES (#{reviewName}, #{reviewTxt})
+		INSERT INTO `review`(account_no, res_no, klass_data_no review_name ,review_txt)
+		VALUES (#{accountNo},#{resNo},#{klassDateNo},#{reviewName},#{reviewTxt})
 	</insert>
 	<insert id="reviewAttachInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)

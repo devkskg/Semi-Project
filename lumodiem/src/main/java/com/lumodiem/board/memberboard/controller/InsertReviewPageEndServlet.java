@@ -33,6 +33,11 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
 		
+		// account_no = 이전 jsp에서 input display none으로 value ${account.accountNo}로 가져오기
+		// res_no, klass_date_no의 경우 여기 Servlet에서 메소드 각각 하나씩 써서 조회해서 여기서 가져다 쓰기
+		String accountNo = request.getParameter("account_no");
+		
+		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
 		if(!dir.exists()) {
@@ -64,9 +69,7 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
-						a.setAttachOri(oriName);
-						a.setAttachNew(newName);
-						a.setAttachPath(path+"\\"+newName);
+						a.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
 					}
 				}
 			}
