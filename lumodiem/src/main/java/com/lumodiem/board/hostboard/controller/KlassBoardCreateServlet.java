@@ -29,9 +29,6 @@ public class KlassBoardCreateServlet extends HttpServlet {
 		String klassTxt = request.getParameter("klass_txt");
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
 		
-//		Klass klass = new Klass();
-		
-		
 		Klass option = Klass.builder()
 					.klassName(klassName)
 					.accountNickname(accountNickname)
@@ -52,8 +49,6 @@ public class KlassBoardCreateServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.setCharacterEncoding("UTF-8");
-//		response.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 
