@@ -19,10 +19,10 @@
 		<form action="<c:url value='/insertReviewPageEnd'/>" method="post">	
 			<fieldset>
 				<legend>리뷰 작성</legend>
-				<label for="klass_name">게시글 제목 : </label>
-				<input type="text" name="klass_name" id="klass_name" placeholder="제목을 입력하세요."><br>
-				<label for="chat_txt">내용 : </label><br>
-				<textarea name="klass_txt" id="klass_txt"  placeholder="내용을 입력하세요."></textarea>
+				<label for="review_name">게시글 제목 : </label>
+				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요."><br>
+				<label for="review_txt">내용 : </label><br>
+				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea>
 				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 				<button onclick="createReviewForm();">작성하기</button>
 			</fieldset>
