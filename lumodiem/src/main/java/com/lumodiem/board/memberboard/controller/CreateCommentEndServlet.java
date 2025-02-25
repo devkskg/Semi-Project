@@ -1,6 +1,7 @@
 package com.lumodiem.board.memberboard.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,7 @@ public class CreateCommentEndServlet extends HttpServlet {
 		System.out.println(cmt);
 		
 		int result = new ReviewCommentService().insertReviewComment(cmt);
+		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt);
 		System.out.println(result);
 		
 	}

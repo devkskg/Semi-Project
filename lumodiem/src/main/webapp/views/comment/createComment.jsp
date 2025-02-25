@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ page import="java.util.List" %>
+<%@ page import="com.lumodiem.board.memberboard.vo.ReviewCmt" %>
+<% List<ReviewCmt> list = (List<ReviewCmt>)request.getAttribute("resultList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +21,7 @@
 		<input type="reset" value="취소">
 	</form>
 	<a href="selectComment"></a>
+	
 	<table border = "1">
 		<thead>
 			<tr>
@@ -27,9 +31,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:when test="${not empty re }">
-			
-			</c:when>
+			<c:forEach var="r" items="${resultList }" varStatus="vs">
+				<tr>
+					<td>${r.reviewCmtNo }</td>
+					<td>${r.accountNo }</td>
+					<td>${r.reviewNo }</td>
+					<td>${reviewCmtTxt }</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
  	
