@@ -71,18 +71,22 @@
 			</div>
 		</aside>
 			
-			<!-- 메인 내용 -->
+			<!-- 메인 -->
 			<div id="colorlib-main">
 				<section class="ftco-section ftco-no-pt ftco-no-pb">
 					<div class="container">
 						<div class="row d-flex">
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
+								
+								
+								
+									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
 									<div class="col-md-12">
 										<div class="blog-entry ftco-animate d-md-flex">
-											<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src="C:\dev\web\workspace\web_study\resources\dung.png"></a>
+											<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src=""></a>
 											<div class="text text-2 pl-md-4">
-												<h3 class="mb-2"><a href="single.html">제목 및 a태그</a></h3>
+												<h3 class="mb-2"><a href="single.html">제목 겸 a태그</a></h3>
 												<div class="meta-wrap">
 													<p class="meta">
 														<span><i class="icon-calendar mr-2"></i>날짜 넣기</span>
@@ -91,15 +95,43 @@
 													</p>
 												</div>
 												<p class="mb-4">간단한 내용</p>
-												<p><a href="#" class="btn-custom">더 보기.. a태그 속성에 url 써주자<span class="ion-ios-arrow-forward"></span></a></p>
+												<p><a href="#" class="btn-custom">더 보기.. (a태그 속성에 url 써주자)<span class="ion-ios-arrow-forward"></span></a></p>
 											</div>
 										</div>
 									</div>
+									<!-- 한 줄 끝! -->
+									
+									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
+									<div class="col-md-12">
+										<div class="blog-entry ftco-animate d-md-flex">
+											<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src=""></a>
+											<div class="text text-2 pl-md-4">
+												<h3 class="mb-2"><a href="single.html">제목 겸 a태그</a></h3>
+												<div class="meta-wrap">
+													<p class="meta">
+														<span><i class="icon-calendar mr-2"></i>날짜 넣기</span>
+														<span><a href="single.html"><i class="icon-folder-o mr-2"></i>좋아요 아이콘 넣기</a></span>
+														<span><i class="icon-comment2 mr-2"></i>댓글 수 : 5</span>
+													</p>
+												</div>
+												<p class="mb-4">간단한 내용</p>
+												<p><a href="#" class="btn-custom">더 보기.. (a태그 속성에 url 써주자)<span class="ion-ios-arrow-forward"></span></a></p>
+											</div>
+										</div>
+									</div>
+									<!-- 한 줄 끝! -->
+									
+									
+									
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
+				
+				
+				
+				
 			</div>
 			<!-- 메인 내용 끝 -->
 	</div>
