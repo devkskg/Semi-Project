@@ -27,7 +27,7 @@ public class FilePathServlet extends HttpServlet {
 //		detail.jsp에서 쓰기로 한 키값 // <img src="<%=request.getContextPath()%>/filePath?new_name=<%=board.getNewName()%>">
 		int attachNo = Integer.parseInt(request.getParameter("attach_no123"));
 		System.out.println("attachNo : " +attachNo);
-		ClassAttach a = new BoardService().selectAttachOne(attachNo);
+		KlassAttach a = new BoardService().selectAttachOne(attachNo);
 		
 		// 2. 파일명이 비어있는지 확인
 		String filePath = a.getAttachPath();
