@@ -17,5 +17,5 @@ public class KlassMapping {
 	private int mappingNo;
 	private int klassNo;
 	private int attachNo;
-	
+
 }

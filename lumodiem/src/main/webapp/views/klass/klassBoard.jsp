@@ -16,6 +16,11 @@
 			<form action="<c:url value='/klassBoardCreate'/>" method="post">
 				<fieldset>
 					<legend>게시글</legend>
+					<label for="klass_name">클래스명 : </label>
+					<input type="text" name="klass_name" id="klass_name"><br>
+					<label>주최자명 :</label>
+					<input><br>
+					<input><br>
 					<input><br>
 				
 				</fieldset>

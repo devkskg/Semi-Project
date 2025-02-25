@@ -19,5 +19,5 @@ public class KlassAttach {
 	private String oriName;
 	private String newName;
 	private String attachPath;
-	
+
 }

@@ -22,4 +22,5 @@ public class Klass {
 	private int klassMax;
 	private String klassStatus;
 	private String klassTxt;
+	
 }
