@@ -12,6 +12,11 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
+	
+	<select id="commentSelect" parameterType="commentVo" resultMap="commentMap">
+		SELECT *
+		FROM review_cmt
+	</select>
 
 	<insert id="commentCreate" parameterType="commentVo" useGeneratedKeys="true" keyProperty="reviewCmtNo">
 		INSERT INTO review_cmt(account_no ,review_no ,review_cmt_txt)
