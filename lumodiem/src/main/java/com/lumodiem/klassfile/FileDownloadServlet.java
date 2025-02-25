@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.gn.board.service.BoardService;
 import com.gn.board.vo.Attach;
 
-@WebServlet("/fileDownload")
+@WebServlet("/fileDownloa")
 public class FileDownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -14,8 +14,7 @@
 	</resultMap>
 
 	<insert id="commentCreate" parameterType="commentVo" useGeneratedKeys="true" keyProperty="reviewCmtNo">
-		INSERT INTO review_cmt
-		(account_no ,review_no ,review_cmt-txt)
+		INSERT INTO review_cmt(account_no ,review_no ,review_cmt_txt)
 		VALUES (#{accountNo} ,#{reviewNo} ,#{reviewCmtTxt})
 	
 	

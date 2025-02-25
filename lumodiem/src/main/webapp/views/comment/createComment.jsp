@@ -12,7 +12,7 @@
 <body>
 	<form action="<c:url value='/createcmt'/>" method="post">
 		<input type="hidden" name="account_no" value="2">
-		<input type="hidden" name="review_no" value="2">
+		<input type="hidden" name="review_no" value="1">
 <%-- 		<input type="hidden" name="account_no" value="<c:out value='${vo.accountNo}'/>"> --%>
 		<input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요.">
 		<input type="submit" value="등록">
