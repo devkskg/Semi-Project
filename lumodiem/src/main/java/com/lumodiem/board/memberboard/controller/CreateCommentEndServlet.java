@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lumodiem.board.memberboard.service.ReviewCommentServlet;
+import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
 
 
@@ -21,26 +21,28 @@ public class CreateCommentEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String temp = request.getParameter("account_no");
-		//String temp2 = request.getParameter("review_no");
-		String review_cmt_txt = request.getParameter("review_cmt_txt");
-		//int account_no = 0;
-		//int review_no = 0 ;
-		//if(temp!=null) account_no = Integer.parseInt(temp);
-		//if(temp2!=null) review_no = Integer.parseInt(temp2);
+		String temp1 = request.getParameter("account_no");
+		String temp2 = request.getParameter("review_no");
+		String reviewCmtTxt = request.getParameter("review_cmt_txt");
+		int account_no = 0;
+		int review_no = 0 ;
+		if(temp1!=null) account_no = Integer.parseInt(temp1);
+		if(temp2!=null) review_no = Integer.parseInt(temp2);
 		
 		ReviewCmt cmt = new ReviewCmt();
-		//cmt.setAccountNo(account_no);
-		//cmt.setReviewNo(review_no);
-		cmt.setReviewCmtTxt(review_cmt_txt);
+		cmt.setAccountNo(account_no);
+		cmt.setReviewNo(review_no);
+		cmt.setReviewCmtTxt(reviewCmtTxt);
 		System.out.println(cmt);
 		
-		int result = new ReviewCommentServlet().insertReviewComment(cmt);
+		int result = new ReviewCommentService().insertReviewComment(cmt);
 		System.out.println(result);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 

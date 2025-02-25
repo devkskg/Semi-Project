@@ -16,7 +16,7 @@ import lombok.ToString;
 @Builder
 public class ReviewCmt {
 
-	private int reviewCmtNo; // 클래스 댓글 번호
+	private int reviewCmtNo; // 리뷰 댓글 번호
 	private int accountNo; // 회원 번호
 	private int reviewNo; // 리뷰 번호
 	private String reviewCmtTxt; // 리뷰 댓글 내용

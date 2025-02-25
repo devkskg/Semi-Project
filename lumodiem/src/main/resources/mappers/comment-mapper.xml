@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentMapper">
+
+	<resultMap type="commentVo" id="commentMap">
+
+		<result property="reviewCmtNo" column="review_cmt_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="reviewNo" column="review_no"/>
+		<result property="reviewCmtTxt" column="review_cmt_txt"/>
+	</resultMap>
+
+	<insert id="commentCreate" parameterType="ReviewCmt" useGeneratedKeys="true" keyProperty="reviewCmtNo">
+		INSERT INTO review_cmt
+		(account_no ,review_no ,review_cmt-txt)
+		VALUES (#{accountNo} ,#{reviewNo} ,#{reviewCmtTxt})
+	
+	
+	</insert>
+
+
+<!--  
+
+
+	<select id="boardList" resultMap="boardMap" parameterType="boardVo">
+		SELECT b.* ,m.member_name 
+		FROM `board` b
+		JOIN `member` m ON b.board_writer = m.member_no
+		<where>
+			<if test='boardTitle != null and boardTitle.equals("") == false'>
+				AND b.board_title LIKE CONCAT('%',#{boardTitle},'%')
+			</if>
+			<if test='boardContent != null and boardContent.equals("") == false'>
+				AND b.board_content LIKE CONCAT('%',#{boardContent},'%')
+			</if>
+			<if test='memberName != null and memberName.equals("") == false'>
+				AND m.member_name LIKE CONCAT('%',#{memberName},'%')
+			</if>
+		</where>
+		<if test='orderType != null and orderType.equals("-1") == false'>
+			<choose>
+				<when test='orderType.equals("1")'>
+					ORDER BY b.reg_date DESC
+				</when>
+				<otherwise>
+					ORDER BY b.reg_date ASC
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+
+	<select id="boardOne" resultMap="boardMap" parameterType="_int">
+		SELECT * 
+		FROM `board` 
+
+		<where>
+			board_no = #{boardNo}
+			
+		</where>
+	</select>
+	<select id="boardTwo" resultMap="boardMap" parameterType="map">
+		SELECT * 
+		FROM `board` 
+		WHERE board_title = #{board_title} 
+		and board_content = #{board_content}
+	</select>
+	<select id="boardThree" resultMap="boardMap" parameterType="boardVo">
+		SELECT * 
+		FROM `board` 
+		WHERE board_title = #{boardTitle} 
+		and board_content = #{boardContent}
+	</select>
+	<update id="boardUpdate" parameterType="boardVo">
+		UPDATE `board`
+		SET board_title = #{boardTitle}
+		,board_content = #{boardContent}
+		WHERE board_no = #{boardNo}
+	</update>
+	<delete id="boardDelete" parameterType="_int">
+		DELETE FROM `board`
+		WHERE board_no = #{boardNo}
+	</delete>
+	<insert id="boardInsert" parameterType="boardVo" useGeneratedKeys="true" keyProperty="boardNo">
+		INSERT INTO `board`(board_title ,board_content ,board_writer)
+		VALUES(#{boardTitle} ,#{boardContent} ,#{boardWriter})
+	</insert>
+	<insert id="insertMany" parameterType="list">
+		INSERT INTO `board`(board_title ,board_content ,board_writer)
+		VALUES
+		<foreach collection="list" item="bd" separator=",">
+			(#{bd.boardTitle} ,#{bd.boardContent} ,#{bd.boardWriter})
+		</foreach>
+	</insert>-->
+	
+</mapper>

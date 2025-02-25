@@ -11,12 +11,14 @@
 </head>
 <body>
 	<form action="<c:url value='/createcmt'/>" method="post">
-		<%-- <input type="hidden" name="account_no" value="<c:out value='${vo.accountNo}'/>"> --%>
-		<input type="text" name="revview_cmt_txt" value="<c:out value='${vo.reviewCmtTxt }'/>" placeholder="내용을 입력하세요.">
+		<input type="hidden" name="account_no" value="2">
+		<input type="hidden" name="review_no" value="2">
+<%-- 		<input type="hidden" name="account_no" value="<c:out value='${vo.accountNo}'/>"> --%>
+		<input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요.">
 		<input type="submit" value="등록">
 		<input type="reset" value="취소">
 	</form>
-
+	<a href="selectComment"></a>
 	<!-- <div class="review_cmt">
  		<form action="/createComment" name="review_cmt" method="post">
  			<input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요">
