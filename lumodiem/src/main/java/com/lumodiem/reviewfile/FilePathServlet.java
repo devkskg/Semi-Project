@@ -1,4 +1,4 @@
-package com.lumodiem.file;
+package com.lumodiem.reviewfile;
 
 import java.io.File;
 import java.io.FileInputStream;

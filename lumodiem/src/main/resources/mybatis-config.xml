@@ -14,6 +14,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<!-- <typeAlias type="com.gn.board.vo.Board" alias="boardVo"/> -->
 		<typeAlias type="com.lumodiem.account.vo.Account" alias="accountVo"/>
+		
+		<typeAlias type="com.lumodiem.board.memberboard.vo.Review" alias="reviewVo"/>
+		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewAttach" alias="reviewAttachVo"/>
+		
 		<typeAlias type="com.lumodiem.board.hostboard.vo.Klass" alias="klassVo"/>
 	</typeAliases>
 	
