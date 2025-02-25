@@ -1,7 +1,5 @@
 package com.lumodiem.board.hostboard.vo;
 
-import com.lumodiem.account.vo.Account;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,12 +13,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class ClassAttach {
-//	2번 바구니
-	private int attachNo;
-	private int boardNo;
-	private String oriName;
-	private String newName;
-	private String attachPath;
-	
+public class Klass {
+	private  int klassNo;
+	private int accountNo;
+	private String klassName;
+	private String klassAddress;
+	private int klassPrice;
+	private int klassMax;
+	private String klassStatus;
+	private String klassTxt;
 }

@@ -27,7 +27,7 @@ public class FileDownloadServlet extends HttpServlet {
 //		1,2,3 까지는 FilePathServlet과 똑같음.
 		// 1. 읽어올 파일명 전달 받기
 		int attachNo = Integer.parseInt(request.getParameter("attach_no321"));
-		ClassAttach a = new BoardService().selectAttachOne(attachNo); 
+		KlassAttach a = new BoardService().selectAttachOne(attachNo); 
 		
 		// 2. 파일명이 비어있는지 확인
 		String filePath = a.getAttachPath();
