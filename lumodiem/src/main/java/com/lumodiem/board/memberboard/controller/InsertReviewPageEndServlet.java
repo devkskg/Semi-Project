@@ -20,15 +20,18 @@ public class InsertReviewPageEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Klass k = new Klass();
+		
+		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
 		if(!dir.exists()) {
 			dir.mkdirs();
 		}
-		String name = request.getParameter("klass_name");
-		String chat = request.getParameter("chat_txt");
 		
+		String name = request.getParameter("klass_name");
+		String chat = request.getParameter("klass_txt");
+		
+		Klass k = Klass.builder();
 		
 	}
 
