@@ -7,63 +7,62 @@
 
 <%-- <link href="<%=request.getContextPath()%>/resources/css/include/nav.css" rel="stylesheet" type="text/css"> --%>
 <%-- <% session.setAttribute("act", "H"); %> --%>
-<nav>
-	<div id="nav_wrap">
-		<div class="menu">
-			<ul>
+<nav id="colorlib-main-menu" role="navigation">
+	<ul>
+		<li class="colorlib-active">
+			<a href="/">홈</a>
+		</li>
+		<li>
+			<a href="/klassBoard">클래스 게시판</a>
+		</li>
+		<li>
+			<a href="/reviewBoard">리뷰 게시판</a>
+		</li>
+		<c:choose>
+			<c:when test="${empty account}">
 				<li>
-					<a href="/klassBoard">클래스 게시판</a>
+					<a href="/accountCreateSelect">회원가입</a>
 				</li>
 				<li>
-					<a href="/reviewBoard">리뷰 게시판</a>
+					<a href="/accountLogin">로그인</a>
 				</li>
-				<c:choose>
-					<c:when test="${empty account}">
-						<li>
-							<a href="/accountCreateSelect">회원가입</a>
-						</li>
-						<li>
-							<a href="/accountLogin">로그인</a>
-						</li>
-						<li>
-							<a>게스트</a>
-						</li>
-					</c:when>
-					
-					<c:when test="${account.accountGrade eq  'M'}">
-						<li>
-							<a href="/memberMyPage">마이페이지</a>
-						</li>
-						<li>
-							<a>참여자</a>
-						</li>
-					</c:when>
-					
-					<c:when test="${account.accountGrade eq 'H' }">
-						<li>
-							<a href="/hostMyPage">마이페이지</a>
-						</li>
-						<li>
-							<a>주최자</a>
-						</li>
-					</c:when>
-					
-					<c:when test="${account.accountGrade eq 'A' }">
-						<li>
-							<a href="/adminPage">관리자 페이지</a>
-						</li>
-						<li>
-							<a>관리자</a>
-						</li>
-					</c:when>
-					
-					<c:otherwise>
-						<li>
-							<a href="/memberLogout">로그아웃</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-	</div>
+				<li>
+					<a>게스트</a>
+				</li>
+			</c:when>
+			
+			<c:when test="${account.accountGrade eq  'M'}">
+				<li>
+					<a href="/memberMyPage">마이페이지</a>
+				</li>
+				<li>
+					<a>참여자</a>
+				</li>
+			</c:when>
+			
+			<c:when test="${account.accountGrade eq 'H' }">
+				<li>
+					<a href="/hostMyPage">마이페이지</a>
+				</li>
+				<li>
+					<a>주최자</a>
+				</li>
+			</c:when>
+			
+			<c:when test="${account.accountGrade eq 'A' }">
+				<li>
+					<a href="/adminPage">관리자 페이지</a>
+				</li>
+				<li>
+					<a>관리자</a>
+				</li>
+			</c:when>
+			
+			<c:otherwise>
+				<li>
+					<a href="/memberLogout">로그아웃</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
 </nav>
