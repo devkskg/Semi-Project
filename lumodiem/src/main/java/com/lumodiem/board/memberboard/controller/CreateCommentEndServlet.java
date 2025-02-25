@@ -12,7 +12,7 @@ import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
 
 
-@WebServlet("/createcmt")
+@WebServlet("/createCommentEnd")
 public class CreateCommentEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
