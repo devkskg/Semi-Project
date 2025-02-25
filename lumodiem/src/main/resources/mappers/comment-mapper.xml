@@ -13,7 +13,7 @@
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
 
-	<insert id="commentCreate" parameterType="ReviewCmt" useGeneratedKeys="true" keyProperty="reviewCmtNo">
+	<insert id="commentCreate" parameterType="commentVo" useGeneratedKeys="true" keyProperty="reviewCmtNo">
 		INSERT INTO review_cmt
 		(account_no ,review_no ,review_cmt-txt)
 		VALUES (#{accountNo} ,#{reviewNo} ,#{reviewCmtTxt})
