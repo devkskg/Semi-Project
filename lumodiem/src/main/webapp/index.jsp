@@ -23,8 +23,8 @@
 <link rel="stylesheet" href="/css/jquery.timepicker.css">
 <link rel="stylesheet" href="/css/flaticon.css">
 <link rel="stylesheet" href="/css/icomoon.css">
-<c:url value='/css/style.css' />
-<link rel="stylesheet" href='<c:url="${url1}"/>'>
+
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 <style type="text/css">
     .scrollax-performance, .scrollax-performance *, .scrollax-performance *:before, .scrollax-performance *:after {
         pointer-events: none !important;
