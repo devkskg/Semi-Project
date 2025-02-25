@@ -13,8 +13,9 @@
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
 	
-	<select id="commentSelect" parameterType="" resultMap="">
-	
+	<select id="commentSelect" parameterType="commentVo" resultMap="commentMap">
+		SELECT *
+		FROM review_cmt
 	</select>
 
 	<insert id="commentCreate" parameterType="commentVo" useGeneratedKeys="true" keyProperty="reviewCmtNo">

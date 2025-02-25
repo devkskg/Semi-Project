@@ -27,6 +27,7 @@
 			<tr>
 				<th>번호</th>
 				<th>회원</th>
+				<th>리뷰 번호</th>
 				<th>리뷰 댓글 내용</th>
 			</tr>
 		</thead>
@@ -36,7 +37,7 @@
 					<td>${r.reviewCmtNo }</td>
 					<td>${r.accountNo }</td>
 					<td>${r.reviewNo }</td>
-					<td>${reviewCmtTxt }</td>
+					<td>${r.reviewCmtTxt }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

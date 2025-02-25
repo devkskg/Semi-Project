@@ -3,6 +3,7 @@ package com.lumodiem.board.memberboard.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +39,10 @@ public class CreateCommentEndServlet extends HttpServlet {
 		
 		int result = new ReviewCommentService().insertReviewComment(cmt);
 		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt);
+		RequestDispatcher view = request.getRequestDispatcher("/views/comment/createComment.jsp");
+		request.setAttribute("resultList", resultList);
+//		request.setAttribute(reviewCmtTxt, response)
+		view.forward(request, response);
 		System.out.println(result);
 		
 	}
