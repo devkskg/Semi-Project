@@ -94,7 +94,7 @@
 														<span><i class="icon-comment2 mr-2"></i>댓글 수 : 5</span>
 													</p>
 												</div>
-												<p class="mb-4">간단한 내용</p>
+												<p class="mb-4">간단한 내용 의미 없게 길게 써보기 시작한다 가나다라마바사 A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
 												<p><a href="#" class="btn-custom">더 보기.. (a태그 속성에 url 써주자)<span class="ion-ios-arrow-forward"></span></a></p>
 											</div>
 										</div>
