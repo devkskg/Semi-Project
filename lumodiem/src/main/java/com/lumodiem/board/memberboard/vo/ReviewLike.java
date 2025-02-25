@@ -14,10 +14,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class ReviewAttach {
+public class ReviewLike {
 
-	private int attachNo; // 첨부파일 번호
-	private String attachOri; // 기존파일명
-	private String attachNew; // 변경 파일명
-	private String attachPath; // 경로
+	private int reviewLikeNo; // 리뷰 좋아요 번호
+	private int accountNo; // 회원 번호
+	private int reviewNo; // 리뷰 번호
+	
 }
