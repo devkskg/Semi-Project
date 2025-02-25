@@ -39,10 +39,11 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight" >
-			<c:url value="/views/include/nav.jsp" var="nav"/>
-			<c:import url="${nav}"/>
+		
+			<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
+			<c:import url="${nav}"/> --%>
 			<!-- c태그 이상시 아래의 include 태그 활성화 -->
-			<%-- <%@ include file="/views/include/nav.jsp" %> --%>
+			<%@ include file="/views/include/nav.jsp" %>
 			
 			
 			<!-- 왼쪽 네비게이션바 -->
@@ -77,7 +78,7 @@
 						<div class="row d-flex">
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
-								
+									
 								
 								
 									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
@@ -120,6 +121,9 @@
 									</div>
 									<!-- 한 줄 끝! -->
 									
+									<div>
+										<label for="test123">sdf : </label><input type="text" id="test123">
+									</div>
 									
 									
 								</div>
