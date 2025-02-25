@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LumenDiem</title>
+<title>LumoDiem</title>
 </head>
 <body>
 	<c:url value="/views/include/nav.jsp" var="nav"/>
