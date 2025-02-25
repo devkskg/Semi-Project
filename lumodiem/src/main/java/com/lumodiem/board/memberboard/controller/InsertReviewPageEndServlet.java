@@ -37,7 +37,6 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 		// res_no, klass_date_no의 경우 여기 Servlet에서 메소드 각각 하나씩 써서 조회해서 여기서 가져다 쓰기
 		String accountNo = request.getParameter("account_no");
 		
-		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
 		if(!dir.exists()) {
