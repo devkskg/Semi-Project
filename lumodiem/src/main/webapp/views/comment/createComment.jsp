@@ -11,7 +11,7 @@
 </head>
 <body>
 	<form action="<c:url value='/createcmt'/>" method="post">
-		<input type="hidden" name="account_no" value="<c:out value='${vo.accountNo}'/>">
+		<%-- <input type="hidden" name="account_no" value="<c:out value='${vo.accountNo}'/>"> --%>
 		<input type="text" name="revview_cmt_txt" value="<c:out value='${vo.reviewCmtTxt }'/>" placeholder="내용을 입력하세요.">
 		<input type="submit" value="등록">
 		<input type="reset" value="취소">
