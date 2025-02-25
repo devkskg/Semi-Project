@@ -19,6 +19,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewAttach" alias="reviewAttachVo"/>
 		
 		<typeAlias type="com.lumodiem.board.hostboard.vo.Klass" alias="klassVo"/>
+		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewCmt" alias="commentVo"/>
+		
 	</typeAliases>
 	
 	<!-- 연결하는 DB 설정 시작 -->
@@ -44,6 +46,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- <mapper resource="/mappers/board-mapper.xml"/> -->
 		<mapper resource="/mappers/account-mapper.xml"/>
 		<mapper resource="/mappers/klass-mapper.xml"/>
+		<mapper resource="/mappers/comment-mapper.xml"/>
 		<!-- 추가하려면 아래처럼 하면 좋다. -->
 		<!-- <mapper resource="/mappers/member-mapper.xml"/> -->
 	</mappers>
