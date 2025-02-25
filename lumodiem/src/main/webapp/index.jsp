@@ -14,9 +14,16 @@
 	<c:import url="${nav}"/>
 	<!-- c태그 이상시 아래의 include 태그 활성화 -->
 	<%-- <%@ include file="/views/include/nav.jsp" %> --%>
-	<a>부트스트랩 적용 전이라 이상한 페이지</a>
-	<a href="/views/test01/test01.jsp">부트스트랩 테스트 페이지 이동</a>
-	<a href="/createComment">댓글 구현 테스트</a>
+	
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<a>부트스트랩 적용 전이라 이상한 페이지</a><br>
+				<a href="/views/test01/test01.jsp">부트스트랩 테스트 페이지 이동</a><br>
+				<a href="/createComment">댓글 구현 테스트</a>
+			</div>
+		</section>
+	</div>
 	
 </body>
 </html>
