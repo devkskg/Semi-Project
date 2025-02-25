@@ -28,9 +28,9 @@
 			const form = document.create_member_form;
 			
 			$('#submitBtn').click(function(){
-				if(!form.account_name.value){
+				if(!form.account_id.value){
 					alert("아이디를 입력하세요.");
-					form.member_id.focus();
+					form.account_id.focus();
 				} else if(!form.account_pw.value){
 					alert("비밀번호를 입력하세요.");
 					form.account_pw.focus();
