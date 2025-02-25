@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewMapper">
 
-	<resultMap type="accountVo" id="reviewMap">
+	<resultMap type="reviewVo" id="reviewMap">
 		<result property="reviewNo" column="review_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="resNo" column="res_no"/>
@@ -12,8 +12,19 @@
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
 	</resultMap>
-	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo"></insert>
-		INSERT INTO `review`()
-
-
+	<resultMap type="reviewattachVo" id="reviewattachMap">
+		<result property="attachNo" column="attach_no"/>
+		<result property="attachOri" column="attach_ori"/>
+		<result property="attachNew" column="attach_new"/>
+		<result property="attachPath" column="attach_path"/>
+	</resultMap>
+	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
+		INSERT INTO `review`(review_name ,reviewTxt)
+		VALUES (#{reviewName}, #{reviewTxt})
+	</insert>
+	<insert id="reviewAttachInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
+		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
+		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
+	</insert>
+	
 </mapper>

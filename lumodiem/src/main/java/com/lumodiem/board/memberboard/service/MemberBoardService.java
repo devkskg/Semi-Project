@@ -25,7 +25,11 @@ public class MemberBoardService {
 		}
 		session.close();
 		return result;
-		
 	}
-	
+	public ReviewAttach selectAttachOne(int attachNo) {
+		SqlSession session = getSqlSession();
+		ReviewAttach a = new MemberBoardDao().selectAttachOne(session, attachNo);
+		session.close();
+		return a;
+	}
 }

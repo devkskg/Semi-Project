@@ -15,4 +15,8 @@ public class MemberBoardDao {
 		int result = session.insert("reviewMapper.reviewAttachInsert",a);
 		return result;
 	}
+	public ReviewAttach selectAttachOne(SqlSession session, int attachNo) {
+		return session.selectOne("reviewMapper.selectAttach",attachNo);
+	}
+	
 }
