@@ -1,4 +1,4 @@
-package com.lumodiem.file;
+package com.lumodiem.klassfile;
 
 import java.io.File;
 import java.io.FileInputStream;
