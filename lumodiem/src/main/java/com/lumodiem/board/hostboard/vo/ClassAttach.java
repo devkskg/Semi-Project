@@ -1,5 +1,20 @@
 package com.lumodiem.board.hostboard.vo;
 
+import com.lumodiem.account.vo.Account;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class ClassAttach {
 //	2번 바구니
 	private int attachNo;
@@ -7,53 +22,5 @@ public class ClassAttach {
 	private String oriName;
 	private String newName;
 	private String attachPath;
-	public ClassAttach() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public ClassAttach(int attachNo, int boardNo, String oriName, String newName, String attachPath) {
-		super();
-		this.attachNo = attachNo;
-		this.boardNo = boardNo;
-		this.oriName = oriName;
-		this.newName = newName;
-		this.attachPath = attachPath;
-	}
-	public int getAttachNo() {
-		return attachNo;
-	}
-	public void setAttachNo(int attachNo) {
-		this.attachNo = attachNo;
-	}
-	public int getBoardNo() {
-		return boardNo;
-	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
-	}
-	public String getOriName() {
-		return oriName;
-	}
-	public void setOriName(String oriName) {
-		this.oriName = oriName;
-	}
-	public String getNewName() {
-		return newName;
-	}
-	public void setNewName(String newName) {
-		this.newName = newName;
-	}
-	public String getAttachPath() {
-		return attachPath;
-	}
-	public void setAttachPath(String attachPath) {
-		this.attachPath = attachPath;
-	}
-	@Override
-	public String toString() {
-		return "Attach [attachNo=" + attachNo + ", boardNo=" + boardNo + ", oriName=" + oriName + ", newName=" + newName
-				+ ", attachPath=" + attachPath + "]";
-	}
-	
 	
 }
