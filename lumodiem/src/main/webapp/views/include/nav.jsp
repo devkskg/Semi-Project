@@ -17,6 +17,9 @@
 				<li>
 					<a href="/reviewBoard">리뷰 게시판</a>
 				</li>
+				<li>
+					<a href="/createComment">댓글 구현 테스트</a>
+				</li>
 				<c:choose>
 					<c:when test="${empty account}">
 						<li>
