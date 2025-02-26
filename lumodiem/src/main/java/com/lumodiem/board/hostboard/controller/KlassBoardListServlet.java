@@ -33,13 +33,13 @@ public class KlassBoardListServlet extends HttpServlet {
 					.klassTxt(klassTxt)
 					.searchType(searchType)
 					.build();
-		System.out.println(option);
 		
 		List<Klass> resultList = new HostBoardService().selectBoardList(option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
 		view.forward(request, response);
 		
+		System.out.println(option);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
