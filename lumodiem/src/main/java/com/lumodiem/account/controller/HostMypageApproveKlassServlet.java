@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.account.service.HostMypageService;
 import com.lumodiem.board.hostboard.vo.Klass;
 
-@WebServlet("/hostMypageApproveClass")
-public class HostMypageApproveClassServlet extends HttpServlet {
+@WebServlet("/hostMypageApproveKlass")
+public class HostMypageApproveKlassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMypageApproveClassServlet() {
+    public HostMypageApproveKlassServlet() {
         super();
     }
 
@@ -25,11 +25,12 @@ public class HostMypageApproveClassServlet extends HttpServlet {
 		String temp = request.getParameter("account_no");
 		int accountNo = 0;
 		if(temp != null) accountNo = Integer.parseInt(temp);
+		System.out.println("어카운트넘버 : " + accountNo);
 		
-		List<Klass> list = new  HostMypageService().selectListByHostAccountNo(accountNo);
+		List<Klass> list = new HostMypageService().selectListByHostAccountNo(accountNo);
 		
 		String urlPath = "/";
-		if(list != null) urlPath = "/views/mypage/hostmypageapproveclass.jsp";
+		if(list != null) urlPath = "/views/mypage/hostmypageapproveklass.jsp";
 		
 		RequestDispatcher view = request.getRequestDispatcher(urlPath);
 		view.forward(request, response);
