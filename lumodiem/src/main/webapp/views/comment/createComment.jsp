@@ -6,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.memberboard.vo.ReviewCmt" %>
 <% List<ReviewCmt> list = (List<ReviewCmt>)request.getAttribute("resultList"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,9 +45,9 @@
 			</table>
 		</div>
  	<script>
- 		/* $('.comment_list tbody tr').on('click', function() {
+ 		 $('.comment_list tbody tr').on('click', function() {
 			location.href='/selectComment';
-		}) */
+		}) 
  		
  		
  	</script>
