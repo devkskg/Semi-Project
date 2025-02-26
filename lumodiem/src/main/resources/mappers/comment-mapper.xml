@@ -13,6 +13,15 @@
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
 	
+	<select id="commentSelectOne" resultMap="commentMap" parameterType="_int">
+		SELECT *
+		FROM review_cmt
+		<where>
+			review_cmt_no = #{reviewCmtNo}
+		</where>
+	
+	</select>
+	
 	<select id="commentSelect" parameterType="commentVo" resultMap="commentMap">
 		SELECT *
 		FROM review_cmt

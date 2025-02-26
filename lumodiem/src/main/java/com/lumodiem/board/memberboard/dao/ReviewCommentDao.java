@@ -8,6 +8,10 @@ import com.lumodiem.board.memberboard.vo.ReviewCmt;
 
 public class ReviewCommentDao {
 	
+	public ReviewCmt selectReviewCommentDetail(int reviewCmtNo, SqlSession session) {
+		return session.selectOne("commentMapper.commentSelectOne",reviewCmtNo);
+	}
+	
 	public List<ReviewCmt> selectReviewComment(ReviewCmt cmt, SqlSession session){
 		return session.selectList("commentMapper.commentSelect",cmt);
 	}

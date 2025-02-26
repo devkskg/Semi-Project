@@ -12,6 +12,12 @@ import com.lumodiem.board.memberboard.vo.ReviewCmt;
 public class ReviewCommentService {
 	ReviewCommentDao dao = new ReviewCommentDao();	
 	
+	public ReviewCmt selectReviewCommentDetail(int reviewCmtNo) {
+		SqlSession session = getSqlSession();
+		ReviewCmt cmt = new ReviewCommentDao().selectReviewCommentDetail(reviewCmtNo, session);
+		session.close();
+		return cmt;
+	}
 	
 	public List<ReviewCmt> selectReviewComment(ReviewCmt cmt){
 		SqlSession session = getSqlSession();
