@@ -7,7 +7,7 @@
 <title>게시글 작성하기</title>
 </head>
 <body>
-	<form action="/klassBoardCreateEnd" method="post">
+	<form name="create_klass_form" action="">
 				<fieldset>
 					<legend>게시글</legend>
 					<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
@@ -30,9 +30,28 @@
 					<label for="klass_txt">클래스 상세 내용</label><br>
 					<textarea name="klass_txt" id="klass_txt"></textarea>
 					
-					<input type="submit" value="등록">					
+					<button type="button" id="insertBtn">등록</button>					
 				</fieldset>
 			
-			</form>
+	</form>
+	
+	<script>
+		$(function(){
+			const form = document.create_klass_form;
+			
+			$('#insertBtn').click(function(){
+				if(!form.klass_name.value){
+					alert("클래스명을 입력하세요.");
+					form.klass_name.focus();
+				}
+			})
+			
+			
+			
+		})
+	
+	
+	
+	</script>
 </body>
 </html>

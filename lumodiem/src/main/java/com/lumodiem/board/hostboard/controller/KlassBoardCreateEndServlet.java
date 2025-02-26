@@ -1,12 +1,16 @@
 package com.lumodiem.board.hostboard.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
@@ -27,6 +31,9 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
 		String klassTxt = request.getParameter("klass_txt");
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		System.out.println(ldt.format(dtf));
 		
 		Klass option = Klass.builder()
 					.klassName(klassName)
@@ -37,16 +44,24 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 					.klassTxt(klassTxt)
 					.accountNo(accountNo)
 					.klassStatus("R")
+					.klassRegDate(ldt.format(dtf))
 					.build();
 		System.out.println(option);
 		int result = new HostBoardService().insertBoard(option);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("res_code", "500");
+		obj.put("res_msg", "회원가입중 오류가 발생하였습니다.");
+		
 		if(result > 0) {
-			System.out.println("성공");
-		}else {
-			System.out.println("실패");
+			obj.put("res_code", "200");
+			obj.put("res_msg", "정상적으로 회원가입되었습니다.");
 		}
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(obj);
+		
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
