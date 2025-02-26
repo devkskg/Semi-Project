@@ -2,6 +2,8 @@ package com.lumodiem.board.memberboard.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,7 +35,8 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
-		
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		// account_no = 이전 jsp에서 input display none으로 value ${account.accountNo}로 가져오기
 		// res_no, klass_date_no의 경우 여기 Servlet에서 메소드 각각 하나씩 써서 조회해서 여기서 가져다 쓰기
 		String accountNo = request.getParameter("account_no");
@@ -41,7 +44,8 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 		// test 를 위한 하드코딩
 		int resNo = 4;
 		int klassDateNo = 2;
-		r = Review.builder().accountNo(klassDateNo).resNo(resNo).klassDateNo(klassDateNo).build();
+		
+		r = Review.builder().accountNo(klassDateNo).resNo(resNo).klassDateNo(klassDateNo).reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
 		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
