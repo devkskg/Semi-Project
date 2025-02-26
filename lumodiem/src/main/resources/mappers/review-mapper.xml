@@ -18,13 +18,29 @@
 		<result property="attachNew" column="attach_new"/>
 		<result property="attachPath" column="attach_path"/>
 	</resultMap>
+	<resultMap type="reservationVo" id="reservationMap">
+		<result property="resNo" column="res_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassDataNo" column="klass_data_no"/>
+		<result property="resPpl" column="res_ppl"/>
+		<result property="payTime" column="pay_time"/>
+		<result property="payStatus" column="pay_status"/>
+		<result property="payPrice" column="pay_price"/>
+	</resultMap>
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
-		INSERT INTO `review`(account_no, res_no, klass_data_no review_name ,review_txt)
-		VALUES (#{accountNo},#{resNo},#{klassDateNo},#{reviewName},#{reviewTxt})
+		INSERT INTO `review`(account_no, res_no, klass_date_no, review_name ,review_txt)
+		VALUES (#{accountNo} ,#{resNo} ,#{klassDateNo} ,#{reviewName} ,#{reviewTxt})
 	</insert>
-	<insert id="reviewAttachInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
+	<insert id="reviewAttachInsert" parameterType="reviewAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
 		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
 		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
 	</insert>
+	<!-- <select id="searchResNoByAccountNo" resultMap="reservationMap" parameterType="reservationVo">
+		SELECT res_no
+		FROM reservation
+		WHERE account_no = #{accountNo}	
+	</select> -->
+	
+	
 	
 </mapper>
