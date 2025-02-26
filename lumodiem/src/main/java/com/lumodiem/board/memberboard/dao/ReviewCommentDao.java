@@ -8,6 +8,10 @@ import com.lumodiem.board.memberboard.vo.ReviewCmt;
 
 public class ReviewCommentDao {
 	
+	public int deleteReviewComment(ReviewCmt cmt, SqlSession session) {
+		return session.insert("commentMapper.commentDelete",cmt);
+	}
+	
 	public int updateReviewComment(ReviewCmt cmt, SqlSession session) {
 		return session.insert("commentMapper.commentUpdate",cmt);
 	}

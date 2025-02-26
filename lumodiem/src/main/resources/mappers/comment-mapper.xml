@@ -12,14 +12,13 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
-	
+
 	<select id="commentSelectOne" resultMap="commentMap" parameterType="_int">
 		SELECT *
 		FROM review_cmt
 		<where>
 			review_cmt_no = #{reviewCmtNo}
 		</where>
-	
 	</select>
 	
 	<select id="commentSelect" parameterType="commentVo" resultMap="commentMap">
@@ -40,20 +39,19 @@
 		</where>
 		
 	</update>
-
+	
+	<delete id="commentDelete" parameterType="_int">
+		DELETE FROM `review_cmt`
+		<where>
+			review_cmt_no = #{reviewCmtNo}
+		</where>
+	</delete>
 <!--  
-	<update id="boardUpdate" parameterType="boardVo">
-		UPDATE `board`
-		SET board_title = #{boardTitle}
-		,board_content = #{boardContent}
+
+	<delete id="boardDelete" parameterType="_int">
+		DELETE FROM `board`
 		WHERE board_no = #{boardNo}
-	</update>
-
-
-
-
-
-
+	</delete>
 
 	<select id="boardList" resultMap="boardMap" parameterType="boardVo">
 		SELECT b.* ,m.member_name 
