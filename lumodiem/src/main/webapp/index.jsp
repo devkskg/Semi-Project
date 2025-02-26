@@ -15,7 +15,28 @@
 	<c:import url="${nav}"/> --%>
 	<!-- c태그 이상시 아래의 include 태그 활성화 -->
 	<%-- <%@ include file="/views/include/nav.jsp" %> --%>
-	
+				
+				
+				
+				<!-- 이거 가져다 쓰세요 -->
+						<!-- <div id="colorlib-main">
+				<section class="ftco-section ftco-no-pt ftco-no-pb">
+					<div class="container">
+						<div class="row d-flex">
+							<div class="col-xl-8 py-5 px-md-5">
+								<div class="row pt-md-4">
+								
+								<a>내용 쓰기</a>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+					 -->
+			
+			
 			
 			<!-- 메인 -->
 			<div id="colorlib-main">
@@ -24,7 +45,8 @@
 						<div class="row d-flex">
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
-									
+								
+									<!-- ctrl + c v -->
 								
 								
 									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
@@ -46,6 +68,7 @@
 										</div>
 									</div>
 									<!-- 한 줄 끝! -->
+									
 									
 									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
 									<div class="col-md-12">
