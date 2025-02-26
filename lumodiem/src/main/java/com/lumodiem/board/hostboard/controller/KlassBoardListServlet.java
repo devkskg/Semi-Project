@@ -42,7 +42,7 @@ public class KlassBoardListServlet extends HttpServlet {
 					.build();
 		System.out.println(option);
 		
-		List<Klass> resutlList = new HostBoardService().selectBoardList(option);
+		List<Klass> resultList = new HostBoardService().selectBoardList(option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
 		view.forward(request, response);

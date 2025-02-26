@@ -19,7 +19,14 @@
 		<result property="klassTxt" column="klass_txt"/>
 		<result property="accountNickname" column="account_nickname"/>
 	</resultMap>
-
+	
+	<select id="klassList" resultMap="klassMap" parameterType="klass">
+		SELECT k.klass_no ,k.klass_name ,a.account_nickname ,k.klass_address ,k.klass_price ,k.klass_max ,k.klass_status ,k.klass_txt
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no 
+	</select>
+	
 	<insert id="klassCreate" parameterType="klassVo" useGeneratedKeys="true" keyProperty="klassNo">
 		INSERT INTO `klass`(account_no ,klass_name ,klass_address ,klass_max ,klass_price ,klass_txt)
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt})
