@@ -40,7 +40,12 @@
 		FROM reservation
 		WHERE account_no = #{accountNo}	
 	</select> -->
-	
+	<update id="reviewUpdate" parameterType="reviewVo">
+		UPDATE `review`
+		SET review_name = #{reviewName}
+		,review_txt = #{reviewTxt}
+		WHERE account_no = #{accountNo}
+	</update>
 	
 	
 </mapper>

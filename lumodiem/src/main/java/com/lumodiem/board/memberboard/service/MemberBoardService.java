@@ -41,6 +41,12 @@ public class MemberBoardService {
 		session.close();
 		return resList;
 	}
+	public int UpdateReview(Review review) {
+		SqlSession session = getSqlSession();
+		int result = new MemberBoardDao().UpdateReview(session,review);
+		session.close();
+		return result;
+	}
 	
 	
 	
