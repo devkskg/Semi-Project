@@ -8,22 +8,24 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 수정 페이지</title>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
 <div>
 	<form action="<c:url value='/updateReviewEnd'/>" method="post">
 		<fieldset>
 			<legend>리뷰 수정</legend>
-			<input type="hidden" value="${account.accountNo}" name="account.accountNo">
+			<input type="hidden" value="${account.accountNo}" name="${account.accountNo}">
 			<label for="review_name">게시글 제목 : </label>
 			<input type="text" name="review_name" id="review_name" placeholder="수정하실 제목을 입력하세요."><br>
 			<label for="review_txt">내용 : </label><br>
 			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."></textarea>
 			<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
-			<button type="button" onclick="createReviewForm();">수정하기</button>
+			<!-- <button type="button" onclick="createReviewForm();">수정하기</button> -->
+			<input type="submit" value="수정하기">
 		</fieldset>
 	</form>
-	<script>
+	<!-- <script>
 	const createReviewForm = function(){
 		let form = document.create_review_form;
 		if(!form.review_name.value){
@@ -60,9 +62,9 @@
 				alert('이미지 파일만 선택할 수 있습니다.')
 				form.res_file.value = '';
 			}
-		}
+		} 
 	}
-</script>
+</script> -->
 </div>
 </body>
 </html>
