@@ -23,4 +23,7 @@ public class Review {
 	private String reviewTxt;
 	private String reviewName;
 	private String accountNickName;
+	private String reviewRegDate;
+	private String reviewModDate;
+	private String orderType;
 }
