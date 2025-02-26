@@ -23,5 +23,7 @@ public class Klass {
 	private String klassStatus;
 	private String klassTxt;
 	private String accountNickname;
+	private String klassRegDate;
+	private String klassModDate;
 
 }
