@@ -43,4 +43,12 @@ public class SqlSessionTemplate {
 		}
 		return session;
 	}
+	
+	public static void commitRollback(SqlSession session, int temp) {
+		if(temp > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+	}
 }
