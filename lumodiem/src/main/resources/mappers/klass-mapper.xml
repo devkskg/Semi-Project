@@ -27,28 +27,22 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	
-	<select id="klassList" resultMap="klassMap" parameterType="klassVo">
-		SELECT * ,a.account_nickname
+	<select id="klassListSearch" resultMap="klassMap" parameterType="klassVo">
+		SELECT k.* ,a.account_nickname
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
 		<where>
-			<if test='searchType != null and searchType.equals("0") == false'>
-				
-					<if test='searchType.equals("1")'>
-						AND k.klass_name LIKE CONCAT('%',#{klassName},'%')
-					</if>
-					<if test='searchType.equals("2")'>
-						AND a.account_nickname LIKE CONCAT('%',#{accountNickname},'%')
-					</if>
-					<if test='searchType.equals("3")'>
-						AND k.klass_txt LIKE CONCAT('%',#{klassTxt},'%')
-					</if>
-				
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
 			</if>
-		
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
 		</where>
-	
 	</select>
 	
 </mapper>

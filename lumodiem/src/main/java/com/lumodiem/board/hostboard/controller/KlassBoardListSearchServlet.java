@@ -31,11 +31,11 @@ public class KlassBoardListSearchServlet extends HttpServlet {
 				.build();
 		
 		List<Klass> searchList = new HostBoardService().searchBoardList(option);
-		request.setAttribute("searchList", searchList);
+		
+		request.setAttribute("resultList", searchList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
 		view.forward(request, response);
 		
-		System.out.println("search : "+option);
 		
 	}
 

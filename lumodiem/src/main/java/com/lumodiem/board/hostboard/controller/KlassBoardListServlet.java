@@ -22,22 +22,13 @@ public class KlassBoardListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String klassName = request.getParameter("klass_name");
-		String accountNickname = request.getParameter("account_nickname");
-		String klassTxt = request.getParameter("klass_txt");
 		
-		Klass option = Klass.builder()
-					.klassName(klassName)
-					.accountNickname(accountNickname)
-					.klassTxt(klassTxt)
-					.build();
+		Klass option = new Klass();
 		
-		List<Klass> resultList = new HostBoardService().selectBoardList(option);
+		List<Klass> resultList = new HostBoardService().searchBoardList(option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
 		view.forward(request, response);
-		
-		System.out.println("boardList : "+option);
 		
 	}
 

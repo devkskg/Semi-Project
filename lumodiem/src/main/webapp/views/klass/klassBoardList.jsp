@@ -5,33 +5,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.hostboard.vo.Klass" %>
-<% List<Klass> resultList = (List<Klass>)request.getAttribute("resultList"); %>    
+<%-- <% List<Klass> resultList = (List<Klass>)request.getAttribute("resultList"); %>  --%>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록 조회</title>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
-	<form action="<c:url value='/klassBoardListSearch'/>" id="searchKlassList">
+	<form action="/klassBoardListSearch" id="searchKlassList" method="post">
 			<select name="search_type" id="search_type">
 				<option value="0">선택</option>			
 				<option value="1">제목</option>			
-				<option value="2">작성자</option>			
+				<option value="2">닉네임</option>			
 				<option value="3">내용</option>			
 			</select>
 			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn">검색</button>
 	</form>
-<!-- 	<script>
-		const searchType = document.getElementById('search_type');
-		searchType.onchange = function(){
-			document.getElementById('searchKlassList').submit();
-		}
-	
-	
-	</script>
- -->	
  		<form>
 		<c:choose>
 
@@ -40,7 +32,7 @@
 				<c:forEach var="list" varStatus="vs" items="${resultList }">
 					<div>
 						<ul>
-							<li>클래스명 : ${list.klassName} 작성자 : ${list.accountNickname}</li>
+							<li>${list.klassName} ${list.accountNickname} ${list.klassTxt }</li>
 						
 						</ul>					
 					</div>

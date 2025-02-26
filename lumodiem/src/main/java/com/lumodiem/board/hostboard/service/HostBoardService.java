@@ -18,13 +18,6 @@ public class HostBoardService {
 		return searchList;
 	}
 	
-	public List<Klass> selectBoardList(Klass option){
-		SqlSession session = getSqlSession();
-		List<Klass> resultList = new HostBoardDao().selectBoardList(session,option);
-		session.close();
-		return resultList;
-	}
-
 	public int insertBoard(Klass option) {
 		SqlSession session = getSqlSession();
 		int result = new HostBoardDao().insertBoard(session, option);

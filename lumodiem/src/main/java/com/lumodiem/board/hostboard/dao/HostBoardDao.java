@@ -9,13 +9,9 @@ import com.lumodiem.board.hostboard.vo.Klass;
 public class HostBoardDao {
 	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
-		return session.selectList("klassMapper.klassList",option);
+		return session.selectList("klassMapper.klassListSearch",option);
 	}
        
-	public List<Klass> selectBoardList(SqlSession session, Klass option){
-		return session.selectList("klassMapper.klassList",option);
-	}
-	
 	public int insertBoard(SqlSession session, Klass option) {
 		int result = session.insert("klassMapper.klassCreate",option);
 		return result;
