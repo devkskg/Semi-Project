@@ -6,6 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.memberboard.vo.ReviewCmt" %>
 <% List<ReviewCmt> list = (List<ReviewCmt>)request.getAttribute("resultList"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,28 +21,35 @@
 		<input type="submit" value="등록">
 		<input type="reset" value="취소">
 	</form>
-	<a href="selectComment"></a>
-	
-	<table border = "1">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>회원</th>
-				<th>리뷰 번호</th>
-				<th>리뷰 댓글 내용</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="r" items="${resultList }" varStatus="vs">
-				<tr>
-					<td>${r.reviewCmtNo }</td>
-					<td>${r.accountNo }</td>
-					<td>${r.reviewNo }</td>
-					<td>${r.reviewCmtTxt }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
- 	
+	<a href="selectComment">test</a>
+		<div class="comment_list">
+			<table border = "1">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>회원</th>
+						<th>리뷰 번호</th>
+						<th>리뷰 댓글 내용</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="r" items="${resultList }" varStatus="vs">
+						<tr data-comment-no="${r.reviewCmtNo }">
+							<td>${r.reviewCmtNo }</td>
+							<td>${r.accountNo }</td>
+							<td>${r.reviewNo }</td>
+							<td>${r.reviewCmtTxt }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+ 	<script>
+ 		 $('.comment_list tbody tr').on('click', function() {
+			location.href='/selectComment';
+		}) 
+ 		
+ 		
+ 	</script>
 </body>
 </html>
