@@ -42,8 +42,33 @@
 			const val = form.res_file.value;
 			const idx = val.lastIndexOf('.');
 			const type = val.substring(idx+1,val.length);
-			if(type == 'jpg' || type == 'png' || type == 'jpeg'){
-				const sendData = new FormData(form);
+			if(val){
+				if(type == 'jpg' || type == 'png' || type == 'jpeg'){
+					let sendData = new FormData(form);
+					$.ajax({
+						url:'/insertReviewPageEnd',
+						type:'post',
+						enctype:"multipart/form-data",
+						cache:false,
+						async:false,
+						contentType:false,
+						processData:false,
+						data:sendData,
+						dataType:'json',
+						success:function(data){
+							alert(data.res_msg);
+							if(data.res_code == "200"){
+								location.href="/";
+							} 
+						}
+					})
+				}else{
+					alert('이미지 파일만 선택할 수 있습니다.')
+					form.res_file.value = '';
+				}
+				
+			}else{
+				let sendData = new FormData(form);
 				$.ajax({
 					url:'/insertReviewPageEnd',
 					type:'post',
@@ -61,10 +86,8 @@
 						} 
 					}
 				})
-			}else{
-				alert('이미지 파일만 선택할 수 있습니다.')
-				form.res_file.value = '';
 			}
+			
 		}
 	}
 </script>
