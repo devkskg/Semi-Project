@@ -18,7 +18,7 @@
 		<c:choose>
 			<c:when test="${account.accountGrade eq 'H'}">
 				<li>
-					<a href="/views/klass/klassBoardCreate.jsp">작성하기</a>
+					<a href="/klassBoardCreate">작성하기</a>
 					<%-- <form action="<c:url value='/klassBoardCreate'/>" method="post"> --%>
 				</li>
 			</c:when>

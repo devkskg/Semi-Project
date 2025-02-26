@@ -7,7 +7,7 @@
 <title>게시글 작성하기</title>
 </head>
 <body>
-	<form action="/klassBoardCreate" method="post">
+	<form action="/klassBoardCreateEnd" method="post">
 				<fieldset>
 					<legend>게시글</legend>
 					<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
