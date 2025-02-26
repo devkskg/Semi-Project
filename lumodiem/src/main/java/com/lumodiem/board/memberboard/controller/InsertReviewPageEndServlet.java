@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.simple.JSONObject;
 
 import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
 
@@ -32,6 +33,15 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
+		
+		// account_no = 이전 jsp에서 input display none으로 value ${account.accountNo}로 가져오기
+		// res_no, klass_date_no의 경우 여기 Servlet에서 메소드 각각 하나씩 써서 조회해서 여기서 가져다 쓰기
+		String accountNo = request.getParameter("account_no");
+//		List<Reservation> resNo = new MemberBoardService().searchResNoByAccountNo(accountNo);
+		// test 를 위한 하드코딩
+		int resNo = 4;
+		int klassDateNo = 2;
+		r = Review.builder().accountNo(klassDateNo).resNo(resNo).klassDateNo(klassDateNo).build();
 		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
@@ -64,9 +74,7 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
-						a.setAttachOri(oriName);
-						a.setAttachNew(newName);
-						a.setAttachPath(path+"\\"+newName);
+						a.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
 					}
 				}
 			}

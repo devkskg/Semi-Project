@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gn.board.service.BoardService;
-import com.gn.board.vo.Attach;
+import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.vo.ReviewAttach;
 
 @WebServlet("/filePath")
 public class FilePathServlet extends HttpServlet {
@@ -26,8 +26,7 @@ public class FilePathServlet extends HttpServlet {
 		// 1. 읽어올 파일명 전달받기 - 정석 방법은 attach_no 보내는 것이다.
 //		detail.jsp에서 쓰기로 한 키값 // <img src="<%=request.getContextPath()%>/filePath?new_name=<%=board.getNewName()%>">
 		int attachNo = Integer.parseInt(request.getParameter("attach_no123"));
-		System.out.println("attachNo : " +attachNo);
-		KlassAttach a = new BoardService().selectAttachOne(attachNo);
+		ReviewAttach a = new MemberBoardService().selectAttachOne(attachNo);
 		
 		// 2. 파일명이 비어있는지 확인
 		String filePath = a.getAttachPath();
