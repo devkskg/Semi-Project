@@ -28,4 +28,8 @@ public class MemberBoardDao {
 	public int UpdateReview(SqlSession session, Review review) {
 		return session.update("reviewMapper.reviewUpdate",review);
 	}
+	public List<Review> selectReviewList(SqlSession session,Review option){
+		return session.selectList("reviewMapper.reviewList",option);
+	}
+	
 }

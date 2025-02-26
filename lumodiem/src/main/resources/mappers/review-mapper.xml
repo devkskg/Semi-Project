@@ -27,6 +27,7 @@
 		<result property="payStatus" column="pay_status"/>
 		<result property="payPrice" column="pay_price"/>
 	</resultMap>
+	
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO `review`(account_no, res_no, klass_date_no, review_name ,review_txt)
 		VALUES (#{accountNo} ,#{resNo} ,#{klassDateNo} ,#{reviewName} ,#{reviewTxt})
@@ -46,6 +47,22 @@
 		,review_txt = #{reviewTxt}
 		WHERE account_no = #{accountNo}
 	</update>
+	
+	<select id="reviewList" resultMap="reviewMap" parameterType="reviewVo">
+	SELECT r.* , a.account_nickname
+	FROM `review` r
+	JOIN `account` a
+	ON r.account_no = a.account_no
+	
+	<where>
+		<if test='reviewName != null and reviewName.equals("") == false'>
+			AND r.review_name LIKE CONCAT('%',#{reviewName},'%')
+		</if>
+		<if test='reviewTxt != null and reviewTxt.equals("") == false'>
+			AND r.review_txt LIKE CONCAT('%',#{reviewTxt},'%')
+		</if>
+	</where>
+	</select>
 	
 	
 </mapper>
