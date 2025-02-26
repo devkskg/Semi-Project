@@ -11,6 +11,13 @@
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
+<%@ include file="/views/include/nav.jsp" %>
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<div class="row d-flex">
+					<div class="col-xl-8 py-5 px-md-5">
+								
 	<c:choose>
 		<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
 		<button type="button" class="selectBtn" name="insert">
@@ -39,7 +46,7 @@
 				<legend>검색하기</legend>
 				<input type="text" name="review_name" placeholder="제목">
 				<input type="text" name="review_txt" placeholder="내용">
-				<input type="text" name="account_nickname" placeholder="작성자">
+				<input type="text" name="account_nickname" placeholder="닉네임">
 				<input type="submit" value="조회">
 			</fieldset>
 		</form>
@@ -50,6 +57,7 @@
 				<th>번호</th>
 				<th>제목</th>
 				<th>내용</th>
+				<th>닉네임</th>
 			</tr>
 	</thead>
 		<tbody>
@@ -60,17 +68,24 @@
 							<td><c:out value="${vs.count}" /></td>
 							<td><c:out value="${rb.reviewName}" /></td>
 							<td><c:out value="${rb.reviewTxt}" /></td>
+							<td><c:out value="${rb.accountNickName}"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="3">자료없음!</td>
+						<td colspan="4">자료없음!</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
 		</tbody>
 	</table>
-		
+						<div class="row pt-md-4">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	
+</div>
 </body>
 </html>
