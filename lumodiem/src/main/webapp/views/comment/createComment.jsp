@@ -6,7 +6,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.memberboard.vo.ReviewCmt" %>
 <% List<ReviewCmt> list = (List<ReviewCmt>)request.getAttribute("resultList"); %>
-
+<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>
 <!DOCTYPE html>
 <html>
 <head>
