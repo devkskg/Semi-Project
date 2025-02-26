@@ -26,19 +26,26 @@ public class CreateCommentEndServlet extends HttpServlet {
 		String temp1 = request.getParameter("account_no");
 		String temp2 = request.getParameter("review_no");
 		String reviewCmtTxt = request.getParameter("review_cmt_txt");
-		int account_no = 0;
-		int review_no = 0 ;
-		if(temp1!=null) account_no = Integer.parseInt(temp1);
-		if(temp2!=null) review_no = Integer.parseInt(temp2);
+		int accountNo = 0;
+		int reviewNo = 0 ;
+		if(temp1!=null) accountNo = Integer.parseInt(temp1);
+		if(temp2!=null) reviewNo = Integer.parseInt(temp2);
 		
-		ReviewCmt cmt = new ReviewCmt();
-		cmt.setAccountNo(account_no);
-		cmt.setReviewNo(review_no);
-		cmt.setReviewCmtTxt(reviewCmtTxt);
-		System.out.println(cmt);
+//		ReviewCmt cmt = new ReviewCmt();
+//		cmt.setAccountNo(accountNo);
+//		cmt.setReviewNo(reviewNo);
+//		cmt.setReviewCmtTxt(reviewCmtTxt);
+//		System.out.println(cmt);
 		
-		int result = new ReviewCommentService().insertReviewComment(cmt);
-		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt);
+		ReviewCmt cmt2 = ReviewCmt.builder()
+				.accountNo(accountNo)
+				.reviewNo(reviewNo)
+				.reviewCmtTxt(reviewCmtTxt)
+				.build();
+		
+		
+		int result = new ReviewCommentService().insertReviewComment(cmt2);
+		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt2);
 		RequestDispatcher view = request.getRequestDispatcher("/views/comment/createComment.jsp");
 		request.setAttribute("resultList", resultList);
 //		request.setAttribute(reviewCmtTxt, response)
