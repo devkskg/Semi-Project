@@ -30,12 +30,29 @@
 	<insert id="commentCreate" parameterType="commentVo" useGeneratedKeys="true" keyProperty="reviewCmtNo">
 		INSERT INTO review_cmt(account_no ,review_no ,review_cmt_txt)
 		VALUES (#{accountNo} ,#{reviewNo} ,#{reviewCmtTxt})
-	
-	
 	</insert>
-
+	
+	<update id="commentUpdate" parameterType="commentVo" useGeneratedKeys="true" keyProperty="reviewCmtNo">
+		UPDATE `review_cmt`
+		SET `review_cmt_txt` = #{reviewCmtTxt}
+		<where>
+			review_cmt_no = #{reviewCmtNo}
+		</where>
+		
+	</update>
 
 <!--  
+	<update id="boardUpdate" parameterType="boardVo">
+		UPDATE `board`
+		SET board_title = #{boardTitle}
+		,board_content = #{boardContent}
+		WHERE board_no = #{boardNo}
+	</update>
+
+
+
+
+
 
 
 	<select id="boardList" resultMap="boardMap" parameterType="boardVo">
