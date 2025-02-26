@@ -22,4 +22,5 @@ public class Review {
 	private int klassDateNo; // 클래스 예약일 목록번호
 	private String reviewTxt;
 	private String reviewName;
+	private String accountNickName;
 }

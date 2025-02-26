@@ -23,13 +23,14 @@ public class ReviewBoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String reviewName = request.getParameter("review_name");
 		String reviewTxt = request.getParameter("review_txt");
-		
+		String accountNickName = request.getParameter("account_nickname");
 		
 //		int accountNo = Integer.parseInt(request.getParameter("account_no"));
 		
 		Review option = Review.builder()
 				.reviewName(reviewName)
 				.reviewTxt(reviewTxt)
+				.accountNickName(accountNickName)
 				.build();
 		List<Review> resultList = new MemberBoardService().selectReviewList(option);
 		request.setAttribute("resultList", resultList);

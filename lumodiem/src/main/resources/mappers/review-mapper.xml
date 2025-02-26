@@ -11,6 +11,7 @@
 		<result property="klassDateNo" column="klass_date_no"/>
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
+		<result property="accountNickName" column="account_nickname"/>
 	</resultMap>
 	<resultMap type="reviewattachVo" id="reviewattachMap">
 		<result property="attachNo" column="attach_no"/>
@@ -60,6 +61,9 @@
 		</if>
 		<if test='reviewTxt != null and reviewTxt.equals("") == false'>
 			AND r.review_txt LIKE CONCAT('%',#{reviewTxt},'%')
+		</if>
+		<if test='accountNickName != null and accountNickName.equals("") == false'>
+			AND a.account_nickname LIKE CONCAT('%',#{accountNickName},'%')
 		</if>
 	</where>
 	</select>
