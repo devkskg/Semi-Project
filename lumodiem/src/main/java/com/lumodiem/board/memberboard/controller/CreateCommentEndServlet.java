@@ -31,11 +31,6 @@ public class CreateCommentEndServlet extends HttpServlet {
 		if(temp1!=null) accountNo = Integer.parseInt(temp1);
 		if(temp2!=null) reviewNo = Integer.parseInt(temp2);
 		
-//		ReviewCmt cmt = new ReviewCmt();
-//		cmt.setAccountNo(accountNo);
-//		cmt.setReviewNo(reviewNo);
-//		cmt.setReviewCmtTxt(reviewCmtTxt);
-//		System.out.println(cmt);
 		
 		ReviewCmt cmt2 = ReviewCmt.builder()
 				.accountNo(accountNo)
