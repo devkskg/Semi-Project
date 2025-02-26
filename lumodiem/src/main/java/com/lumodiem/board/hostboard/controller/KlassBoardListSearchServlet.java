@@ -13,27 +13,33 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 
-@WebServlet("/klassBoardList")
-public class KlassBoardListServlet extends HttpServlet {
+@WebServlet("/klassBoardListSearch")
+public class KlassBoardListSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public KlassBoardListServlet() {
+    public KlassBoardListSearchServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String searchType = request.getParameter("search_type");
+		String searchTxt = request.getParameter("search_txt");
 		
-		Klass option = new Klass();
+		Klass option = Klass.builder()
+				.searchType(searchType)
+				.searchTxt(searchTxt)
+				.build();
 		
-		List<Klass> resultList = new HostBoardService().searchBoardList(option);
-		request.setAttribute("resultList", resultList);
+		List<Klass> searchList = new HostBoardService().searchBoardList(option);
+		
+		request.setAttribute("resultList", searchList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
 		view.forward(request, response);
+		
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 
