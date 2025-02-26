@@ -1,6 +1,7 @@
 package com.lumodiem.board.memberboard.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.vo.Review;
 
 @WebServlet("/reviewBoard")
 public class ReviewBoardServlet extends HttpServlet {
@@ -17,6 +21,18 @@ public class ReviewBoardServlet extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String reviewName = request.getParameter("review_name");
+		String reviewTxt = request.getParameter("review_txt");
+		
+		
+//		int accountNo = Integer.parseInt(request.getParameter("account_no"));
+		
+		Review option = Review.builder()
+				.reviewName(reviewName)
+				.reviewTxt(reviewTxt)
+				.build();
+		List<Review> resultList = new MemberBoardService().selectReviewList(option);
+		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewBoard.jsp");
 		view.forward(request, response);
 	}
