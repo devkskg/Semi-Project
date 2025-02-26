@@ -37,7 +37,7 @@
 							</div>
 								<div class="meta-wrap">
 									<ul class="categories">
-										<li><a href="<c:url value='/hostMypageApproveClass'/>">승인 대기 클래스 조회 <span>(+)</span></a></li>
+										<li><a href="<c:url value='/hostMypageApproveClass?account_no=${account.accountNo}'/>">승인 대기 클래스 조회 <span>(+)</span></a></li>
 										<li><a href="<c:url value='/hostMypageOpenClass'/>">개설 클래스 목록 조회 <span>(+)</span></a></li>
 										<li><a href="<c:url value='/hostMypageReview'/>">클래스 리뷰 조회 <span>(+)</span></a></li>
 										<li><a href="<c:url value='/hostMypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
