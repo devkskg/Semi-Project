@@ -24,21 +24,14 @@ public class KlassBoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String klassName = request.getParameter("klass_name");
 		String accountNickname = request.getParameter("account_nickname");
-		String klassAddress = request.getParameter("klass_address");
-		int klassMax = Integer.parseInt(request.getParameter("klass_max"));
-		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
 		String klassTxt = request.getParameter("klass_txt");
-		int accountNo = Integer.parseInt(request.getParameter("account_no"));
+		String searchType = request.getParameter("search_type");
 		
 		Klass option = Klass.builder()
 					.klassName(klassName)
 					.accountNickname(accountNickname)
-					.klassAddress(klassAddress)
-					.klassMax(klassMax)
-					.klassPrice(klassPrice)
 					.klassTxt(klassTxt)
-					.accountNo(accountNo)
-					.klassStatus("R")
+					.searchType(searchType)
 					.build();
 		System.out.println(option);
 		

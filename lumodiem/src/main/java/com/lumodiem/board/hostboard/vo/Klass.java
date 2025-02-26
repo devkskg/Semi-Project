@@ -25,5 +25,5 @@ public class Klass {
 	private String accountNickname;
 	private String klassRegDate;
 	private String klassModDate;
-
+	private String searchType;
 }
