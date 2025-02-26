@@ -38,13 +38,6 @@
 		}else if(!form.review_txt.value){
 			alert("내용을 입력하세요.")
 			form.review_txt.focus();
-		}else if(!form.res_file.value){
-			$.ajax({
-				url:'/insertReviewPageEnd',
-				type:'post',
-				data:{"reviewName":review_name 
-						"reviewTxt":review_txt}
-			})
 		}else{
 			const val = form.res_file.value;
 			const idx = val.lastIndexOf('.');
