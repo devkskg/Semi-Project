@@ -13,14 +13,14 @@
 <title>게시판 목록 조회</title>
 </head>
 <body>
-	<form action="<c:url value='/klassBoardList'/>" id="searchKlassList">
+	<form action="<c:url value='/klassBoardListSearch'/>" id="searchKlassList">
 			<select name="search_type" id="search_type">
 				<option value="0">선택</option>			
 				<option value="1">제목</option>			
 				<option value="2">작성자</option>			
 				<option value="3">내용</option>			
 			</select>
-			<input type="text" name="searchTxt" placeholder="검색어를 입력하세요.">
+			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn">검색</button>
 	</form>
 <!-- 	<script>
@@ -39,10 +39,10 @@
 
 				<c:forEach var="list" varStatus="vs" items="${resultList }">
 					<div>
-						<ol>
-							<li>${list.klassName}</li>
+						<ul>
+							<li>클래스명 : ${list.klassName} 작성자 : ${list.accountNickname}</li>
 						
-						</ol>					
+						</ul>					
 					</div>
 
 				</c:forEach>

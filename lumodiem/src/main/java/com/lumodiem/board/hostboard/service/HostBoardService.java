@@ -11,6 +11,13 @@ import com.lumodiem.board.hostboard.vo.Klass;
 
 public class HostBoardService {
 	
+	public List<Klass> searchBoardList(Klass option){
+		SqlSession session = getSqlSession();
+		List<Klass> searchList = new HostBoardDao().searchBoardList(session,option);
+		session.close();
+		return searchList;
+	}
+	
 	public List<Klass> selectBoardList(Klass option){
 		SqlSession session = getSqlSession();
 		List<Klass> resultList = new HostBoardDao().selectBoardList(session,option);

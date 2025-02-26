@@ -7,6 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import com.lumodiem.board.hostboard.vo.Klass;
 
 public class HostBoardDao {
+	
+	public List<Klass> searchBoardList(SqlSession session, Klass option){
+		return session.selectList("klassMapper.klassList",option);
+	}
        
 	public List<Klass> selectBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
