@@ -12,7 +12,7 @@
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
 		<result property="accountNickName" column="account_nickname"/>
-		<result property="reivewRegDate" column="review_reg_date"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
 		<result property="reviewModDate" column="review_mod_date"/>
 		<result property="orderType" column="order_type"/>
 	</resultMap>
