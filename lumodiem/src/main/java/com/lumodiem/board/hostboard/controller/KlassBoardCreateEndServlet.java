@@ -32,10 +32,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		String klassTxt = request.getParameter("klass_txt");
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
 		LocalDateTime ldt = LocalDateTime.now();
-		DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		System.out.println(ldt.format(dtf1));
-		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		System.out.println(ldt.format(dtf2));
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		Klass option = Klass.builder()
 					.klassName(klassName)
 					.accountNickname(accountNickname)
@@ -45,8 +42,8 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 					.klassTxt(klassTxt)
 					.accountNo(accountNo)
 					.klassStatus("R")
-					.klassRegDate(ldt.format(dtf1))
-					.klassModDate(ldt.format(dtf2))
+					.klassRegDate(ldt.format(dtf))
+					.klassModDate(ldt.format(dtf))
 					.build();
 		System.out.println(option); // 입력 된 값 확인 출력문 추후에 지울 예정
 		int result = new HostBoardService().insertBoard(option);

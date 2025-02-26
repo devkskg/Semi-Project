@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.hostboard.vo.Klass" %>
-<%-- <% List<Klass> resultList = (List<Klass>)request.getAttribute("resultList"); %>  --%>   
 <!DOCTYPE html>
 <html>
 <head>
