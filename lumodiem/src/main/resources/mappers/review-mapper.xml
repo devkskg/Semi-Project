@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewMapper">
 
-	<resultMap type="accountVo" id="reviewMap">
+	<resultMap type="reviewVo" id="reviewMap">
 		<result property="reviewNo" column="review_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="resNo" column="res_no"/>
@@ -12,8 +12,35 @@
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
 	</resultMap>
-	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo"></insert>
-		INSERT INTO `review`()
-
-
+	<resultMap type="reviewattachVo" id="reviewattachMap">
+		<result property="attachNo" column="attach_no"/>
+		<result property="attachOri" column="attach_ori"/>
+		<result property="attachNew" column="attach_new"/>
+		<result property="attachPath" column="attach_path"/>
+	</resultMap>
+	<resultMap type="reservationVo" id="reservationMap">
+		<result property="resNo" column="res_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassDataNo" column="klass_data_no"/>
+		<result property="resPpl" column="res_ppl"/>
+		<result property="payTime" column="pay_time"/>
+		<result property="payStatus" column="pay_status"/>
+		<result property="payPrice" column="pay_price"/>
+	</resultMap>
+	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
+		INSERT INTO `review`(account_no, res_no, klass_date_no, review_name ,review_txt)
+		VALUES (#{accountNo} ,#{resNo} ,#{klassDateNo} ,#{reviewName} ,#{reviewTxt})
+	</insert>
+	<insert id="reviewAttachInsert" parameterType="reviewAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
+		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
+		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
+	</insert>
+	<!-- <select id="searchResNoByAccountNo" resultMap="reservationMap" parameterType="reservationVo">
+		SELECT res_no
+		FROM reservation
+		WHERE account_no = #{accountNo}	
+	</select> -->
+	
+	
+	
 </mapper>
