@@ -31,7 +31,7 @@
 					<input type="hidden" name="review_cmt_no" value="${cmt.reviewCmtNo }">
 					<input type="text" name="review_comment_txt" value="${cmt.reviewCmtTxt }">
 					<input type="button" value="수정" onclick="updateComment();">
-					<input type="button" value="삭제" onclick="updateComment();">
+					<input type="button" value="삭제" onclick="deleteComment();">
 					
 				</form>
 			</div>
