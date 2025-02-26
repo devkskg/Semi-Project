@@ -12,6 +12,9 @@
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
 		<result property="accountNickName" column="account_nickname"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
+		<result property="reviewModDate" column="review_mod_date"/>
+		<result property="orderType" column="order_type"/>
 	</resultMap>
 	<resultMap type="reviewattachVo" id="reviewattachMap">
 		<result property="attachNo" column="attach_no"/>
@@ -66,6 +69,16 @@
 			AND a.account_nickname LIKE CONCAT('%',#{accountNickName},'%')
 		</if>
 	</where>
+	<if test='orderType != null and orderType.equals("0") == false'>
+		<choose>
+			<when test='orderType.equals("1") == true'>
+				ORDER BY r.review_reg_date DESC
+			</when>	
+			<otherwise>
+				ORDER BY r.review_reg_date ASC
+			</otherwise>
+		</choose>
+	</if>
 	</select>
 	
 	

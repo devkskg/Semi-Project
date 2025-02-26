@@ -41,7 +41,7 @@
 		</c:otherwise>
 	</c:choose>
 	
-		<form action="<c:url value='/reviewBoard'/>" method="post">
+		<form action="<c:url value='/reviewBoard'/>" method="post" id="searchFrm">
 			<fieldset>
 				<legend>검색하기</legend>
 				<input type="text" name="review_name" placeholder="제목">
@@ -49,7 +49,21 @@
 				<input type="text" name="account_nickname" placeholder="닉네임">
 				<input type="submit" value="조회">
 			</fieldset>
+			<fieldset>		
+				<legend>정렬하기</legend>
+				<select name="order_type" id="order_type">
+					<option value="0">선택</option>
+					<option value="1">최신순</option>
+					<option value="2">오래된순</option>
+				</select>
+			</fieldset>	
 		</form>
+		<script>
+			const orderType = document.getElementById('order_type');
+			orderType.onchange = function(){
+				document.getElementById('searchFrm').submit();
+			}
+		</script>
 		
 		<table border="1">
 		<thead>
