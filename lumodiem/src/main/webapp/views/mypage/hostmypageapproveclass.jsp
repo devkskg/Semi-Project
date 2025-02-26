@@ -7,6 +7,6 @@
 <title>승인 대기 클래스</title>
 </head>
 <body>
-	<%@ include file="" %>
+	<%@ include file="/views/include/nav.jsp" %>
 </body>
 </html>
