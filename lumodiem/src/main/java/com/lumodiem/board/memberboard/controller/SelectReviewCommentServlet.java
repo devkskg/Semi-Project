@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
 
-@WebServlet("/selectComment")
+@WebServlet("/selectReviewComment")
 public class SelectReviewCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -21,14 +21,13 @@ public class SelectReviewCommentServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String temp = request.getParameter("review_cmt_no");
+		String temp = request.getParameter("test01");
 		int reviewCmtNo = 0;
 		if(temp!=null) reviewCmtNo = Integer.parseInt(temp);
 		ReviewCmt cmt = new ReviewCommentService().selectReviewCommentDetail(reviewCmtNo);
 		RequestDispatcher view = request.getRequestDispatcher("/views/comment/directSelectComment.jsp");
 		request.setAttribute("cmt", cmt);
 		view.forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

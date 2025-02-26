@@ -21,34 +21,40 @@
 		<input type="submit" value="등록">
 		<input type="reset" value="취소">
 	</form>
-	<a href="selectComment">test</a>
-		<div class="comment_list">
-			<table border = "1">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>회원</th>
-						<th>리뷰 번호</th>
-						<th>리뷰 댓글 내용</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="r" items="${resultList }" varStatus="vs">
-						<tr data-comment-no="${r.reviewCmtNo }">
-							<td>${r.reviewCmtNo }</td>
-							<td>${r.accountNo }</td>
-							<td>${r.reviewNo }</td>
-							<td>${r.reviewCmtTxt }</td>
+	
+	<form method="post">
+		<a href="selectReviewComment">test</a>
+			<div class="comment_list">
+				<table border = "1">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>회원</th>
+							<th>리뷰 번호</th>
+							<th>리뷰 댓글 내용</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						
+						<c:forEach var="r" items="${resultList }" varStatus="vs">
+							<tr>
+								<td>${r.reviewCmtNo }</td>
+								<td>${r.accountNo }</td>
+								<td>${r.reviewNo }</td>
+								<td>${r.reviewCmtTxt }</td>
+								<td><button type="button' data-comment-no="${r.reviewCmtNo }">버튼</button></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</form>
  	<script>
- 		 $('.comment_list tbody tr').on('click', function() {
-			location.href='/selectComment';
-		}) 
- 		
+ 		 
+ 		$('.comment_list tbody button').click(function(){
+ 			const commentNo = $(this).data('comment-no');
+			location.href='/selectReviewComment?test01='+commentNo;
+ 		});
  		
  	</script>
 </body>
