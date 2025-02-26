@@ -21,7 +21,7 @@ public class SelectReviewCommentServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String temp = request.getParameter("test01");
+		String temp = request.getParameter("reviewCommentClicked");
 		int reviewCmtNo = 0;
 		if(temp!=null) reviewCmtNo = Integer.parseInt(temp);
 		ReviewCmt cmt = new ReviewCommentService().selectReviewCommentDetail(reviewCmtNo);

@@ -42,7 +42,7 @@
 								<td>${r.accountNo }</td>
 								<td>${r.reviewNo }</td>
 								<td>${r.reviewCmtTxt }</td>
-								<td><button type="button' data-comment-no="${r.reviewCmtNo }">버튼</button></td>
+								<td><button type='button' data-comment-no="${r.reviewCmtNo }">버튼</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -53,7 +53,7 @@
  		 
  		$('.comment_list tbody button').click(function(){
  			const commentNo = $(this).data('comment-no');
-			location.href='/selectReviewComment?test01='+commentNo;
+			location.href='/selectReviewComment?reviewCommentClicked='+commentNo;
  		});
  		
  	</script>

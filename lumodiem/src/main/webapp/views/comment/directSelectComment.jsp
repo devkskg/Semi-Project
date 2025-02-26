@@ -12,23 +12,39 @@
 <h1>test</h1>
 	<section>
 		<div>
-			<table>
+			<%-- <table update_comment_>
 				<tr>
-					<td>${r.reviewCmtNo }</td>
-					<td>${r.accountNo }</td>
-					<td>${r.reviewNo }</td>
-					<td>${r.reviewCmtTxt }</td>
-					<td><button type='button' data-comment-no="${r.reviewCmtNo }">버튼</button></td>
+					<td>${cmt.reviewCmtNo }</td>
+					<td>${cmt.accountNo }</td>
+					<td>${cmt.reviewNo }</td>
+					<td><input id="change" value="${cmt.reviewCmtTxt }"></td>
+					<td><button type='button' onclick="updateComment();">수정</button></td>
 				</tr>
-			</table>
+			</table> --%>
 			
-			<div>
-				<a href="">수정</a>
-				<a>삭제</a>
+			<div class="update_comment_form">
+				<form action='updateReviewComment' name="update_comment_form" method="post">
+					<input name="review_comment_txt" value="${cmt.reviewCmtTxt }">
+					<input type="button" value="수정" onclick="updateComment();">
+				</form>
 			</div>
+			
 		</div>
-		
-	
 	</section>
+	<script type="text/javascript">
+		const updateComment = function() {
+			const form = document.update_comment_form;
+			$.ajax({
+				url : "/updateReviewComment",
+				type : "post",
+				data : {"review_cmt_txt":form.review_comment_txt
+						},
+				dataType : "JSON",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				
+				}
+			});
+		}
+	</script>
 </body>
 </html>
