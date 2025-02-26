@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>⭐리뷰 게시판⭐</title>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
 	<c:choose>
@@ -32,6 +33,44 @@
 			</script>
 		</c:otherwise>
 	</c:choose>
-		<!-- <button>금액결제</button> -->
+	
+		<form action="<c:url value='/reviewBoard'/>" method="post">
+			<fieldset>
+				<legend>검색하기</legend>
+				<input type="text" name="review_name" placeholder="제목">
+				<input type="text" name="review_txt" placeholder="내용">
+				<input type="text" name="account_nickname" placeholder="작성자">
+				<input type="submit" value="조회">
+			</fieldset>
+		</form>
+		
+		<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>내용</th>
+			</tr>
+	</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="${not empty resultList }">
+					<c:forEach items="${resultList}" var="rb" varStatus="vs">
+						<tr>
+							<td><c:out value="${vs.count}" /></td>
+							<td><c:out value="${rb.reviewName}" /></td>
+							<td><c:out value="${rb.reviewTxt}" /></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="3">자료없음!</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</tbody>
+	</table>
+		
 </body>
 </html>
