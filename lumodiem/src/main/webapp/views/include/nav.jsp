@@ -49,7 +49,7 @@
 			<a href="/">홈</a>
 		</li>
 		<li>
-			<a href="/klassBoard">클래스 게시판</a>
+			<a href="/klassBoardList">클래스 게시판</a>
 		</li>
 		<li>
 			<a href="/reviewBoard">리뷰 게시판</a>
