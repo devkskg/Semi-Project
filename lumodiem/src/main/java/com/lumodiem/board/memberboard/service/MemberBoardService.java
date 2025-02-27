@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.lumodiem.board.memberboard.dao.BoardDao;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -30,12 +29,6 @@ public class MemberBoardService {
 		session.close();
 		return result;
 	}
-	public ReviewAttach selectAttachOne(int attachNo) {
-		SqlSession session = getSqlSession();
-		ReviewAttach a = new MemberBoardDao().selectAttachOne(session, attachNo);
-		session.close();
-		return a;
-	}
 	public List<Reservation> searchResNoByAccountNo(String accountNo) {
 		SqlSession session = getSqlSession();
 		List<Reservation> resList = new MemberBoardDao().searchResNoByAccountNo(session, accountNo);
@@ -54,7 +47,12 @@ public class MemberBoardService {
 		session.close();
 		return resultList;
 	}
-	
+	public Review selectReviewOne(int reviewNo) {
+		SqlSession session = getSqlSession();
+		Review review = new MemberBoardDao().selectReviewOne(session,reviewNo);
+		session.close();
+		return review;
+	}
 	
 	
 	
