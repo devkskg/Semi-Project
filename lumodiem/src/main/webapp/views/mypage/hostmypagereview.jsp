@@ -27,6 +27,7 @@
 								<li>2</li>
 								<li>3</li>
 								<li>4</li>
+								<li>5</li>
 							</ul>
 						</div>
 
@@ -37,23 +38,23 @@
 
 								<c:when test="${not empty approveList }">
 
-									<c:forEach var="list" varStatus="vs" items="${approveList }">
+									<c:forEach var="list1" varStatus="vs" items="${approveList }">
 										<div>
 											<ul>
 												<li>
-													${list.klassName}
-													${list.accountNickname}
-													${list.klassTxt }
+													${list1.klassName}
+													${list1.accountNickname}
+													${list1.klassTxt }
 												</li>
-												
-												<c:forEach var="list2" varStatus="vs2" items="${reviewList}">
-													<li>
-														<a>
-															${list2.reviewName}
-															<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>
-														</a>
-													</li>
-												</c:forEach>
+												<li>
+													<ul>
+														<c:forEach var="list2" varStatus="vs2" items="${reviewList}">
+															<li>
+																<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>">${list2.reviewName}</a>
+															</li>
+														</c:forEach>
+													</ul>
+												</li>												
 												
 											</ul>
 										</div>
