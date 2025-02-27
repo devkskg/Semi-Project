@@ -36,7 +36,7 @@
 				<c:forEach var="list" varStatus="vs" items="${resultList }">
 					<div>
 						<ul>
-							<li>${list.reportKlassNo }${list.klassNo }${list.accountNo }</li>
+							<li>${list.klassName }${list.accountNickname }${list.klassTxt }</li>
 						
 						</ul>					
 					</div>

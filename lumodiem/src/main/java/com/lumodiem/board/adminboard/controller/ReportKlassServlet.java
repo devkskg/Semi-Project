@@ -27,7 +27,7 @@ public class ReportKlassServlet extends HttpServlet {
 		int reportKlassNo = 0;
 		if(temp!=null)reportKlassNo = Integer.parseInt(temp);
 		
-		System.out.println(temp);
+		//System.out.println(temp);
 		// ↓ 임의로 값 입력했음 ( 1 ) <<<<<
 		
 		

@@ -21,6 +21,14 @@ public class ReportKlass {
 	private int klassNo;
 	private int accountNo;
 	
+	// 클래스 신고 내역 참조용
+	private String klassName;
+	private String accountNickname;
+	private String klassTxt;
+	
+	
+	
+	
 	private int reportReviewNo;
 	
 	private int reportReviewCmtNo;
