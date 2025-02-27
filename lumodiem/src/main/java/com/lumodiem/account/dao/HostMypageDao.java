@@ -8,8 +8,12 @@ import com.lumodiem.board.hostboard.vo.Klass;
 
 public class HostMypageDao {
 
-	public List<Klass> selectListByHostAccountNo(SqlSession session, int accountNo) {
-		return session.selectList("klassMapper.klassListSearch", accountNo);
+	public List<Klass> selectApproveListByHostAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.approveKlassListSearch", option);
+	}
+
+	public List<Klass> selectOpenListByHostAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.openKlassListSearch", option);
 	}
 
 }
