@@ -16,7 +16,9 @@
 		<result property="klassTxt" column="klass_txt"/>
 		
 		
-
+		<result property="reviewName" column="review_name"/>
+		<result property="reviewTxt" column="review_txt"/>
+		
 		
 		<result property="reportReviewNo" column="report_review_no"/>
 		<result property="reportReviewCmtNo" column="report_review_cmt_no"/>
@@ -24,15 +26,28 @@
 
 	</resultMap>
 	
+	<select id="reportReviewSelect" resultMap="reportMap">
+	SELECT r.review_name
+	,r.review_txt
+	,a.account_nickname
+	,rr.report_review_no
+	FROM report_review rr
+	JOIN review r
+	ON rr.review_no = r.review_no
+	JOIN `account` a
+	ON a.account_no = rr.account_no
+	</select>
+	
+	
+	
+	
+	
 	<delete id="deleteReportKlass" parameterType="_int" >
 		DELETE FROM `klass_report`
 		<where>
 		 report_klass_no = #{reportKlassNo};
 		 </where>
 	</delete>
-	
-
-	
 	<!-- <select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >
 		SELECT *
 		FROM klass_report

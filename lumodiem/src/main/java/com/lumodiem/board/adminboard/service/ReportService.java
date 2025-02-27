@@ -1,7 +1,7 @@
 package com.lumodiem.board.adminboard.service;
 
-import static com.lumodiem.common.sql.SqlSessionTemplate.getSqlSession;
 import static com.lumodiem.common.sql.SqlSessionTemplate.commitRollback;
+import static com.lumodiem.common.sql.SqlSessionTemplate.getSqlSession;
 
 import java.util.List;
 
@@ -9,15 +9,27 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
+import com.lumodiem.board.adminboard.vo.ReportReview;
 
 public class ReportService {
 	ReportDao dao = new ReportDao();
 	
-	public int deleteReportKlass(int rk) {
-		
-		
+	
+	
+	
+	
+	
+	
+	
+	public List<ReportReview> selectReportReviewList(){
 		SqlSession session = getSqlSession();
-		
+		List<ReportReview> resultList = dao.selectReportReviewList(session);
+		session.close();
+		return resultList;
+	}
+	
+	public int deleteReportKlass(int rk) {
+		SqlSession session = getSqlSession();
 		int result = dao.deleteReportKlass(rk, session);
 		commitRollback(session, result);
 		session.close();

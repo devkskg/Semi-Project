@@ -16,8 +16,8 @@
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
 								
-								<a href="/reportKlass">신고된 클래스</a><br>
-								<a>신고된 댓글</a><br>
+								<a href="/reportKlass">신고된 클래스</a>
+								<a href="/reportReview">신고된 댓글</a><br>
 								<a>신고된 리뷰</a><br>
 								
 								</div>

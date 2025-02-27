@@ -5,8 +5,15 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.adminboard.vo.ReportKlass;
+import com.lumodiem.board.adminboard.vo.ReportReview;
 
 public class ReportDao {
+	
+	
+	public List<ReportReview> selectReportReviewList(SqlSession session){
+		return session.selectList("reportMapper.reportReviewSelect");
+		
+	}
 	
 	public int deleteReportKlass(int rk, SqlSession session) {
 		return session.insert("reportMapper.deleteReportKlass",rk);
