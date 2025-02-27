@@ -17,9 +17,9 @@
 			<legend>리뷰 수정</legend>
 			<input type="hidden" value="${account.accountNo}" name="${account.accountNo}">
 			<label for="review_name">게시글 제목 : </label>
-			<input type="text" name="review_name" id="review_name" placeholder="수정하실 제목을 입력하세요."><br>
+			<input type="text" name="review_name" id="review_name" placeholder="수정하실 제목을 입력하세요." value="<c:out value='${vo.boardNo }'/>"><br>
 			<label for="review_txt">내용 : </label><br>
-			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."></textarea>
+			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요.">value="<c:out value='${review.reviewTxt }'/></textarea>
 			<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 			<!-- <button type="button" onclick="createReviewForm();">수정하기</button> -->
 			<input type="submit" value="수정하기">

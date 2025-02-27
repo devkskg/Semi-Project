@@ -16,7 +16,7 @@
 		<result property="reviewModDate" column="review_mod_date"/>
 		<result property="orderType" column="order_type"/>
 	</resultMap>
-	<resultMap type="reviewattachVo" id="reviewattachMap">
+	<resultMap type="reviewAttachVo" id="reviewAttachMap">
 		<result property="attachNo" column="attach_no"/>
 		<result property="attachOri" column="attach_ori"/>
 		<result property="attachNew" column="attach_new"/>
@@ -31,20 +31,40 @@
 		<result property="payStatus" column="pay_status"/>
 		<result property="payPrice" column="pay_price"/>
 	</resultMap>
+	<resultMap type="reviewMappingVo" id="reviewMappinMap">
+		<result property="mappingNo" column="mapping_no"/>
+		<result property="attachNo" column="attach_no"/>
+		<result property="reviewNo" column="review_no"/>
+	</resultMap>
+	<resultMap type="klassVo" id="klassMap">
+		<result property="klassNo" column="klass_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="klassAddress" column="klass_address"/>
+		<result property="klassPrice" column="klass_price"/>
+		<result property="klassMax" column="klass_max"/>
+		<result property="klassStatus" column="klass_status"/>
+		<result property="klassTxt" column="klass_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="klassRegDate" column="klass_reg_date"/>
+		<result property="klassModDate" column="klass_mod_date"/>
+	</resultMap>
+	
+	
 	
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO `review`(account_no, res_no, klass_date_no, review_name ,review_txt ,review_reg_date ,review_mod_date)
-		VALUES (#{accountNo} ,#{resNo} ,#{klassDateNo} ,#{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
+		VALUES (#{accountNo} ,#{resNo}, #{klassDateNo} ,#{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
 	</insert>
 	<insert id="reviewAttachInsert" parameterType="reviewAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
 		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
 		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
 	</insert>
-	<!-- <select id="searchResNoByAccountNo" resultMap="reservationMap" parameterType="reservationVo">
-		SELECT res_no
-		FROM reservation
-		WHERE account_no = #{accountNo}	
-	</select> -->
+	<select id="searchResNoByAccountNo" parameterType="String" resultType="ReservationVo">
+    	SELECT *
+    	FROM `reservation`
+    	WHERE account_no = #{accountNo} 
+	</select>
 	<update id="reviewUpdate" parameterType="reviewVo">
 		UPDATE `review`
 		SET review_name = #{reviewName}
@@ -86,7 +106,19 @@
 		JOIN `account` a
 		ON r.account_no = a.account_no
 		WHERE r.review_no = #{reviewNo}
-	
+	</select>
+	<select id='attachOne' resultMap="reviewAttachMap" parameterType="_int">
+		SELECT *
+		FROM `review_attach`
+		WHERE attach_no = #{attachNo}
+	</select>
+	<select id="attendedKlass" resultMap="klassMap" parameterType="_int">
+		SELECT k.*
+		FROM `klass` k
+		JOIN `account` a ON k.account_no = a.account_no
+		JOIN `klass_date` d ON k.klass_no = d.klass_no
+		JOIN `reservation` r ON d.klass_date_no = r.klass_date_no
+		WHERE r.account_no = #{accountNo}
 	</select>
 	
 </mapper>
