@@ -24,16 +24,97 @@
 	<form action="/klassBoardListSearch" id="searchKlassList" method="post">
 			<select name="search_type" id="search_type">
 				<option value="0">선택</option>			
-				<option value="1">제목</option>			
+				<option value="1">클래스명</option>			
 				<option value="2">닉네임</option>			
 				<option value="3">내용</option>			
 			</select>
 			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn">검색</button>
 	</form>
+	<form action="/klassBoardListSearch" id="arrangeKlass" name="arrangeKlass">
+		<select name="order_type" id="order_type">
+			<option value="x">선택</option>
+			<option value="a">최신순</option>
+			<option value="b">오래된순</option>
+		</select>
+	</form>
+	<script>
+		const orderType = document.getElementById('order_type');
+		orderType.onchange = function(){
+			document.getElementById('arrangeKlass').submit();
+		}
+	</script>
 
 
-
+		<form>
+		<c:choose>
+			<c:when test="${account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
+			<button type="button" id="insertBtn" name="insertBtn">
+				<a href="/klassBoardCreate">작성하기</a>
+			</button>
+			<button type="button" id="updateBtn" name="updateBtn">
+				<a href="/klassBoardUpdate">수정하기</a>
+			</button>
+			<button type="button" id="deleteBtn" name="deleteBtn">
+				<a href="/klassBoardDelete">삭제하기</a>
+			</button>
+			</c:when>
+			
+			<c:when test="${account.accountGrade eq 'M'}">
+			<button type="button" class="selectBtn" name="res">
+			<a href="<c:url value='/klassRes'/>">클래스 예약</a>
+			</button>
+			</c:when>		
+		</c:choose>
+	</form>
+	
+	<form>
+		<table border="1">
+		<thead>
+			<tr>
+				<th>클래스명</th>			
+				<th>닉네임</th>			
+				<th>내용</th>			
+			</tr>
+		</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="${not empty resultList }">
+					<c:forEach var="list" varStatus="vs" items="${resultList }">
+						<tr>
+							<td>${list.klassName}</td>
+							<td>${list.accountNickname}</td>
+							<td>${list.klassTxt }</td>
+						</tr>
+					</c:forEach>
+					
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+					</tr>
+				
+				</c:otherwise>
+			
+			
+			</c:choose>
+		
+		
+		
+		
+		</tbody>
+		
+		
+		
+		
+		
+		</table>
+	
+	
+	
+	
+	
+	</form>
 
 
 

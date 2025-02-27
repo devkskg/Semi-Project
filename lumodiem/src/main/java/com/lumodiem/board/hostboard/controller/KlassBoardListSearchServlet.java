@@ -22,19 +22,22 @@ public class KlassBoardListSearchServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String searchType = request.getParameter("search_type");
-		String searchTxt = request.getParameter("search_txt");
+
 		
-		Klass option = Klass.builder()
-				.searchType(searchType)
-				.searchTxt(searchTxt)
-				.build();
 		
-		List<Klass> searchList = new HostBoardService().searchBoardList(option);
-		
-		request.setAttribute("resultList", searchList);
-		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
-		view.forward(request, response);
+//		String searchType = request.getParameter("search_type");
+//		String searchTxt = request.getParameter("search_txt");
+//		
+//		Klass option = Klass.builder()
+//				.searchType(searchType)
+//				.searchTxt(searchTxt)
+//				.build();
+//		
+//		List<Klass> searchList = new HostBoardService().searchBoardList(option);
+//		
+//		request.setAttribute("resultList", searchList);
+//		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
+//		view.forward(request, response);
 		
 		
 	}

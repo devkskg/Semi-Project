@@ -22,18 +22,31 @@ public class KlassBoardListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String klassName = request.getParameter("klass_name");
+		String accountNickname = request.getParameter("account_nickname");
+		String klassTxt = request.getParameter("klass_txt");
+		String searchType = request.getParameter("search_type");
+		String searchTxt = request.getParameter("search_txt");
+		String orderType = request.getParameter("order_type"); 
 		
-		Klass option = new Klass();
+		Klass option = Klass.builder()
+				.klassName(klassName)
+				.accountNickname(accountNickname)
+				.klassTxt(klassTxt)
+				.searchType(searchType)
+				.searchTxt(searchTxt)
+				.orderType(orderType)
+				.build();
 		
 		List<Klass> resultList = new HostBoardService().searchBoardList(option);
 		request.setAttribute("resultList", resultList);
-		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoard.jsp");
 		view.forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

@@ -27,4 +27,5 @@ public class Klass {
 	private String klassModDate;
 	private String searchType;
 	private String searchTxt;
+	private String orderType;
 }
