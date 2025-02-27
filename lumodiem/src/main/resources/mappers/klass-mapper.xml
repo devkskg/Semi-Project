@@ -72,14 +72,7 @@
 	</select>
 	
 	<select id="klassOne" resultMap="klassMap" parameterType="_int">
-		SELECT k.klass_name
-				,a.account_nickname
-				,k.klass_txt
-				,k.klass_max
-				,k.klass_max
-				,k.klass_address
-				,k.klass_price
-				,k.klass_reg_date				
+		SELECT k.* ,a.account_nickname			
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
@@ -88,8 +81,8 @@
 	</where>	
 	</select>
 	
-	<select id="klassDateList" resultMap="klassDateMap" parameterType="_int">
-		SELECT *
+	<select id="klassDateList" resultMap="klassDateMap" parameterType="_int" resultType="klassDateVo">
+		SELECT d.*
 		FROM `klass_date` d
 		JOIN `klass` k
 		ON d.klass_no = k.klass_no

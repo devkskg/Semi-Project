@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="com.lumodiem.board.hostboard.vo.Klass"  %>
-<%@ page import="com.lumodiem.board.hostboard.vo.KlassDate"  %>
-<%Klass klass = (Klass)request.getAttribute("Klass"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,15 +37,18 @@
 				</tr>
 				<tr>
 					<th>일정</th>
-					<td>${fn:substring(klassDate.klassStart,1,10)}</td>
+					<td>${klassDate.klassStart}</td>
+<%-- 					<td>${fn:substring(klassDate.klassStart,1,10)}</td> --%>
 				</tr>
 				<tr>
 					<th>시간</th>
-					<td>${fn:substring(klassDate.klassStart,12,19)}</td>
+					<td>${klassDate.klassStart}</td>
+<%-- 					<td>${fn:substring(klassDate.klassStart,12,19)}</td> --%>
 				</tr>
 				<tr>
 					<th>최대인원(예약가능인원)</th>
-					<td>${klass.klassMax}명(${klass.klassMax - klassDate.klassCount}명)</td>
+					<%-- <td>${klass.klassMax}명(${klass.klassMax - klassDate.klassCount}명)</td> --%>
+					<td>여기라고요?</td>
 				</tr>
 				<tr>
 					<th>주소</th>
