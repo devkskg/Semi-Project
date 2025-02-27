@@ -33,8 +33,8 @@
 	</resultMap>
 	
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
-		INSERT INTO `review`(account_no, res_no, klass_date_no, review_name ,review_txt ,review_reg_date ,review_mod_date)
-		VALUES (#{accountNo} ,#{resNo} ,#{klassDateNo} ,#{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
+		INSERT INTO `review`(account_no, review_name ,review_txt ,review_reg_date ,review_mod_date)
+		VALUES (#{accountNo} ,#{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
 	</insert>
 	<insert id="reviewAttachInsert" parameterType="reviewAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
 		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
