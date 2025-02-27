@@ -42,7 +42,7 @@
 								<td>${r.accountNo }</td>
 								<td>${r.reviewNo }</td>
 								<td>${r.reviewCmtTxt }</td>
-								<td><button type='button' data-comment-no="${r.reviewCmtNo }">버튼</button></td>
+								<td><button type='button' data-comment-no="${r.reviewCmtNo }">버튼</button>
 							</tr>
 						</c:forEach>
 					</tbody>
