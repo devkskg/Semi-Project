@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypageMapper">
+
+	<resultMap type="klassVo" id="mypageMap">
+		<!-- 
+			컬럼명과 필드명을 1대1로 써준다.
+		 	vo의 필드명과 테이블의 컬럼명이 다르기 때문에 맞춰즌 것!
+		 -->
+		<result property="klassNo" column="klass_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="klassAddress" column="klass_address"/>
+		<result property="klassPrice" column="klass_price"/>
+		<result property="klassMax" column="klass_max"/>
+		<result property="klassStatus" column="klass_status"/>
+		<result property="klassTxt" column="klass_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="klassRegDate" column="klass_reg_date"/>
+		<result property="klassModDate" column="klass_mod_date"/>
+	</resultMap>
+	
+	<!-- approve 테이블 -> 내가 올린 클래스 중에서 대기중(S)인 클래스 조회 -->
+	<select id="approveKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
+		SELECT k.* ,a.account_nickname ,p.approve_yn
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+		JOIN `approve` p
+		ON k.klass_no = p.klass_no
+		<where>
+			<if test='accountNo != null'>
+				AND k.account_no = #{accountNo}
+				AND p.approve_yn = 'S'
+			</if>
+		</where>
+	</select>
+	
+	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인완료(Y)인 클래스 조회 -->
+	<select id="openKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
+		SELECT k.* ,a.account_nickname ,p.approve_yn
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+		JOIN `approve` p
+		ON k.klass_no = p.klass_no
+		<where>
+			<if test='accountNo != null'>
+				AND k.account_no = #{accountNo}
+				AND p.approve_yn = 'Y'
+			</if>
+		</where>
+	</select>
+	
+</mapper>
