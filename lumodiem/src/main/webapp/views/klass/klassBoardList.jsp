@@ -23,6 +23,20 @@
 			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn">검색</button>
 	</form>
+	
+	<form>
+		<c:choose>
+			<c:when test="${account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
+			<button type="button" class="insertBtn" name="insertKlass">
+				<a href="/klassBoardCreate">작성하기</a>
+			</button>
+			
+			
+			</c:when>		
+		</c:choose>
+	</form>
+		
+		
  		<form>
 		<c:choose>
 

@@ -10,6 +10,14 @@
 <title>클래스 게시판</title>
 </head>
 <body>
+
+
+
+
+
+
+
+
 	<ul>
 		<li>
 			<a href="/klassBoardList">목록 조회</a>
