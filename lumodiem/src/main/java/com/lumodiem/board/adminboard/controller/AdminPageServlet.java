@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/adminPage")
-public class AdminPage extends HttpServlet {
+public class AdminPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public AdminPage() {
+    public AdminPageServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/admin/adminPage.jsp");
 		view.forward(request, response);
 	}
 	
