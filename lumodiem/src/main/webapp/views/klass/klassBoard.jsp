@@ -33,7 +33,7 @@
 	</form>
 	<form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass">
 		<select name="order_type" id="order_type">
-			<option value="x">선택</option>
+			<option value="x">정렬하기</option>
 			<option value="a">최신순</option>
 			<option value="b">오래된순</option>
 		</select>
@@ -96,33 +96,13 @@
 				
 				</c:otherwise>
 			
-			
 			</c:choose>
-		
-		
-		
 		
 		</tbody>
 		
-		
-		
-		
-		
 		</table>
 	
-	
-	
-	
-	
 	</form>
-
-
-
-
-
-
-
-
 
 				</div>
 			</div>
@@ -130,29 +110,5 @@
 	</section>	
 </div>
 
-
-	<ul>
-		<li>
-			<a href="/klassBoardList">목록 조회</a>
-		</li>
-		
-		<c:choose>
-			<c:when test="${account.accountGrade eq 'H'}">
-				<li>
-					<a href="/klassBoardCreate">작성하기</a>
-					<%-- <form action="<c:url value='/klassBoardCreate'/>" method="post"> --%>
-				</li>
-			</c:when>
-		</c:choose>
-			
-		
-			
-		<li>
-			<a>수정</a>
-		</li>
-		<li>
-			<a>삭제</a>
-		</li>
-	</ul>
 </body>
 </html>
