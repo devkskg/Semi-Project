@@ -21,7 +21,7 @@
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">	
 
-	<form action="/klassBoardListSearch" id="searchKlassList" method="post">
+	<form action="/klassBoardList" id="searchKlassList" method="post">
 			<select name="search_type" id="search_type">
 				<option value="0">선택</option>			
 				<option value="1">클래스명</option>			
@@ -31,7 +31,7 @@
 			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn">검색</button>
 	</form>
-	<form action="/klassBoardListSearch" id="arrangeKlass" name="arrangeKlass">
+	<form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass">
 		<select name="order_type" id="order_type">
 			<option value="x">선택</option>
 			<option value="a">최신순</option>

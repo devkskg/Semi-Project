@@ -32,12 +32,12 @@ public class KlassBoardListSearchServlet extends HttpServlet {
 //				.searchType(searchType)
 //				.searchTxt(searchTxt)
 //				.build();
-//		
-//		List<Klass> searchList = new HostBoardService().searchBoardList(option);
-//		
-//		request.setAttribute("resultList", searchList);
-//		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardList.jsp");
-//		view.forward(request, response);
+		Klass option = new Klass();
+		List<Klass> searchList = new HostBoardService().searchBoardList(option);
+		System.out.println(option);
+		request.setAttribute("resultList", searchList);
+		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoard.jsp");
+		view.forward(request, response);
 		
 		
 	}
