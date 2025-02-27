@@ -22,12 +22,12 @@
 						</div>
 							<div class="meta-wrap">
 								<ul class="categories">
-									<li><a href="<c:url value='/hostMypageApproveKlass?account_no=${account.accountNo}&approve_code=A'/>">승인 완료 클래스 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageApproveKlass?account_no=${account.accountNo}&approve_code=S'/>">승인 대기 클래스 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageApproveKlass?account_no=${account.accountNo}&approve_code=D'/>">반려된 클래스 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageReview?account_no=${account.accountNo}&approve_code=S'/>">클래스 리뷰 조회 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageLike?account_no=${account.accountNo}'/>">좋아요 목록 조회 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageCmt?account_no=${account.accountNo}'/>">작성 댓글 조회 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=A'/>">승인 완료 클래스 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=S'/>">승인 대기 클래스 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=D'/>">반려된 클래스 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/hostMypageReview'/>">클래스 리뷰 조회 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/hostMypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/hostMypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
 								</ul>
 							</div>
 					</div>

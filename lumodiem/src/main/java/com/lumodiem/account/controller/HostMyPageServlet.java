@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.hostboard.vo.Klass;
 
 @WebServlet("/hostMyPage")
 public class HostMyPageServlet extends HttpServlet {
@@ -18,8 +22,24 @@ public class HostMyPageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/mypage/hostmypage.jsp");
-		view.forward(request, response);
+		HttpSession session = request.getSession();
+		Account account = null;
+		String urlPath = "/";
+		
+		if(session != null && session.getAttribute("account") != null) {
+			account = (Account)session.getAttribute("account");
+			String accountGrade = account.getAccountGrade();
+			if("H".equals(accountGrade)) {
+				urlPath = "/views/mypage/hostmypage.jsp";
+				RequestDispatcher view = request.getRequestDispatcher(urlPath);
+				view.forward(request, response);
+			} else {
+				response.sendRedirect("/");
+			}
+		} else {
+			response.sendRedirect("/");
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

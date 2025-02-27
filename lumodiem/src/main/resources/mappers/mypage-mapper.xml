@@ -5,10 +5,6 @@
 <mapper namespace="mypageMapper">
 
 	<resultMap type="klassVo" id="mypageMap">
-		<!-- 
-			컬럼명과 필드명을 1대1로 써준다.
-		 	vo의 필드명과 테이블의 컬럼명이 다르기 때문에 맞춰즌 것!
-		 -->
 		<result property="klassNo" column="klass_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="klassName" column="klass_name"/>
@@ -21,6 +17,18 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 		<result property="approveCode" column="approve_code"/>
+	</resultMap>
+	<resultMap type="reviewVo" id="reviewMap">
+		<result property="reviewNo" column="review_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="resNo" column="res_no"/>
+		<result property="klassDateNo" column="klass_date_no"/>
+		<result property="reviewTxt" column="review_txt"/>
+		<result property="reviewName" column="review_name"/>
+		<result property="accountNickName" column="account_nickname"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
+		<result property="reviewModDate" column="review_mod_date"/>
+		<result property="orderType" column="order_type"/>
 	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
@@ -38,5 +46,15 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- review 테이블 -> 호스트 번호 기준으로 내 클래스의 review 조회  -->
+	<select id="selectReviewListByHostAccountNo" resultMap="reviewMap" parameterType="reviewVo">
+		SELECT r.*
+		FROM `review` r
+		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
+		JOIN `klass` k ON d.klass_no = k.klass_no
+		WHERE k.account_no = #{accountNo};
+	</select>
+	
 	
 </mapper>

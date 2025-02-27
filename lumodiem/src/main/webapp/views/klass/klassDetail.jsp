@@ -42,7 +42,7 @@
 				</tr>
 				<tr>
 					<th>시간</th>
-					<td>${klassDate.klassStart}</td>
+					<%-- <td>${klassDate.klassStart}</td> --%>
 <%-- 					<td>${fn:substring(klassDate.klassStart,12,19)}</td> --%>
 				</tr>
 				<tr>

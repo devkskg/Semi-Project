@@ -12,14 +12,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.simple.JSONObject;
 
+import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
-import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
 
@@ -35,17 +37,20 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
+//		Account ac = null;
+//		HttpSession session = request.getSession();
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		// account_no = 이전 jsp에서 input display none으로 value ${account.accountNo}로 가져오기
-		// res_no, klass_date_no의 경우 여기 Servlet에서 메소드 각각 하나씩 써서 조회해서 여기서 가져다 쓰기
-		String accountNo = request.getParameter("account_no");
-//		List<Reservation> resNo = new MemberBoardService().searchResNoByAccountNo(accountNo);
-		// test 를 위한 하드코딩
-		int resNo = 4;
-		int klassDateNo = 2;
 		
-		r = Review.builder().accountNo(klassDateNo).resNo(resNo).klassDateNo(klassDateNo).reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
+//		if(session != null && session.getAttribute("account") != null) {
+//			ac = (Account)session.getAttribute("account");
+//			int accountNo = ac.getAccountNo();
+//			List<Klass> klass = new MemberBoardService().attendedKlass(accountNo);
+//			System.out.println(klass);
+//			request.setAttribute("klass", klass);
+//		}
+		
+		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
 		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
@@ -63,8 +68,11 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 				FileItem fileItem = items.get(i);
 				if(fileItem.isFormField()) {
 					switch(fileItem.getFieldName()) {
-					case"review_name": r.setReviewName(fileItem.getString("utf-8"));break;
-					case"review_txt": r.setReviewTxt(fileItem.getString("utf-8"));break;
+					case"klass_title": r.setKlassName(fileItem.getString("utf-8"));break;
+					case"review_name": r.setReviewName(fileItem.getString("utf-8")); break;
+					case"review_txt":  r.setReviewTxt(fileItem.getString("utf-8"));break;
+					case"account_no":  r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					case "res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					}
 				}else {
 					if(fileItem.getSize() > 0) {
@@ -78,7 +86,7 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
-						a.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
+						a = ReviewAttach.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
 					}
 				}
 			}
