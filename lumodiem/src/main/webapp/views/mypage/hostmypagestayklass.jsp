@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개설 클래스 목록</title>
+<title>승인 대기 클래스</title>
 </head>
 <body>
 	<%@ include file="/views/include/nav.jsp"%>
@@ -35,9 +35,9 @@
 						<div>
 							<c:choose>
 
-								<c:when test="${not empty openList }">
+								<c:when test="${not empty stayList }">
 
-									<c:forEach var="list" varStatus="vs" items="${openList }">
+									<c:forEach var="list" varStatus="vs" items="${stayList }">
 										<div>
 											<ul>
 												<li>${list.klassName}${list.accountNickname}

@@ -23,7 +23,7 @@
 	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 대기중(S)인 클래스 조회 -->
-	<select id="approveKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
+	<select id="stayKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname ,p.approve_yn
 		FROM `klass` k
 		JOIN `account` a
@@ -39,7 +39,7 @@
 	</select>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인완료(Y)인 클래스 조회 -->
-	<select id="openKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
+	<select id="approveKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname ,p.approve_yn
 		FROM `klass` k
 		JOIN `account` a
@@ -49,7 +49,7 @@
 		<where>
 			<if test='accountNo != null'>
 				AND k.account_no = #{accountNo}
-				AND p.approve_yn = 'Y'
+				AND p.approve_yn = 'A'
 			</if>
 		</where>
 	</select>

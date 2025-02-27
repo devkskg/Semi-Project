@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>승인 대기 클래스</title>
+<title>승인 완료 클래스</title>
 </head>
 <body>
 	<%@ include file="/views/include/nav.jsp"%>

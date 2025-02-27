@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.account.service.HostMypageService;
 import com.lumodiem.board.hostboard.vo.Klass;
 
-@WebServlet("/hostMypageOppenKlass")
-public class HostMypageOppenKlassServlet extends HttpServlet {
+@WebServlet("/hostMypageStayKlass")
+public class HostMypageStayKlassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMypageOppenKlassServlet() {
+    public HostMypageStayKlassServlet() {
         super();
     }
 
@@ -33,13 +33,13 @@ public class HostMypageOppenKlassServlet extends HttpServlet {
 		System.out.println("어카운트넘버 : " + accountNo);
 		
 		if(option != null) {
-			list = new HostMypageService().selectOpenListByHostAccountNo(option);
-			request.setAttribute("openList", list);
+			list = new HostMypageService().selectStayListByHostAccountNo(option);
+			request.setAttribute("stayList", list);
 		}
 		
 		String urlPath = "/";
 		if(list != null && option != null) {
-			urlPath = "/views/mypage/hostmypageopenklass.jsp";
+			urlPath = "/views/mypage/hostmypagestayklass.jsp";
 		}
 		
 		System.out.println(option);
