@@ -7,10 +7,6 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-<!-- 	<a href="/reportList">신고 목록 조회</a>
-	<a>대기중인 클래스 목록</a> -->
-<c:url value="/views/include/nav.jsp" var="nav"/>
-<c:import url="${nav}"/>
 <%@ include file="/views/include/nav.jsp" %>
 
 			<div id="colorlib-main">
@@ -19,12 +15,10 @@
 						<div class="row d-flex">
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
-								
-									
-										<a href="/reportList">신고 목록 조회</a>
-										<a>대기중인 클래스 목록</a>
-									
-								
+
+										<a href="/reportList">신고 목록 조회</a><br>
+										<a>대기중인 클래스 목록</a><br>
+
 								</div>
 							</div>
 						</div>
