@@ -17,26 +17,22 @@
 			<div class="container">
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">
-								
+<div class="review_list">			
 	<c:choose>
 		<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
 		<button type="button" class="selectBtn" name="insert">
 			<a href="<c:url value='/insertReviewPage'/>">리뷰 게시글 추가</a>
 		</button>
-		<button type="button" class="selectBtn" name="update">
-			<a href="<c:url value='/updateReviewPage'/>">리뷰 게시글 수정</a>
-		</button>
-		<button type="button" class="selectBtn" name="delete">
-			<a href="<c:url value='/deleteReviewPage'/>">리뷰 게시글 삭제</a>
-		</button>
-		<button type="button" class="seleceBtn" name="res">
-			<a href="<c:url value='/klassRes'/>">클래스 예약</a>
-		</button>
 		</c:when>
 		<c:otherwise>
 			<script>
-				alert("회원만 리뷰 게시판을 사용할수 있습니다.");
+				alert("회원만 리뷰 게시판을 사용할수있습니다.");
+				if(confirm('로그인 페이지로 이동하시겠습니까?')){
+				location.href="/views/account/login.jsp";
+				}else{
 				location.href="/";
+				}
+					
 			</script>
 		</c:otherwise>
 	</c:choose>
@@ -78,7 +74,7 @@
 			<c:choose>
 				<c:when test="${not empty resultList }">
 					<c:forEach items="${resultList}" var="rb" varStatus="vs">
-						<tr>
+						<tr data-review-no="${rb.reviewNo}">
 							<td><c:out value="${vs.count}" /></td>
 							<td><c:out value="${rb.reviewName}" /></td>
 							<td><c:out value="${rb.reviewTxt}" /></td>
@@ -94,6 +90,20 @@
 			</c:choose>
 		</tbody>
 	</table>
+</div>	
+<script>
+	$('.review_list tbody tr').click(function(){
+		const reviewNo = $(this).data('review-no');
+		location.href='/reviewDetail?review_no='+reviewNo;
+	})
+</script>	
+
+	
+	
+	
+	
+	
+	
 						<div class="row pt-md-4">
 					</div>
 				</div>
