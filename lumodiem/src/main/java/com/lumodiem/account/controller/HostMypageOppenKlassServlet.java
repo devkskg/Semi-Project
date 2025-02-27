@@ -34,12 +34,12 @@ public class HostMypageOppenKlassServlet extends HttpServlet {
 		
 		if(option != null) {
 			list = new HostMypageService().selectOpenListByHostAccountNo(option);
-			request.setAttribute("approveList", list);
+			request.setAttribute("openList", list);
 		}
 		
 		String urlPath = "/";
 		if(list != null && option != null) {
-			urlPath = "/views/mypage/hostmypageapproveklass.jsp";
+			urlPath = "/views/mypage/hostmypageopenklass.jsp";
 		}
 		
 		System.out.println(option);
