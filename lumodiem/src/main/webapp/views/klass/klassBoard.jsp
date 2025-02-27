@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">	
-
+<div class="klass_list">
 	<form action="/klassBoardList" id="searchKlassList" method="post">
 			<select name="search_type" id="search_type">
 				<option value="0">선택</option>			
@@ -72,6 +72,7 @@
 		<table border="1">
 		<thead>
 			<tr>
+				<th>번호</th>
 				<th>클래스명</th>			
 				<th>닉네임</th>			
 				<th>내용</th>			
@@ -82,6 +83,7 @@
 				<c:when test="${not empty resultList }">
 					<c:forEach var="list" varStatus="vs" items="${resultList }">
 						<tr>
+							<td>${vs.count}</td>
 							<td>${list.klassName}</td>
 							<td>${list.accountNickname}</td>
 							<td>${list.klassTxt }</td>
@@ -91,7 +93,7 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+						<td colspan="4">해당되는 게시글이 존재하지 않습니다.</td>
 					</tr>
 				
 				</c:otherwise>
@@ -103,12 +105,30 @@
 		</table>
 	
 	</form>
+</div>	
+<script>
+	$('.klass_list tbody tr').click(function(){
+		const klassNo = $(this).data('klass-no');
+		location.href='klassDetail?klass_no='+klassNo;
+	})
 
+
+
+
+</script>	
+	
+	
+	
+	
+	
+	
+	
+						<div class="row pt-md-4">
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>	
 </div>
-
 </body>
 </html>
