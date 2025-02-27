@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -59,6 +60,11 @@ public class MemberBoardService {
 		session.close();
 		return a;
 	}
-	
+	public List<Klass> attendedKlass(int accountNo){
+		SqlSession session = getSqlSession();
+		List<Klass> klass = new MemberBoardDao().attendedKlass(session,accountNo);
+		session.close();
+		return klass;
+	}
 	
 }

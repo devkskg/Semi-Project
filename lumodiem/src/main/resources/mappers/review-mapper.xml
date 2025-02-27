@@ -36,6 +36,22 @@
 		<result property="attachNo" column="attach_no"/>
 		<result property="reviewNo" column="review_no"/>
 	</resultMap>
+	<resultMap type="klassVo" id="klassMap">
+		<result property="klassNo" column="klass_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="klassAddress" column="klass_address"/>
+		<result property="klassPrice" column="klass_price"/>
+		<result property="klassMax" column="klass_max"/>
+		<result property="klassStatus" column="klass_status"/>
+		<result property="klassTxt" column="klass_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="klassRegDate" column="klass_reg_date"/>
+		<result property="klassModDate" column="klass_mod_date"/>
+	</resultMap>
+	
+	
+	
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO `review`(account_no, res_no, klass_date_no, review_name ,review_txt ,review_reg_date ,review_mod_date)
 		VALUES (#{accountNo} ,#{resNo}, #{klassDateNo} ,#{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
@@ -91,9 +107,18 @@
 		ON r.account_no = a.account_no
 		WHERE r.review_no = #{reviewNo}
 	</select>
-	<select id='attachOne' resultMap="reviewAttachMap" parameterType="reviewAttachVo">
+	<select id='attachOne' resultMap="reviewAttachMap" parameterType="_int">
 		SELECT *
 		FROM `review_attach`
 		WHERE attach_no = #{attachNo}
 	</select>
+	<select id="attendedKlass" resultMap="klassMap" parameterType="_int">
+		SELECT k.*
+		FROM `klass` k
+		JOIN `account` a ON k.account_no = a.account_no
+		JOIN `klass_date` d ON k.klass_no = d.klass_no
+		JOIN `reservation` r ON d.klass_date_no = r.klass_date_no
+		WHERE r.account_no = #{accountNo}
+	</select>
+	
 </mapper>
