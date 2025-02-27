@@ -30,15 +30,39 @@
 				<form action='updateReviewCommentEnd' name="update_comment_form" method="post">
 					<input type="hidden" name="review_cmt_no" value="${cmt.reviewCmtNo }">
 					<input type="text" name="review_comment_txt" value="${cmt.reviewCmtTxt }">
-					<input type="button" value="수정" onclick="updateComment();">
-					<input type="button" value="삭제" onclick="updateComment();">
-					
+					<input type="button" value="수정" onclick="updateComment();">	
+					<input type="button" value="삭제" onclick="deleteComment();" >
 				</form>
 			</div>
 			
 		</div>
 	</section>
 	<script type="text/javascript">
+	
+/* 	 	$('.update_comment_form form input button').click(function(){
+				comment()
+			});  */
+
+	
+		 const deleteComment = function(){
+			const form = document.update_comment_form;
+			$.ajax({
+				url : "/deleteReviewCommentEnd",
+				type : "post",
+				data : {"review_cmt_no":form.review_cmt_no.value},
+				dataType : "JSON",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				
+				success:function(data){
+					alert(data.res_msg);
+					
+					if(data.res_code==200){
+						location.href="/";
+					}
+				}
+			});
+		} 
+	
 		const updateComment = function() {
 			const form = document.update_comment_form;
 			$.ajax({
@@ -58,6 +82,7 @@
 				
 			});
 		}
+		
 	</script>
 </body>
 </html>
