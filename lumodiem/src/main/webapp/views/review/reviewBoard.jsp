@@ -29,8 +29,10 @@
 				alert("회원만 리뷰 게시판을 사용할수있습니다.");
 				if(confirm('로그인 페이지로 이동하시겠습니까?')){
 				location.href="/views/account/login.jsp";
-				}
+				}else{
 				location.href="/";
+				}
+					
 			</script>
 		</c:otherwise>
 	</c:choose>
