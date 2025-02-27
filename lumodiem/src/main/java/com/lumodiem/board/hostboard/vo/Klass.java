@@ -28,4 +28,5 @@ public class Klass {
 	private String searchType;
 	private String searchTxt;
 	private String approveCode;
+	private String orderType;
 }
