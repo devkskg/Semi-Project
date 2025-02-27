@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reportMapper">
+
+	<resultMap type="reportVo" id="reportMap">
+
+		<result property="reportKlassNo" column="report_klass_no"/>
+		<result property="reportReviewNo" column="report_review_no"/>
+		<result property="reportReviewCmtNo" column="report_review_cmt_no"/>
+		
+
+	</resultMap>
+	
+	<select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >
+		SELECT *
+		FROM klass_report
+		<where>
+			report_klass_no = ${reportKlassNo}
+		</where>
+	</select>
+
+</mapper>

@@ -15,7 +15,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class KlassReport {
+public class ReportKlass {
 	
 	private int reportKlassNo;
 	

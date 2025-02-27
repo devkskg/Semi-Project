@@ -32,16 +32,16 @@
 
 			<c:when test="${not empty resultList }">
 
+				
 				<c:forEach var="list" varStatus="vs" items="${resultList }">
 					<div>
 						<ul>
-							<li>${list.klassName} ${list.accountNickname} ${list.klassTxt }</li>
+							<li>${list.reportKlassNo }</li>
 						
 						</ul>					
 					</div>
 
 				</c:forEach>
-
 			</c:when>
 			<c:otherwise>
 				<div>
