@@ -25,4 +25,6 @@ public class ReportKlass {
 	private String klassName;
 	private String accountNickname;
 	private String klassTxt;
+	
+	
 }
