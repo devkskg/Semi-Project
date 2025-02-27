@@ -12,12 +12,6 @@ import com.lumodiem.board.hostboard.vo.Klass;
 
 public class HostMypageService {
 
-	public List<Klass> selectStayListByHostAccountNo(Klass option) {
-		SqlSession session = getSqlSession();
-		List<Klass> list = new HostMypageDao().selectStayListByHostAccountNo(session, option);
-		return list;
-	}
-
 	public List<Klass> selectApproveListByHostAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
 		List<Klass> list = new HostMypageDao().selectApproveListByHostAccountNo(session, option);
