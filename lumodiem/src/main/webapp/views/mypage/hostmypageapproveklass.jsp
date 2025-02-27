@@ -1,10 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>승인 대기 클래스</title>
+<c:choose>
+	<c:when test="${approveCode eq 'A' }">
+		<title>승인 완료 클래스</title>
+	</c:when>
+	<c:when test="${approveCode eq 'S' }">
+		<title>승인 대기 클래스</title>
+	</c:when>
+	<c:when test="${approveCode eq 'D' }">
+		<title>반려된 클래스</title>
+	</c:when>
+</c:choose>
 </head>
 <body>
 	<%@ include file="/views/include/nav.jsp"%>

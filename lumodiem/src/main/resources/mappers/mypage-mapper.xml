@@ -20,11 +20,12 @@
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
+		<result property="approveCode" column="approve_code"/>
 	</resultMap>
 	
-	<!-- approve 테이블 -> 내가 올린 클래스 중에서 대기중(S)인 클래스 조회 -->
+	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
 	<select id="approveKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
-		SELECT k.* ,a.account_nickname ,p.approve_yn
+		SELECT k.* ,a.account_nickname ,p.approve_code
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
@@ -33,23 +34,7 @@
 		<where>
 			<if test='accountNo != null'>
 				AND k.account_no = #{accountNo}
-				AND p.approve_yn = 'S'
-			</if>
-		</where>
-	</select>
-	
-	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인완료(Y)인 클래스 조회 -->
-	<select id="openKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
-		SELECT k.* ,a.account_nickname ,p.approve_yn
-		FROM `klass` k
-		JOIN `account` a
-		ON k.account_no = a.account_no
-		JOIN `approve` p
-		ON k.klass_no = p.klass_no
-		<where>
-			<if test='accountNo != null'>
-				AND k.account_no = #{accountNo}
-				AND p.approve_yn = 'Y'
+				AND p.approve_code = #{approveCode}
 			</if>
 		</where>
 	</select>
