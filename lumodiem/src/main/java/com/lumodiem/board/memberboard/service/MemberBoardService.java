@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.lumodiem.board.memberboard.dao.BoardDao;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
