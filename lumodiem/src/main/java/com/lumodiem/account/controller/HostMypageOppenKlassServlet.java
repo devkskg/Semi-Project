@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.account.service.HostMypageService;
 import com.lumodiem.board.hostboard.vo.Klass;
 
-@WebServlet("/hostMypageApproveKlass")
-public class HostMypageApproveKlassServlet extends HttpServlet {
+@WebServlet("/hostMypageOppenKlass")
+public class HostMypageOppenKlassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMypageApproveKlassServlet() {
+    public HostMypageOppenKlassServlet() {
         super();
     }
 
@@ -33,7 +33,7 @@ public class HostMypageApproveKlassServlet extends HttpServlet {
 		System.out.println("어카운트넘버 : " + accountNo);
 		
 		if(option != null) {
-			list = new HostMypageService().selectApproveListByHostAccountNo(option);
+			list = new HostMypageService().selectOpenListByHostAccountNo(option);
 			request.setAttribute("approveList", list);
 		}
 		
