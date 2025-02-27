@@ -17,11 +17,5 @@ public class HostMypageService {
 		List<Klass> list = new HostMypageDao().selectApproveListByHostAccountNo(session, option);
 		return list;
 	}
-
-	public List<Klass> selectOpenListByHostAccountNo(Klass option) {
-		SqlSession session = getSqlSession();
-		List<Klass> list = new HostMypageDao().selectOpenListByHostAccountNo(session, option);
-		return list;
-	}
 	
 }

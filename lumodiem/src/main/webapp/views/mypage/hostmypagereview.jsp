@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개설 클래스 목록</title>
+<title>클래스 리뷰 조회</title>
 </head>
 <body>
 	<%@ include file="/views/include/nav.jsp"%>
@@ -35,16 +35,30 @@
 						<div>
 							<c:choose>
 
-								<c:when test="${not empty openList }">
+								<c:when test="${not empty approveList }">
 
-									<c:forEach var="list" varStatus="vs" items="${openList }">
+									<c:forEach var="list" varStatus="vs" items="${approveList }">
 										<div>
 											<ul>
-												<li>${list.klassName}${list.accountNickname}
-													${list.klassTxt }</li>
+												<li>
+													${list.klassName}
+													${list.accountNickname}
+													${list.klassTxt }
+												</li>
+												
+												<c:forEach var="list2" varStatus="vs2" items="${reviewList}">
+													<li>
+														<a>
+															${list2.reviewName}
+															<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>
+														</a>
+													</li>
+												</c:forEach>
+												
 											</ul>
 										</div>
 									</c:forEach>
+									
 								</c:when>
 								<c:otherwise>
 									<div>해당되는 게시글이 존재하지 않습니다.</div>
