@@ -5,15 +5,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.adminboard.vo.ReportReview" %>
-<% List<ReportReview> list = (List<ReportReview>)request.getAttribute("resultList"); %>
-<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>
+<%-- <% List<ReportReview> list = (List<ReportReview>)request.getAttribute("resultList"); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- <script src="<c:url value='/views/jquery-3.7.1.js'/>"></script> --%>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
 </head>
 <body>
+<%@ include file="/views/include/nav.jsp" %>	
 	<div id="colorlib-main">
 		<section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
@@ -31,6 +33,7 @@
 				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 				<button name="searchBtn" id="searchBtn">검색</button>
 		</form>
+		<a href="/reportReviewEnd">안가짐</a>
 	<form>
 		<div class="report_review_list">
 			<table border="1">
@@ -75,9 +78,9 @@
 	<script>
 		
  		 
- 		 $('.report_klass_list tbody button').click(function(){
+ 		 /*$('.report_klass_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
- 				/* alert("삭제되었습니다."); */
+ 				 alert("삭제되었습니다."); 
  			 const reportklassNo = $(this).data('report-klass-no');
 			// location.href='/selectReviewComment?reviewCommentClicked='+reportJkassNo; 
 			$.ajax({
@@ -99,7 +102,7 @@
  			}else{
  				
  			}
- 		}); 
+ 		}); */
  		
  	</script>
 </body>

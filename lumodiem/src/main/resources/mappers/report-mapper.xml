@@ -31,8 +31,8 @@
 	,r.review_txt
 	,a.account_nickname
 	,rr.report_review_no
-	FROM report_review rr
-	JOIN review r
+	FROM `report_review` rr
+	JOIN `review` r
 	ON rr.review_no = r.review_no
 	JOIN `account` a
 	ON a.account_no = rr.account_no

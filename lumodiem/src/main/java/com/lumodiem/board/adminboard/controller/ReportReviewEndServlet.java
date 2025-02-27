@@ -23,7 +23,7 @@ public class ReportReviewEndServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<ReportReview> resultList= new ReportService().selectReportReviewList();
-		System.out.println(resultList);
+		System.out.println("옴?");
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reviewReport.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);

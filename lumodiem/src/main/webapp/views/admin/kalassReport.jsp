@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록 조회</title>
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>	
