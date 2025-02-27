@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="klassMapper">
+<mapper namespace="mypageMapper">
 
-	<resultMap type="klassVo" id="klassMap">
+	<resultMap type="klassVo" id="mypageMap">
 		<!-- 
 			컬럼명과 필드명을 1대1로 써준다.
 		 	vo의 필드명과 테이블의 컬럼명이 다르기 때문에 맞춰즌 것!
@@ -21,26 +21,35 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 	</resultMap>
-		
-	<insert id="klassCreate" parameterType="klassVo" useGeneratedKeys="true" keyProperty="klassNo">
-		INSERT INTO `klass`(account_no ,klass_name ,klass_address ,klass_max ,klass_price ,klass_txt ,klass_reg_date ,klass_mod_date)
-		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
-	</insert>
 	
-	<select id="klassListSearch" resultMap="klassMap" parameterType="klassVo">
-		SELECT k.* ,a.account_nickname
+	<!-- approve 테이블 -> 내가 올린 클래스 중에서 대기중(S)인 클래스 조회 -->
+	<select id="approveKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
+		SELECT k.* ,a.account_nickname ,p.approve_yn
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
+		JOIN `approve` p
+		ON k.klass_no = p.klass_no
 		<where>
-			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
-				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			<if test='accountNo != null'>
+				AND k.account_no = #{accountNo}
+				AND p.approve_yn = 'S'
 			</if>
-			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
-				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
-			</if>
-			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
-				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+		</where>
+	</select>
+	
+	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인완료(Y)인 클래스 조회 -->
+	<select id="openKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
+		SELECT k.* ,a.account_nickname ,p.approve_yn
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+		JOIN `approve` p
+		ON k.klass_no = p.klass_no
+		<where>
+			<if test='accountNo != null'>
+				AND k.account_no = #{accountNo}
+				AND p.approve_yn = 'Y'
 			</if>
 		</where>
 	</select>
