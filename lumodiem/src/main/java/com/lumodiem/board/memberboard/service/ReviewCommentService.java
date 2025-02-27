@@ -12,6 +12,18 @@ import com.lumodiem.board.memberboard.vo.ReviewCmt;
 public class ReviewCommentService {
 	ReviewCommentDao dao = new ReviewCommentDao();	
 	
+	public int deleteReviewComment(ReviewCmt cmt) {
+		SqlSession session = getSqlSession();
+		int result = dao.deleteReviewComment(cmt,session);
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	
 	public int updateReviewComment(ReviewCmt cmt) {
 		SqlSession session = getSqlSession();
 		int result = dao.updateReviewComment(cmt,session);
