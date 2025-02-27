@@ -11,4 +11,7 @@ public class ReportDao {
 	public List<ReportKlass> selectReportKlassList (int reportKlassNo, SqlSession session){
 		return session.selectList("reportMapper.reportKlassSelect", reportKlassNo);
 	}
+	public List<ReportKlass> selectReportKlassList (SqlSession session){
+		return session.selectList("reportMapper.reportKlassSelect");
+	}
 }

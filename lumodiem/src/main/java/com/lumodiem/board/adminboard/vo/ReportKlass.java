@@ -18,6 +18,8 @@ import lombok.ToString;
 public class ReportKlass {
 	
 	private int reportKlassNo;
+	private int klassNo;
+	private int accountNo;
 	
 	private int reportReviewNo;
 	

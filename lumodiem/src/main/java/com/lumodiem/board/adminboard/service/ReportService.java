@@ -17,4 +17,10 @@ public class ReportService {
 		session.close();
 		return resultList;
 	}
+	public List<ReportKlass> selectReportKlassList (){
+		SqlSession session = getSqlSession();
+		List<ReportKlass> resultList = dao.selectReportKlassList(session);
+		session.close();
+		return resultList;
+	}
 }

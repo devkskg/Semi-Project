@@ -8,18 +8,28 @@
 	<resultMap type="reportVo" id="reportMap">
 
 		<result property="reportKlassNo" column="report_klass_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="accountNo" column="account_no"/>
+		
+		
 		<result property="reportReviewNo" column="report_review_no"/>
 		<result property="reportReviewCmtNo" column="report_review_cmt_no"/>
 		
 
 	</resultMap>
 	
-	<select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >
+	<!-- <select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >
 		SELECT *
 		FROM klass_report
 		<where>
 			report_klass_no = ${reportKlassNo}
 		</where>
+	</select> -->
+	
+	<select id="reportKlassSelect"  resultMap="reportMap" >
+		SELECT *
+		FROM klass_report
+
 	</select>
 
 </mapper>
