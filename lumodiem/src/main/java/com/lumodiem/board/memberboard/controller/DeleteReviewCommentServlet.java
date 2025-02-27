@@ -21,7 +21,7 @@ public class DeleteReviewCommentServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String temp = request.getParameter("review_cmt_txt");
+		String temp = request.getParameter("review_cmt_no");
 		int reviewCmtNo = 0;
 		if(temp!=null) reviewCmtNo = Integer.parseInt(temp);
 		ReviewCmt cmt = ReviewCmt.builder()
