@@ -82,7 +82,7 @@
 			<c:choose>
 				<c:when test="${not empty resultList }">
 					<c:forEach var="list" varStatus="vs" items="${resultList }">
-						<tr>
+						<tr data-klass-no="${list.klassNo }">
 							<td>${vs.count}</td>
 							<td>${list.klassName}</td>
 							<td>${list.accountNickname}</td>
@@ -109,7 +109,7 @@
 <script>
 	$('.klass_list tbody tr').click(function(){
 		const klassNo = $(this).data('klass-no');
-		location.href='klassDetail?klass_no='+klassNo;
+		location.href='/klassDetail?klass_no='+klassNo;
 	})
 
 

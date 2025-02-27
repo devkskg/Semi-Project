@@ -5,8 +5,17 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassDate;
 
 public class HostBoardDao {
+	
+	public List<KlassDate> selectKlassDate(SqlSession session, int klassNo) {
+		return session.selectList("klassMapper.klassDateList",klassNo);
+	}
+	
+	public Klass selectKlassOne(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.klassOne",klassNo);
+	}
 	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
