@@ -5,7 +5,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportMapper">
 
-	<resultMap type="reportVo" id="reportMap">
+	<resultMap type="com.lumodiem.board.adminboard.vo.ReportKlass" id="reportMap">
 
 		<result property="reportKlassNo" column="report_klass_no"/>
 		<result property="klassNo" column="klass_no"/>
@@ -24,6 +24,15 @@
 
 	</resultMap>
 	
+	<delete id="deleteReportKlass" parameterType="_int" >
+		DELETE FROM `klass_report`
+		<where>
+		 report_klass_no = #{reportKlassNo};
+		 </where>
+	</delete>
+	
+
+	
 	<!-- <select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >
 		SELECT *
 		FROM klass_report
@@ -33,7 +42,8 @@
 	</select> -->
 	
 	<select id="reportKlassSelect"  resultMap="reportMap" >
-		SELECT k.klass_name
+		SELECT kr.report_klass_no 
+			,k.klass_name
 			,a.account_nickname
 			,k.klass_txt
 			FROM `klass_report` kr 

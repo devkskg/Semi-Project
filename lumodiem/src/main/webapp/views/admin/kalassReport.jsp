@@ -55,37 +55,39 @@
 			</form> --%>
 		
 	<form>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>클래스명</th>			
-					<th>닉네임</th>			
-					<th>내용</th>			
-				</tr>
-			</thead>
-			<tbody>
-				<c:choose>
-					<c:when test="${not empty resultList }">
-						<c:forEach var="list" varStatus="vs" items="${resultList }">
+		<div class="report_klass_list">
+			<table border="1">
+				<thead>
+					<tr>
+						<th>클래스명</th>			
+						<th>닉네임</th>			
+						<th>내용</th>			
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${not empty resultList }">
+							<c:forEach var="list" varStatus="vs" items="${resultList }">
+								<tr>
+									<td>${list.klassName}</td>
+									<td>${list.accountNickname}</td>
+									<td>${list.klassTxt }</td>
+									<td><button type='button' data-report-klass-no="${list.reportKlassNo }">삭제</button></td>
+								</tr>
+							</c:forEach>
+						
+						</c:when>
+						<c:otherwise>
 							<tr>
-								<td>${list.klassName}</td>
-								<td>${list.accountNickname}</td>
-								<td>${list.klassTxt }</td>
-								<td><button type='button' data-comment-no="${list.reviewCmtNo }">버튼</button></td>
+								<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
 							</tr>
-						</c:forEach>
+						
+						</c:otherwise>
 					
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
-						</tr>
-					
-					</c:otherwise>
-				
-				</c:choose>
-			</tbody>
-		</table>
+					</c:choose>
+				</tbody>
+			</table>
+		</div>
 	</form>
 						</div>
 					</div>
@@ -93,6 +95,35 @@
 			</div>
 		</section>
 	</div>
-
+	<script>
+		
+ 		 
+ 		 $('.report_klass_list tbody button').click(function(){
+ 			if(confirm("삭제하시겠습니까?")){
+ 				/* alert("삭제되었습니다."); */
+ 			 const reportklassNo = $(this).data('report-klass-no');
+			// location.href='/selectReviewComment?reviewCommentClicked='+reportJkassNo; 
+			$.ajax({
+				url : "/deleteReportKlass",
+				type : "post",
+				data : {"report_klass_no":reportklassNo},
+				dataType : "JSON",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				
+				success:function(data){
+					alert(data.res_msg);
+					
+					if(data.res_code==200){
+						location.href="";
+					}
+				}
+			});
+			
+ 			}else{
+ 				
+ 			}
+ 		}); 
+ 		
+ 	</script>
 </body>
 </html>
