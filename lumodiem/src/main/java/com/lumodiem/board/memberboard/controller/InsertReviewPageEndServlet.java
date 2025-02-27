@@ -37,22 +37,20 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
-		Account ac = null;
-		HttpSession session = request.getSession();
+//		Account ac = null;
+//		HttpSession session = request.getSession();
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		if(session != null && session.getAttribute("account") != null) {
-			ac = (Account)session.getAttribute("account");
-			int accountNo = ac.getAccountNo();
-			List<Klass> klass = new MemberBoardService().attendedKlass(accountNo);
-			request.setAttribute("klass", klass);
-		}
+//		if(session != null && session.getAttribute("account") != null) {
+//			ac = (Account)session.getAttribute("account");
+//			int accountNo = ac.getAccountNo();
+//			List<Klass> klass = new MemberBoardService().attendedKlass(accountNo);
+//			System.out.println(klass);
+//			request.setAttribute("klass", klass);
+//		}
 		
 		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
-		
-			
-		
 		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
@@ -70,11 +68,11 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 				FileItem fileItem = items.get(i);
 				if(fileItem.isFormField()) {
 					switch(fileItem.getFieldName()) {
-					case"klassTitle": 
-					case"review_name": System.out.println(fileItem.getString("utf-8")); r.setReviewName(fileItem.getString("utf-8")); break;
-					case"review_txt": System.out.println(fileItem.getString("utf-8")); r.setReviewTxt(fileItem.getString("utf-8"));break;
-					case"account_no": System.out.println(fileItem.getString("utf-8")); r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
-						
+					case"klass_title": r.setKlassName(fileItem.getString("utf-8"));break;
+					case"review_name": r.setReviewName(fileItem.getString("utf-8")); break;
+					case"review_txt":  r.setReviewTxt(fileItem.getString("utf-8"));break;
+					case"account_no":  r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					case "res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					}
 				}else {
 					if(fileItem.getSize() > 0) {

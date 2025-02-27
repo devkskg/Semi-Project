@@ -60,11 +60,11 @@
 		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
 		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
 	</insert>
-	<!-- <select id="searchResNoByAccountNo" resultMap="reservationMap" parameterType="reservationVo">
-		SELECT res_no
-		FROM reservation
-		WHERE account_no = #{accountNo}	
-	</select> -->
+	<select id="searchResNoByAccountNo" parameterType="String" resultType="ReservationVo">
+    	SELECT *
+    	FROM `reservation`
+    	WHERE account_no = #{accountNo} 
+	</select>
 	<update id="reviewUpdate" parameterType="reviewVo">
 		UPDATE `review`
 		SET review_name = #{reviewName}

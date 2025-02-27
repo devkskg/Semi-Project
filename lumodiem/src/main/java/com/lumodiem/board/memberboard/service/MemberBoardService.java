@@ -17,6 +17,17 @@ public class MemberBoardService {
 		SqlSession session = getSqlSession();
 		int result = 0;
 		
+		 if (r.getResNo() == 0) {
+		        List<Reservation> resList = searchResNoByAccountNo(String.valueOf(r.getAccountNo()));
+		        if (resList != null && !resList.isEmpty()) {
+		            r.setResNo(resList.get(0).getResNo());
+		        } else {
+		            System.out.println("해당 계정의 예약 정보가 없음!");
+		            session.close();
+		            return 0;  
+		        }
+		    }
+		 
 		int reviewNo = new MemberBoardDao().insertReview(session,r);
 //		a.setAttachNo(reviewNo);
 		int attachNo = new MemberBoardDao().insertReviewAttach(session,a);

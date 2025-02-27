@@ -20,7 +20,7 @@ public class MemberBoardDao {
 		return result;
 	}
 	public List<Reservation> searchResNoByAccountNo(SqlSession session, String accountNo) {
-		return session.selectOne("reviewMapper.searchResNoByAccountNo",accountNo);
+	    return session.selectList("reviewMapper.searchResNoByAccountNo", accountNo);
 	}
 	public int UpdateReview(SqlSession session, Review review) {
 		return session.update("reviewMapper.reviewUpdate",review);
