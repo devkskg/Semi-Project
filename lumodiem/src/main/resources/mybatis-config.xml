@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lumodiem.board.memberboard.vo.Review" alias="reviewVo"/>
 		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewAttach" alias="reviewAttachVo"/>
 		<typeAlias type="com.lumodiem.board.memberboard.vo.Reservation" alias="reservationVo"/>
-		
+		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewMapping" alias="ReviewMappingVo"/>
 		<typeAlias type="com.lumodiem.board.hostboard.vo.Klass" alias="klassVo"/>
 		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewCmt" alias="commentVo"/>
 		

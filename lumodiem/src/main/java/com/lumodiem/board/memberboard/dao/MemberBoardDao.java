@@ -12,7 +12,6 @@ public class MemberBoardDao {
 
 	public int insertReview(SqlSession session, Review r) {
 		session.insert("reviewMapper.reviewInsert",r);
-		
 		return r.getReviewNo();
 	}
 	public int insertReviewAttach(SqlSession session, ReviewAttach a) {

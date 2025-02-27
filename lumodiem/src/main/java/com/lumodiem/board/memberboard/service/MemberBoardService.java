@@ -17,7 +17,7 @@ public class MemberBoardService {
 		int result = 0;
 		
 		int reviewNo = new MemberBoardDao().insertReview(session,r);
-		a.setAttachNo(reviewNo);
+//		a.setAttachNo(reviewNo);
 		int attachNo = new MemberBoardDao().insertReviewAttach(session,a);
 		
 		if(reviewNo != 0 && attachNo != 0) {

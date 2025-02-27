@@ -39,7 +39,10 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
+		int resNo = 4;
+		int klassDateNo = 2;
+		
+		r = Review.builder().resNo(resNo).klassDateNo(klassDateNo).reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
 		
 		
 		
@@ -77,7 +80,7 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
-						a.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
+						a = ReviewAttach.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
 					}
 				}
 			}

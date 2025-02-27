@@ -11,10 +11,13 @@
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
-	<!-- 클래스,
-	게시글제목,내용,사진 작성 시 '등록' 버튼 활성화 
-	등록 버튼 클릭시 '해당 글을 등록하시겠습니까' 알림창 확인/취소 
-	-->
+<%@ include file="/views/include/nav.jsp" %>
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<div class="row d-flex">
+					<div class="col-xl-8 py-5 px-md-5">
+				
 	<div>
 		<form action="<c:url value='/insertReviewPageEnd'/>" method="post" name="create_review_form" enctype="multipart/form-data">	
 			<fieldset>
@@ -22,8 +25,9 @@
 				<label for="review_name">게시글 제목 : </label>
 				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요."><br>
 				<label for="review_txt">내용 : </label><br>
-				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea>
+				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
 				<input type="hidden" name="account_no" value="${account.accountNo}"> 
+				
 				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 				<button type="button" onclick="createReviewForm();">작성하기</button>
 			</fieldset>
@@ -91,5 +95,10 @@
 		}
 	}
 </script>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 </body>
 </html>

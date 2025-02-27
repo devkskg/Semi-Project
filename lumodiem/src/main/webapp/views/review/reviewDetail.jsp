@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="com.lumodiem.board.memberboard.vo.Review"  %>
-<%Review review = (Review)request.getAttribute("Review"); %>
+<%@ page import="com.lumodiem.board.memberboard.vo.*"  %>
+<%Review review = (Review)request.getAttribute("review"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +18,16 @@
 	<!-- 이건 나중에 작성 -->
 	<div class="review_detail">
 		<ul>
+				<c:if test="${not empty review.attachNo} "> 
 			<li>
 				<img src="<%=request.getContextPath()%>/filePath?attach_no=<%=review.getAttachNo()%>">
-			</li>
+			</li> 
+				</c:if>
 			<li>
 				<table>
 					<tr>
 						<td>제목</td>
-						<td>${review.reviewNo}</td>
+						<td>${review.reviewName}</td>
 					</tr>
 					<tr>
 						<td>내용</td>
