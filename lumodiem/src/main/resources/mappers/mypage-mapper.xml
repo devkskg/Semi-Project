@@ -20,6 +20,7 @@
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
+		<result property="approveCode" column="approve_code"/>
 	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
