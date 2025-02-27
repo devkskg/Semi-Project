@@ -12,8 +12,4 @@ public class HostMypageDao {
 		return session.selectList("mypageMapper.approveKlassListSearch", option);
 	}
 
-	public List<Klass> selectOpenListByHostAccountNo(SqlSession session, Klass option) {
-		return session.selectList("mypageMapper.openKlassListSearch", option);
-	}
-
 }

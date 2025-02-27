@@ -23,18 +23,23 @@ public class HostMypageApproveKlassServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = request.getParameter("account_no");
+		String approveCode = request.getParameter("approve_code");
 		Klass option = null;
 		List<Klass> list = null;
 		int accountNo = 0;
 		if(temp != null) {
 			accountNo = Integer.parseInt(temp);
-			option = Klass.builder().accountNo(accountNo).build();
+			option = Klass.builder().accountNo(accountNo).approveCode(approveCode).build();
 		}
-		System.out.println("어카운트넘버 : " + accountNo);
+//		System.out.println("어카운트넘버 : " + accountNo);
+		System.out.println("어프로브코드 : " + approveCode);
 		
-		if(option != null) {
+		if(option != null || approveCode !=null) {
 			list = new HostMypageService().selectApproveListByHostAccountNo(option);
 			request.setAttribute("approveList", list);
+			request.setAttribute("approveCode", approveCode);
+		} else {
+			response.sendRedirect("/");
 		}
 		
 		String urlPath = "/";
@@ -42,7 +47,7 @@ public class HostMypageApproveKlassServlet extends HttpServlet {
 			urlPath = "/views/mypage/hostmypageapproveklass.jsp";
 		}
 		
-		System.out.println(option);
+//		System.out.println(option);
 		
 		RequestDispatcher view = request.getRequestDispatcher(urlPath);
 		view.forward(request, response);

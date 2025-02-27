@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="<c:url value='/css/open-iconic-bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="<c:url value='/css/owl.theme.default.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/css/aos.css'/>">
+    <%-- <link rel="stylesheet" href="<c:url value='/css/aos.css'/>"> --%>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <link rel="stylesheet" href="<c:url value='/css/ionicons.min.css'/>">
 
@@ -158,9 +159,12 @@
 	<script src="<c:url value='/js/jquery.stellar.min.js'/>"></script>
 	<script src="<c:url value='/js/owl.carousel.min.js'/>"></script>
 	<script src="<c:url value='/js/jquery.magnific-popup.min.js'/>"></script>
-	<script src="<c:url value='/js/aos.js'/>"></script>
+	
+	<%-- <script src="<c:url value='/js/aos.js'/>"></script> --%>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	
 	<script src="<c:url value='/js/jquery.animateNumber.min.js'/>"></script>
 	<script src="<c:url value='/js/scrollax.min.js'/>"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="<c:url value='/js/google-map.js'/>"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+	<%-- <script src="<c:url value='/js/google-map.js'/>"></script> --%>
 	<script src="<c:url value='/js/main.js'/>"></script>
