@@ -49,10 +49,10 @@
 	
 	<div>
 		<button type="button" class="selectBtn" name="update">
-			<a href="<c:url value='/updateReviewPage'/>">리뷰 게시글 수정</a>
+			<a href="<c:url value='/updateReviewPage'/>">수정</a>
 		</button>
 		<button type="button" class="selectBtn" name="delete">
-			<a href="<c:url value='/deleteReviewPage'/>">리뷰 게시글 삭제</a>
+			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
 		</button>
 	</div>
 	

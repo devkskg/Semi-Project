@@ -80,6 +80,13 @@
 		</choose>
 	</if>
 	</select>
+	<select id='reviewOne' resultMap="reviewMap" parameterType="reviewVo">
+		SELECT r.* ,a.account_nickname
+		FROM `review` r
+		JOIN `account` a
+		ON r.account_no = a.account_no
+		WHERE r.review_no = #{reviewNo}
 	
+	</select>
 	
 </mapper>

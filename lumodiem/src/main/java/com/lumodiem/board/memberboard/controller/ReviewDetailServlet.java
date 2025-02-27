@@ -22,9 +22,11 @@ public class ReviewDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int reviewNo = Integer.parseInt(request.getParameter("review_no"));
+		System.out.println(reviewNo);
 		Review review = new MemberBoardService().selectReviewOne(reviewNo);
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
 		request.setAttribute("review", review);
+		System.out.println(review);
 		view.forward(request, response);
 	}
 
