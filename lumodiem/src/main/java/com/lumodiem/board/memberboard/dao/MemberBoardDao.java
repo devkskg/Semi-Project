@@ -19,9 +19,6 @@ public class MemberBoardDao {
 		int result = session.insert("reviewMapper.reviewAttachInsert",a);
 		return result;
 	}
-	public ReviewAttach selectAttachOne(SqlSession session, int attachNo) {
-		return session.selectOne("reviewMapper.selectAttach",attachNo);
-	}
 	public List<Reservation> searchResNoByAccountNo(SqlSession session, String accountNo) {
 		return session.selectOne("reviewMapper.searchResNoByAccountNo",accountNo);
 	}
@@ -31,5 +28,7 @@ public class MemberBoardDao {
 	public List<Review> selectReviewList(SqlSession session,Review option){
 		return session.selectList("reviewMapper.reviewList",option);
 	}
-	
+	public Review selectReviewOne(SqlSession session, int reviewNo) {
+		return session.selectOne("reviewMapper.reviewOne",reviewNo);
+	}
 }
