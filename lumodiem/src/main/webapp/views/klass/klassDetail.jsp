@@ -37,18 +37,32 @@
 				</tr>
 				<tr>
 					<th>일정</th>
-					<td>${klassDate.klassStart}</td>
-<%-- 					<td>${fn:substring(klassDate.klassStart,1,10)}</td> --%>
+					<td>
+						<c:forEach var="li" items="${klassDate }" varStatus="vs">
+							${fn:substring(li.klassStart,0,10)}<br>
+						</c:forEach>
+					</td>
+
 				</tr>
 				<tr>
 					<th>시간</th>
-					<%-- <td>${klassDate.klassStart}</td> --%>
-<%-- 					<td>${fn:substring(klassDate.klassStart,12,19)}</td> --%>
+					<td>
+						<c:forEach var="li" items="${klassDate }" varStatus="vs">
+							${fn:substring(li.klassStart,12,19)}<br>
+						</c:forEach>
+					
+					</td>
+
 				</tr>
 				<tr>
 					<th>최대인원(예약가능인원)</th>
 					<%-- <td>${klass.klassMax}명(${klass.klassMax - klassDate.klassCount}명)</td> --%>
-					<td>여기라고요?</td>
+					<td>
+						<c:forEach var="li" items="${klassDate }" varStatus="vs">
+							${klass.klassMax}명(${klass.klassMax - li.klassCount}명)<br>
+						</c:forEach>
+					
+					</td>
 				</tr>
 				<tr>
 					<th>주소</th>
