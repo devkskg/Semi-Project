@@ -17,9 +17,9 @@
 	<!-- 이건 나중에 작성 -->
 	<div class="review_detail">
 		<ul>
-			<%-- <li>
-				<img src="<%=request.getContextPath()%>/">
-			</li> --%>
+			<li>
+				<img src="<%=request.getContextPath()%>/filePath?attach_no=<%=review.getAttachNo()%>">
+			</li>
 			<li>
 				<table>
 					<tr>

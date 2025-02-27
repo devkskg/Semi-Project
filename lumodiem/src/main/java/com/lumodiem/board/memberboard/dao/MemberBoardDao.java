@@ -31,4 +31,7 @@ public class MemberBoardDao {
 	public Review selectReviewOne(SqlSession session, int reviewNo) {
 		return session.selectOne("reviewMapper.reviewOne",reviewNo);
 	}
+	public ReviewAttach selectAttachOne(SqlSession session, int attachNo) {
+		return session.selectOne("reviewMapper.attachOne",attachNo);
+	}
 }

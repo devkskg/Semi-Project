@@ -26,4 +26,5 @@ public class Review {
 	private String reviewRegDate;
 	private String reviewModDate;
 	private String orderType;
+	private int attachNo;
 }
