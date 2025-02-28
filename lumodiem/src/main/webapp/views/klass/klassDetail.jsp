@@ -105,7 +105,7 @@
 
 			<c:when test="${account.accountGrade eq 'M'}">
 				<button type="button" id="resBtn" name="resBtn">
-					<a href="/reservation">예약하기</a>
+					<a href="/klassReservation">예약하기</a>
 				</button>
 			</c:when>
 		

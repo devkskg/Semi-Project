@@ -58,7 +58,5 @@
 			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
 		</button>
 	</div>
-	
-	
 </body>
 </html>

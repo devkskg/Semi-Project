@@ -61,11 +61,9 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 				FileItem fileItem = items.get(i);
 				if(fileItem.isFormField()) {
 					switch(fileItem.getFieldName()) {
-					//case"klass_title":r.setKlassName(fileItem.getString("utf-8"));break;
 					case"review_name":r.setReviewName(fileItem.getString("utf-8")); break;
 					case"review_txt":r.setReviewTxt(fileItem.getString("utf-8"));break;
 					case"account_no":r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
-//					case"klass_date_no":r.setKlassDateNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					}
 					// 1 번 서블릿에서 홈화면 보내는 방법
