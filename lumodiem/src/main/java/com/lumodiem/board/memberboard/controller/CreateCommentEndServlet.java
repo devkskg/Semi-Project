@@ -38,7 +38,7 @@ public class CreateCommentEndServlet extends HttpServlet {
 				.reviewCmtTxt(reviewCmtTxt)
 				.build();
 		
-		
+		System.out.println(cmt2);
 		int result = new ReviewCommentService().insertReviewComment(cmt2);
 		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt2);
 		RequestDispatcher view = request.getRequestDispatcher("/views/comment/createComment.jsp");
