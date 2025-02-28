@@ -15,6 +15,7 @@
 	<form action="" name="update_klass_form">
 		<fieldset>
 			<legend>게시글 수정</legend>
+			<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 					
 			<label for="klass_name">클래스명 : </label>
@@ -57,7 +58,9 @@
 					"klass_address" : form.klass_address.value,
 					"klass_max" : form.klass_max.value,
 					"klass_price" : form.klass_price.value,
-					"klass_txt" : form.klass_txt.value
+					"klass_txt" : form.klass_txt.value,
+					"klass_no" : form.klass_no.value
+					
 			},
 			dataType : "JSON",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
