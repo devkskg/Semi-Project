@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lumodiem.account.service.HostMypageService;
+import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassLike;
@@ -40,7 +40,7 @@ public class HostMypageCmt extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			
 			if(option != null) {
-				reviewCmtList = new HostMypageService().selectReviewCmtListByHostAccountNo(option);
+				reviewCmtList = new MypageService().selectReviewCmtListByHostAccountNo(option);
 				request.setAttribute("reviewCmtList", reviewCmtList);
 				System.out.println(reviewCmtList);
 				
