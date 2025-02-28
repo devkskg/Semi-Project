@@ -99,7 +99,7 @@
 				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
 			</button>
 			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete">삭제</a>
+				<a href="/klassBoardDelete?klass_no=${klass.klassNo }">삭제</a>
 			</button>
 			</c:when>
 

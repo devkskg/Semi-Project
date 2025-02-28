@@ -11,6 +11,17 @@
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
+
+<div id="colorlib-main">
+				<section class="ftco-section ftco-no-pt ftco-no-pb">
+					<div class="container">
+						<div class="row d-flex">
+							<div class="col-xl-8 py-5 px-md-5">
+								<div class="row pt-md-4">
+								
+								
+								
+								
 <div class="klass_update">
 	<form action="" name="update_klass_form">
 		<fieldset>
@@ -39,7 +50,7 @@
 			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
 			
 			<button type="button" id="updateBtn" onclick="updateKlass();">수정하기</button>
-			<button type="button" id="deleteBtn">삭제하기</button>
+			<button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button>
 		
 		</fieldset>
 	
@@ -75,12 +86,55 @@
 			
 		});
 	}
+	
+	
+	const deleteKlass = function(){
+		const form = document.update_klass_form;
+		$.ajax({
+			url : "klassBoardDeleteEnd",
+			type : "post",
+			data : {"account_no" : form.account_no.value,
+					"klass_name" : form.klass_name.value,
+					"account_nickname" : form.account_nickname.value,
+					"klass_address" : form.klass_address.value,
+					"klass_max" : form.klass_max.value,
+					"klass_price" : form.klass_price.value,
+					"klass_txt" : form.klass_txt.value,
+					"klass_no" : form.klass_no.value
+					
+			},
+			dataType : "JSON",
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			success : function(data){
+				alert(data.res_msg);
+				if(data.res_code == "200"){
+					location.href="/";
+				} else{
+					location.href="/";
+				}
+			}
+			
+		});
+		
+		
+	}
 
 
 
 
 </script>	
 	
+								
+								
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+
 	
 	
 </body>
