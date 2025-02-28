@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 		<typeAlias type="com.lumodiem.board.adminboard.vo.ReportKlass" alias="reportKlassVo"/>
 		<typeAlias type="com.lumodiem.board.adminboard.vo.ReportReview" alias="reportReviewVo"/>
+		<typeAlias type="com.lumodiem.board.adminboard.vo.ReportReviewCmt" alias="reportReviewCmtVo"/>
 		
 	</typeAliases>
 	

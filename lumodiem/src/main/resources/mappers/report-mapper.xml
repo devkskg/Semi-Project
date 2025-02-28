@@ -25,7 +25,34 @@
 		<result property="accountNickname" column="account_nickname"/>
 		
 	</resultMap>
+	<resultMap type="reportReviewCmtVo" id="reportReviewCmtMap">
+		
+		<result property="reportReviewCmtNo" column="report_review_cmt_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="reviewCmtNo" column="review_cmt_no"/>
+		
+		<result property="reviewName" column="review_name"/>
+		<result property="reviewCmtTxt" column="review_cmt_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
+	</resultMap>
 	
+	
+	<select id="selectReportReviewCmt" resultMap="reportReviewCmtMap">
+	SELECT r.review_name
+	,r.review_txt
+	,a.account_nickname
+	,rr.report_review_cmt_no
+	FROM `report_review_cmt` rr
+	JOIN `review` r
+	ON rr.review_cmt_no = r.review_no
+	JOIN `account` a
+	ON a.account_no = rr.account_no
+	</select>
+	
+	
+	
+	
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	<delete id="deleteReportReview" parameterType="_int">
 		DELETE FROM `report_review`
 		<where>
@@ -33,7 +60,7 @@
 		 </where>
 	</delete>
 	
-	<select id="reportReviewSelect" resultMap="reportReviewMap">
+	<select id="selectReportReview" resultMap="reportReviewMap">
 	SELECT r.review_name
 	,r.review_txt
 	,a.account_nickname
@@ -44,7 +71,7 @@
 	JOIN `account` a
 	ON a.account_no = rr.account_no
 	</select>
-	
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	
 	
 	
@@ -63,7 +90,7 @@
 		</where>
 	</select> -->
 	
-	<select id="reportKlassSelect"  resultMap="reportKlassMap" >
+	<select id="selectReportKlass"  resultMap="reportKlassMap" >
 		SELECT kr.report_klass_no 
 			,k.klass_name
 			,a.account_nickname

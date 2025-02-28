@@ -10,12 +10,19 @@ import org.apache.ibatis.session.SqlSession;
 import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
+import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
 
 public class ReportService {
 	ReportDao dao = new ReportDao();
 	
 	
 	
+	public List<ReportReviewCmt> selectReportReviewCmtList(){
+		SqlSession session = getSqlSession();
+		List<ReportReviewCmt> resultList = dao.selectReportReviewCmtList(session);
+		session.close();
+		return resultList;
+	}
 	
 	public int deleteReportReview(int reportReviewNo) {
 		SqlSession session = getSqlSession();
@@ -24,8 +31,6 @@ public class ReportService {
 		session.close();
 		return result;
 	}
-	
-	
 	
 	public List<ReportReview> selectReportReviewList(){
 		SqlSession session = getSqlSession();
