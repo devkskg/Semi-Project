@@ -13,17 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.board.adminboard.service.ReportService;
 import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
 
-@WebServlet("/reportReviewComment")
-public class ReportReviewCommentServlet extends HttpServlet {
+@WebServlet("/reportReviewCmt")
+public class ReportReviewCmtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ReportReviewCommentServlet() {
+    public ReportReviewCmtServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<ReportReviewCmt> resultList= new ReportService().selectReportReviewCmtList();
-		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReviewComment.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReviewCmt.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);
 	}

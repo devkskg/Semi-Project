@@ -15,7 +15,13 @@ import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
 public class ReportService {
 	ReportDao dao = new ReportDao();
 	
-	
+	public int deleteReportReviewCmt(int reportReviewCmtNo) {
+		SqlSession session = getSqlSession();
+		int result = dao.deleteReportReviewCmt(reportReviewCmtNo, session);
+		commitRollback(session, result);
+		session.close();
+		return result;
+	}
 	
 	public List<ReportReviewCmt> selectReportReviewCmtList(){
 		SqlSession session = getSqlSession();

@@ -18,7 +18,7 @@
 								
 								<a href="/reportKlass">신고된 클래스</a>
 								<a href="/reportReview">신고된 댓글</a><br>
-								<a href="/reportReviewComment">신고된 리뷰</a><br>
+								<a href="/reportReviewCmt">신고된 리뷰</a><br>
 								
 								</div>
 							</div>

@@ -10,6 +10,10 @@ import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
 
 public class ReportDao {
 	
+	public int deleteReportReviewCmt(int reportReviewCmtNo, SqlSession session) {
+		return session.insert("reportMapper.deleteReportReviewCmt",reportReviewCmtNo);
+	}
+	
 	public List<ReportReviewCmt> selectReportReviewCmtList(SqlSession session){
 		return session.selectList("reportMapper.selectReportReviewCmt");
 	}

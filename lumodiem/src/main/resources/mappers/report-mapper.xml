@@ -36,17 +36,24 @@
 		<result property="accountNickname" column="account_nickname"/>
 	</resultMap>
 	
+	<delete id="deleteReportReviewCmt" parameterType="_int">
+	DELETE FROM `report_review_cmt`
+		<where>
+		 report_review_cmt_no = #{reportReviewCmtNo};
+		 </where>
+	</delete>
 	
 	<select id="selectReportReviewCmt" resultMap="reportReviewCmtMap">
-	SELECT r.review_name
-	,r.review_txt
+	SELECT rc.review_cmt_txt
 	,a.account_nickname
-	,rr.report_review_cmt_no
-	FROM `report_review_cmt` rr
-	JOIN `review` r
-	ON rr.review_cmt_no = r.review_no
+	,rrc.report_review_cmt_no
+	FROM `report_review_cmt` rrc
+	JOIN `review_cmt` rc
+	ON rrc.review_cmt_no = rc.review_cmt_no
 	JOIN `account` a
-	ON a.account_no = rr.account_no
+	ON rrc.account_no = a.account_no
+	JOIN `review` r
+	ON r.review_no = rc.review_no
 	</select>
 	
 	

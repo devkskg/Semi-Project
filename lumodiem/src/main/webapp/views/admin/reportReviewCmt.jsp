@@ -21,7 +21,7 @@
 					<div class="col-xl-8 py-5 px-md-5">
 						<div class="row pt-md-4">
 						
-		<form action="<c:url value='/reportReviewComment'/>" id="search_report_klass" method="post">
+		<form action="<c:url value='/reportReviewCmt'/>" id="search_report_klass" method="post">
 				<select name="search_type" id="search_type">
 					<option value="0">선택</option>			
 					<option value="1">제목</option>			
@@ -32,7 +32,7 @@
 				<button name="searchBtn" id="searchBtn">검색</button>
 		</form>
 	<form>
-		<div class="report_klass_list">
+		<div class="report_review_cmt_list">
 			<table border="1">
 				<thead>
 					<tr>
@@ -46,10 +46,10 @@
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
 								<tr>
-									<td>${list.reviewName}</td>
+									<%-- <td>${list.reviewName}</td> --%>
 									<td>${list.reviewCmtTxt}</td>
 									<td>${list.accountNickname }</td>
-									<td><button type='button' data-report-klass-no="${list.reportReviewCmtNo }">삭제</button></td>
+									<td><button type='button' data-report-review-cmt-no="${list.reportReviewCmtNo }">삭제</button></td>
 								</tr>
 							</c:forEach>
 						
@@ -75,13 +75,13 @@
 	<script>
 		
  		 
- 		/*  $('. tbody button').click(function(){
+ 		 $('.report_review_cmt_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
- 			 const  = $(this).data('');
+ 			 const ReportReviewCmtNo = $(this).data('report-review-cmt-no');
 			$.ajax({
-				url : "/",
+				url : "/deleteReportReviewCmt",
 				type : "post",
-				data : {"":},
+				data : {"report_review_cmt_no":ReportReviewCmtNo},
 				dataType : "JSON",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				
@@ -96,7 +96,7 @@
  			}else{
  				
  			}
- 		});  */
+ 		});  
  		
  	</script>
 </body>

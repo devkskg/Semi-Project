@@ -82,7 +82,6 @@
  		 $('.report_review_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
  			 const reportReviewNo = $(this).data('report-review-no');
-			// location.href='/selectReviewComment?reviewCommentClicked='+reportJkassNo; 
 			$.ajax({
 				url : "/deleteReportReview",
 				type : "post",
