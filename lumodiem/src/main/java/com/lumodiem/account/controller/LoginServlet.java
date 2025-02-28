@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -18,8 +19,13 @@ public class LoginServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
-		view.forward(request, response);
+		HttpSession session = request.getSession();
+		if(session != null && session.getAttribute("account") != null) {
+			response.sendRedirect("/");
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
+			view.forward(request, response);
+		}
 		
 	}
 

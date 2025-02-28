@@ -33,7 +33,6 @@ public class HostMypageLikeServlet extends HttpServlet {
 		String aapproveCode = "A";
 		
 		Klass option = null;
-		List<Klass> klassList = null;
 		List<KlassLike> klassLikeList = null;
 		List<ReviewLike> reviewLikeList = null;
 		
@@ -43,12 +42,10 @@ public class HostMypageLikeServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).approveCode(aapproveCode).build();
 			
 			if(option != null) {
-				klassList = new HostMypageService().selectApproveListByHostAccountNo(option);
 				klassLikeList = new HostMypageService().selectKlassLikeByHostAccountNo(option);
 				reviewLikeList = new HostMypageService().selectReviewLikeByHostAccountNo(option);
-				request.setAttribute("klassList", klassList);
 				request.setAttribute("klassLikeList", klassLikeList);
-				request.setAttribute("ReviewLike", reviewLikeList);
+				request.setAttribute("reviewLikeList", reviewLikeList);
 				
 				urlPath = request.getContextPath()+"/views/mypage/hostmypagelike.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);

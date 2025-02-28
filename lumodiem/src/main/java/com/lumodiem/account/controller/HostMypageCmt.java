@@ -14,12 +14,15 @@ import javax.servlet.http.HttpSession;
 import com.lumodiem.account.service.HostMypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassLike;
+import com.lumodiem.board.memberboard.vo.ReviewCmt;
+import com.lumodiem.board.memberboard.vo.ReviewLike;
 
-@WebServlet("/hostMypageApproveKlass")
-public class HostMypageApproveKlassServlet extends HttpServlet {
+@WebServlet("/hostMypageCmt")
+public class HostMypageCmt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMypageApproveKlassServlet() {
+    public HostMypageCmt() {
         super();
     }
 
@@ -27,22 +30,23 @@ public class HostMypageApproveKlassServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Account account = null;
 		String urlPath = "/";
+		String aapproveCode = "A";
 		
 		Klass option = null;
-		String approveCode = null;
-		List<Klass> approveList = null;
+		List<ReviewCmt> reviewCmtList = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
 			int accountNo = account.getAccountNo();
-			approveCode = request.getParameter("approve_code");
-			option = Klass.builder().accountNo(accountNo).approveCode(approveCode).build();
-			if(option != null && approveCode !=null) {
+			option = Klass.builder().accountNo(accountNo).approveCode(aapproveCode).build();
+			
+			if(option != null) {
 				approveList = new HostMypageService().selectApproveListByHostAccountNo(option);
-				request.setAttribute("approveList", approveList);
-				request.setAttribute("approveCode", approveCode);
+				reviewLikeList = new HostMypageService().(option);
+				request.setAttribute("reviewCmtList", reviewCmtList);
+				System.out.println(reviewCmtList);
 				
-				urlPath = request.getContextPath()+"/views/mypage/hostmypageapproveklass.jsp";
+				urlPath = request.getContextPath()+"/views/mypage/hostmypagelike.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {
@@ -51,7 +55,6 @@ public class HostMypageApproveKlassServlet extends HttpServlet {
 		} else {
 			response.sendRedirect("/");
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
