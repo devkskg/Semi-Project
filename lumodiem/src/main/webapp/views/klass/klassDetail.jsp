@@ -96,7 +96,7 @@
 		<c:choose >
 			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
 			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/klassBoardUpdate">수정</a>
+				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
 			</button>
 			<button type="button" id="deleteBtn" name="deleteBtn">
 				<a href="/klassBoardDelete">삭제</a>

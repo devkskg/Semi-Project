@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="klass_update">
-	<form action="/klassBoardUpdateEnd" method="post">
+	<form action="" name="update_klass_form">
 		<fieldset>
 			<legend>게시글 수정</legend>
 			<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
@@ -35,33 +35,48 @@
 			placeholder="숫자만 입력해주세요." value="${klass.klassPrice}"><br>
 			
 			<label for="klass_txt">클래스 상세 내용</label><br>
-			<textarea name="klass_txt" id="klass_txt" required value="${klass.klassTxt}"></textarea>
+			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
 			
-			<button type="button" id="updateBtn">수정하기</button>
+			<button type="button" id="updateBtn" onclick="updateKlass();">수정하기</button>
 			<button type="button" id="deleteBtn">삭제하기</button>
-		
-		
-		
 		
 		</fieldset>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	</form>
 
-
-
-
 </div>	
-	
+<script type="text/javascript">
+	const updateKlass = function(){
+		const form = document.update_klass_form;
+		$.ajax({
+			url : "klassBoardUpdateEnd",
+			type : "post",
+			data : {"account_no" : form.account_no.value,
+					"klass_name" : form.klass_name.value,
+					"account_nickname" : form.account_nickname.value,
+					"klass_address" : form.klass_address.value,
+					"klass_max" : form.klass_max.value,
+					"klass_price" : form.klass_price.value,
+					"klass_txt" : form.klass_txt.value
+			},
+			dataType : "JSON",
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			success : function(data){
+				alert(data.res_msg);
+				if(data.res_code == "200"){
+					location.href="/";
+				} else{
+					location.href="/";
+				}
+			}
+			
+		});
+	}
+
+
+
+
+</script>	
 	
 	
 	

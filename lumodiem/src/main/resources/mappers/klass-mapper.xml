@@ -35,11 +35,16 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	
-<!-- 	<update id="klassUpdate" parameterType="klassVo">
-	
+	<update id="klassUpdate" parameterType="klassVo">
+	 	UPDATE `klass`
+	 	SET klass_name = #{klassName}
+	 		,klass_max = #{klassMax}
+	 		,klass_price = #{klassPrice}
+	 		,klass_txt = #{klassTxt}
+	 	WHERE klass_no = #{klassNo}	
 	</update>
 	
-	<delete id="klassDelete" parameterType="klassVo">
+<!-- 	<delete id="klassDelete" parameterType="klassVo">
 	
 	</delete>
  -->	
