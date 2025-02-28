@@ -12,6 +12,7 @@ import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
+import com.lumodiem.board.memberboard.vo.ReviewCmt;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
 
 public class HostMypageService {
@@ -37,6 +38,12 @@ public class HostMypageService {
 	public List<ReviewLike> selectReviewLikeByHostAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
 		List<ReviewLike> list = new HostMypageDao().selectReviewLikeByHostAccountNo(session, option);
+		return list;
+	}
+
+	public List<ReviewCmt> selectReviewCmtListByHostAccountNo(Klass option) {
+		SqlSession session = getSqlSession();
+		List<ReviewCmt> list = new HostMypageDao().selectReviewCmtListByHostAccountNo(session, option);
 		return list;
 	}
 

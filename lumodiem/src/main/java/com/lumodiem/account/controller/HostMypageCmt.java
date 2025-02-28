@@ -30,7 +30,6 @@ public class HostMypageCmt extends HttpServlet {
 		HttpSession session = request.getSession();
 		Account account = null;
 		String urlPath = "/";
-		String aapproveCode = "A";
 		
 		Klass option = null;
 		List<ReviewCmt> reviewCmtList = null;
@@ -38,15 +37,14 @@ public class HostMypageCmt extends HttpServlet {
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
 			int accountNo = account.getAccountNo();
-			option = Klass.builder().accountNo(accountNo).approveCode(aapproveCode).build();
+			option = Klass.builder().accountNo(accountNo).build();
 			
 			if(option != null) {
-				approveList = new HostMypageService().selectApproveListByHostAccountNo(option);
-				reviewLikeList = new HostMypageService().(option);
+				reviewCmtList = new HostMypageService().selectReviewCmtListByHostAccountNo(option);
 				request.setAttribute("reviewCmtList", reviewCmtList);
 				System.out.println(reviewCmtList);
 				
-				urlPath = request.getContextPath()+"/views/mypage/hostmypagelike.jsp";
+				urlPath = request.getContextPath()+"/views/mypage/hostmypagecmt.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {
