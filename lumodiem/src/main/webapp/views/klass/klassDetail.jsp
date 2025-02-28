@@ -33,7 +33,8 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>${klass.klassTxt}</td>
+					<td>${fn:substring(klass.klassTxt,0,5)}</td>
+					<!--<td>${klass.klassTxt}</td> -->
 				</tr>
 				<tr>
 					<th>일정</th>
@@ -48,14 +49,14 @@
 					<th>시간</th>
 					<td>
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
-							${fn:substring(li.klassStart,12,19)}<br>
+							${fn:substring(li.klassStart,11,19)}<br>
 						</c:forEach>
 					
 					</td>
 
 				</tr>
 				<tr>
-					<th>최대인원(예약가능인원)</th>
+					<th>최대(예약가능)</th>
 					<%-- <td>${klass.klassMax}명(${klass.klassMax - klassDate.klassCount}명)</td> --%>
 					<td>
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
@@ -70,7 +71,7 @@
 				</tr>
 				<tr>
 					<th>수업료</th>
-					<td>${klass.klassPrice }</td>
+					<td>${klass.klassPrice }원</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
