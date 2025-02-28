@@ -21,8 +21,8 @@
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">	
 					
-<div class="klass_list">
-	<form action="/klassBoardList" id="searchKlassList" method="post">
+<div class="approve_list">
+	<form action="/arreoveList" id="searchApproveList" method="post">
 			<select name="search_type" id="search_type">
 				<option value="0">선택</option>			
 				<option value="1">클래스명</option>			
@@ -32,7 +32,7 @@
 			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn">검색</button>
 	</form>
-	<form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass">
+	<form action="/arreoveList" id="arrangeKlass" name="arrangeKlass">
 		<select name="order_type" id="order_type">
 			<option value="x">정렬하기</option>
 			<option value="a">최신순</option>
@@ -108,7 +108,7 @@
 	</form>
 </div>	
 <script>
-	$('.klass_list tbody tr').click(function(){
+	$('.approve_list tbody tr').click(function(){
 		const klassNo = $(this).data('klass-no');
 		location.href='/klassDetail?klass_no='+klassNo;
 	})
