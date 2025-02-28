@@ -28,6 +28,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 		String klassAddress = request.getParameter("klass_address");
 		int klassMax = Integer.parseInt(request.getParameter("klass_max"));
 		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
+		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
 		String klassTxt = request.getParameter("klass_txt");
 		
 		Klass option = Klass.builder()
@@ -38,18 +39,20 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 				.klassMax(klassMax)
 				.klassPrice(klassPrice)
 				.klassTxt(klassTxt)
+				.klassNo(klassNo)
 				.build();
 
 		int result = new HostBoardService().updateKlass(option);
 		
+		System.out.println("option:" + option);
 		
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
-		obj.put("res_msg", "게시글 등록중 오류가 발생하였습니다.");
+		obj.put("res_msg", "게시글 수정중 오류가 발생하였습니다.");
 		
 		if(result > 0) {
 		obj.put("res_code", "200");
-		obj.put("res_msg", "정상적으로 게시글이 등록되었습니다.");
+		obj.put("res_msg", "정상적으로 게시글이 수정되었습니다.");
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);
