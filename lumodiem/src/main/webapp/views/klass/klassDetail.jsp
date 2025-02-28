@@ -91,13 +91,19 @@
 				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
 			</button>
 			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete?klass_no=${klass.klassNo }" data-klass-no="${klass.klassNo }">삭제</a>
+				<a href="/klassBoardDelete?klass_no=${klass.klassNo }">삭제</a>
 			</button>
 			</c:when>
 
 			<c:when test="${account.accountGrade eq 'M'}">
 				<button type="button" id="resBtn" name="resBtn">
 					<a href="/reservation">예약하기</a>
+				</button>
+			</c:when>
+			
+			<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}">
+				<button type="button" id="rptBtn" name="rptBtn">
+					<a href="/klassReport">신고하기</a>
 				</button>
 			</c:when>
 		
@@ -110,7 +116,8 @@
 <script>
 	$('#deleteBtn').click(function(){
 		const klassNo = ${klass.klassNo}; 
-		if(confirm("삭제하시겠습니까?")){
+		const check = confirm("삭제하시겠습니까?");
+		if(check == true){
 			$.ajax({
 					url : "klassBoardDelete",
 					type : "post",
