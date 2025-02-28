@@ -16,16 +16,6 @@
 <h1>test</h1>
 	<section>
 		<div>
-			<%-- <table update_comment_>
-				<tr>
-					<td>${cmt.reviewCmtNo }</td>
-					<td>${cmt.accountNo }</td>
-					<td>${cmt.reviewNo }</td>
-					<td><input id="change" value="${cmt.reviewCmtTxt }"></td>
-					<td><button type='button' onclick="updateComment();">수정</button></td>
-				</tr>
-			</table> --%>
-			
 			<div class="update_comment_form">
 				<form action='updateReviewCommentEnd' name="update_comment_form" method="post">
 					<input type="hidden" name="review_cmt_no" value="${cmt.reviewCmtNo }">
@@ -38,12 +28,6 @@
 		</div>
 	</section>
 	<script type="text/javascript">
-	
-/* 	 	$('.update_comment_form form input button').click(function(){
-				comment()
-			});  */
-
-	
 		 const deleteComment = function(){
 			const form = document.update_comment_form;
 			$.ajax({
@@ -62,7 +46,6 @@
 				}
 			});
 		} 
-	
 		const updateComment = function() {
 			const form = document.update_comment_form;
 			$.ajax({
@@ -79,7 +62,6 @@
 						location.href="/";
 					}
 				}
-				
 			});
 		}
 		
