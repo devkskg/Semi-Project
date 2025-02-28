@@ -73,7 +73,7 @@
 					<a href="/memberMyPage">마이페이지</a>
 				</li>
 				<li>
-					<a>참여자</a>
+					<a style="font-weight: bold;">${account.accountNickname}</a><a style="font-size: small;">(참여자)</a>
 				</li>
 			</c:when>
 			
@@ -82,7 +82,7 @@
 					<a href="/hostMyPage">마이페이지</a>
 				</li>
 				<li>
-					<a>주최자</a>
+					<a style="font-weight: bold;">${account.accountNickname}</a><a style="font-size: small;">(주최자)</a>
 				</li>
 			</c:when>
 			
@@ -91,7 +91,7 @@
 					<a href="/adminPage">관리자 페이지</a>
 				</li>
 				<li>
-					<a>관리자</a>
+					<a style="font-weight: bold;">관리자</a>
 				</li>
 			</c:when>
 		</c:choose>

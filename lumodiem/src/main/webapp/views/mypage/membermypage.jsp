@@ -21,9 +21,10 @@
 								</div>
 								<div class="meta-wrap">
 									<ul class="categories">
-										<li><a href="<c:url value='memberMypageKlass'/>">참여 클래스 조회 <span>(+)</span></a></li>
-										<li><a href="<c:url value='memberMypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
-										<li><a href="<c:url value='memberMypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
+										<li><a href="<c:url value='/memberMypageKlass'/>">참여 클래스 조회 <span>(+)</span></a></li>
+										<li><a href="<c:url value='/memberMypageReview'/>">작성 리뷰 조회 <span>(+)</span></a></li>
+										<li><a href="<c:url value='/memberMypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
+										<li><a href="<c:url value='/memberMypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
 									</ul>
 								</div>
 							</div>

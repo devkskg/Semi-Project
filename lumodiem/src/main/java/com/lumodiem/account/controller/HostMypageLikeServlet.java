@@ -30,7 +30,6 @@ public class HostMypageLikeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Account account = null;
 		String urlPath = "/";
-		String aapproveCode = "A";
 		
 		Klass option = null;
 		List<KlassLike> klassLikeList = null;
@@ -39,7 +38,7 @@ public class HostMypageLikeServlet extends HttpServlet {
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
 			int accountNo = account.getAccountNo();
-			option = Klass.builder().accountNo(accountNo).approveCode(aapproveCode).build();
+			option = Klass.builder().accountNo(accountNo).build();
 			
 			if(option != null) {
 				klassLikeList = new HostMypageService().selectKlassLikeByHostAccountNo(option);
