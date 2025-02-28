@@ -40,7 +40,7 @@ public class SecureCode extends HttpServlet {
 //			조건2 : 세션의 계정 정보가 올바른 값이어야한다.
 			if(option != null) {
 				list = new HostMypageService().();
-				request.setAttribute("", );
+				request.setAttribute("", ); 
 				
 				urlPath = request.getContextPath()+"/.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
