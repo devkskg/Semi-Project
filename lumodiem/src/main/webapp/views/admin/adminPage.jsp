@@ -19,8 +19,8 @@
 								<div class="row pt-md-4">
 
 										<a href="/reportList">신고 목록 조회</a><br>
-										<a>대기중인 클래스 목록</a><br>
-
+										<a href="/arreoveList">대기중인 클래스 목록</a><br>
+										<!-- <a>/klassBoardList</a> -->
 								</div>
 							</div>
 						</div>
