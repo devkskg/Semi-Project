@@ -38,9 +38,9 @@ public class ApproveListServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		
+		System.out.println(option);
 		List<Klass> resultList = new ApproveSerview().selectApproveList();
 		request.setAttribute("resultList", resultList);
-		System.out.println(resultList);
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/approveList.jsp");
