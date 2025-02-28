@@ -30,6 +30,18 @@
 		<result property="reviewModDate" column="review_mod_date"/>
 		<result property="orderType" column="order_type"/>
 	</resultMap>
+	<resultMap type="klassLikeVo" id="klassLikeMap">
+		<result property="klassLikeNo" column="klass_like_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<!-- <result property="klassName" column="klass_name"/> -->
+	</resultMap>
+	<resultMap type="reviewLikeVo" id="reviewLikeMap">
+		<result property="reviewLikeNo" column="review_like_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<!-- <result property="reviewName" column="review_name"/> -->
+	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
 	<select id="approveKlassListSearch" resultMap="mypageMap" parameterType="klassVo">
@@ -48,12 +60,28 @@
 	</select>
 	
 	<!-- review 테이블 -> 호스트 번호 기준으로 내 클래스의 review 조회  -->
-	<select id="selectReviewListByHostAccountNo" resultMap="reviewMap" parameterType="reviewVo">
+	<select id="selectReviewListByHostAccountNo" resultMap="reviewMap" parameterType="klassVo">
 		SELECT r.*
 		FROM `review` r
 		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
 		WHERE k.account_no = #{accountNo};
+	</select>
+	
+	<!-- klass_like 테이블 -> 호스트 번호 기준으로 좋아요한 클래스 조회  -->
+	<select id="selectKlassLikeByHostAccountNo" resultMap="klassLikeMap" parameterType="klassVo">
+		SELECT l.*, k.klass_name
+		FROM `klass_like` l
+		JOIN `klass` k ON l.klass_no = k.klass_no
+		WHERE l.account_no = #{accountNo};
+	</select>
+	
+	<!-- review_like 테이블 -> 호스트 번호 기준으로 좋아요한 리뷰 조회  -->
+	<select id="selectReviewLikeByHostAccountNo" resultMap="reviewLikeMap" parameterType="klassVo">
+		SELECT l.*, r.review_name
+		FROM `review_like` l
+		JOIN `review` r ON l.review_no = r.review_no
+		WHERE l.account_no = #{accountNo};
 	</select>
 	
 	

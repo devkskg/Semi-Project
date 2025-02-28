@@ -23,7 +23,6 @@
 	</form>
 	
 	<form method="post">
-		<a href="selectReviewComment">test</a>
 			<div class="comment_list">
 				<table border = "1">
 					<thead>

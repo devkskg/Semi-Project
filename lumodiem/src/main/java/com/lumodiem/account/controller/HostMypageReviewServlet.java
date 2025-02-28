@@ -43,8 +43,6 @@ public class HostMypageReviewServlet extends HttpServlet {
 				reviewList = new HostMypageService().selectReviewListByHostAccountNo(option);
 				request.setAttribute("approveList", approveList);
 				request.setAttribute("reviewList", reviewList);
-				System.out.println(approveList);
-				System.out.println(reviewList);
 				
 				urlPath = "/views/mypage/hostmypagereview.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
