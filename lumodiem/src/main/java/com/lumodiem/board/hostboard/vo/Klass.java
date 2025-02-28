@@ -30,4 +30,5 @@ public class Klass {
 	private String approveCode;
 	private String orderType;
 	private int resNo;
+	private int klassDateNo;
 }
