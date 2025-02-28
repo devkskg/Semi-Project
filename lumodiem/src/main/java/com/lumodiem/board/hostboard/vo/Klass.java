@@ -29,4 +29,6 @@ public class Klass {
 	private String searchTxt;
 	private String approveCode;
 	private String orderType;
+	private int resNo;
+	private int klassDateNo;
 }

@@ -12,14 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.simple.JSONObject;
 
-import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -37,18 +35,13 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
-//		Account ac = null;
-//		HttpSession session = request.getSession();
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		
-//		if(session != null && session.getAttribute("account") != null) {
-//			ac = (Account)session.getAttribute("account");
-//			int accountNo = ac.getAccountNo();
-//			List<Klass> klass = new MemberBoardService().attendedKlass(accountNo);
-//			System.out.println(klass);
-//			request.setAttribute("klass", klass);
-//		}
+//		String resNoStr = request.getParameter("klass_title");
+//		System.out.println(resNoStr);
+//		int res = Integer.parseInt(resNoStr);
+//		List<Klass> klass = new MemberBoardService().searchResNo(res);
+//		request.setAttribute("klass", klass);
 		
 		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
 		
@@ -68,11 +61,16 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 				FileItem fileItem = items.get(i);
 				if(fileItem.isFormField()) {
 					switch(fileItem.getFieldName()) {
-					case"klass_title": r.setKlassName(fileItem.getString("utf-8"));break;
-					case"review_name": r.setReviewName(fileItem.getString("utf-8")); break;
-					case"review_txt":  r.setReviewTxt(fileItem.getString("utf-8"));break;
-					case"account_no":  r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
-					case "res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					//case"klass_title":r.setKlassName(fileItem.getString("utf-8"));break;
+					case"review_name":r.setReviewName(fileItem.getString("utf-8")); break;
+					case"review_txt":r.setReviewTxt(fileItem.getString("utf-8"));break;
+					case"account_no":r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+//					case"klass_date_no":r.setKlassDateNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					}
+					// 1 번 서블릿에서 홈화면 보내는 방법
+					if(r.getResNo() == 0) {
+						response.sendRedirect("/");
 					}
 				}else {
 					if(fileItem.getSize() > 0) {

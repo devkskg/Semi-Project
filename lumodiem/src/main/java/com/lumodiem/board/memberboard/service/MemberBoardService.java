@@ -15,21 +15,8 @@ public class MemberBoardService {
 	
 	public int insertReview(Review r,ReviewAttach a) {
 		SqlSession session = getSqlSession();
-		int result = 0;
-		
-		 if (r.getResNo() == 0) {
-		        List<Reservation> resList = searchResNoByAccountNo(String.valueOf(r.getAccountNo()));
-		        if (resList != null && !resList.isEmpty()) {
-		            r.setResNo(resList.get(0).getResNo());
-		        } else {
-		            System.out.println("해당 계정의 예약 정보가 없음!");
-		            session.close();
-		            return 0;  
-		        }
-		    }
-		 
+		int result = 0;	 
 		int reviewNo = new MemberBoardDao().insertReview(session,r);
-//		a.setAttachNo(reviewNo);
 		int attachNo = new MemberBoardDao().insertReviewAttach(session,a);
 		
 		if(reviewNo != 0 && attachNo != 0) {
@@ -41,12 +28,12 @@ public class MemberBoardService {
 		session.close();
 		return result;
 	}
-	public List<Reservation> searchResNoByAccountNo(String accountNo) {
-		SqlSession session = getSqlSession();
-		List<Reservation> resList = new MemberBoardDao().searchResNoByAccountNo(session, accountNo);
-		session.close();
-		return resList;
-	}
+//	public List<Reservation> searchResNoByAccountNo(String accountNo) {
+//		SqlSession session = getSqlSession();
+//		List<Reservation> resList = new MemberBoardDao().searchResNoByAccountNo(session, accountNo);
+//		session.close();
+//		return resList;
+//	}
 	public int UpdateReview(Review review) {
 		SqlSession session = getSqlSession();
 		int result = new MemberBoardDao().UpdateReview(session,review);
@@ -77,5 +64,16 @@ public class MemberBoardService {
 		session.close();
 		return klass;
 	}
-	
+	public List<Klass> searchResNo(int resNo){
+		SqlSession session = getSqlSession();
+		List<Klass> klass = new MemberBoardDao().searchResNo(session,resNo);
+		session.close();
+		return klass;
+	}
+	public List<Klass> searchKlassDateNo(int klassDateNo){
+		SqlSession session = getSqlSession();
+		List<Klass> klass = new MemberBoardDao().searchKlassDateNo(session,klassDateNo);
+		session.close();
+		return klass;
+	}
 }
