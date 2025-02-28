@@ -21,6 +21,12 @@
 					<div class="row pt-md-4">
 					
 	<div class="klass_detail">
+	
+	
+	
+	
+	
+	
 		<form>
 			<table>
 				<tr>
@@ -33,7 +39,8 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>${klass.klassTxt}</td>
+					<td>${fn:substring(klass.klassTxt,0,5)}</td>
+					<!--<td>${klass.klassTxt}</td> -->
 				</tr>
 				<tr>
 					<th>일정</th>
@@ -48,14 +55,14 @@
 					<th>시간</th>
 					<td>
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
-							${fn:substring(li.klassStart,12,19)}<br>
+							${fn:substring(li.klassStart,11,19)}<br>
 						</c:forEach>
 					
 					</td>
 
 				</tr>
 				<tr>
-					<th>최대인원(예약가능인원)</th>
+					<th>최대(예약가능)</th>
 					<%-- <td>${klass.klassMax}명(${klass.klassMax - klassDate.klassCount}명)</td> --%>
 					<td>
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
@@ -70,7 +77,7 @@
 				</tr>
 				<tr>
 					<th>수업료</th>
-					<td>${klass.klassPrice }</td>
+					<td>${klass.klassPrice }원</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
@@ -83,51 +90,31 @@
 			
 			</table>		
 		
+		</form>
+
+		<form>
+		<c:choose >
+			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
+			<button type="button" id="updateBtn" name="updateBtn">
+				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
+			</button>
+			<button type="button" id="deleteBtn" name="deleteBtn">
+				<a href="/klassBoardDelete">삭제</a>
+			</button>
+			</c:when>
+
+			<c:when test="${account.accountGrade eq 'M'}">
+				<button type="button" id="resBtn" name="resBtn">
+					<a href="/reservation">예약하기</a>
+				</button>
+			</c:when>
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		</c:choose>
 		
 		</form>
 	
 	</div>				
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					
 					</div>
 				</div>
 			</div>

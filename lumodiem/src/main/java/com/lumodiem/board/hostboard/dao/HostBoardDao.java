@@ -9,6 +9,11 @@ import com.lumodiem.board.hostboard.vo.KlassDate;
 
 public class HostBoardDao {
 	
+	public int updateKlass(SqlSession session, Klass option) {
+		int result = session.update("klassMapper.klassUpdate",option);
+		return result;
+	}
+	
 	public List<KlassDate> selectKlassDate(SqlSession session, int klassNo) {
 		return session.selectList("klassMapper.klassDateList",klassNo);
 	}

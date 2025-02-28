@@ -17,7 +17,7 @@
 					<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 					
 					<label for="klass_name">클래스명 : </label>
-					<input type="text" name="klass_name" id="klass_name"><br>
+					<input type="text" name="klass_name" id="klass_name" required><br>
 					
 					<label for="account_nickname">주최자명 :</label>
 					<input type="text" readonly value="${account.accountNickname}" name="account_nickname" id="account_nickname"><br>
@@ -26,13 +26,13 @@
 					<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address"><br>
 					
 					<label for="klass_max">최대 참가인원 : </label>
-					<input type="number" name="klass_max" id="klass_max"><br>
+					<input type="number" name="klass_max" id="klass_max" required placeholder="숫자만 입력해주세요."><br>
 					
 					<label for="klass_price">수강료 : </label>
-					<input type="number" name="klass_price" id="klass_price"><br>
+					<input type="number" required name="klass_price" id="klass_price" placeholder="숫자만 입력해주세요."><br>
 					
 					<label for="klass_txt">클래스 상세 내용</label><br>
-					<textarea name="klass_txt" id="klass_txt"></textarea>
+					<textarea name="klass_txt" id="klass_txt" required></textarea>
 					
 					<button type="button" id="insertBtn">등록</button>					
 				</fieldset>

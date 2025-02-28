@@ -21,16 +21,6 @@
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">	
 <div class="klass_list">
-	<form action="/klassBoardList" id="searchKlassList" method="post">
-			<select name="search_type" id="search_type">
-				<option value="0">선택</option>			
-				<option value="1">클래스명</option>			
-				<option value="2">닉네임</option>			
-				<option value="3">내용</option>			
-			</select>
-			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
-			<button name="searchBtn" id="searchBtn">검색</button>
-	</form>
 	<form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass">
 		<select name="order_type" id="order_type">
 			<option value="x">정렬하기</option>
@@ -116,7 +106,21 @@
 
 
 </script>	
+
+	<form>
+		<p>페이징 위치(중앙 정렬 할거임)</p>
+	</form>
 	
+	<form action="/klassBoardList" id="searchKlassList" method="post">
+			<select name="search_type" id="search_type">
+				<option value="0">선택</option>			
+				<option value="1">클래스명</option>			
+				<option value="2">닉네임</option>			
+				<option value="3">내용</option>			
+			</select>
+			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
+			<button name="searchBtn" id="searchBtn">검색</button>
+	</form>
 	
 	
 	
