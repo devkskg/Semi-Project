@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypageMapper">
 
-	<resultMap type="klassVo" id="mypageMap">
+	<resultMap type="klassVo" id="klassMap">
 		<result property="klassNo" column="klass_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="klassName" column="klass_name"/>
@@ -48,9 +48,16 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
+	<resultMap type="klassDateVo" id="klassDateMap">
+		<result property="klassDateNo" column="klass_date_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="klassStart" column="klass_start"/>
+		<result property="klassEnd" column="klass_end"/>
+		<result property="klassCount" column="klass_count"/>
+	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
-	<select id="klassListSearch" resultMap="mypageMap" parameterType="klassVo">
+	<select id="klassListSearch" resultMap="klassMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname ,p.approve_code
 		FROM `klass` k
 		JOIN `account` a
@@ -98,6 +105,26 @@
 		SELECT *
 		FROM `review_cmt`
 		WHERE account_no = ${accountNo}
+	</select>
+	
+	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
+	<select id="selectReservationKlassListByAccountNo" resultMap="klassMap" parameterType="klassVo">
+		SELECT k.*, a.account_nickname
+		FROM `reservation` r
+		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
+		JOIN `klass` k ON d.klass_no = k.klass_no
+		JOIN `account` a ON k.account_no = a.account_no
+		WHERE r.account_no = #{accountNo};
+	</select>
+	
+	<!-- klassDate 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
+	<select id="selectReservationKlassDateListByAccountNo" resultMap="klassDateMap" parameterType="klassDateVo">
+		SELECT k.*, a.account_nickname
+		FROM `reservation` r
+		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
+		JOIN `klass` k ON d.klass_no = k.klass_no
+		JOIN `account` a ON k.account_no = a.account_no
+		WHERE r.account_no = #{accountNo};
 	</select>
 	
 	
