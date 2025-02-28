@@ -17,7 +17,13 @@ public class ReportService {
 	
 	
 	
-	
+	public int deleteReportReview(int reportReviewNo) {
+		SqlSession session = getSqlSession();
+		int result = dao.deleteReportReview(reportReviewNo, session);
+		commitRollback(session, result);
+		session.close();
+		return result;
+	}
 	
 	
 	

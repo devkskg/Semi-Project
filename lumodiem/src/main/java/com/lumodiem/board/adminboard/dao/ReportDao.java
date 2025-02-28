@@ -9,6 +9,9 @@ import com.lumodiem.board.adminboard.vo.ReportReview;
 
 public class ReportDao {
 	
+	public int deleteReportReview(int reportReviewNo, SqlSession session) {
+		return session.insert("reportMapper.deleteReportReview",reportReviewNo);
+	}
 	
 	public List<ReportReview> selectReportReviewList(SqlSession session){
 		return session.selectList("reportMapper.reportReviewSelect");

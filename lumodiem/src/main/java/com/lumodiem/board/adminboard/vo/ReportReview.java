@@ -18,8 +18,8 @@ public class ReportReview {
 	private int accountNo;
 	private int reviewNo;
 	
-	private int reviewTxt;
-	private int reviewName;
-	private int accountNickName;
+	private String reviewTxt;
+	private String reviewName;
+	private String accountNickname;
 	
 }

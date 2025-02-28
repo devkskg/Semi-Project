@@ -33,7 +33,7 @@ public class ReportKlassServlet extends HttpServlet {
 		
 		List<ReportKlass> resultList = new ReportService().selectReportKlassList();
 		//List<ReportKlass> resultList = new ReportService().selectReportKlassList(1);
-		RequestDispatcher view = request.getRequestDispatcher("/views/admin/kalassReport.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportKlass.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);
 	}

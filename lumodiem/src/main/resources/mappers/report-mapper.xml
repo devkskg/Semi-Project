@@ -5,28 +5,35 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportMapper">
 
-	<resultMap type="reportKlassVo" id="reportMap">
-
+	<resultMap type="reportKlassVo" id="reportKlassMap">
 		<result property="reportKlassNo" column="report_klass_no"/>
 		<result property="klassNo" column="klass_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="klassName" column="klass_name"/>
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassTxt" column="klass_txt"/>
-		
-		
-		
-
 	</resultMap>
-	<resultMap type="reportReviewVo" id="reportMap">
 	
+	<resultMap type="reportReviewVo" id="reportReviewMap">
+	
+		<result property="reportReviewNo" column="report_review_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="reviewNo" column="review_no"/>
+		
 		<result property="reviewName" column="review_name"/>
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="accountNickname" column="account_nickname"/>
-		<result property="reportReviewNo" column="report_review_no"/>
 		
 	</resultMap>
-	<select id="reportReviewSelect" resultMap="reportMap">
+	
+	<delete id="deleteReportReview" parameterType="_int">
+		DELETE FROM `report_review`
+		<where>
+		 report_review_no = #{reportReviewNo};
+		 </where>
+	</delete>
+	
+	<select id="reportReviewSelect" resultMap="reportReviewMap">
 	SELECT r.review_name
 	,r.review_txt
 	,a.account_nickname
@@ -56,7 +63,7 @@
 		</where>
 	</select> -->
 	
-	<select id="reportKlassSelect"  resultMap="reportMap" >
+	<select id="reportKlassSelect"  resultMap="reportKlassMap" >
 		SELECT kr.report_klass_no 
 			,k.klass_name
 			,a.account_nickname

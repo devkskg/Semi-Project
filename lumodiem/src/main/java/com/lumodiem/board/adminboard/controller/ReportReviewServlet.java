@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/reportReview")
+//@WebServlet("/reportReview")
 public class ReportReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -18,7 +18,7 @@ public class ReportReviewServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reviewReport.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReview.jsp");
 		view.forward(request, response);
 	}
 
