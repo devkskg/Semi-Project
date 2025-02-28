@@ -37,7 +37,7 @@ public class MemberMypageKlass extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			if(option != null) {
 				klassList = new MypageService().selectApproveListByAccountNo(option);
-				request.setAttribute("approveList", klassList);
+				request.setAttribute("klassList", klassList);
 				
 				urlPath = request.getContextPath()+"/views/mypage/membermypageklass.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
