@@ -10,8 +10,8 @@ import com.lumodiem.board.hostboard.vo.KlassDate;
 public class HostBoardDao {
 	
 	
-	public List<Klass> selectKlassDetail(SqlSession session, int klassNo) {
-		return session.selectList("klassMapper.klassDetailList",klassNo);
+	public Klass selectKlassDetail(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.klassOne",klassNo);
 	}
 	
 	public List<KlassDate> selectKlassDate(SqlSession session, int klassNo) {

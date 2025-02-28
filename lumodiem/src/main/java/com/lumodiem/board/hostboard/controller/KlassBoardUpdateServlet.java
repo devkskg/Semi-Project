@@ -25,7 +25,7 @@ public class KlassBoardUpdateServlet extends HttpServlet {
 		String temp = request.getParameter("klass_no");
 		int klassNo = 0;
 		if(temp != null) klassNo = Integer.parseInt(temp);
-		List<Klass> klass = new HostBoardService().selectKlassDetail(klassNo);
+		Klass klass = new HostBoardService().selectKlassDetail(klassNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardUpdate.jsp");
 		request.setAttribute("klass", klass);

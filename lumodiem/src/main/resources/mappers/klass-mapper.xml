@@ -48,7 +48,9 @@
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
+		JOIN `approve` p ON k.klass_no = p.klass_no
 		<where>
+				AND	p.approve_code = 'A'
 			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
 				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
 			</if>
@@ -81,7 +83,9 @@
 	</where>	
 	</select>
 	
-	<
+	<select id="klassDetailList" resultMap="klassMap" parameterType="_int">
+		SELECT klass_name ,klass_
+	</select>
 	
 	<select id="klassDateList" resultMap="klassDateMap" parameterType="_int" resultType="klassDateVo">
 		SELECT d.*
