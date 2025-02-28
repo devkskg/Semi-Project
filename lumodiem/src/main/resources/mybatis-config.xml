@@ -32,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewLike" alias="reviewLikeVo"/>
 		
 		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewCmt" alias="reviewCmtVo"/>
+		<typeAlias type="com.lumodiem.board.hostboard.vo.KlassDate" alias="klassDateVo"/>
 		
 	</typeAliases>
 	
