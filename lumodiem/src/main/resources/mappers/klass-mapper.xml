@@ -35,7 +35,7 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	
-	<update id="klassUpdate" parameterType="klassVo">
+	<update id="klassUpdate" parameterType="klassVo" useGeneratedKeys="true" keyProperty="klassNo">
 	 	UPDATE `klass`
 	 	SET klass_name = #{klassName}
 	 		,klass_max = #{klassMax}
