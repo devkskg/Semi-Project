@@ -12,6 +12,13 @@ import com.lumodiem.board.hostboard.vo.KlassDate;
 
 public class HostBoardService {
 	
+	public List<Klass> selectKlassDetail(int klassNo) {
+		SqlSession session = getSqlSession();
+		List<Klass> klass = new HostBoardDao().selectKlassDetail(session, klassNo);
+		session.close();
+		return klass;
+	}
+	
 	public List<KlassDate> selectKlassDate(int klassNo) {
 		SqlSession session = getSqlSession();
 		List<KlassDate> klassDate = new HostBoardDao().selectKlassDate(session,klassNo);

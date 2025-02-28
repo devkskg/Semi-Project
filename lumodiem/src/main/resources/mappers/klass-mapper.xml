@@ -81,6 +81,8 @@
 	</where>	
 	</select>
 	
+	<
+	
 	<select id="klassDateList" resultMap="klassDateMap" parameterType="_int" resultType="klassDateVo">
 		SELECT d.*
 		FROM `klass_date` d
