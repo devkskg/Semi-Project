@@ -37,10 +37,11 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 		ReviewAttach a = new ReviewAttach();
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		
-		int res = Integer.parseInt(request.getParameter("res_no"));
-		List<Klass> klass = new MemberBoardService().searchResNo(res);
-		request.setAttribute("klass", klass);
+//		String resNoStr = request.getParameter("klass_title");
+//		System.out.println(resNoStr);
+//		int res = Integer.parseInt(resNoStr);
+//		List<Klass> klass = new MemberBoardService().searchResNo(res);
+//		request.setAttribute("klass", klass);
 		
 		
 		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
@@ -65,7 +66,7 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 					case"review_name":r.setReviewName(fileItem.getString("utf-8")); break;
 					case"review_txt":r.setReviewTxt(fileItem.getString("utf-8"));break;
 					case"account_no":r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
-//					case "res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					}
 				}else {
 					if(fileItem.getSize() > 0) {

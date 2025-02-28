@@ -48,6 +48,7 @@
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
+		<result property="resNo" column="res_no"/>
 	</resultMap>
 	
 	
@@ -113,7 +114,7 @@
 		WHERE attach_no = #{attachNo}
 	</select>
 	<select id="attendedKlass" resultMap="klassMap" parameterType="_int">
-		SELECT k.*
+		SELECT k.*, r.res_no
 		FROM `klass` k
 		JOIN `account` a ON k.account_no = a.account_no
 		JOIN `klass_date` d ON k.klass_no = d.klass_no

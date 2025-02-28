@@ -37,4 +37,7 @@ public class MemberBoardDao {
 	public List<Klass> attendedKlass(SqlSession session, int accountNo){
 		return session.selectList("reviewMapper.attendedKlass",accountNo);
 	}
+	public List<Klass> searchResNo(SqlSession session, int resNo){
+		return session.selectList("reviewMapper.attendedKlass",resNo);
+	}
 }

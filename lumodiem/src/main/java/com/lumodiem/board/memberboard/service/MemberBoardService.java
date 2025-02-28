@@ -80,5 +80,7 @@ public class MemberBoardService {
 	public List<Klass> searchResNo(int resNo){
 		SqlSession session = getSqlSession();
 		List<Klass> klass = new MemberBoardDao().searchResNo(session,resNo);
+		session.close();
+		return klass;
 	}
 }

@@ -26,7 +26,7 @@
 					<c:choose>
 						<c:when test="${not empty klass}">
 							<c:forEach var="k" items="${klass}" varStatus="vs">
-								<option value="${vs.count}">${k.klassName}</option>
+								<option value="${k.resNo}">${k.klassName} + ${k.resNo}</option>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
@@ -41,7 +41,7 @@
 				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
 				<input type="hidden" name="account_no" value="${account.accountNo}">
 				<input type="hidden" name="klass_date_no" value="${klassDate.klassDateNo}">
-				<%-- <input type="hidden" name=" " value="${reservation.resNo}"> --%>
+				<input type="hidden" name=" " value="${reservation.resNo}">
 				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 				<button type="button" onclick="createReviewForm();">작성하기</button>
 				<c:choose>
