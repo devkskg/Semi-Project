@@ -34,13 +34,13 @@
 		<result property="klassLikeNo" column="klass_like_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="klassNo" column="klass_no"/>
-		<!-- <result property="klassName" column="klass_name"/> -->
+		<result property="klassName" column="klass_name"/>
 	</resultMap>
 	<resultMap type="reviewLikeVo" id="reviewLikeMap">
 		<result property="reviewLikeNo" column="review_like_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="klassNo" column="klass_no"/>
-		<!-- <result property="reviewName" column="review_name"/> -->
+		<result property="reviewName" column="review_name"/>
 	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
