@@ -39,6 +39,7 @@ public class MemberMypageKlass extends HttpServlet {
 				klassList = new MypageService().selectApproveListByAccountNo(option);
 				request.setAttribute("klassList", klassList);
 				
+				
 				urlPath = request.getContextPath()+"/views/mypage/membermypageklass.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
