@@ -19,6 +19,6 @@ public class KlassLike {
 	private int klassLikeNo; // 클래스 좋아요 번호
 	private int accountNo; // 회원 번호
 	private int klassNo; // 클래스 번호
-	private String klassNme; // 클래스 제목
+	private String klassName; // 클래스 제목
 
 }
