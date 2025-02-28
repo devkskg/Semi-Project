@@ -11,10 +11,10 @@ import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
 
-public class HostMypageDao {
+public class MypageDao {
 
-	public List<Klass> selectApproveListByHostAccountNo(SqlSession session, Klass option) {
-		return session.selectList("mypageMapper.approveKlassListSearch", option);
+	public List<Klass> selectApproveListByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.klassListSearch", option);
 	}
 
 	public List<Review> selectReviewListByHostAccountNo(SqlSession session, Klass option) {

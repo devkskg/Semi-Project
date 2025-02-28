@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lumodiem.account.service.HostMypageService;
+import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -39,8 +39,8 @@ public class HostMypageReviewServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).approveCode("A").build();
 			
 			if(option != null) {
-				approveList = new HostMypageService().selectApproveListByHostAccountNo(option);
-				reviewList = new HostMypageService().selectReviewListByHostAccountNo(option);
+				approveList = new MypageService().selectApproveListByAccountNo(option);
+				reviewList = new MypageService().selectReviewListByHostAccountNo(option);
 				request.setAttribute("approveList", approveList);
 				request.setAttribute("reviewList", reviewList);
 				

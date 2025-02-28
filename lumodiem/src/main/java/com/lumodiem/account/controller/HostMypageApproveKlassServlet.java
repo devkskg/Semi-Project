@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lumodiem.account.service.HostMypageService;
+import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 
@@ -38,7 +38,7 @@ public class HostMypageApproveKlassServlet extends HttpServlet {
 			approveCode = request.getParameter("approve_code");
 			option = Klass.builder().accountNo(accountNo).approveCode(approveCode).build();
 			if(option != null && approveCode !=null) {
-				approveList = new HostMypageService().selectApproveListByHostAccountNo(option);
+				approveList = new MypageService().selectApproveListByAccountNo(option);
 				request.setAttribute("approveList", approveList);
 				request.setAttribute("approveCode", approveCode);
 				

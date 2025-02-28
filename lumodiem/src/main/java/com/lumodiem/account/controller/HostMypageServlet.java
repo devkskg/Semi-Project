@@ -14,10 +14,10 @@ import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 
 @WebServlet("/hostMyPage")
-public class HostMyPageServlet extends HttpServlet {
+public class HostMypageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMyPageServlet() {
+    public HostMypageServlet() {
         super();
     }
 

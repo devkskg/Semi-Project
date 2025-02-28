@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lumodiem.account.service.HostMypageService;
+import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassLike;
@@ -41,8 +41,8 @@ public class HostMypageLikeServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			
 			if(option != null) {
-				klassLikeList = new HostMypageService().selectKlassLikeByHostAccountNo(option);
-				reviewLikeList = new HostMypageService().selectReviewLikeByHostAccountNo(option);
+				klassLikeList = new MypageService().selectKlassLikeByHostAccountNo(option);
+				reviewLikeList = new MypageService().selectReviewLikeByHostAccountNo(option);
 				request.setAttribute("klassLikeList", klassLikeList);
 				request.setAttribute("reviewLikeList", reviewLikeList);
 				
