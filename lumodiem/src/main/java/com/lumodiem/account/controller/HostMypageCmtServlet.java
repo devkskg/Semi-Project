@@ -14,12 +14,15 @@ import javax.servlet.http.HttpSession;
 import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassLike;
+import com.lumodiem.board.memberboard.vo.ReviewCmt;
+import com.lumodiem.board.memberboard.vo.ReviewLike;
 
-@WebServlet("/memberMypageKlass")
-public class MemberMypageKlass extends HttpServlet {
+@WebServlet("/hostMypageCmt")
+public class HostMypageCmtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MemberMypageKlass() {
+    public HostMypageCmtServlet() {
         super();
     }
 
@@ -29,18 +32,19 @@ public class MemberMypageKlass extends HttpServlet {
 		String urlPath = "/";
 		
 		Klass option = null;
-		List<Klass> klassList = null;
+		List<ReviewCmt> reviewCmtList = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
 			int accountNo = account.getAccountNo();
 			option = Klass.builder().accountNo(accountNo).build();
+			
 			if(option != null) {
-				klassList = new MypageService().selectApproveListByAccountNo(option);
-				request.setAttribute("klassList", klassList);
+				reviewCmtList = new MypageService().selectReviewCmtListByHostAccountNo(option);
+				request.setAttribute("reviewCmtList", reviewCmtList);
+				System.out.println(reviewCmtList);
 				
-				
-				urlPath = request.getContextPath()+"/views/mypage/membermypageklass.jsp";
+				urlPath = request.getContextPath()+"/views/mypage/hostmypagecmt.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {
@@ -49,9 +53,7 @@ public class MemberMypageKlass extends HttpServlet {
 		} else {
 			response.sendRedirect("/");
 		}
-		
 	}
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

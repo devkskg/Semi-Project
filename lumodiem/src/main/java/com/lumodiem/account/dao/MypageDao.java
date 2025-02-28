@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
-import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
@@ -31,6 +31,14 @@ public class MypageDao {
 
 	public List<ReviewCmt> selectReviewCmtListByHostAccountNo(SqlSession session, Klass option) {
 		return session.selectList("mypageMapper.selectReviewCmtListByHostAccountNo", option);
+	}
+
+	public List<Klass> selectReservationKlassListByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.selectReservationKlassListByAccountNo", option);
+	}
+
+	public List<KlassDate> selectReservationKlassDateListByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.selectReservationKlassDateListByAccountNo", option);
 	}
 
 

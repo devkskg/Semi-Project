@@ -34,22 +34,32 @@
 
 
 						<div>
-							<div>수강 예정 / 수강 완료 클래스 나눠야함</div>
 							<c:choose>
 
 								<c:when test="${not empty klassList }">
+									<div>수강 예정 클래스</div>
 
-									<c:forEach var="list" varStatus="vs" items="${klassList }">
-										<div>
-											<ul>
-												<li>
-													${list1.klassName}
-													${list1.accountNickname}
-													${list1.klassTxt }
-												</li>
-											</ul>
-										</div>
-									</c:forEach>
+									<div>
+										<ul>
+											<c:forEach var="list1" varStatus="vs" items="${klassList }">
+														<li>
+															<a href="<c:url value="/klassDetail?review_no=${list1.klassNo}"/>">${list1.klassName} ${list1.accountNickname} ${list1.klassTxt }</a>
+														</li>
+											</c:forEach>
+										</ul>
+									</div>
+									
+									<div>수강 완료 클래스</div>
+									<div>
+										<ul>
+											<c:forEach var="list2" varStatus="vs" items="${klassList }">
+														<li>
+															<a href="<c:url value="/klassDetail?review_no=${list2.klassNo}"/>">${list2.klassName} ${list2.accountNickname} ${list2.klassTxt }</a>
+														</li>
+											</c:forEach>
+										</ul>
+									</div>
+									
 									
 								</c:when>
 								<c:otherwise>
