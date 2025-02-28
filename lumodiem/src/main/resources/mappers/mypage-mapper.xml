@@ -22,7 +22,7 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="resNo" column="res_no"/>
-		<result property="klassDateNo" column="klass_date_no"/>
+		<!-- <result property="klassDateNo" column="klass_date_no"/> -->
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
 		<result property="accountNickName" column="account_nickname"/>
@@ -63,7 +63,8 @@
 	<select id="selectReviewListByHostAccountNo" resultMap="reviewMap" parameterType="klassVo">
 		SELECT r.*
 		FROM `review` r
-		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
+		JOIN `reservation` v ON r.res_no = v.res_no
+		JOIN `klass_date` d ON v.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
 		WHERE k.account_no = #{accountNo};
 	</select>
