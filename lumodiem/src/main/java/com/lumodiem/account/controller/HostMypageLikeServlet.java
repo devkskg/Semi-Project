@@ -44,11 +44,11 @@ public class HostMypageLikeServlet extends HttpServlet {
 			
 			if(option != null) {
 				klassList = new HostMypageService().selectApproveListByHostAccountNo(option);
-				KlassLike = new HostMypageService().();
-				reviewLikeList = new HostMypageService().();
+				klassLikeList = new HostMypageService().selectKlassLikeByHostAccountNo(option);
+				reviewLikeList = new HostMypageService().selectReviewLikeByHostAccountNo(option);
 				request.setAttribute("klassList", klassList);
 				request.setAttribute("klassLikeList", klassLikeList);
-				request.setAttribute("ReviewLike", ReviewLike);
+				request.setAttribute("ReviewLike", reviewLikeList);
 				
 				urlPath = request.getContextPath()+"/views/mypage/hostmypagelike.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
