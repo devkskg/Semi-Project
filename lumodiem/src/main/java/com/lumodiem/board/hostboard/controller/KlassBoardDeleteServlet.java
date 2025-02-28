@@ -32,6 +32,10 @@ public class KlassBoardDeleteServlet extends HttpServlet {
 		System.out.println(klassNo);
 		int result = new HostBoardService().deleteKlassOne(klass);
 		
+		request.setAttribute("klass", klass);
+//		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardUpdate.jsp");
+//		view.forward(request, response);
+		
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
 		obj.put("res_msg", "게시글 삭제중 오류가 발생하였습니다.");
@@ -40,7 +44,7 @@ public class KlassBoardDeleteServlet extends HttpServlet {
 			obj.put("res_code", "200");
 			obj.put("res_msg","정상적으로 게시글이 삭제되었습니다.");
 		}
-		response.setContentType("applocation/json; charset=UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(obj);
 	}
 

@@ -18,11 +18,8 @@
 						<div class="row d-flex">
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
-								
-								
-								
-								
 <div class="klass_update">
+
 	<form action="" name="update_klass_form">
 		<fieldset>
 			<legend>게시글 수정</legend>
@@ -87,45 +84,29 @@
 		});
 	}
 	
-	
 	const deleteKlass = function(){
 		const form = document.update_klass_form;
-		$.ajax({
-			url : "klassBoardDeleteEnd",
-			type : "post",
-			data : {"account_no" : form.account_no.value,
-					"klass_name" : form.klass_name.value,
-					"account_nickname" : form.account_nickname.value,
-					"klass_address" : form.klass_address.value,
-					"klass_max" : form.klass_max.value,
-					"klass_price" : form.klass_price.value,
-					"klass_txt" : form.klass_txt.value,
-					"klass_no" : form.klass_no.value
-					
-			},
-			dataType : "JSON",
-			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-			success : function(data){
-				alert(data.res_msg);
-				if(data.res_code == "200"){
-					location.href="/";
-				} else{
-					location.href="/";
+		if(confirm("삭제하시겠습니까?")){
+			$.ajax({
+				url : "klassBoardDelete",
+				type : "post",
+				data : {"klass_no" : form.klass_no.value},
+				dataType : "JSON",
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/";
+					} else{
+						location.href="/";
+					}
 				}
-			}
-			
-		});
-		
-		
+				
+			});
+		}
 	}
 
-
-
-
 </script>	
-	
-								
-								
 								
 								</div>
 							</div>
@@ -133,9 +114,6 @@
 					</div>
 				</section>
 			</div>
-
-
-	
 	
 </body>
 </html>

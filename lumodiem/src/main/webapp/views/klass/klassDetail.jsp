@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +21,8 @@
 					
 	<div class="klass_detail">
 	
-	
-	
-	
-	
-	
-		<form>
+		<form action="" name="detail_klass_form">
+		<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<table>
 				<tr>
 					<th>클래스명</th>
@@ -49,7 +44,6 @@
 							${fn:substring(li.klassStart,0,10)}<br>
 						</c:forEach>
 					</td>
-
 				</tr>
 				<tr>
 					<th>시간</th>
@@ -57,9 +51,7 @@
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
 							${fn:substring(li.klassStart,11,19)}<br>
 						</c:forEach>
-					
 					</td>
-
 				</tr>
 				<tr>
 					<th>최대(예약가능)</th>
@@ -99,7 +91,7 @@
 				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
 			</button>
 			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete?klass_no=${klass.klassNo }">삭제</a>
+				<a href="/klassBoardDelete?klass_no=${klass.klassNo }" data-klass-no="${klass.klassNo }">삭제</a>
 			</button>
 			</c:when>
 
@@ -114,6 +106,30 @@
 		</form>
 	
 	</div>				
+
+<script>
+	$('#deleteBtn').click(function(){
+		const klassNo = ${klass.klassNo}; 
+		if(confirm("삭제하시겠습니까?")){
+			$.ajax({
+					url : "klassBoardDelete",
+					type : "post",
+					data : {"klass_no" : klassNo},
+					dataType : "JSON",
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data){
+						alert(data.res_msg);
+						if(data.res_code == "200"){
+							location.href="/";
+						} else{
+							location.href="/";
+						}
+					}
+			});
+		}
+	});
+
+</script>
 
 					</div>
 				</div>
