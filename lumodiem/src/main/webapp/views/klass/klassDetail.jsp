@@ -21,6 +21,12 @@
 					<div class="row pt-md-4">
 					
 	<div class="klass_detail">
+	
+	
+	
+	
+	
+	
 		<form>
 			<table>
 				<tr>
@@ -84,51 +90,31 @@
 			
 			</table>		
 		
+		</form>
+
+		<form>
+		<c:choose >
+			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
+			<button type="button" id="updateBtn" name="updateBtn">
+				<a href="/klassBoardUpdate">수정</a>
+			</button>
+			<button type="button" id="deleteBtn" name="deleteBtn">
+				<a href="/klassBoardDelete">삭제</a>
+			</button>
+			</c:when>
+
+			<c:when test="${account.accountGrade eq 'M'}">
+				<button type="button" id="resBtn" name="resBtn">
+					<a href="/reservation">예약하기</a>
+				</button>
+			</c:when>
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		</c:choose>
 		
 		</form>
 	
 	</div>				
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					
 					</div>
 				</div>
 			</div>
