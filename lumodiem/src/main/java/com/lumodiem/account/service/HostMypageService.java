@@ -31,13 +31,13 @@ public class HostMypageService {
 	public List<KlassLike> selectKlassLikeByHostAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
 		List<KlassLike> list = new HostMypageDao().selectKlassLikeByHostAccountNo(session, option);
-		return null;
+		return list;
 	}
 
 	public List<ReviewLike> selectReviewLikeByHostAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
 		List<ReviewLike> list = new HostMypageDao().selectReviewLikeByHostAccountNo(session, option);
-		return null;
+		return list;
 	}
 
 
