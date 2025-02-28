@@ -22,19 +22,18 @@
 		<form action="<c:url value='/insertReviewPageEnd'/>" method="post" name="create_review_form" enctype="multipart/form-data">	
 			<fieldset>
 				<legend>리뷰 작성</legend>
-				<!-- select option 들은클래스 선택  -->
-				<%-- <select name="klass_title">
+				<select name="klass_title">
 					<c:choose>
 						<c:when test="${not empty klass}">
 							<c:forEach var="k" items="${klass}" varStatus="vs">
-								<option value="${vs.conut}">${k.klassName}</option>
+								<option value="${vs.count}">${k.klassName}</option>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<option value="0">수강한 클래스가 없습니다</option>
 						</c:otherwise>
 					</c:choose>
-				</select> --%>
+				</select> 
 				<br>
 				<label for="review_name">게시글 제목 : </label>
 				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요."><br>
@@ -42,7 +41,7 @@
 				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
 				<input type="hidden" name="account_no" value="${account.accountNo}">
 				<input type="hidden" name="klass_date_no" value="${klassDate.klassDateNo}">
-				<input type="hidden" name="res_no" value="${reservation.res_no}">
+				<%-- <input type="hidden" name=" " value="${reservation.resNo}"> --%>
 				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 				<button type="button" onclick="createReviewForm();">작성하기</button>
 				<c:choose>

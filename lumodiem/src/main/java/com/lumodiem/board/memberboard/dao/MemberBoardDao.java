@@ -19,7 +19,7 @@ public class MemberBoardDao {
 		int result = session.insert("reviewMapper.reviewAttachInsert",a);
 		return result;
 	}
-	public List<Reservation> searchResNoByAccountNo(SqlSession session, String accountNo) {
+	public List<Reservation> searchResNoByAccountNo(SqlSession session ,String accountNo) {
 	    return session.selectList("reviewMapper.searchResNoByAccountNo", accountNo);
 	}
 	public int UpdateReview(SqlSession session, Review review) {

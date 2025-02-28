@@ -77,5 +77,8 @@ public class MemberBoardService {
 		session.close();
 		return klass;
 	}
-	
+	public List<Klass> searchResNo(int resNo){
+		SqlSession session = getSqlSession();
+		List<Klass> klass = new MemberBoardDao().searchResNo(session,resNo);
+	}
 }

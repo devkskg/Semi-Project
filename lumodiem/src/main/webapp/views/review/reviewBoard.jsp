@@ -24,7 +24,7 @@
 			<a href="<c:url value='/insertReviewPage'/>">리뷰 게시글 추가</a>
 		</button>
 		</c:when>
-		<c:otherwise>
+		<%-- <c:otherwise>
 			<script>
 				alert("회원만 리뷰 게시판을 사용할수있습니다.");
 				if(confirm('로그인 페이지로 이동하시겠습니까?')){
@@ -32,9 +32,8 @@
 				}else{
 				location.href="/";
 				}
-					
 			</script>
-		</c:otherwise>
+		</c:otherwise> --%>
 	</c:choose>
 	
 		<form action="<c:url value='/reviewBoard'/>" method="post" id="searchFrm">

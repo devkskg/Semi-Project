@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.vo.Reservation;
 
 @WebServlet("/insertReviewPage")
 public class InsertReviewPageServlet extends HttpServlet {
@@ -29,9 +30,7 @@ public class InsertReviewPageServlet extends HttpServlet {
 		if(session != null && session.getAttribute("account") != null) {
 		ac = (Account)session.getAttribute("account");
 		int accountNo = ac.getAccountNo();
-		System.out.println(accountNo);
 		List<Klass> klass = new MemberBoardService().attendedKlass(accountNo);
-		System.out.println(klass);
 		request.setAttribute("klass", klass);
 		}
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/insertReview.jsp");
