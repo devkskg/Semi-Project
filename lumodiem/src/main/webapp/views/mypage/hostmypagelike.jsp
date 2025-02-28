@@ -16,13 +16,12 @@
 						<div class="row pt-md-4">
 
 							<div>
+									<div>좋아요 클래스 목록</div>
 								<c:choose>
 									<c:when test="${not empty klassLikeList }">
-										<div>좋아요 클래스 목록</div>
 										<div>
 											<ul>
-												<c:forEach var="list1" varStatus="vs"
-													items="${klassLikeList }">
+												<c:forEach var="list1" varStatus="vs" items="${klassLikeList }">
 													<li>
 														<a href="<c:url value="/klassDetail?klass_no=${list1.klassNo}"/>">${list1.klassName}</a>
 													</li>
@@ -52,9 +51,9 @@
 						<div class="row pt-md-4">
 
 							<div>
+									<div>좋아요 리뷰 목록</div>
 								<c:choose>
 									<c:when test="${not empty reviewLikeList }">
-										<div>좋아요 리뷰 목록</div>
 										<div>
 											<ul>
 												<c:forEach var="list2" varStatus="vs" items="${reviewLikeList }">
