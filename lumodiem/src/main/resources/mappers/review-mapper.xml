@@ -95,10 +95,17 @@
 	</if>
 	</select>
 	<select id='reviewOne' resultMap="reviewMap" parameterType="reviewVo">
-		SELECT r.* ,a.account_nickname
+		<!-- SELECT r.* ,a.account_nickname, ra.attach_no
 		FROM `review` r
-		JOIN `account` a
-		ON r.account_no = a.account_no
+		JOIN `account` a ON r.account_no = a.account_no
+		LEFT JOIN `review_attach` ra ON r.review_no = ra.review_no
+		WHERE r.review_no = #{reviewNo} -->
+		
+		SELECT r.*, a.account_nickname, ra.attach_no
+		FROM `review` r
+		JOIN `account` a ON r.account_no = a.account_no
+		JOIN `review_mapping` m ON r.review_no = m.review_no
+		LEFT JOIN `review_attach` ra ON ra.attach_no = m.attach_no
 		WHERE r.review_no = #{reviewNo}
 	</select>
 	<select id='attachOne' resultMap="reviewAttachMap" parameterType="_int">

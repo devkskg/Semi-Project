@@ -27,7 +27,6 @@ public class FilePathServlet extends HttpServlet {
 //		detail.jsp에서 쓰기로 한 키값 // <img src="<%=request.getContextPath()%>/filePath?new_name=<%=board.getNewName()%>">
 		int attachNo = Integer.parseInt(request.getParameter("attach_no"));
 		ReviewAttach a = new MemberBoardService().selectAttachOne(attachNo);
-		
 		// 2. 파일명이 비어있는지 확인
 		String filePath = a.getAttachPath();
 //		문자열 검사할때는 trim을 한 후에 비어있는 값과 비교!
