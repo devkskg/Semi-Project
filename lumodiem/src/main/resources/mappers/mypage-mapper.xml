@@ -18,6 +18,9 @@
 		<result property="klassModDate" column="klass_mod_date"/>
 		<result property="approveCode" column="approve_code"/>
 		
+		<result property="resNo" column="res_no"/>
+		<result property="klassDateNo" column="klass_date_no"/>
+		
 		<result property="klassStart" column="klass_start"/>
 		<result property="klassEnd" column="klass_end"/>
 	</resultMap>
@@ -57,6 +60,16 @@
 		<result property="klassStart" column="klass_start"/>
 		<result property="klassEnd" column="klass_end"/>
 		<result property="klassCount" column="klass_count"/>
+	</resultMap>
+	<resultMap type="reviewDTOVo" id="reviewDTOMap">
+		<result property="klassNo" column="klass_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="klassStart" column="klass_start"/>
+		<result property="klassEnd" column="klass_end"/>
+		<result property="reviewName" column="review_name"/>
+		<result property="reviewTxt" column="review_txt"/>
+		<result property="reviewNo" column="review_no"/>
+		<result property="klassDateNo" column="klass_date_no"/>
 	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
@@ -120,13 +133,17 @@
 		WHERE r.account_no = #{accountNo};
 	</select>
 	
-	<!-- klassDate 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회 	
-	<select id="selectReservationKlassDateListByAccountNo" resultMap="klassDateMap" parameterType="klassVo">
-		SELECT d.*
-		FROM `klass_date` d
-		JOIN `reservation` r ON d.klass_date_no = r.klass_date_no
+	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
+	<select id="selectReviewKlassListByAccountNo" resultMap="reviewDTOMap" parameterType="klassVo">
+		SELECT k.*, a.account_nickname, d.klass_date_no, d.klass_start, d.klass_end, r.review_name, r.review_txt, r.review_no
+		FROM `review` r
+		JOIN `reservation` res ON r.res_no = res.res_no
+		JOIN `klass_date` d ON res.klass_date_no = d.klass_date_no
+		JOIN `klass` k ON d.klass_no = k.klass_no
+		JOIN `account` a ON k.account_no = a.account_no
 		WHERE r.account_no = #{accountNo};
-	</select> -->
+	</select>
+	
 	
 	
 </mapper>

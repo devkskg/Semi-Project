@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.vo.ReviewDTO;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
@@ -39,6 +40,10 @@ public class MypageDao {
 
 	public List<KlassDate> selectReservationKlassDateListByAccountNo(SqlSession session, Klass option) {
 		return session.selectList("mypageMapper.selectReservationKlassDateListByAccountNo", option);
+	}
+
+	public List<ReviewDTO> selectReviewKlassListByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.selectReviewKlassListByAccountNo", option);
 	}
 
 
