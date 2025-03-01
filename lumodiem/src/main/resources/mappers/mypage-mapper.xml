@@ -101,7 +101,7 @@
 	</select>
 	
 	<!-- klass_like 테이블 -> 호스트 회원 번호 기준으로 좋아요한 클래스 조회  -->
-	<select id="selectKlassLikeByHostAccountNo" resultMap="klassLikeMap" parameterType="klassVo">
+	<select id="selectKlassLikeByAccountNo" resultMap="klassLikeMap" parameterType="klassVo">
 		SELECT l.*, k.klass_name
 		FROM `klass_like` l
 		JOIN `klass` k ON l.klass_no = k.klass_no
@@ -109,7 +109,7 @@
 	</select>
 	
 	<!-- review_like 테이블 -> 호스트 회원 번호 기준으로 좋아요한 리뷰 조회  -->
-	<select id="selectReviewLikeByHostAccountNo" resultMap="reviewLikeMap" parameterType="klassVo">
+	<select id="selectReviewLikeByAccountNo" resultMap="reviewLikeMap" parameterType="klassVo">
 		SELECT l.*, r.review_name
 		FROM `review_like` l
 		JOIN `review` r ON l.review_no = r.review_no
@@ -117,7 +117,7 @@
 	</select>
 	
 	<!-- review_cmt 테이블 -> 호스트 회원 번호 기준으로 리뷰 댓글 조회  -->
-	<select id="selectReviewCmtListByHostAccountNo" resultMap="reviewCmtMap" parameterType="klassVo">
+	<select id="selectReviewCmtListByAccountNo" resultMap="reviewCmtMap" parameterType="klassVo">
 		SELECT *
 		FROM `review_cmt`
 		WHERE account_no = ${accountNo}

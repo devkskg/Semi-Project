@@ -22,16 +22,16 @@ public class MypageDao {
 		return session.selectList("mypageMapper.selectReviewListByHostAccountNo", option);
 	}
 
-	public List<KlassLike> selectKlassLikeByHostAccountNo(SqlSession session, Klass option) {
-		return session.selectList("mypageMapper.selectKlassLikeByHostAccountNo", option);
+	public List<KlassLike> selectKlassLikeByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.selectKlassLikeByAccountNo", option);
 	}
 
-	public List<ReviewLike> selectReviewLikeByHostAccountNo(SqlSession session, Klass option) {
-		return session.selectList("mypageMapper.selectReviewLikeByHostAccountNo", option);
+	public List<ReviewLike> selectReviewLikeByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.selectReviewLikeByAccountNo", option);
 	}
 
-	public List<ReviewCmt> selectReviewCmtListByHostAccountNo(SqlSession session, Klass option) {
-		return session.selectList("mypageMapper.selectReviewCmtListByHostAccountNo", option);
+	public List<ReviewCmt> selectReviewCmtListByAccountNo(SqlSession session, Klass option) {
+		return session.selectList("mypageMapper.selectReviewCmtListByAccountNo", option);
 	}
 
 	public List<Klass> selectReservationKlassListByAccountNo(SqlSession session, Klass option) {

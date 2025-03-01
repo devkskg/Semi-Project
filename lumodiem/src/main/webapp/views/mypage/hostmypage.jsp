@@ -26,8 +26,8 @@
 									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=S'/>">승인 대기 클래스 <span>(+)</span></a></li>
 									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=D'/>">반려된 클래스 <span>(+)</span></a></li>
 									<li><a href="<c:url value='/hostMypageReview'/>">클래스 리뷰 조회 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/mypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
+									<li><a href="<c:url value='/mypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
 								</ul>
 							</div>
 					</div>
