@@ -11,7 +11,15 @@
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
+
+<div id="colorlib-main">
+				<section class="ftco-section ftco-no-pt ftco-no-pb">
+					<div class="container">
+						<div class="row d-flex">
+							<div class="col-xl-8 py-5 px-md-5">
+								<div class="row pt-md-4">
 <div class="klass_update">
+
 	<form action="" name="update_klass_form">
 		<fieldset>
 			<legend>게시글 수정</legend>
@@ -39,7 +47,7 @@
 			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
 			
 			<button type="button" id="updateBtn" onclick="updateKlass();">수정하기</button>
-			<button type="button" id="deleteBtn">삭제하기</button>
+			<button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button>
 		
 		</fieldset>
 	
@@ -75,13 +83,37 @@
 			
 		});
 	}
-
-
-
+	
+	const deleteKlass = function(){
+		const form = document.update_klass_form;
+		if(confirm("삭제하시겠습니까?")){
+			$.ajax({
+				url : "klassBoardDelete",
+				type : "post",
+				data : {"klass_no" : form.klass_no.value},
+				dataType : "JSON",
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/";
+					} else{
+						location.href="/";
+					}
+				}
+				
+			});
+		}
+	}
 
 </script>	
-	
-	
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
 	
 </body>
 </html>

@@ -44,10 +44,13 @@
 	 	WHERE klass_no = #{klassNo}	
 	</update>
 	
-<!-- 	<delete id="klassDelete" parameterType="klassVo">
-	
+ 	<delete id="klassDelete" parameterType="_int">
+		DELETE FROM `klass`
+		<where>
+			klass_no = ${klassNo}
+		</where>
 	</delete>
- -->	
+ 	
 	<select id="klassList" resultMap="klassMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname
 		FROM `klass` k

@@ -37,7 +37,7 @@ public class DeleteReviewCommentServlet extends HttpServlet {
 			obj.put("res_code", "200");
 			obj.put("res_msg","삭제 완료");
 		}
-		response.setContentType("applocation/json; charset=UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(obj);
 		
 	}

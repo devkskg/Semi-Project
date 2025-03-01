@@ -42,19 +42,8 @@
 			<button type="button" id="insertBtn" name="insertBtn">
 				<a href="/klassBoardCreate">작성하기</a>
 			</button>
-			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/klassBoardUpdate">수정하기</a>
-			</button>
-			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete">삭제하기</a>
-			</button>
 			</c:when>
 			
-			<c:when test="${account.accountGrade eq 'M'}">
-			<button type="button" class="selectBtn" name="res">
-			<a href="<c:url value='/klassReservation'/>">클래스 예약</a>
-			</button>
-			</c:when>		
 		</c:choose>
 	</form>
 	

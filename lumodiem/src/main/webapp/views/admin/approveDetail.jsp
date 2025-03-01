@@ -84,60 +84,51 @@
 		
 		</form>
 
-		<form>
-		<c:choose >
+		<form class="approveUpdate">
+		<%-- <c:choose >
 			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
-			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
-			</button>
-			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete?klass_no=${klass.klassNo }">삭제</a>
-			</button>
-			</c:when>
-
-			<c:when test="${account.accountGrade eq 'M'}">
-				<button type="button" id="resBtn" name="resBtn">
-					<a href="/klassReservation">예약하기</a>
-				</button>
-			</c:when>
-			
-			<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}">
-				<button type="button" id="rptBtn" name="rptBtn">
-					<a href="/klassReport">신고하기</a>
+				<button type="button" id="updateBtn" name="updateBtn">승인</button>
+				<button type="button" id="deleteBtn" name="deleteBtn">
+					<a href="/approveUpdate?klass_no=${klass.klassNo }">반려</a>
 				</button>
 			</c:when>
 		
-		</c:choose>
-		
+		</c:choose> --%>
+		<button type="button" id="updateBtn" name="updateBtn">승인</button>
+				<button type="button" id="deleteBtn" name="deleteBtn">
+					<a href="/approveUpdate?klass_no=${klass.klassNo }">반려</a>
+				</button>
 		</form>
 	
 	</div>				
-
-<script>
-	$('#deleteBtn').click(function(){
+		<script type="text/javascript">
+			$('.approveUpdate button').click(function(){
 		const klassNo = ${klass.klassNo}; 
-		const check = confirm("삭제하시겠습니까?");
+		const check = confirm("승인하시겠습니까?");
 		if(check == true){
+		const approveCode = 'A';
 			$.ajax({
-					url : "klassBoardDelete",
+					url : "approveUpdate?klass_no=${klass.klassNo }",
 					type : "post",
-					data : {"klass_no" : klassNo},
+					data : {"klass_no" : klassNo,
+							"approve_code" :approveCode
+							},
 					dataType : "JSON",
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
-							location.href="/";
+							location.href="/views/admin/approveList.jsp";
 						} else{
-							location.href="/";
+							location.href="/views/admin/approveList.jsp";
 						}
 					}
 			});
 		}
 	});
-
-</script>
-
+			
+			
+		</script>
 					</div>
 				</div>
 			</div>

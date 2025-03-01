@@ -14,15 +14,13 @@ import javax.servlet.http.HttpSession;
 import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
-import com.lumodiem.board.hostboard.vo.KlassLike;
-import com.lumodiem.board.memberboard.vo.ReviewCmt;
-import com.lumodiem.board.memberboard.vo.ReviewLike;
+import com.lumodiem.board.hostboard.vo.KlassDate;
 
-@WebServlet("/hostMypageCmt")
-public class HostMypageCmt extends HttpServlet {
+@WebServlet("/memberMypageKlass")
+public class MemberMypageKlassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMypageCmt() {
+    public MemberMypageKlassServlet() {
         super();
     }
 
@@ -32,19 +30,21 @@ public class HostMypageCmt extends HttpServlet {
 		String urlPath = "/";
 		
 		Klass option = null;
-		List<ReviewCmt> reviewCmtList = null;
+		List<Klass> klassList = null;
+		List<KlassDate> klassDateList = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
 			int accountNo = account.getAccountNo();
 			option = Klass.builder().accountNo(accountNo).build();
-			
 			if(option != null) {
-				reviewCmtList = new MypageService().selectReviewCmtListByHostAccountNo(option);
-				request.setAttribute("reviewCmtList", reviewCmtList);
-				System.out.println(reviewCmtList);
+				klassList = new MypageService().selectReservationKlassListByAccountNo(option);
+				klassDateList = new MypageService().selectReservationKlassDateListByAccountNo(option);
+				request.setAttribute("klassList", klassList);
+				request.setAttribute("klassDateList", klassDateList);
+				System.out.println(klassDateList);
 				
-				urlPath = request.getContextPath()+"/views/mypage/hostmypagecmt.jsp";
+				urlPath = request.getContextPath()+"/views/mypage/membermypageklass.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {
@@ -53,7 +53,9 @@ public class HostMypageCmt extends HttpServlet {
 		} else {
 			response.sendRedirect("/");
 		}
+		
 	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
