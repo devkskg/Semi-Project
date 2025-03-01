@@ -127,12 +127,14 @@
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
-							location.href="/";
+							location.href="/klassBoardList";
 						} else{
-							location.href="/";
+							location.href='/klassDetail?klass_no='+klassNo;
 						}
 					}
 			});
+		}else{
+			location.href='/klassDetail?klass_no='+klassNo;
 		}
 	});
 

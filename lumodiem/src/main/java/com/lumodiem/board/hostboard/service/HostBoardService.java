@@ -15,8 +15,11 @@ public class HostBoardService {
 	public int deleteKlassOne(Klass klass) {
 		SqlSession session = getSqlSession();
 		int result = new HostBoardDao().deleteKlassOne(session,klass);
-		if(result > 0) session.commit();
-		else session.rollback();
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
 		session.close();
 		return result;
 	}
