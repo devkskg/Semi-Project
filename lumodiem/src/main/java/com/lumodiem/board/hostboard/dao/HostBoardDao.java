@@ -9,6 +9,10 @@ import com.lumodiem.board.hostboard.vo.KlassDate;
 
 public class HostBoardDao {
 	
+	public int deleteKlassOne(SqlSession session, Klass klass) {
+		return session.delete("klassMapper.klassDelete",klass);
+	}
+	
 	public int updateKlass(SqlSession session, Klass option) {
 		int result = session.update("klassMapper.klassUpdate",option);
 		return result;
