@@ -30,5 +30,6 @@ public class Review {
 	private String payTime;
 	private String payStatus;
 	private int payPrice;
+	private String attachPath;
 }
 

@@ -20,13 +20,14 @@
 		<ul>
 				<c:if test="${not empty review.attachNo} "> 
 			<li>
-				<%-- <img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}"> --%>
-				<img src="${pageContext.request.contextPath}/filePath?attach_no=${review.attachNo}">
+				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}"> 
+				<%-- <img src="${pageContext.request.contextPath}/filePath?attach_no=${review.attachNo}"> --%>
+				<a>이미지 짜잔</a>
 			</li> 
 				</c:if>
 			<li>
-				<table>
 					<c:out value="attachNo : ${review.attachNo }"/>
+				<table>
 					<tr>
 						<td>제목</td>
 						<td>${review.reviewName}</td>
