@@ -39,30 +39,27 @@
 								<c:when test="${not empty approveList }">
 
 									<c:forEach var="list1" varStatus="vs" items="${approveList }">
-										<div>
-											<ul>
-												<li>
-													${list1.klassName}
-													${list1.accountNickname}
-													${list1.klassTxt }
-												</li>
-												<li>
-													<ul>
-														<c:forEach var="list2" varStatus="vs2" items="${reviewList}">
-															<li>
-																<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>">${list2.reviewName}</a>
-															</li>
-														</c:forEach>
-													</ul>
-												</li>												
+										<div>${list1.klassName} ${list1.accountNickname} ${list1.klassTxt } </div>
+											<c:choose>
+												<c:when test="${not empty reviewList }">
+												<ul>
+													<c:forEach var="list2" varStatus="vs2" items="${reviewList}">
+														<li>
+															<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>">${list2.reviewName}</a>
+														</li>
+													</c:forEach>
+												</ul>
+												</c:when>
+												<c:otherwise>
+													<div>리뷰가 없습니다.</div>
+												</c:otherwise>
+											</c:choose>
 												
-											</ul>
-										</div>
 									</c:forEach>
 									
 								</c:when>
 								<c:otherwise>
-									<div>해당되는 게시글이 존재하지 않습니다.</div>
+									<div>개설된 클래스가 존재하지 않습니다.</div>
 								</c:otherwise>
 							</c:choose>
 						</div>

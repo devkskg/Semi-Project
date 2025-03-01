@@ -1,6 +1,9 @@
 package com.lumodiem.account.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -31,7 +34,9 @@ public class MemberMypageKlassServlet extends HttpServlet {
 		
 		Klass option = null;
 		List<Klass> klassList = null;
-		List<KlassDate> klassDateList = null;
+//		List<KlassDate> klassDateList = null;
+		List<Klass> beforeKlassList = null; 
+		List<Klass> afterKlassList = null; 
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
@@ -39,10 +44,30 @@ public class MemberMypageKlassServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			if(option != null) {
 				klassList = new MypageService().selectReservationKlassListByAccountNo(option);
-				klassDateList = new MypageService().selectReservationKlassDateListByAccountNo(option);
-				request.setAttribute("klassList", klassList);
-				request.setAttribute("klassDateList", klassDateList);
-				System.out.println(klassDateList);
+//				klassDateList = new MypageService().selectReservationKlassDateListByAccountNo(option);
+//				request.setAttribute("klassList", klassList);
+//				request.setAttribute("klassDateList", klassDateList);
+				beforeKlassList = new ArrayList<Klass>();
+				afterKlassList = new ArrayList<Klass>();
+				LocalDateTime now = LocalDateTime.now();
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+				now.format(dtf);
+				
+				for(Klass klass : klassList) {
+					if(klass.getKlassEnd() != null) {
+						LocalDateTime temp = LocalDateTime.parse(klass.getKlassEnd(), dtf);
+						System.out.println(temp);
+						if(temp.isBefore(now)) {
+							beforeKlassList.add(klass);
+						} else {
+							afterKlassList.add(klass);
+						}
+					} else {
+						System.out.println("널이라고요?");
+					}
+				}
+				request.setAttribute("beforeKlassList", beforeKlassList);
+				request.setAttribute("afterKlassList", afterKlassList);
 				
 				urlPath = request.getContextPath()+"/views/mypage/membermypageklass.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);

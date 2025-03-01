@@ -6,45 +6,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
-    
-    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet"> -->
-
-    <link rel="stylesheet" href="<c:url value='/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
-    
-    <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
-    
-    <link rel="stylesheet" href="<c:url value='/css/owl.theme.default.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>">
-
-    <%-- <link rel="stylesheet" href="<c:url value='/css/aos.css'/>"> --%>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <link rel="stylesheet" href="<c:url value='/css/ionicons.min.css'/>">
-
-    <link rel="stylesheet" href="<c:url value='/css/bootstrap-datepicker.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/jquery.timepicker.css'/>">
-
-    
-    <link rel="stylesheet" href="<c:url value='/css/flaticon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/icomoon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    
+	<link rel="stylesheet" href="<c:url value='/views/css/nav.css'/>">    
 
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight" >
 		
-			<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
-			<c:import url="${nav}"/> --%>
-			<!-- c태그 이상시 아래의 include 태그 활성화 -->
-			<%-- <%@ include file="/views/include/nav.jsp" %> --%>
-			<nav id="colorlib-main-menu" role="navigation">
+		<nav id="colorlib-main-menu" role="navigation">
 	<ul>
 		<li class="colorlib-active">
 			<a href="/">홈</a>
@@ -107,7 +75,7 @@
 			<!-- 왼쪽 네비게이션바 -->
 			<div class="colorlib-footer">
 				<h1 id="colorlib-logo" class="mb-4"><a href="index.html"
-						style="background-image: url(images/bg_1.jpg);">Lumo Diem<span>Moore</span></a></h1>
+						style="background-image: url(images/bg_1.jpg);">Lumo Diem<span>More</span></a></h1>
 				<div class="mb-4">
 					<h3>Subscribe for newsletter</h3>
 
@@ -168,3 +136,8 @@
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 	<%-- <script src="<c:url value='/js/google-map.js'/>"></script> --%>
 	<script src="<c:url value='/js/main.js'/>"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+		    document.body.classList.add("loaded");
+		});
+	</script>

@@ -36,36 +36,46 @@
 						<div>
 							<c:choose>
 
-								<c:when test="${not empty klassList }">
+								<c:when test="${not empty afterKlassList }">
 									<div>수강 예정 클래스</div>
 
 									<div>
 										<ul>
-											<c:forEach var="list1" varStatus="vs" items="${klassList }">
+											<c:forEach var="list1" varStatus="vs" items="${afterKlassList }">
+														
 														<li>
-															<a href="<c:url value="/klassDetail?review_no=${list1.klassNo}"/>">${list1.klassName} ${list1.accountNickname} ${list1.klassTxt }</a>
+															<a href="<c:url value="/klassDetail?review_no=${list1.klassNo}"/>">${list1.klassName} ${list1.accountNickname} ${list1.klassStart } ${list1.klassEnd }</a>
 														</li>
 											</c:forEach>
 										</ul>
 									</div>
-									
+								</c:when>
+								
+								<c:otherwise>
+									<div>수강 예정 클래스가 존재하지 않습니다.</div>
+								</c:otherwise>
+								
+							</c:choose>
+							<c:choose>
+								<c:when test="${not empty beforeKlassList }">
 									<div>수강 완료 클래스</div>
 									<div>
 										<ul>
-											<c:forEach var="list2" varStatus="vs" items="${klassList }">
+											<c:forEach var="list2" varStatus="vs" items="${beforeKlassList }">
 														<li>
-															<a href="<c:url value="/klassDetail?review_no=${list2.klassNo}"/>">${list2.klassName} ${list2.accountNickname} ${list2.klassTxt }</a>
+															<a href="<c:url value="/klassDetail?review_no=${list2.klassNo}"/>">${list2.klassName} ${list2.accountNickname} ${list2.klassStart } ${list2.klassEnd }</a>
 														</li>
 											</c:forEach>
 										</ul>
 									</div>
-									
-									
 								</c:when>
+								
 								<c:otherwise>
-									<div>참여한 클래스가 존재하지 않습니다.</div>
+									<div>수강 완료 클래스가 존재하지 않습니다.</div>
 								</c:otherwise>
 							</c:choose>
+									
+									
 						</div>
 
 

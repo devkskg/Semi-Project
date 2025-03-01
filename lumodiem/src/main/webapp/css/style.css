@@ -9294,3 +9294,23 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+.blog-entry {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+}
+
+.blog-entry .img {
+    width: 150px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.blog-entry .text {
+    flex: 1;
+}
+

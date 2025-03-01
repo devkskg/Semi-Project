@@ -17,6 +17,9 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 		<result property="approveCode" column="approve_code"/>
+		
+		<result property="klassStart" column="klass_start"/>
+		<result property="klassEnd" column="klass_end"/>
 	</resultMap>
 	<resultMap type="reviewVo" id="reviewMap">
 		<result property="reviewNo" column="review_no"/>
@@ -109,7 +112,7 @@
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
 	<select id="selectReservationKlassListByAccountNo" resultMap="klassMap" parameterType="klassVo">
-		SELECT k.*, a.account_nickname
+		SELECT k.*, a.account_nickname, d.*
 		FROM `reservation` r
 		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
@@ -117,15 +120,13 @@
 		WHERE r.account_no = #{accountNo};
 	</select>
 	
-	<!-- klassDate 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
-	<select id="selectReservationKlassDateListByAccountNo" resultMap="klassDateMap" parameterType="klassDateVo">
-		SELECT k.*, a.account_nickname
-		FROM `reservation` r
-		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
-		JOIN `klass` k ON d.klass_no = k.klass_no
-		JOIN `account` a ON k.account_no = a.account_no
+	<!-- klassDate 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회 	
+	<select id="selectReservationKlassDateListByAccountNo" resultMap="klassDateMap" parameterType="klassVo">
+		SELECT d.*
+		FROM `klass_date` d
+		JOIN `reservation` r ON d.klass_date_no = r.klass_date_no
 		WHERE r.account_no = #{accountNo};
-	</select>
+	</select> -->
 	
 	
 </mapper>
