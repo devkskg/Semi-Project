@@ -24,16 +24,11 @@ public class ApproveDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
-		System.out.println(klassNo);
-		
 		Klass klass = new HostBoardService().selectKlassOne(klassNo);
 		List<KlassDate> klassDate = new HostBoardService().selectKlassDate(klassNo);
-		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/approveDetail.jsp");
 		request.setAttribute("klass", klass);
 		request.setAttribute("klassDate", klassDate);
-		System.out.println(klass);
-		System.out.println(klassDate);
 		view.forward(request, response);
 	}
 

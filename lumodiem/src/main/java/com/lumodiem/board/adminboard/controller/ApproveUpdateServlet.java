@@ -27,20 +27,15 @@ public class ApproveUpdateServlet extends HttpServlet {
 		String approveFd = request.getParameter("approve_fd");
 		int klassNo=0;
 		if(temp!=null) klassNo= Integer.parseInt(temp);
-		System.out.println(klassNo+" "+approveCode+" "+approveFd);
 		Approve approve = Approve.builder()
 				.klassNo(klassNo)
 				.approveCode(approveCode)
 				.approveFd(approveFd)
 				.build();
-		System.out.println(approve);
 		int result = new ApproveSerview().updateApprove(approve);
-		
-		
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
 		obj.put("res_msg", "승인 처리중 오류가 발생하였습니다.");
-		
 		if(result > 0) {
 		obj.put("res_code", "200");
 		obj.put("res_msg", "승인되었습니다.");
