@@ -28,7 +28,6 @@ public class ApproveListServlet extends HttpServlet {
 		String searchType = request.getParameter("search_type");
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
-		
 		Klass option = Klass.builder()
 				.klassName(klassName)
 				.accountNickname(accountNickname)
@@ -37,12 +36,8 @@ public class ApproveListServlet extends HttpServlet {
 				.searchTxt(searchTxt)
 				.orderType(orderType)
 				.build();
-		
-		System.out.println(option);
 		List<Klass> resultList = new ApproveSerview().selectApproveList();
 		request.setAttribute("resultList", resultList);
-		
-		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/approveList.jsp");
 		view.forward(request, response);
 	}

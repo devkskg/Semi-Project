@@ -26,23 +26,16 @@ public class DeleteReportKlassServlet extends HttpServlet {
 		String temp = request.getParameter("report_klass_no");
 		int reportKlassNo = 0;
 		if(temp!=null)reportKlassNo = Integer.parseInt(temp);
-		
-		System.out.println(reportKlassNo);
-//		ReportKlass rk = ReportKlass.builder()
-//				.reportKlassNo(reportKlassNo)
-//				.build();
 		int result = new ReportService().deleteReportKlass(reportKlassNo);
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
 		obj.put("res_msg", "삭제 오류");
-		
 		if(result>0) {
 			obj.put("res_code", "200");
 			obj.put("res_msg","삭제 완료");
 		}
 		response.setContentType("applocation/json; charset=UTF-8");
 		response.getWriter().print(obj);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -46,29 +46,6 @@
 		}
 	</script>
 
-
-		<form>
-		<c:choose>
-			<c:when test="${account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
-			<button type="button" id="insertBtn" name="insertBtn">
-				<a href="/klassBoardCreate">작성하기</a>
-			</button>
-			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/klassBoardUpdate">수정하기</a>
-			</button>
-			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete">삭제하기</a>
-			</button>
-			</c:when>
-			
-			<c:when test="${account.accountGrade eq 'M'}">
-			<button type="button" class="selectBtn" name="res">
-			<a href="<c:url value='/klassRes'/>">클래스 예약</a>
-			</button>
-			</c:when>		
-		</c:choose>
-	</form>
-	
 	<form>
 		<table border="1">
 		<thead>
@@ -110,7 +87,7 @@
 <script>
 	$('.approve_list tbody tr').click(function(){
 		const klassNo = $(this).data('klass-no');
-		location.href='/klassDetail?klass_no='+klassNo;
+		location.href='/approveDetail?klass_no='+klassNo;
 	})
 
 

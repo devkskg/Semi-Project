@@ -5,7 +5,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approveMapper">
 
-	<resultMap type="klassVo" id="approveMap">
+	<resultMap type="klassVo" id="approveKlassMap">
 		<!-- 
 			컬럼명과 필드명을 1대1로 써준다.
 		 	vo의 필드명과 테이블의 컬럼명이 다르기 때문에 맞춰즌 것!
@@ -30,8 +30,24 @@
 		<result property="klassEnd" column="klass_end"/>
 		<result property="klassCount" column="klass_count"/>
 	</resultMap>
+	
+	<resultMap type="approveVo" id="approveMap">
 		
-	<select id="approveList" resultMap="approveMap" parameterType="klassVo">
+		<result property="approveNo" column="approve_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="approveCode" column="approve_code"/>
+		<result property="approveFd" column="approve_fd"/>
+		
+	</resultMap>
+	<update id="updateApprove" parameterType="approveVo" useGeneratedKeys="true" keyProperty="approveNo">
+	UPDATE `approve`
+	SET `approve_code` = #{approveCode}
+	<where>
+	klass_no = #{klassNo}
+	</where>
+	</update>	
+		
+	<select id="approveList" resultMap="approveKlassMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname
 		FROM `klass` k
 		JOIN `account` a
