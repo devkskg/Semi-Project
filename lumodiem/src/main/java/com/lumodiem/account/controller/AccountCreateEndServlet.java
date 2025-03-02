@@ -55,7 +55,7 @@ public class AccountCreateEndServlet extends HttpServlet {
 					.accountRegDate(ldt.format(dtf))
 					.build();
 			
-			System.out.println(act);
+//			System.out.println(act);
 			int result = new AccountService().accountCreateOne(act);
 			
 			JSONObject obj = new JSONObject();
