@@ -23,6 +23,8 @@ public class AccountCreateDuplicateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		Account account = null;
+		Account act = null;
 		if (session != null && session.getAttribute("account") != null) {
 			response.sendRedirect("/");
 		} else {
@@ -30,24 +32,23 @@ public class AccountCreateDuplicateServlet extends HttpServlet {
 			String nickname = request.getParameter("account_nickname");
 			String ssn = request.getParameter("account_ssn");
 			String phone = request.getParameter("account_phone");
-
-			Account act = Account.builder()
-					.accountId(id)
-					.accountNickname(nickname)
-					.accountSsn(ssn)
-					.accountPhone(phone)
-					.build();
 			
-			int result = new AccountService().accountDuplicateCheck(act);
-			
-			System.out.println(result);
+			if(id != null || nickname != null || ssn != null || phone != null) {
+				act = Account.builder()
+						.accountId(id)
+						.accountNickname(nickname)
+						.accountSsn(ssn)
+						.accountPhone(phone)
+						.build();
+				account = new AccountService().accountDuplicateCheck(act);
+			}
 			
 			JSONObject obj = new JSONObject();
 
 			obj.put("res_code", "500");
 			obj.put("res_msg", "이미 사용중인 ");
 
-			if (result > 0) {
+			if (account == null) {
 				obj.put("res_code", "200");
 				obj.put("res_msg", "사용 가능한 ");
 			}

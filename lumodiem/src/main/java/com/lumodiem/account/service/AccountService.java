@@ -23,10 +23,10 @@ public class AccountService {
 		return account;
 	}
 
-	public int accountDuplicateCheck(Account act) {
+	public Account accountDuplicateCheck(Account act) {
 		SqlSession session = getSqlSession();
-		int result = new AccountDao().accountDuplicateCheck(session, act);
-		return result;
+		Account account = new AccountDao().accountDuplicateCheck(session, act);
+		return account;
 	}
 
 }

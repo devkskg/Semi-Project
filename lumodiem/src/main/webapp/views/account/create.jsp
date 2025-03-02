@@ -109,7 +109,6 @@
 				}
 			});
 			
-			
 			$('#duplicate_id').click(function(){
 				if(!form.account_id.value){
 					alert("아이디를 입력하세요.");
@@ -120,9 +119,6 @@
 						type : "post",
 						data : {
 								"account_id" : form.account_id.value,
-								"account_nickname" : form.account_nickname.value,
-								"account_ssn" : form.account_ssn.value,
-								"account_phone" : form.account_phone.value,
 						},
 						dataType : "JSON",
 						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -137,8 +133,81 @@
 				}
 			});
 			
+			$('#duplicate_nickname').click(function(){
+				if(!form.account_id.value){
+					alert("닉네임를 입력하세요.");
+					form.account_id.focus();
+				} else{
+					$.ajax({
+						url : "/accountCreateDuplicate",
+						type : "post",
+						data : {
+								"account_nickname" : form.account_nickname.value,
+						},
+						dataType : "JSON",
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						success : function(data){
+							if(data.res_code == "200"){
+								alert(data.res_msg + '닉네임입니다.');
+							} else{
+								alert(data.res_msg + '닉네임입니다.');
+							}
+						}
+					});
+				}
+			});
 			
+			$('#duplicate_ssn').click(function(){
+				if(!form.account_id.value){
+					alert("주민등록번호를 입력하세요.");
+					form.account_id.focus();
+				} else{
+					$.ajax({
+						url : "/accountCreateDuplicate",
+						type : "post",
+						data : {
+								"account_ssn" : form.account_ssn.value,
+						},
+						dataType : "JSON",
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						success : function(data){
+							if(data.res_code == "200"){
+								alert(data.res_msg + '주민등록번호입니다.');
+							} else{
+								alert(data.res_msg + '주민등록번호입니다.');
+							}
+						}
+					});
+				}
+			});
+			
+			$('#duplicate_phone').click(function(){
+				if(!form.account_id.value){
+					alert("핸드폰 번호를 입력하세요.");
+					form.account_id.focus();
+				} else{
+					$.ajax({
+						url : "/accountCreateDuplicate",
+						type : "post",
+						data : {
+								"account_phone" : form.account_phone.value,
+						},
+						dataType : "JSON",
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						success : function(data){
+							if(data.res_code == "200"){
+								alert(data.res_msg + '핸드폰 번호입니다.');
+							} else{
+								alert(data.res_msg + '핸드폰 번호입니다.');
+							}
+						}
+					});
+				}
+			});
 		})
+		
+		
+		
 		
 		
 	</script>
