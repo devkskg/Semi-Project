@@ -34,6 +34,9 @@
 					<label for="klass_end">종료 : </label>
 					<input type="time" name="klass_end" id="klass_end" required><br>
 					
+					<input type="hidden" id="klass_start_full" name="klass_start_full">
+					<input type="hidden" id="klass_end_full" name="klass_end_full">
+					
 					<label for="klass_max">최대 참가인원 : </label>
 					<input type="number" name="klass_max" id="klass_max" required placeholder="숫자만 입력해주세요."><br>
 					
@@ -52,6 +55,8 @@
 		$(function(){
 			const form = document.create_klass_form;
 			$('#insertBtn').click(function(){
+				
+				
 			const check =  confirm("등록하시겠습니까?");
 				if(!form.klass_name.value){
 					alert("클래스명을 입력하세요.");
@@ -62,7 +67,7 @@
 				}else if(!form.klass_start.value){
 					alert("시작 시간을 입력해주세요");
 					form.klass_start.focus();
-				}else if(!form.klass_end.vlaue){
+				}else if(!form.klass_end.value){
 					alert("종료 시간을 입력해주세요");
 					form.klass_end.focus();
 				}else if(!form.klass_max.value){
@@ -76,14 +81,20 @@
 					form.klass_txt.focus();
 				}else{
 					if(check == true){
+						let dateVal = form.klass_date.value;
+						let startVal = form.klass_start.value;
+						let endVal = form.klass_end.value;
+						
+						let klassStartFull = dateVal + " " + startVal + ":00";
+						let klassEndFull = dateVal + " " + endVal + ":00";
 						$.ajax({
 							url : "/klassBoardCreateEnd",
 							type : "post",
 							data : {"klass_name" : form.klass_name.value,
 									"account_nickname" : form.account_nickname.value,
 									"klass_address" : form.klass_address.value,
-									"klass_start" : form.klass_start.value,
-									"klass_end" : form.klass_end.value,
+									"klass_start_full" : klassStartFull,
+									"klass_end_full" : klassEndFull,
 									"klass_max" : form.klass_max.value,
 									"klass_price" : form.klass_price.value,
 									"klass_txt" : form.klass_txt.value,

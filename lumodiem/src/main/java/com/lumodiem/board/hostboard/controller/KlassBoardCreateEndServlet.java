@@ -32,8 +32,8 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
 		String klassTxt = request.getParameter("klass_txt");
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
-		String klassStart = request.getParameter("klass_start");
-		String klassEnd = request.getParameter("klass_end");
+		String klassStart = request.getParameter("klass_start_full");
+		String klassEnd = request.getParameter("klass_end_full");
 		
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
