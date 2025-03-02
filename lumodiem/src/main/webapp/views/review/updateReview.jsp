@@ -19,7 +19,7 @@
 			<label for="review_name">게시글 제목 : </label>
 			<input type="text" name="review_name" id="review_name" placeholder="수정하실 제목을 입력하세요." value="<c:out value='${review.reviewName}'/>"><br>
 			<label for="review_txt">내용 : </label><br>
-			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요.">value="<c:out value='${review.reviewTxt }'/></textarea>
+			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."> value="<c:out value='${review.reviewTxt }'/></textarea>
 			<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 			<button type="button" onclick="updateReviewForm();">작성하기</button>
 		</fieldset>
@@ -41,7 +41,7 @@
 				if(type == 'jpg' || type == 'png' || type == 'jpeg'){
 					let sendData = new FormData(form);
 					$.ajax({
-						url:'/insertReviewPageEnd',
+						url:'/updateReviewEnd',
 						type:'post',
 						enctype:"multipart/form-data",
 						cache:false,
@@ -65,7 +65,7 @@
 			}else{
 				let sendData = new FormData(form);
 				$.ajax({
-					url:'/insertReviewPageEnd',
+					url:'/updateReviewEnd',
 					type:'post',
 					enctype:"multipart/form-data",
 					cache:false,

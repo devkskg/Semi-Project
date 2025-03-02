@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
 
@@ -29,9 +31,24 @@ public class UpdateReviewEndServlet extends HttpServlet {
 //		int resNo = 4;
 //		int klassDateNo = 2;
 		
-		Review review = Review.builder().reviewName(reviewName).reviewTxt(reviewTxt).build();
+		Review review = Review.builder()
+				.reviewName(reviewName)
+				.reviewTxt(reviewTxt)
+				.build();
 		
 		int result = new MemberBoardService().UpdateReview(review);
+		System.out.println("review : "+ review);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("res_code", "500");
+		obj.put("res_msg", "게시글 수정중 오류가 발생하였습니다.");
+		
+		if(result > 0) {
+		obj.put("res_code", "200");
+		obj.put("res_msg", "정상적으로 게시글이 수정되었습니다.");
+		}
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(obj);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

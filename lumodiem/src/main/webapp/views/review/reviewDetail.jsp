@@ -22,7 +22,7 @@
 				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}"> 
 			</li> 
 			<li>
-					<c:out value="attachNo : ${review.attachNo }"/>
+					<%-- <c:out value="attachNo : ${review.attachNo }"/> --%>
 				<table>
 					<tr>
 						<td>제목</td>
