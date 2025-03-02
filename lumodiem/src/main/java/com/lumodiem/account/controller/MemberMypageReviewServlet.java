@@ -16,14 +16,14 @@ import javax.servlet.http.HttpSession;
 
 import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
+import com.lumodiem.account.vo.ReviewDTO;
 import com.lumodiem.board.hostboard.vo.Klass;
-import com.lumodiem.board.hostboard.vo.KlassDate;
 
-@WebServlet("/memberMypageKlass")
-public class MemberMypageKlassServlet extends HttpServlet {
+@WebServlet("/memberMypageReview")
+public class MemberMypageReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MemberMypageKlassServlet() {
+    public MemberMypageReviewServlet() {
         super();
     }
 
@@ -34,8 +34,8 @@ public class MemberMypageKlassServlet extends HttpServlet {
 		
 		Klass option = null;
 		List<Klass> klassList = null;
-		List<Klass> beforeKlassList = null; 
-		List<Klass> afterKlassList = null; 
+		List<Klass> beforeKlassList = null;
+		List<ReviewDTO> reviewDTO = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
@@ -43,8 +43,8 @@ public class MemberMypageKlassServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			if(option != null) {
 				klassList = new MypageService().selectReservationKlassListByAccountNo(option);
+				reviewDTO = new MypageService().selectReviewKlassListByAccountNo(option);
 				beforeKlassList = new ArrayList<Klass>();
-				afterKlassList = new ArrayList<Klass>();
 				LocalDateTime now = LocalDateTime.now();
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 				now.format(dtf);
@@ -55,17 +55,22 @@ public class MemberMypageKlassServlet extends HttpServlet {
 						System.out.println(temp);
 						if(temp.isBefore(now)) {
 							beforeKlassList.add(klass);
-						} else {
-							afterKlassList.add(klass);
-						}
+						} 
 					} else {
-						
 					}
+					
+					
 				}
 				request.setAttribute("beforeKlassList", beforeKlassList);
-				request.setAttribute("afterKlassList", afterKlassList);
+				request.setAttribute("reviewDTO", reviewDTO);
+				for(int i = 0; i < beforeKlassList.size(); i++) {
+					System.out.println("beforeKlassList.getKlassDateNo : " + beforeKlassList.get(i).getKlassDateNo());
+				}
+				for(int i = 0; i < beforeKlassList.size(); i++) {
+					System.out.println("reviewDTO.getKlassDateNo : " + reviewDTO.get(i).getKlassDateNo());
+				}
 				
-				urlPath = request.getContextPath()+"/views/mypage/membermypageklass.jsp";
+				urlPath = request.getContextPath()+"/views/mypage/membermypagereview.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {
@@ -74,9 +79,7 @@ public class MemberMypageKlassServlet extends HttpServlet {
 		} else {
 			response.sendRedirect("/");
 		}
-		
 	}
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

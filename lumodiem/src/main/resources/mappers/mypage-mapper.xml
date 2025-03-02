@@ -17,6 +17,12 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 		<result property="approveCode" column="approve_code"/>
+		
+		<result property="resNo" column="res_no"/>
+		<result property="klassDateNo" column="klass_date_no"/>
+		
+		<result property="klassStart" column="klass_start"/>
+		<result property="klassEnd" column="klass_end"/>
 	</resultMap>
 	<resultMap type="reviewVo" id="reviewMap">
 		<result property="reviewNo" column="review_no"/>
@@ -55,6 +61,16 @@
 		<result property="klassEnd" column="klass_end"/>
 		<result property="klassCount" column="klass_count"/>
 	</resultMap>
+	<resultMap type="reviewDTOVo" id="reviewDTOMap">
+		<result property="klassNo" column="klass_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="klassStart" column="klass_start"/>
+		<result property="klassEnd" column="klass_end"/>
+		<result property="reviewName" column="review_name"/>
+		<result property="reviewTxt" column="review_txt"/>
+		<result property="reviewNo" column="review_no"/>
+		<result property="klassDateNo" column="klass_date_no"/>
+	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
 	<select id="klassListSearch" resultMap="klassMap" parameterType="klassVo">
@@ -85,7 +101,7 @@
 	</select>
 	
 	<!-- klass_like 테이블 -> 호스트 회원 번호 기준으로 좋아요한 클래스 조회  -->
-	<select id="selectKlassLikeByHostAccountNo" resultMap="klassLikeMap" parameterType="klassVo">
+	<select id="selectKlassLikeByAccountNo" resultMap="klassLikeMap" parameterType="klassVo">
 		SELECT l.*, k.klass_name
 		FROM `klass_like` l
 		JOIN `klass` k ON l.klass_no = k.klass_no
@@ -93,7 +109,7 @@
 	</select>
 	
 	<!-- review_like 테이블 -> 호스트 회원 번호 기준으로 좋아요한 리뷰 조회  -->
-	<select id="selectReviewLikeByHostAccountNo" resultMap="reviewLikeMap" parameterType="klassVo">
+	<select id="selectReviewLikeByAccountNo" resultMap="reviewLikeMap" parameterType="klassVo">
 		SELECT l.*, r.review_name
 		FROM `review_like` l
 		JOIN `review` r ON l.review_no = r.review_no
@@ -101,7 +117,7 @@
 	</select>
 	
 	<!-- review_cmt 테이블 -> 호스트 회원 번호 기준으로 리뷰 댓글 조회  -->
-	<select id="selectReviewCmtListByHostAccountNo" resultMap="reviewCmtMap" parameterType="klassVo">
+	<select id="selectReviewCmtListByAccountNo" resultMap="reviewCmtMap" parameterType="klassVo">
 		SELECT *
 		FROM `review_cmt`
 		WHERE account_no = ${accountNo}
@@ -109,7 +125,7 @@
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
 	<select id="selectReservationKlassListByAccountNo" resultMap="klassMap" parameterType="klassVo">
-		SELECT k.*, a.account_nickname
+		SELECT k.*, a.account_nickname, d.*
 		FROM `reservation` r
 		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
@@ -117,15 +133,17 @@
 		WHERE r.account_no = #{accountNo};
 	</select>
 	
-	<!-- klassDate 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
-	<select id="selectReservationKlassDateListByAccountNo" resultMap="klassDateMap" parameterType="klassDateVo">
-		SELECT k.*, a.account_nickname
-		FROM `reservation` r
-		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
+	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
+	<select id="selectReviewKlassListByAccountNo" resultMap="reviewDTOMap" parameterType="klassVo">
+		SELECT k.*, a.account_nickname, d.klass_date_no, d.klass_start, d.klass_end, r.review_name, r.review_txt, r.review_no
+		FROM `review` r
+		JOIN `reservation` res ON r.res_no = res.res_no
+		JOIN `klass_date` d ON res.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
 		JOIN `account` a ON k.account_no = a.account_no
 		WHERE r.account_no = #{accountNo};
 	</select>
+	
 	
 	
 </mapper>

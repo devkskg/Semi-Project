@@ -15,14 +15,14 @@ import com.lumodiem.account.service.MypageService;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassLike;
-import com.lumodiem.board.memberboard.vo.Review;
+import com.lumodiem.board.memberboard.vo.ReviewCmt;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
 
-@WebServlet("/hostMypageLike")
-public class HostMypageLikeServlet extends HttpServlet {
+@WebServlet("/mypageCmt")
+public class MypageCmtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public HostMypageLikeServlet() {
+    public MypageCmtServlet() {
         super();
     }
 
@@ -32,8 +32,7 @@ public class HostMypageLikeServlet extends HttpServlet {
 		String urlPath = "/";
 		
 		Klass option = null;
-		List<KlassLike> klassLikeList = null;
-		List<ReviewLike> reviewLikeList = null;
+		List<ReviewCmt> reviewCmtList = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
@@ -41,12 +40,11 @@ public class HostMypageLikeServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			
 			if(option != null) {
-				klassLikeList = new MypageService().selectKlassLikeByHostAccountNo(option);
-				reviewLikeList = new MypageService().selectReviewLikeByHostAccountNo(option);
-				request.setAttribute("klassLikeList", klassLikeList);
-				request.setAttribute("reviewLikeList", reviewLikeList);
+				reviewCmtList = new MypageService().selectReviewCmtListByAccountNo(option);
+				request.setAttribute("reviewCmtList", reviewCmtList);
+				System.out.println(reviewCmtList);
 				
-				urlPath = request.getContextPath()+"/views/mypage/hostmypagelike.jsp";
+				urlPath = request.getContextPath()+"/views/mypage/mypagecmt.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {

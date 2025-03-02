@@ -7,38 +7,40 @@
 
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
-    
-    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet"> -->
+    <head>
+    <link rel="stylesheet" href="<c:url value='/views/css/nav.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
+	<script src="<c:url value='/js/jquery.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery-migrate-3.0.1.min.js'/>"></script>
+	<script src="<c:url value='/js/popper.min.js'/>"></script>
+	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.easing.1.3.js'/>"></script>
+	<script src="<c:url value='/js/jquery.waypoints.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.stellar.min.js'/>"></script>
+	<script src="<c:url value='/js/owl.carousel.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.magnific-popup.min.js'/>"></script>
+	
+	<%-- <script src="<c:url value='/js/aos.js'/>"></script> --%>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	
+	<script src="<c:url value='/js/jquery.animateNumber.min.js'/>"></script>
+	<script src="<c:url value='/js/scrollax.min.js'/>"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+	<%-- <script src="<c:url value='/js/google-map.js'/>"></script> --%>
+	<script src="<c:url value='/js/main.js'/>"></script>
+	<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>   
+    </head>
     
-    <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
-    
-    <link rel="stylesheet" href="<c:url value='/css/owl.theme.default.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>">
-
-    <%-- <link rel="stylesheet" href="<c:url value='/css/aos.css'/>"> --%>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <link rel="stylesheet" href="<c:url value='/css/ionicons.min.css'/>">
-
-    <link rel="stylesheet" href="<c:url value='/css/bootstrap-datepicker.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/jquery.timepicker.css'/>">
-
-    
-    <link rel="stylesheet" href="<c:url value='/css/flaticon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/icomoon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    
+    <body>
 
 	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<a class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<!-- <a href="javascript:void(0);" class="js-colorlib-nav-toggle colorlib-nav-toggle" id="hamburger-btn">
+    <i class="fas fa-bars"></i>
+</a> -->
+		
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight" >
+		
 		
 			<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
 			<c:import url="${nav}"/> --%>
@@ -106,12 +108,13 @@
 			
 			<!-- 왼쪽 네비게이션바 -->
 			<div class="colorlib-footer">
-				<h1 id="colorlib-logo" class="mb-4"><a href="index.html"
+				<h1 id="colorlib-logo" class="mb-4"><a href="https://namu.wiki/w/%EB%A1%9C%EC%BC%93%EB%8B%A8"
 						style="background-image: url(images/bg_1.jpg);">Lumo Diem<span>Moore</span></a></h1>
+				
 				<div class="mb-4">
 					<h3>Subscribe for newsletter</h3>
 
-					<form action="#" class="colorlib-subscribe-form">
+					<form action="/" class="colorlib-subscribe-form">
 						<div class="form-group d-flex">
 							<input type="text" class="form-control" placeholder="Enter Email Address">
 							<div class="icon"><span class="icon-paper-plane"></span></div>
@@ -124,7 +127,7 @@
 					<script>document.write(new Date().getFullYear());</script> 
 						LumoDiem 원데이 클래스
 					<i class="icon-heart" aria-hidden="true"></i> by 
-					<a href="https://colorlib.com" target="_blank">응애 로켓단</a>
+					<a href="https://namu.wiki/w/%EB%A1%9C%EC%BC%93%EB%8B%A8" target="_blank">응애 로켓단</a>
 				</p>
 			</div>
 		</aside>
@@ -150,21 +153,11 @@
 	</div>
 
 
-	<script src="<c:url value='/js/jquery.min.js'/>"></script>
-	<script src="<c:url value='/js/jquery-migrate-3.0.1.min.js'/>"></script>
-	<script src="<c:url value='/js/popper.min.js'/>"></script>
-	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
-	<script src="<c:url value='/js/jquery.easing.1.3.js'/>"></script>
-	<script src="<c:url value='/js/jquery.waypoints.min.js'/>"></script>
-	<script src="<c:url value='/js/jquery.stellar.min.js'/>"></script>
-	<script src="<c:url value='/js/owl.carousel.min.js'/>"></script>
-	<script src="<c:url value='/js/jquery.magnific-popup.min.js'/>"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+	    document.body.classList.add("loaded");
+	});
 	
-	<%-- <script src="<c:url value='/js/aos.js'/>"></script> --%>
-	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	</script>
 	
-	<script src="<c:url value='/js/jquery.animateNumber.min.js'/>"></script>
-	<script src="<c:url value='/js/scrollax.min.js'/>"></script>
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
-	<%-- <script src="<c:url value='/js/google-map.js'/>"></script> --%>
-	<script src="<c:url value='/js/main.js'/>"></script>
+</body>
