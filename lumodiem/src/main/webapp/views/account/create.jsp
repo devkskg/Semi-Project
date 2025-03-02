@@ -109,11 +109,22 @@
 				}
 			});
 			
-			$('#duplicate_id').click(function(){
-				if(!form.account_id.value){
-					alert("아이디를 입력하세요.");
-					form.account_id.focus();
+			/* 아이디 정규식 검사 */
+			let idBoolean = false;
+			$('#account_id').keyup(function(){
+				let idInput = form.account_id.value;
+				let idReg = /^[a-zA-Z][a-zA-Z0-9]{2,14}$/;
+				if(idReg.test(idInput)){
+					$('#account_id').css('backgroundColor', '#98FB98');
+					idBoolean = true;
 				} else{
+					$('#account_id').css('backgroundColor', '#FF9999');
+					idBoolean = false;
+				}
+			});
+			/* 아이디 중복 검사 */
+			$('#duplicate_id').click(function(){
+				if(idBoolean){
 					$.ajax({
 						url : "/accountCreateDuplicate",
 						type : "post",
@@ -127,17 +138,32 @@
 								alert(data.res_msg + '아이디입니다.');
 							} else{
 								alert(data.res_msg + '아이디입니다.');
+								$('#account_id').css('backgroundColor', '#FF9999');
 							}
 						}
 					});
+				} else{
+					alert('올바른 아이디를 입력해주세요.');
+					form.account_id.focus();
 				}
 			});
 			
-			$('#duplicate_nickname').click(function(){
-				if(!form.account_id.value){
-					alert("닉네임를 입력하세요.");
-					form.account_id.focus();
+			/* 닉네임 정규식 검사 */
+			let nicknameBoolean = false;
+			$('#account_nickname').keyup(function(){
+				let nicknameInput = form.account_nickname.value;
+				let nicknameReg =  /^[a-zA-Z가-힣0-9]{2,15}$/;
+				if(nicknameReg.test(nicknameInput)){
+					$('#account_nickname').css('backgroundColor', '#98FB98');
+					nicknameBoolean = true;
 				} else{
+					$('#account_nickname').css('backgroundColor', '#FF9999');
+					nicknameBoolean = false;
+				}
+			});			
+			/* 닉네임 중복 검사 */
+			$('#duplicate_nickname').click(function(){
+				if(nicknameBoolean){
 					$.ajax({
 						url : "/accountCreateDuplicate",
 						type : "post",
@@ -151,17 +177,33 @@
 								alert(data.res_msg + '닉네임입니다.');
 							} else{
 								alert(data.res_msg + '닉네임입니다.');
+								$('#account_nickname').css('backgroundColor', '#FF9999');
 							}
 						}
 					});
+				} else{
+					alert('올바른 닉네임을 입력해주세요.');
+					form.account_nickname.focus();
 				}
 			});
 			
-			$('#duplicate_ssn').click(function(){
-				if(!form.account_id.value){
-					alert("주민등록번호를 입력하세요.");
-					form.account_id.focus();
+			
+			/* 주민등록번호 정규식 검사 */
+			let ssnBoolean = false;
+			$('#account_ssn').keyup(function(){
+				let ssnInput = form.account_ssn.value;
+				let ssnReg =  /^(19[0-9]{2}|20[0-9]{2})((01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01])|(04|06|09|11)(0[1-9]|[12][0-9]|30)|(02)(0[1-9]|1[0-9]|2[0-8]))[1-4][0-9]{6}$/;
+				if(ssnReg.test(ssnInput)){
+					$('#account_ssn').css('backgroundColor', '#98FB98');
+					ssnBoolean = true;
 				} else{
+					$('#account_ssn').css('backgroundColor', '#FF9999');
+					ssnBoolean = false;
+				}
+			});	
+			
+			$('#duplicate_ssn').click(function(){
+				if(ssnBoolean){
 					$.ajax({
 						url : "/accountCreateDuplicate",
 						type : "post",
@@ -175,16 +217,25 @@
 								alert(data.res_msg + '주민등록번호입니다.');
 							} else{
 								alert(data.res_msg + '주민등록번호입니다.');
+								$('#account_ssn').css('backgroundColor', '#FF9999');
 							}
 						}
 					});
+				} else{
+					alert('올바른 주민등록번호를 입력해주세요.');
+					form.account_ssn.focus();
 				}
 			});
 			
+			
+			
+			
+			
+			
 			$('#duplicate_phone').click(function(){
-				if(!form.account_id.value){
+				if(!form.account_phone.value){
 					alert("핸드폰 번호를 입력하세요.");
-					form.account_id.focus();
+					form.account_phone.focus();
 				} else{
 					$.ajax({
 						url : "/accountCreateDuplicate",
@@ -204,6 +255,7 @@
 					});
 				}
 			});
+			
 		})
 		
 		
