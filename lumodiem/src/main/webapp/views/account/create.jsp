@@ -19,9 +19,9 @@
 					<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text">
 					<button type="button" id="duplicate_id" name="duplicate_id" class="duplicate">중복확인</button><br>
 					
-					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="text">
+					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password">
 					
-					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="text"><br>
+					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="password"><br>
 					<label for="account_name">이름 : </label><input name="account_name" id="account_name" type="text"><br>
 					<label for="account_nickname">닉네임 : </label><input name="account_nickname" id="account_nickname" type="text">
 					<button type="button" id="duplicate_nickname" name="duplicate_nickname" class="duplicate">중복확인</button> <br>
@@ -148,7 +148,7 @@
 				}
 			});
 			
-			/* 닉네임 정규식 검사 */
+			/* 닉네임 정규식 검사 / 임시 : 영문자, 한글, 숫자 2~15자리 */
 			let nicknameBoolean = false;
 			$('#account_nickname').keyup(function(){
 				let nicknameInput = form.account_nickname.value;
@@ -201,7 +201,7 @@
 					ssnBoolean = false;
 				}
 			});	
-			
+			/* 주민등록번호 중복 검사 */
 			$('#duplicate_ssn').click(function(){
 				if(ssnBoolean){
 					$.ajax({
@@ -231,12 +231,22 @@
 			
 			
 			
-			
-			$('#duplicate_phone').click(function(){
-				if(!form.account_phone.value){
-					alert("핸드폰 번호를 입력하세요.");
-					form.account_phone.focus();
+			/* 핸드폰번호 정규식 검사 */
+			let phoneBoolean = false;
+			$('#account_phone').keyup(function(){
+				let phoneInput = form.account_ssn.value;
+				let phoneReg =  /^01[016789]\d{3,4}\d{4}$/;
+				if(phoneReg.test(phoneInput)){
+					$('#account_phone').css('backgroundColor', '#98FB98');
+					phoneBoolean = true;
 				} else{
+					$('#account_phone').css('backgroundColor', '#FF9999');
+					phoneBoolean = false;
+				}
+			});	
+			/* 핸드폰번호 중복 검사 */	
+			$('#duplicate_phone').click(function(){
+				if(phoneBoolean){
 					$.ajax({
 						url : "/accountCreateDuplicate",
 						type : "post",
@@ -253,6 +263,20 @@
 							}
 						}
 					});
+				} else{
+					alert('올바른 핸드폰번호를 입력해주세요.');
+					form.account_phone.focus();
+				}
+			});
+			
+			/* 비밀번호와 비밀번호 재입력 일치 확인 */
+			$('#account_pw_check').keyup(function(){
+				let passValue = form.account_pw.value;
+				let passCheckValue = form.account_pw_check.value;
+				if(passValue == passCheckValue){
+					$('#account_pw_check').css('backgroundColor', '#98FB98');
+				} else{
+					$('#account_pw_check').css('backgroundColor', '#FF9999');
 				}
 			});
 			
