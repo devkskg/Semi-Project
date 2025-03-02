@@ -11,9 +11,14 @@ public class AccountDao {
 		return result;
 	}
 
-	public Account loginAccount(SqlSession session, Account temp) {
-		Account act = session.selectOne("accountMapper.loginSelect", temp);
-		return act;
+	public Account loginAccount(SqlSession session, Account act) {
+		Account account = session.selectOne("accountMapper.loginSelect", act);
+		return account;
+	}
+
+	public Account accountDuplicateCheck(SqlSession session, Account act) {
+		Account account = session.selectOne("accountMapper.accountDuplicateCheck", act);
+		return account;
 	}
 
 }
