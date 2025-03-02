@@ -72,11 +72,11 @@ public class HostBoardService {
 	public int insertBoard(Klass option, KlassDate klassDate) {
 		SqlSession session = getSqlSession();
 		int result = 0;
-		Klass klassNo = new HostBoardDao().insertBoard(session, option); 
-		klassDate.setKlassNo(klassNo.getKlassNo());
+		int klassNo = new HostBoardDao().insertBoard(session, option); 
+		klassDate.setKlassNo(klassNo);
 		int klassDateNo = new HostBoardDao().insertKlassDate(session, klassDate);
 		
-		if(klassNo.getKlassNo() != 0 && klassDateNo > 0) {
+		if(klassNo > 0 && klassDateNo > 0) {
 			result = 1;
 			session.commit();
 		} else {

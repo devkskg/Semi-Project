@@ -36,7 +36,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		String klassStart = request.getParameter("klass_start");
 		String klassEnd = request.getParameter("klass_end");
 		
-		// klass_date 테이블에 저장될 문자열로 합치는 과
+		// klass_date 테이블에 저장될 문자열로 합치는 과정
 		String klassStartFull = klassOfDate + " " + klassStart + ":00";
 		String klassEndFull = klassOfDate + " " + klassEnd + ":00";
 		

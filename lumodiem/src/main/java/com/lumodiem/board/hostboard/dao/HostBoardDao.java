@@ -35,9 +35,9 @@ public class HostBoardDao {
 		return result;
 	}
        
-	public Klass insertBoard(SqlSession session, Klass option) {
-		Klass klassNo = session.insert("klassMapper.klassCreate",option);
-		return klassNo;
+	public int insertBoard(SqlSession session, Klass option) {
+		int klassNo = session.insert("klassMapper.klassCreate",option);
+		return option.getKlassNo();
 	}
 	
 	
