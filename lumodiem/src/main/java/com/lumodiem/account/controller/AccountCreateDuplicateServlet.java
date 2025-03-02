@@ -39,15 +39,17 @@ public class AccountCreateDuplicateServlet extends HttpServlet {
 					.build();
 			
 			int result = new AccountService().accountDuplicateCheck(act);
-
+			
+			System.out.println(result);
+			
 			JSONObject obj = new JSONObject();
 
 			obj.put("res_code", "500");
-			obj.put("res_msg", "이미 사용중인 정보입니다.");
+			obj.put("res_msg", "이미 사용중인 ");
 
 			if (result > 0) {
 				obj.put("res_code", "200");
-				obj.put("res_msg", "사용 가능한 정보입니다.");
+				obj.put("res_msg", "사용 가능한 ");
 			}
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(obj);

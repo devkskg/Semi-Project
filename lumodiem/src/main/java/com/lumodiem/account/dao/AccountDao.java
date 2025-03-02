@@ -11,8 +11,8 @@ public class AccountDao {
 		return result;
 	}
 
-	public Account loginAccount(SqlSession session, Account temp) {
-		Account act = session.selectOne("accountMapper.loginSelect", temp);
+	public Account loginAccount(SqlSession session, Account act) {
+		Account act = session.selectOne("accountMapper.loginSelect", act);
 		return act;
 	}
 

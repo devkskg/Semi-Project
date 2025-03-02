@@ -128,9 +128,9 @@
 						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 						success : function(data){
 							if(data.res_code == "200"){
-								alert(data.res_msg);
+								alert(data.res_msg + '아이디입니다.');
 							} else{
-								alert(data.res_msg);
+								alert(data.res_msg + '아이디입니다.');
 							}
 						}
 					});
