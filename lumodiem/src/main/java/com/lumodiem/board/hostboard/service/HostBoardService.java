@@ -57,10 +57,26 @@ public class HostBoardService {
 		return searchList;
 	}
 	
-	public int insertBoard(Klass option) {
+	public int insertKlassDate(KlassDate klassDate) {
 		SqlSession session = getSqlSession();
-		int result = new HostBoardDao().insertBoard(session, option);
-		if(result > 0) {
+		int dateResult = new HostBoardDao().insertKlassDate(session,klassDate);
+		if(dateResult > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		return dateResult;
+	}
+	
+	public int insertBoard(Klass option, KlassDate klassDate) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		int klassNo = new HostBoardDao().insertBoard(session, option); 
+		int klassDateNo = new HostBoardDao().insertKlassDate(session, klassDate);
+		
+		if(klassNo > 0 && klassDateNo > 0) {
+			result = 1;
 			session.commit();
 		} else {
 			session.rollback();

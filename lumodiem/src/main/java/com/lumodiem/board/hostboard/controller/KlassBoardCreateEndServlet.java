@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassDate;
 
 @WebServlet("/klassBoardCreateEnd")
 public class KlassBoardCreateEndServlet extends HttpServlet {
@@ -31,6 +32,9 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
 		String klassTxt = request.getParameter("klass_txt");
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
+		String klassStart = request.getParameter("klass_start");
+		String klassEnd = request.getParameter("klass_end");
+		
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		Klass option = Klass.builder()
@@ -45,8 +49,16 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 					.klassRegDate(ldt.format(dtf))
 					.klassModDate(ldt.format(dtf))
 					.build();
-		System.out.println(option); // 입력 된 값 확인 출력문 추후에 지울 예정
-		int result = new HostBoardService().insertBoard(option);
+		System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
+		
+		KlassDate klassDate = KlassDate.builder()
+				.klassStart(klassStart)
+				.klassEnd(klassEnd)
+				.build();
+		
+		System.out.println("date" + klassDate);
+		
+		int result = new HostBoardService().insertBoard(option,klassDate);
 		
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");

@@ -25,6 +25,15 @@
 					<label for="klass_address">주소 : </label>
 					<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address"><br>
 					
+					<label for="klass_date">날짜 : </label>
+					<input type=date name="klass_date" id="klass_date" required><br>
+					
+					<label for="klass_start">시작 : </label>
+					<input type="time" name="klass_start" id="klass_start" required><br>
+					
+					<label for="klass_end">종료 : </label>
+					<input type="time" name="klass_end" id="klass_end" required><br>
+					
 					<label for="klass_max">최대 참가인원 : </label>
 					<input type="number" name="klass_max" id="klass_max" required placeholder="숫자만 입력해주세요."><br>
 					
@@ -47,6 +56,15 @@
 				if(!form.klass_name.value){
 					alert("클래스명을 입력하세요.");
 					form.klass_name.focus();
+				}else if(!form.klass_date.value){
+					alert("날짜를 입력해주세요.");
+					form.klass_date.focus();
+				}else if(!form.klass_start.value){
+					alert("시작 시간을 입력해주세요");
+					form.klass_start.focus();
+				}else if(!form.klass_end.vlaue){
+					alert("종료 시간을 입력해주세요");
+					form.klass_end.focus();
 				}else if(!form.klass_max.value){
 					alert("최대 참가인원 수를 입력하세요.");
 					form.klass_max.focus();
@@ -64,6 +82,8 @@
 							data : {"klass_name" : form.klass_name.value,
 									"account_nickname" : form.account_nickname.value,
 									"klass_address" : form.klass_address.value,
+									"klass_start" : form.klass_start.value,
+									"klass_end" : form.klass_end.value,
 									"klass_max" : form.klass_max.value,
 									"klass_price" : form.klass_price.value,
 									"klass_txt" : form.klass_txt.value,
