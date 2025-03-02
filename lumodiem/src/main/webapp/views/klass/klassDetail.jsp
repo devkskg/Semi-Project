@@ -91,7 +91,7 @@
 				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
 			</button>
 			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete?klass_no=${klass.klassNo }">삭제</a>
+				삭제
 			</button>
 			</c:when>
 
@@ -117,7 +117,7 @@
 	$('#deleteBtn').click(function(){
 		const klassNo = ${klass.klassNo}; 
 		const check = confirm("삭제하시겠습니까?");
-		if(check == true){
+		if(check){
 			$.ajax({
 					url : "klassBoardDelete",
 					type : "post",
@@ -127,9 +127,9 @@
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
-							location.href="/";
+							location.href="/klassBoardList";
 						} else{
-							location.href="/";
+							location.href='/klassDetail?klass_no='+klassNo;
 						}
 					}
 			});
