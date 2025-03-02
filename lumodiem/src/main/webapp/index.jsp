@@ -8,8 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>LumoDiem</title>
+	<link rel="stylesheet" href="<c:url value='/views/css/nav.css'/>">
 </head>
 <body>
+
 	
 	<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
 	<c:import url="${nav}"/> --%>
@@ -120,8 +122,9 @@
 			</div>
 		</section>
 	</div>
-
 	
+	<%-- 이거 왜 아래 있어야 적용되는거야.. --%>
 	<%@ include file="/views/include/nav.jsp" %>
+
 </body>
 </html>

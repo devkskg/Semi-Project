@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.account.dao.MypageDao;
+import com.lumodiem.account.vo.ReviewDTO;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
@@ -29,21 +30,21 @@ public class MypageService {
 		return list;
 	}
 
-	public List<KlassLike> selectKlassLikeByHostAccountNo(Klass option) {
+	public List<KlassLike> selectKlassLikeByAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
-		List<KlassLike> list = new MypageDao().selectKlassLikeByHostAccountNo(session, option);
+		List<KlassLike> list = new MypageDao().selectKlassLikeByAccountNo(session, option);
 		return list;
 	}
 
-	public List<ReviewLike> selectReviewLikeByHostAccountNo(Klass option) {
+	public List<ReviewLike> selectReviewLikeByAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
-		List<ReviewLike> list = new MypageDao().selectReviewLikeByHostAccountNo(session, option);
+		List<ReviewLike> list = new MypageDao().selectReviewLikeByAccountNo(session, option);
 		return list;
 	}
 
-	public List<ReviewCmt> selectReviewCmtListByHostAccountNo(Klass option) {
+	public List<ReviewCmt> selectReviewCmtListByAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
-		List<ReviewCmt> list = new MypageDao().selectReviewCmtListByHostAccountNo(session, option);
+		List<ReviewCmt> list = new MypageDao().selectReviewCmtListByAccountNo(session, option);
 		return list;
 	}
 
@@ -56,6 +57,12 @@ public class MypageService {
 	public List<KlassDate> selectReservationKlassDateListByAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
 		List<KlassDate> list = new MypageDao().selectReservationKlassDateListByAccountNo(session, option);
+		return list;
+	}
+
+	public List<ReviewDTO> selectReviewKlassListByAccountNo(Klass option) {
+		SqlSession session = getSqlSession();
+		List<ReviewDTO> list = new MypageDao().selectReviewKlassListByAccountNo(session, option);
 		return list;
 	}
 

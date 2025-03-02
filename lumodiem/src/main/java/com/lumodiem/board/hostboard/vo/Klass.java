@@ -31,4 +31,6 @@ public class Klass {
 	private String orderType;
 	private int resNo;
 	private int klassDateNo;
+	private String klassStart;
+	private String klassEnd;
 }

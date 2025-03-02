@@ -9294,3 +9294,43 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+.blog-entry {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+}
+
+.blog-entry .img {
+    width: 150px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.blog-entry .text {
+    flex: 1;
+}
+#hamburger-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000; /* 사이드바보다 위에 표시 */
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#hamburger-btn i {
+    transition: transform 0.3s ease;
+}
+
+#colorlib-aside.show + #hamburger-btn i {
+    transform: rotate(90deg);
+}
+
