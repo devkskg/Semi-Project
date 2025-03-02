@@ -85,24 +85,18 @@
 		</form>
 
 		<form class="approveUpdate">
-		<%-- <c:choose >
+		<c:choose >
 			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
 				<button type="button" id="updateBtn" name="updateBtn">승인</button>
-				<button type="button" id="deleteBtn" name="deleteBtn">
-					<a href="/approveUpdate?klass_no=${klass.klassNo }">반려</a>
-				</button>
+				<button type="button" id="rejectBtn" name="rejectBtn">반려</button>
 			</c:when>
 		
-		</c:choose> --%>
-		<button type="button" id="updateBtn" name="updateBtn">승인</button>
-				<button type="button" id="deleteBtn" name="deleteBtn">
-					<a href="/approveUpdate?klass_no=${klass.klassNo }">반려</a>
-				</button>
+		</c:choose>
 		</form>
 	
 	</div>				
 		<script type="text/javascript">
-			$('.approveUpdate button').click(function(){
+			$('#updateBtn').click(function(){
 		const klassNo = ${klass.klassNo}; 
 		const check = confirm("승인하시겠습니까?");
 		if(check == true){
@@ -118,14 +112,38 @@
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
-							location.href="/views/admin/approveList.jsp";
+							location.href="/arreoveList";
 						} else{
-							location.href="/views/admin/approveList.jsp";
+							location.href="/arreoveList";
 						}
 					}
 			});
 		}
 	});
+			$('#rejectBtn').click(function(){
+				const klassNo = ${klass.klassNo}; 
+				const check = confirm("반려하시겠습니까?");
+				if(check == true){
+				const approveCode = 'D';
+					$.ajax({
+							url : "approveUpdate?klass_no=${klass.klassNo }",
+							type : "post",
+							data : {"klass_no" : klassNo,
+									"approve_code" :approveCode
+									},
+							dataType : "JSON",
+							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+							success : function(data){
+								alert(data.res_msg);
+								if(data.res_code == "200"){
+									location.href="/arreoveList";
+								} else{
+									location.href="/arreoveList";
+								}
+							}
+					});
+				}
+			});
 			
 			
 		</script>
