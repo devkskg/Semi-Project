@@ -30,6 +30,29 @@
 		<result property="klassCount" column="klass_count"/>
 	</resultMap>
 	
+	<resultMap type="klassAttachVo" id="klassAttachMap">
+		<result property="attachNo" column="attach_no"/>
+		<result property="attachOri" column="attach_ori"/>
+		<result property="attachNew" column="attach_new"/>
+		<result property="attachPath" column="attach_path"/>
+	</resultMap>
+	
+	<resultMap type="klassMappingVo" id="klassMappingMap">
+		<result property="mappingNo" column="mapping_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="attachNo" column="attach_no"/>
+	</resultMap>
+	
+	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
+		INSERT INTO `klass_mapping`(klass_no ,attach_no)
+		VALUES (#{klassNo} ,#{attachNo})
+	</insert>
+	
+	<insert id="klassAttachCreate" parameterType="klassAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
+		INSERT INTO `klass_attach`(attach_ori, attach_new ,attach_path)
+		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
+	</insert>
+	
 	<insert id="klassDateCreate" parameterType="klassDateVo" useGeneratedKeys="true">
 		 INSERT INTO klass_date (klass_no, klass_start, klass_end, klass_count)
   		 VALUES (#{klassNo}, #{klassStart}, #{klassEnd}, 0)
@@ -104,6 +127,12 @@
 	<where>
 		AND d.klass_no = #{klassNo}
 	</where>
+	</select>
+	
+	<select id="attachOne" resultMap="klassAttachMap" parameterType="_int">
+		SELECT *
+		FROM `klass_attach`
+		WHERE attach_no = #{attachNo}
 	</select>
 	
 </mapper>

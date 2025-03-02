@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassMapping;
 
 public class HostBoardService {
 	
@@ -36,6 +38,12 @@ public class HostBoardService {
 		return result;
 	}
 	
+	public KlassAttach selectAttachOne(int attachNo) {
+		SqlSession session = getSqlSession();
+		KlassAttach a = new HostBoardDao().selectAttachOne(session,attachNo);
+		session.close();
+		return a;
+	}
 
 	public List<KlassDate> selectKlassDate(int klassNo) {
 		SqlSession session = getSqlSession();
@@ -69,14 +77,21 @@ public class HostBoardService {
 		return dateResult;
 	}
 	
-	public int insertBoard(Klass option, KlassDate klassDate) {
+	public int insertBoard(Klass option, KlassDate klassDate,KlassAttach a, KlassMapping m) {
 		SqlSession session = getSqlSession();
 		int result = 0;
 		int klassNo = new HostBoardDao().insertBoard(session, option); 
 		klassDate.setKlassNo(klassNo);
 		int klassDateNo = new HostBoardDao().insertKlassDate(session, klassDate);
 		
-		if(klassNo > 0 && klassDateNo > 0) {
+		int attachNo = new HostBoardDao().insertKlassAttach(session,a);
+		
+		m.setKlassNo(klassNo);
+		m.setAttachNo(attachNo);
+		
+		int mappingNo = new HostBoardDao().insertKlassMapping(session,m);
+		
+		if(klassNo > 0 && klassDateNo > 0 && attachNo > 0 && mappingNo > 0) {
 			result = 1;
 			session.commit();
 		} else {

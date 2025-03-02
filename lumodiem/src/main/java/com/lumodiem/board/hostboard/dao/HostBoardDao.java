@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassMapping;
 
 public class HostBoardDao {
 	
@@ -22,9 +24,14 @@ public class HostBoardDao {
 		return session.selectList("klassMapper.klassDateList",klassNo);
 	}
 	
+	public KlassAttach selectAttachOne(SqlSession session, int attachNo) {
+		return session.selectOne("klassMapper.attachOne",attachNo);
+	}
+	
 	public Klass selectKlassOne(SqlSession session, int klassNo) {
 		return session.selectOne("klassMapper.klassOne",klassNo);
 	}
+	
 	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
@@ -40,5 +47,14 @@ public class HostBoardDao {
 		return option.getKlassNo();
 	}
 	
+	public int insertKlassAttach(SqlSession session, KlassAttach a) {
+		int result = session.insert("klassMapper.klassAttachCreate",a);
+		return result;
+	}
+	
+	public int insertKlassMapping(SqlSession session, KlassMapping m) {
+		int result = session.insert("klassMapper.klassMappingCreate",m);
+		return result;
+	}
 	
 }
