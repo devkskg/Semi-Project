@@ -39,7 +39,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 					.klassAddress(klassAddress)
 					.klassMax(klassMax)
 					.klassPrice(klassPrice)
-					.klassTxt(klassTxt)
+					.klassTxt(klassTxt) 
 					.accountNo(accountNo)
 					.klassStatus("R")
 					.klassRegDate(ldt.format(dtf))
