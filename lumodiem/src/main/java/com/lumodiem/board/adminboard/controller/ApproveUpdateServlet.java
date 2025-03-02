@@ -35,10 +35,10 @@ public class ApproveUpdateServlet extends HttpServlet {
 		int result = new ApproveSerview().updateApprove(approve);
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
-		obj.put("res_msg", "승인 처리중 오류가 발생하였습니다.");
+		obj.put("res_msg", "처리중 오류가 발생하였습니다.");
 		if(result > 0) {
 		obj.put("res_code", "200");
-		obj.put("res_msg", "승인되었습니다.");
+		obj.put("res_msg", "처리되었습니다.");
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);
