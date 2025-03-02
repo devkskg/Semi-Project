@@ -92,7 +92,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 				if(fileItem.isFormField()) {
 					String klassOfDate = "";
 					switch(fileItem.getFieldName()) {
-					case "klass_date" : klassOfDate = fileItem.getString("UTF-8");
+					case "klass_date" : klassOfDate += fileItem.getString("UTF-8");break;
 					}
 					
 					switch(fileItem.getFieldName()) {
@@ -103,8 +103,10 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 						case "klass_price" : option.setKlassPrice(Integer.parseInt(fileItem.getString("UTF-8")));break;
 						case "klass_txt" : option.setKlassTxt(fileItem.getString("UTF-8"));break;
 						case "account_no" : option.setAccountNo(Integer.parseInt(fileItem.getString("UTF-8")));break;
-						case "klass_start" : option.setKlassStart(fileItem.getString("UTF-8"));break;
-						case "klass_end" : option.setKlassEnd(fileItem.getString("UTF-8"));break;
+						case "klass_start" : klassDate.setKlassStart(klassOfDate + " " + fileItem.getString("UTF-8") + ":00");
+							option.setKlassStart(fileItem.getString("UTF-8"));break;
+						case "klass_end" : klassDate.setKlassEnd(klassOfDate + " " + fileItem.getString("UTF-8") + ":00");
+							option.setKlassEnd(fileItem.getString("UTF-8"));break;
 						default : option.setKlassRegDate(ldt.format(dtf));
 								 option.setKlassModDate(ldt.format(dtf)); break;
 					}
