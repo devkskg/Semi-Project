@@ -21,4 +21,9 @@ public class AccountDao {
 		return account;
 	}
 
+	public Account searchIdByNameSsn(SqlSession session, Account act) {
+		Account account = session.selectOne("accountMapper.searchIdByNameSsn", act);
+		return account;
+	}
+
 }

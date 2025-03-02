@@ -29,4 +29,10 @@ public class AccountService {
 		return account;
 	}
 
+	public Account searchIdByNameSsn(Account act) {
+		SqlSession session = getSqlSession();
+		Account account = new AccountDao().searchIdByNameSsn(session, act);
+		return account;
+	}
+
 }

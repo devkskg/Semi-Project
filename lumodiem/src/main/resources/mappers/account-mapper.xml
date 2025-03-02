@@ -16,10 +16,12 @@
 		<result property="accountGrade" column="account_grade"/>
 		<result property="accountRegDate" column="account_reg_date"/>
 	</resultMap>
+	<!-- 회원가입 -->
 	<insert id="accountInsert" parameterType="accountVo" useGeneratedKeys="true" keyProperty="accountNo">
 		INSERT INTO `account`(account_name ,account_id ,account_pw ,account_nickname ,account_ssn ,account_address ,account_phone ,account_email ,account_grade ,account_reg_date)
 		VALUES(#{accountName} ,#{accountId} ,#{accountPw} ,#{accountNickname} ,#{accountSsn} ,#{accountAddress} ,#{accountPhone} ,#{accountEmail} ,#{accountGrade} ,#{accountRegDate})
 	</insert>
+	<!-- 로그인 -->
 	<select id="loginSelect" parameterType="accountVo" resultMap="accountMap">
 		SELECT * FROM `account` WHERE account_id=#{accountId} and account_pw=#{accountPw}
 	</select>
@@ -41,5 +43,10 @@
 			</if>
 		</where> 
 	</select>
+	<!-- id 조회 -->
+	<select id="searchIdByNameSsn" parameterType="accountVo" resultMap="accountMap">
+		SELECT * FROM `account` WHERE account_name=#{accountName} and account_ssn=#{accountSsn}
+	</select>
+	
 	
 </mapper>
