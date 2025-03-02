@@ -29,10 +29,15 @@ public class HostBoardDao {
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
 	}
+	
+	public int insertKlassDate(SqlSession session, KlassDate klassDate) {
+		int result = session.insert("klassMapper.klassDateCreate",klassDate);
+		return result;
+	}
        
 	public int insertBoard(SqlSession session, Klass option) {
-		int result = session.insert("klassMapper.klassCreate",option);
-		return result;
+		int klassNo = session.insert("klassMapper.klassCreate",option);
+		return option.getKlassNo();
 	}
 	
 	
