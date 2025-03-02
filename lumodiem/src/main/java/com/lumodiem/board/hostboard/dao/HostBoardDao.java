@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassMapping;
 
 public class HostBoardDao {
 	
@@ -31,6 +32,7 @@ public class HostBoardDao {
 		return session.selectOne("klassMapper.klassOne",klassNo);
 	}
 	
+	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
 	}
@@ -50,5 +52,9 @@ public class HostBoardDao {
 		return result;
 	}
 	
+	public int insertKlassMapping(SqlSession session, KlassMapping m) {
+		int result = session.insert("klassMapper.klassMappingCreate",m);
+		return result;
+	}
 	
 }

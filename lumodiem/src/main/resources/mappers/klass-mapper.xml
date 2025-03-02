@@ -37,6 +37,17 @@
 		<result property="attachPath" column="attach_path"/>
 	</resultMap>
 	
+	<resultMap type="klassMappingVo" id="klassMappingMap">
+		<result property="mappingNo" column="mapping_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="attachNo" column="attach_no"/>
+	</resultMap>
+	
+	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
+		INSERT INTO `klass_mapping`(klass_no ,attach_no)
+		VALUES (#{klassNo} ,#{attachNo})
+	</insert>
+	
 	<insert id="klassAttachCreate" parameterType="klassAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
 		INSERT INTO `klass_attach`(attach_ori, attach_new ,attach_path)
 		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})

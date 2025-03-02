@@ -22,6 +22,7 @@ import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassMapping;
 
 @WebServlet("/klassBoardCreateEnd")
 public class KlassBoardCreateEndServlet extends HttpServlet {
@@ -53,6 +54,8 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		KlassAttach a = new KlassAttach();
 		
 		Klass option = new Klass();
+		
+		KlassMapping m = new KlassMapping();
 				
 //					Klass.builder()
 //					.klassName(klassName)
@@ -68,6 +71,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 //					.build();
 		
 		KlassDate klassDate = new KlassDate();
+		String klassOfDate = "";
 				
 //				KlassDate.builder()
 //				.klassStart(klassStartFull)
@@ -90,7 +94,6 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 			for(int i = 0; i < items.size(); i++) {
 				FileItem fileItem = items.get(i);
 				if(fileItem.isFormField()) {
-					String klassOfDate = "";
 					switch(fileItem.getFieldName()) {
 					case "klass_date" : klassOfDate += fileItem.getString("UTF-8");break;
 					}
@@ -135,7 +138,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 			System.out.println("date : " + klassDate);
 			System.out.println("attach : " +a);
 			
-			int result = new HostBoardService().insertBoard(option,klassDate,a);
+			int result = new HostBoardService().insertBoard(option,klassDate,a,m);
 			
 			JSONObject obj = new JSONObject();
 			

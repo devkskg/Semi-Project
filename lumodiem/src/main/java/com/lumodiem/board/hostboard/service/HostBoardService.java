@@ -10,6 +10,7 @@ import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassMapping;
 
 public class HostBoardService {
 	
@@ -76,7 +77,7 @@ public class HostBoardService {
 		return dateResult;
 	}
 	
-	public int insertBoard(Klass option, KlassDate klassDate,KlassAttach a) {
+	public int insertBoard(Klass option, KlassDate klassDate,KlassAttach a, KlassMapping m) {
 		SqlSession session = getSqlSession();
 		int result = 0;
 		int klassNo = new HostBoardDao().insertBoard(session, option); 
@@ -85,7 +86,12 @@ public class HostBoardService {
 		
 		int attachNo = new HostBoardDao().insertKlassAttach(session,a);
 		
-		if(klassNo > 0 && klassDateNo > 0 && attachNo > 0) {
+		m.setKlassNo(klassNo);
+		m.setAttachNo(attachNo);
+		
+		int mappingNo = new HostBoardDao().insertKlassMapping(session,m);
+		
+		if(klassNo > 0 && klassDateNo > 0 && attachNo > 0 && mappingNo > 0) {
 			result = 1;
 			session.commit();
 		} else {
