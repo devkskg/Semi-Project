@@ -34,9 +34,6 @@
 					<label for="klass_end">종료 : </label>
 					<input type="time" name="klass_end" id="klass_end" required><br>
 					
-					<input type="hidden" id="klass_start_full" name="klass_start_full">
-					<input type="hidden" id="klass_end_full" name="klass_end_full">
-					
 					<label for="klass_max">최대 참가인원 : </label>
 					<input type="number" name="klass_max" id="klass_max" required placeholder="숫자만 입력해주세요."><br>
 					
@@ -80,21 +77,16 @@
 					alert("내용을 입력하세요.");
 					form.klass_txt.focus();
 				}else{
-					if(check == true){
-						let dateVal = form.klass_date.value;
-						let startVal = form.klass_start.value;
-						let endVal = form.klass_end.value;
-						
-						let klassStartFull = dateVal + " " + startVal + ":00";
-						let klassEndFull = dateVal + " " + endVal + ":00";
+					if(check){
 						$.ajax({
 							url : "/klassBoardCreateEnd",
 							type : "post",
 							data : {"klass_name" : form.klass_name.value,
 									"account_nickname" : form.account_nickname.value,
 									"klass_address" : form.klass_address.value,
-									"klass_start_full" : klassStartFull,
-									"klass_end_full" : klassEndFull,
+									"klass_date" : form.klass_date.value,
+									"klass_start" : form.klass_start.value,
+									"klass_end" : form.klass_end.value,
 									"klass_max" : form.klass_max.value,
 									"klass_price" : form.klass_price.value,
 									"klass_txt" : form.klass_txt.value,

@@ -32,8 +32,13 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
 		String klassTxt = request.getParameter("klass_txt");
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
-		String klassStart = request.getParameter("klass_start_full");
-		String klassEnd = request.getParameter("klass_end_full");
+		String klassOfDate = request.getParameter("klass_date");
+		String klassStart = request.getParameter("klass_start");
+		String klassEnd = request.getParameter("klass_end");
+		
+		// klass_date 테이블에 저장될 문자열로 합치는 과
+		String klassStartFull = klassOfDate + " " + klassStart + ":00";
+		String klassEndFull = klassOfDate + " " + klassEnd + ":00";
 		
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -52,8 +57,8 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
 		
 		KlassDate klassDate = KlassDate.builder()
-				.klassStart(klassStart)
-				.klassEnd(klassEnd)
+				.klassStart(klassStartFull)
+				.klassEnd(klassEndFull)
 				.build();
 		
 		System.out.println("date" + klassDate);
