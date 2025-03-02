@@ -192,7 +192,7 @@
 			let ssnBoolean = false;
 			$('#account_ssn').keyup(function(){
 				let ssnInput = form.account_ssn.value;
-				let ssnReg =  /^(19[0-9]{2}|20[0-9]{2})((01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01])|(04|06|09|11)(0[1-9]|[12][0-9]|30)|(02)(0[1-9]|1[0-9]|2[0-8]))[1-4][0-9]{6}$/;
+				let ssnReg = /^(?:[0-9]{2})((01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01])|(04|06|09|11)(0[1-9]|[12][0-9]|30)|(02)(0[1-9]|1[0-9]|2[0-8]|29))[1-4][0-9]{6}$/;
 				if(ssnReg.test(ssnInput)){
 					$('#account_ssn').css('backgroundColor', '#98FB98');
 					ssnBoolean = true;
@@ -234,7 +234,7 @@
 			/* 핸드폰번호 정규식 검사 */
 			let phoneBoolean = false;
 			$('#account_phone').keyup(function(){
-				let phoneInput = form.account_ssn.value;
+				let phoneInput = form.account_phone.value;
 				let phoneReg =  /^01[016789]\d{3,4}\d{4}$/;
 				if(phoneReg.test(phoneInput)){
 					$('#account_phone').css('backgroundColor', '#98FB98');
@@ -269,6 +269,20 @@
 				}
 			});
 			
+
+			/* 비밀번호 정규식 검사 */
+			let pwBoolean = false;
+			$('#account_pw').keyup(function(){
+				let pwInput = form.account_pw.value;
+				let pwReg =  /^[A-Za-z0-9!@#$%^&*()_+={}\[\]:;<>,.?/~`|-]{3,15}$/;
+				if(pwReg.test(pwInput)){
+					$('#account_pw').css('backgroundColor', '#98FB98');
+					pwBoolean = true;
+				} else{
+					$('#account_pw').css('backgroundColor', '#FF9999');
+					pwBoolean = false;
+				}
+			});	
 			/* 비밀번호와 비밀번호 재입력 일치 확인 */
 			$('#account_pw_check').keyup(function(){
 				let passValue = form.account_pw.value;
