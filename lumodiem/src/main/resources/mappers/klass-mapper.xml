@@ -37,7 +37,7 @@
 		<result property="attachPath" column="attach_path"/>
 	</resultMap>
 	
-	<insert id="klassAttachCreate">
+	<insert id="klassAttachCreate" parameterType="klassAttachVo" useGeneratedKeys="true" keyProperty="attachNo">
 		INSERT INTO `klass_attach`(attach_ori, attach_new ,attach_path)
 		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
 	</insert>

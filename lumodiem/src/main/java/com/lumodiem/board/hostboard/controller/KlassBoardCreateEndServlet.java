@@ -32,43 +32,47 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String klassName = request.getParameter("klass_name");
-		String accountNickname = request.getParameter("account_nickname");
-		String klassAddress = request.getParameter("klass_address");
-		int klassMax = Integer.parseInt(request.getParameter("klass_max"));
-		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
-		String klassTxt = request.getParameter("klass_txt");
-		int accountNo = Integer.parseInt(request.getParameter("account_no"));
-		String klassOfDate = request.getParameter("klass_date");
-		String klassStart = request.getParameter("klass_start");
-		String klassEnd = request.getParameter("klass_end");
-		
-		// klass_date 테이블에 저장될 문자열로 합치는 과정
-		String klassStartFull = klassOfDate + " " + klassStart + ":00";
-		String klassEndFull = klassOfDate + " " + klassEnd + ":00";
+//		String klassName = request.getParameter("klass_name");
+//		String accountNickname = request.getParameter("account_nickname");
+//		String klassAddress = request.getParameter("klass_address");
+//		int klassMax = Integer.parseInt(request.getParameter("klass_max"));
+//		int klassPrice = Integer.parseInt(request.getParameter("klass_price"));
+//		String klassTxt = request.getParameter("klass_txt");
+//		int accountNo = Integer.parseInt(request.getParameter("account_no"));
+//		String klassOfDate = request.getParameter("klass_date");
+//		String klassStart = request.getParameter("klass_start");
+//		String klassEnd = request.getParameter("klass_end");
+//		
+//		// klass_date 테이블에 저장될 문자열로 합치는 과정
+//		String klassStartFull = klassOfDate + " " + klassStart + ":00";
+//		String klassEndFull = klassOfDate + " " + klassEnd + ":00";
 		
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
 		KlassAttach a = new KlassAttach();
 		
-		Klass option = Klass.builder()
-					.klassName(klassName)
-					.accountNickname(accountNickname)
-					.klassAddress(klassAddress)
-					.klassMax(klassMax)
-					.klassPrice(klassPrice)
-					.klassTxt(klassTxt) 
-					.accountNo(accountNo)
-					.klassStatus("R")
-					.klassRegDate(ldt.format(dtf))
-					.klassModDate(ldt.format(dtf))
-					.build();
+		Klass option = new Klass();
+				
+//					Klass.builder()
+//					.klassName(klassName)
+//					.accountNickname(accountNickname)
+//					.klassAddress(klassAddress)
+//					.klassMax(klassMax)
+//					.klassPrice(klassPrice)
+//					.klassTxt(klassTxt) 
+//					.accountNo(accountNo)
+//					.klassStatus("R")
+//					.klassRegDate(ldt.format(dtf))
+//					.klassModDate(ldt.format(dtf))
+//					.build();
 		
-		KlassDate klassDate = KlassDate.builder()
-				.klassStart(klassStartFull)
-				.klassEnd(klassEndFull)
-				.build();
+		KlassDate klassDate = new KlassDate();
+				
+//				KlassDate.builder()
+//				.klassStart(klassStartFull)
+//				.klassEnd(klassEndFull)
+//				.build();
 		
 		
 		String path ="C:\\dev\\lumodiem\\file\\klassattach";
@@ -86,6 +90,11 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 			for(int i = 0; i < items.size(); i++) {
 				FileItem fileItem = items.get(i);
 				if(fileItem.isFormField()) {
+					String klassOfDate = "";
+					switch(fileItem.getFieldName()) {
+					case "klass_date" : klassOfDate = fileItem.getString("UTF-8");
+					}
+					
 					switch(fileItem.getFieldName()) {
 						case "klass_name" : option.setKlassName(fileItem.getString("UTF-8"));break;
 						case "account_nickname" : option.setAccountNickname(fileItem.getString("UTF-8"));break;
@@ -96,6 +105,8 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 						case "account_no" : option.setAccountNo(Integer.parseInt(fileItem.getString("UTF-8")));break;
 						case "klass_start" : option.setKlassStart(fileItem.getString("UTF-8"));break;
 						case "klass_end" : option.setKlassEnd(fileItem.getString("UTF-8"));break;
+						default : option.setKlassRegDate(ldt.format(dtf));
+								 option.setKlassModDate(ldt.format(dtf)); break;
 					}
 				}else {
 					if(fileItem.getSize() > 0) {
