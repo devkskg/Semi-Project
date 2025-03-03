@@ -24,13 +24,13 @@ public class ApproveUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = request.getParameter("klass_no");
 		String approveCode = request.getParameter("approve_code");
-		String approveFd = request.getParameter("approve_fd");
+		String approveFb = request.getParameter("approve_fb");
 		int klassNo=0;
 		if(temp!=null) klassNo= Integer.parseInt(temp);
 		Approve approve = Approve.builder()
 				.klassNo(klassNo)
 				.approveCode(approveCode)
-				.approveFd(approveFd)
+				.approveFb(approveFb)
 				.build();
 		int result = new ApproveSerview().updateApprove(approve);
 		JSONObject obj = new JSONObject();

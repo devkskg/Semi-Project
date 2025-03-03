@@ -18,5 +18,5 @@ public class Approve {
 	private int approveNo;
 	private int klassNo;
 	private String approveCode;
-	private String approveFd;
+	private String approveFb;
 }

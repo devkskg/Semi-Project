@@ -98,7 +98,8 @@
 	</select> -->
 	
 	<select id="selectReportKlass"  resultMap="reportKlassMap" >
-		SELECT kr.report_klass_no 
+		SELECT k.klass_no
+			,kr.report_klass_no 
 			,k.klass_name
 			,a.account_nickname
 			,k.klass_txt
