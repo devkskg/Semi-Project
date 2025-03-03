@@ -43,7 +43,7 @@
 					$('#account_pw').css('backgroundColor', '#FF9999');
 				}
 			});	
-			/* 비밀번호와 비밀번호 재입력 일치 확인 */
+			/* 비밀번호와 비밀번호 확인 일치 확인 */
 			let pwBoolean = false;
 			$('#account_pw_check').keyup(function(){
 				let passValue = form.account_pw.value;
@@ -56,6 +56,7 @@
 					pwBoolean = false;
 				}
 			});
+			/* 비밀번호 다시 쳤을 때 비밀번호 확인과 일치 여부 확인 */
 			$('#account_pw').keyup(function(){
 				let passValue = form.account_pw.value;
 				let passCheckValue = form.account_pw_check.value;

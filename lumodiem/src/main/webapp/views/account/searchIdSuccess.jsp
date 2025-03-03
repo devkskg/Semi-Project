@@ -18,10 +18,14 @@
 								"${searchAccount.accountName }"님의 아이디를 조회합니다.<br>
 								아이디 : "${searchAccount.accountId }"<br>
 								로그인 페이지로 이동하시겠습니까?<br>
-								<form action="/login" method="post">
-									<input type="hidden" value="${searchAccount.accountId }" name="searchId">
+								<form action='<c:url value="/login" />' method="post">
+									<input type="hidden" value="${searchAccount.accountId }" name="searchIdLogin">
 									<button>로그인</button>
-									<a href='<c:url value="/resetPw" />'><button type="button">비밀번호 재설정</button></a>
+								</form>
+								
+								<form action='<c:url value="/resetPw" />' method="post">
+									<input type="hidden" value="${searchAccount.accountId }" name="searchIdResetPw">
+									<button>비밀번호 재설정</button>
 								</form>
 							</div>
 						</div>

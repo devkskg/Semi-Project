@@ -9,30 +9,31 @@
 <body>
 	<%@ include file="/views/include/nav.jsp" %>
 	
-		<div id="colorlib-main">
-			<section class="ftco-section ftco-no-pt ftco-no-pb">
-				<div class="container">
-					<div class="row d-flex">
-						<div class="col-xl-8 py-5 px-md-5">
-							<div class="row pt-md-4">
-								<div>
-								<h3 class="sidebar-heading">Categories</h3>
-								</div>
-							
-						</div>
-							<div class="meta-wrap">
-								<ul class="categories">
-									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=A'/>">승인 완료 클래스 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=S'/>">승인 대기 클래스 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=D'/>">반려된 클래스 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/hostMypageReview'/>">클래스 리뷰 조회 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/mypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
-									<li><a href="<c:url value='/mypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
-								</ul>
-							</div>
+		
+<div id="colorlib-main">
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
+		<div class="container">
+			<div class="row d-flex">
+				<div class="col-xl-8 py-5 px-md-5">
+					<div class="row pt-md-4">
+						<h3 class="sidebar-heading">Categories</h3>
+					</div>
+					<div class="meta-wrap">
+						<ul class="categories">
+							<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=A'/>">승인 완료 클래스 <span>(+)</span></a></li>
+							<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=S'/>">승인 대기 클래스 <span>(+)</span></a></li>
+							<li><a href="<c:url value='/hostMypageApproveKlass?approve_code=D'/>">반려된 클래스 <span>(+)</span></a></li>
+							<li><a href="<c:url value='/hostMypageReview'/>">클래스 리뷰 조회 <span>(+)</span></a></li>
+							<li><a href="<c:url value='/mypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
+							<li><a href="<c:url value='/mypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
+						</ul>
+						<a href='<c:url value="/mypageUpdateDelete?val=update"/>'><button>회원 정보 수정</button></a><br>
+						<a href='<c:url value="/mypageDeleteDelete?val=delete"/>'><button>회원 탈퇴</button></a>
 					</div>
 				</div>
-			</section>
+			</div>
 		</div>
+	</section>
+</div>
 </body>
 </html>

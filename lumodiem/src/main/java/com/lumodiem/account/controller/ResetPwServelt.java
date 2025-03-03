@@ -23,7 +23,11 @@ public class ResetPwServelt extends HttpServlet {
 		if(session != null && session.getAttribute("account") != null) {
 			response.sendRedirect("/");
 		} else {
+			String searchIdResetPw = request.getParameter("searchIdResetPw");
 			RequestDispatcher view = request.getRequestDispatcher("/views/account/resetPw.jsp");
+			if(searchIdResetPw != null) {
+				request.setAttribute("searchIdResetPw", searchIdResetPw);
+			}
 			view.forward(request, response);
 		}		
 	}

@@ -16,59 +16,54 @@ import org.json.simple.JSONObject;
 import com.lumodiem.account.service.AccountService;
 import com.lumodiem.account.vo.Account;
 
-@WebServlet(name="accountCreateEndServlet", urlPatterns = "/accountCreateEnd")
-public class AccountCreateEndServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/mypageUpdateEndFin", name="mypageUpdateEndFinServlet")
+public class MypageUpdateEndFinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AccountCreateEndServlet() {
+    public MypageUpdateEndFinServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		Account account = null;
 		if(session != null && session.getAttribute("account") != null) {
-			response.sendRedirect("/");
-		} else {
-			String grade = request.getParameter("account_grade");
-			String id = request.getParameter("account_id");
+			account = (Account)session.getAttribute("account");
 			String pw = request.getParameter("account_pw");
-			String name = request.getParameter("account_name");
 			String nickname = request.getParameter("account_nickname");
-			String ssn = request.getParameter("account_ssn");
 			String phone = request.getParameter("account_phone");
 			String address = request.getParameter("account_address");
 			String email = request.getParameter("account_email");
-			LocalDateTime ldt = LocalDateTime.now();
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//			LocalDateTime ldt = LocalDateTime.now();
+//			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			
 			Account act = Account.builder()
-					.accountGrade(grade)
-					.accountId(id)
+					.accountNo(account.getAccountNo())
 					.accountPw(pw)
-					.accountName(name)
 					.accountNickname(nickname)
-					.accountSsn(ssn)
 					.accountPhone(phone)
 					.accountAddress(address)
 					.accountEmail(email)
-					.accountRegDate(ldt.format(dtf))
 					.build();
 			
-			int result = new AccountService().accountCreateOne(act);
+			int result = new AccountService().mypageUpdateEndFin(act);
 			
 			JSONObject obj = new JSONObject();
 			
 			obj.put("res_code", "500");
-			obj.put("res_msg", "회원가입중 오류가 발생하였습니다.");
+			obj.put("res_msg", "회원정보 수정중 오류가 발생하였습니다.");
 			
 			if(result > 0) {
 				obj.put("res_code", "200");
-				obj.put("res_msg", "정상적으로 회원가입되었습니다.");
+				obj.put("res_msg", "정상적으로 회원정보 수정이 완료 되었습니다.");
 			}
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(obj);
+		} else {
+			response.sendRedirect("/");
 		}
 		
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.dao.AccountDao;
 import com.lumodiem.account.dao.MypageDao;
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.account.vo.ReviewDTO;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
@@ -64,6 +66,14 @@ public class MypageService {
 		SqlSession session = getSqlSession();
 		List<ReviewDTO> list = new MypageDao().selectReviewKlassListByAccountNo(session, option);
 		return list;
+	}
+
+	public int deleteAccount(Account act) {
+		SqlSession session = getSqlSession();
+		int result = new MypageDao().deleteAccount(session, act);
+		commitRollback(session, result);
+		session.close();
+		return result;
 	}
 
 
