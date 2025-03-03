@@ -10,30 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/searchId")
+public class SearchIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public LoginServlet() {
+    public SearchIdServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session != null && session.getAttribute("account") != null) {
-			session.removeAttribute("account");
-			session.removeAttribute("accountResetPw");
-			session.invalidate();
 			response.sendRedirect("/");
 		} else {
-			String searchId = request.getParameter("searchId");
-			RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
-			if(searchId != null) {
-				request.setAttribute("searchId", searchId);
-			}
+			RequestDispatcher view = request.getRequestDispatcher("/views/account/searchId.jsp");
 			view.forward(request, response);
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

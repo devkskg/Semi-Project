@@ -19,9 +19,9 @@
 					<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text">
 					<button type="button" id="duplicate_id" name="duplicate_id" class="duplicate">중복확인</button><br>
 					
-					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password">
-					
+					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password"><br>
 					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="password"><br>
+					
 					<label for="account_name">이름 : </label><input name="account_name" id="account_name" type="text"><br>
 					<label for="account_nickname">닉네임 : </label><input name="account_nickname" id="account_nickname" type="text">
 					<button type="button" id="duplicate_nickname" name="duplicate_nickname" class="duplicate">중복확인</button> <br>
@@ -192,7 +192,7 @@
 			let ssnBoolean = false;
 			$('#account_ssn').keyup(function(){
 				let ssnInput = form.account_ssn.value;
-				let ssnReg =  /^(19[0-9]{2}|20[0-9]{2})((01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01])|(04|06|09|11)(0[1-9]|[12][0-9]|30)|(02)(0[1-9]|1[0-9]|2[0-8]))[1-4][0-9]{6}$/;
+				let ssnReg = /^(?:[0-9]{2})((01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01])|(04|06|09|11)(0[1-9]|[12][0-9]|30)|(02)(0[1-9]|1[0-9]|2[0-8]|29))[1-4][0-9]{6}$/;
 				if(ssnReg.test(ssnInput)){
 					$('#account_ssn').css('backgroundColor', '#98FB98');
 					ssnBoolean = true;
@@ -234,7 +234,7 @@
 			/* 핸드폰번호 정규식 검사 */
 			let phoneBoolean = false;
 			$('#account_phone').keyup(function(){
-				let phoneInput = form.account_ssn.value;
+				let phoneInput = form.account_phone.value;
 				let phoneReg =  /^01[016789]\d{3,4}\d{4}$/;
 				if(phoneReg.test(phoneInput)){
 					$('#account_phone').css('backgroundColor', '#98FB98');
@@ -260,6 +260,7 @@
 								alert(data.res_msg + '핸드폰 번호입니다.');
 							} else{
 								alert(data.res_msg + '핸드폰 번호입니다.');
+								$('#account_phone').css('backgroundColor', '#FF9999');
 							}
 						}
 					});
@@ -269,6 +270,17 @@
 				}
 			});
 			
+
+			/* 비밀번호 정규식 검사 */
+			$('#account_pw').keyup(function(){
+				let pwInput = form.account_pw.value;
+				let pwReg =  /^[A-Za-z0-9!@#$%^&*()_+={}\[\]:;<>,.?/~`|-]{3,15}$/;
+				if(pwReg.test(pwInput)){
+					$('#account_pw').css('backgroundColor', '#98FB98');
+				} else{
+					$('#account_pw').css('backgroundColor', '#FF9999');
+				}
+			});	
 			/* 비밀번호와 비밀번호 재입력 일치 확인 */
 			$('#account_pw_check').keyup(function(){
 				let passValue = form.account_pw.value;

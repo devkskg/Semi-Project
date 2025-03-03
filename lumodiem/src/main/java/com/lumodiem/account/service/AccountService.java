@@ -20,13 +20,32 @@ public class AccountService {
 	public Account loginAccount(Account act) {
 		SqlSession session = getSqlSession();
 		Account account = new AccountDao().loginAccount(session, act);
+		session.close();
 		return account;
 	}
 
 	public Account accountDuplicateCheck(Account act) {
 		SqlSession session = getSqlSession();
 		Account account = new AccountDao().accountDuplicateCheck(session, act);
+		session.close();
 		return account;
+	}
+
+	public Account searchIdNameByTwoInfo(Account act) {
+		SqlSession session = getSqlSession();
+		Account account = new AccountDao().searchIdNameByTwoInfo(session, act);
+		session.close();
+		return account;
+	}
+
+	public int resetPw(Account act) {
+		SqlSession session = getSqlSession();
+		int result = new AccountDao().resetPw(session, act);
+		System.out.println("서비스 act : " + act);
+		System.out.println("서비스 result : " + result);
+		commitRollback(session, result);
+		session.close();
+		return result;
 	}
 
 }
