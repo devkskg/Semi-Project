@@ -47,7 +47,7 @@
 			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
 			
 			<button type="button" id="updateBtn" onclick="updateKlass();">수정하기</button>
-			<button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button>
+			<!-- <button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button> -->
 		
 		</fieldset>
 	
@@ -57,36 +57,44 @@
 <script type="text/javascript">
 	const updateKlass = function(){
 		const form = document.update_klass_form;
-		$.ajax({
-			url : "klassBoardUpdateEnd",
-			type : "post",
-			data : {"account_no" : form.account_no.value,
-					"klass_name" : form.klass_name.value,
-					"account_nickname" : form.account_nickname.value,
-					"klass_address" : form.klass_address.value,
-					"klass_max" : form.klass_max.value,
-					"klass_price" : form.klass_price.value,
-					"klass_txt" : form.klass_txt.value,
-					"klass_no" : form.klass_no.value
-					
-			},
-			dataType : "JSON",
-			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-			success : function(data){
-				alert(data.res_msg);
-				if(data.res_code == "200"){
-					location.href="/";
-				} else{
-					location.href="/";
+		const klassNo = ${klass.klassNo}; 
+		const check = confirm("수정하시겠습니까?");
+		if(check == true){
+			$.ajax({
+				url : "klassBoardUpdateEnd",
+				type : "post",
+				data : {"account_no" : form.account_no.value,
+						"klass_name" : form.klass_name.value,
+						"account_nickname" : form.account_nickname.value,
+						"klass_address" : form.klass_address.value,
+						"klass_max" : form.klass_max.value,
+						"klass_price" : form.klass_price.value,
+						"klass_txt" : form.klass_txt.value,
+						"klass_no" : form.klass_no.value
+						
+				},
+				dataType : "JSON",
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href='/klassDetail?klass_no='+klassNo;
+					} else{
+						location.href='/klassDetail?klass_no='+klassNo;
+					}
 				}
-			}
+				
+			});
 			
-		});
+		}else{
+			location.href="/klassBoardList";
+		}
 	}
 	
-	const deleteKlass = function(){
+/* 	const deleteKlass = function(){
 		const form = document.update_klass_form;
-		if(confirm("삭제하시겠습니까?")){
+		const check = confirm("삭제하시겠습니까?");
+		if(check == true){
 			$.ajax({
 				url : "klassBoardDelete",
 				type : "post",
@@ -96,15 +104,17 @@
 				success : function(data){
 					alert(data.res_msg);
 					if(data.res_code == "200"){
-						location.href="/";
+						location.href="/klassBoardList";
 					} else{
 						location.href="/";
 					}
 				}
 				
 			});
+		}else{
+			location.href = "/";
 		}
-	}
+	} */
 
 </script>	
 								

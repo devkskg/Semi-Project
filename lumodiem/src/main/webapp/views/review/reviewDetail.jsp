@@ -16,14 +16,13 @@
 <body>
 	<h3>리뷰 상세 정보</h3>
 	<!-- 이건 나중에 작성 -->
-	<div class="review_detail">
+	<div class="review">
 		<ul>
-				<c:if test="${not empty review.attachNo} "> 
 			<li>
-				<img src="<%=request.getContextPath()%>/filePath?attach_no=<%=review.getAttachNo()%>">
+				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}"> 
 			</li> 
-				</c:if>
 			<li>
+					<c:out value="attachNo : ${review.attachNo }"/>
 				<table>
 					<tr>
 						<td>제목</td>
@@ -49,7 +48,6 @@
 			</li>
 		</ul> 
 	</div>
-	
 	<div>
 		<button type="button" class="selectBtn" name="update">
 			<a href="<c:url value='/updateReviewPage'/>">수정</a>
@@ -58,7 +56,5 @@
 			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
 		</button>
 	</div>
-	
-	
 </body>
 </html>

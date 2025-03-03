@@ -33,4 +33,5 @@ public class Klass {
 	private int klassDateNo;
 	private String klassStart;
 	private String klassEnd;
+	private int attachNo;
 }

@@ -22,6 +22,11 @@
 	<div class="klass_detail">
 	
 		<form action="" name="detail_klass_form">
+		<div>
+			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
+				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}">
+			</c:forEach>
+		</div>
 		<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<table>
 				<tr>
@@ -91,13 +96,13 @@
 				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
 			</button>
 			<button type="button" id="deleteBtn" name="deleteBtn">
-				<a href="/klassBoardDelete?klass_no=${klass.klassNo }">삭제</a>
+				삭제
 			</button>
 			</c:when>
 
 			<c:when test="${account.accountGrade eq 'M'}">
 				<button type="button" id="resBtn" name="resBtn">
-					<a href="/reservation">예약하기</a>
+					<a href="/klassReservation">예약하기</a>
 				</button>
 			</c:when>
 			
@@ -117,7 +122,7 @@
 	$('#deleteBtn').click(function(){
 		const klassNo = ${klass.klassNo}; 
 		const check = confirm("삭제하시겠습니까?");
-		if(check == true){
+		if(check){
 			$.ajax({
 					url : "klassBoardDelete",
 					type : "post",
@@ -127,9 +132,9 @@
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
-							location.href="/";
+							location.href="/klassBoardList";
 						} else{
-							location.href="/";
+							location.href='/klassDetail?klass_no='+klassNo;
 						}
 					}
 			});

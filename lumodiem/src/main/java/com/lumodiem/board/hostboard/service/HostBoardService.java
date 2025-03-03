@@ -8,15 +8,20 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassMapping;
 
 public class HostBoardService {
 	
 	public int deleteKlassOne(Klass klass) {
 		SqlSession session = getSqlSession();
 		int result = new HostBoardDao().deleteKlassOne(session,klass);
-		if(result > 0) session.commit();
-		else session.rollback();
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
 		session.close();
 		return result;
 	}
@@ -33,6 +38,12 @@ public class HostBoardService {
 		return result;
 	}
 	
+	public KlassAttach selectAttachOne(int attachNo) {
+		SqlSession session = getSqlSession();
+		KlassAttach a = new HostBoardDao().selectAttachOne(session,attachNo);
+		session.close();
+		return a;
+	}
 
 	public List<KlassDate> selectKlassDate(int klassNo) {
 		SqlSession session = getSqlSession();
@@ -54,10 +65,40 @@ public class HostBoardService {
 		return searchList;
 	}
 	
-	public int insertBoard(Klass option) {
+	public List<KlassAttach> selectAttachList(int klassNo) {
 		SqlSession session = getSqlSession();
-		int result = new HostBoardDao().insertBoard(session, option);
-		if(result > 0) {
+		List<KlassAttach> klassAttach = new HostBoardDao().selectAttachList(session,klassNo);
+		return klassAttach;
+	}
+	
+	public int insertKlassDate(KlassDate klassDate) {
+		SqlSession session = getSqlSession();
+		int dateResult = new HostBoardDao().insertKlassDate(session,klassDate);
+		if(dateResult > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		return dateResult;
+	}
+	
+	public int insertBoard(Klass option, KlassDate klassDate,KlassAttach a, KlassMapping m) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		int klassNo = new HostBoardDao().insertBoard(session, option); 
+		klassDate.setKlassNo(klassNo);
+		int klassDateNo = new HostBoardDao().insertKlassDate(session, klassDate);
+		
+		int attachNo = new HostBoardDao().insertKlassAttach(session,a);
+		
+		m.setKlassNo(klassNo);
+		m.setAttachNo(attachNo);
+		
+		int mappingNo = new HostBoardDao().insertKlassMapping(session,m);
+		
+		if(klassNo > 0 && klassDateNo > 0 && attachNo > 0 && mappingNo > 0) {
+			result = 1;
 			session.commit();
 		} else {
 			session.rollback();
@@ -65,5 +106,6 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
+
 	
 }

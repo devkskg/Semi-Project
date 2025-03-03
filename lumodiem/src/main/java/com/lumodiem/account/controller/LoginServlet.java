@@ -21,9 +21,16 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session != null && session.getAttribute("account") != null) {
+			session.removeAttribute("account");
+			session.removeAttribute("accountResetPw");
+			session.invalidate();
 			response.sendRedirect("/");
 		} else {
+			String searchId = request.getParameter("searchId");
 			RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
+			if(searchId != null) {
+				request.setAttribute("searchId", searchId);
+			}
 			view.forward(request, response);
 		}
 		
