@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.vo.Review;
+
 @WebServlet("/updateReviewPage")
 public class UpdateReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +21,14 @@ public class UpdateReviewServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String temp = request.getParameter("review_no");
+		int reviewNo = 0;
+		if(temp != null) reviewNo = Integer.parseInt(temp);
+		Review review = new MemberBoardService().selectReviewOne(reviewNo);
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/updateReview.jsp");
+		request.setAttribute("review", review);
+		System.out.println(review);
 		view.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
