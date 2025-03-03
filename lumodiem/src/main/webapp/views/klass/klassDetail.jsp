@@ -22,6 +22,11 @@
 	<div class="klass_detail">
 	
 		<form action="" name="detail_klass_form">
+		<div>
+			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
+				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}">
+			</c:forEach>
+		</div>
 		<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<table>
 				<tr>

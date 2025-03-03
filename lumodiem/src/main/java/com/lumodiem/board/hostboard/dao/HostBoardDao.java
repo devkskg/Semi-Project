@@ -32,6 +32,9 @@ public class HostBoardDao {
 		return session.selectOne("klassMapper.klassOne",klassNo);
 	}
 	
+	public List<KlassAttach> selectAttachList(SqlSession session, int klassNo) {
+		return session.selectList("klassMapper.klassAttachList",klassNo);
+	}
 	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
@@ -56,5 +59,6 @@ public class HostBoardDao {
 		int result = session.insert("klassMapper.klassMappingCreate",m);
 		return result;
 	}
+
 	
 }
