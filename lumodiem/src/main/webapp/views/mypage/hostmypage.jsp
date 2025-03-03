@@ -27,9 +27,9 @@
 							<li><a href="<c:url value='/mypageLike'/>">좋아요 목록 조회 <span>(+)</span></a></li>
 							<li><a href="<c:url value='/mypageCmt'/>">작성 댓글 조회 <span>(+)</span></a></li>
 						</ul>
-						<a href='<c:url value="/mypageUpdate"/>'><button>회원정보 수정</button></a>
+						<a href='<c:url value="/mypageUpdateDelete?val=update"/>'><button>회원 정보 수정</button></a><br>
+						<a href='<c:url value="/mypageDeleteDelete?val=delete"/>'><button>회원 탈퇴</button></a>
 					</div>
-					
 				</div>
 			</div>
 		</div>

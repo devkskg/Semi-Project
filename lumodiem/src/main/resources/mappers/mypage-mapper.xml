@@ -71,6 +71,19 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="klassDateNo" column="klass_date_no"/>
 	</resultMap>
+	<resultMap type="accountVo" id="accountMap">
+		<result property="accountNo" column="account_no"/>
+		<result property="accountName" column="account_name"/>
+		<result property="accountId" column="account_id"/>
+		<result property="accountPw" column="account_pw"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="accountSsn" column="account_ssn"/>
+		<result property="accountAddress" column="account_address"/>
+		<result property="accountPhone" column="account_phone"/>
+		<result property="accountEmail" column="account_email"/>
+		<result property="accountGrade" column="account_grade"/>
+		<result property="accountRegDate" column="account_reg_date"/>
+	</resultMap>
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
 	<select id="klassListSearch" resultMap="klassMap" parameterType="klassVo">
@@ -144,6 +157,15 @@
 		WHERE r.account_no = #{accountNo};
 	</select>
 	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteAccount" parameterType="accountVo">
+		DELETE FROM `account`
+		<where>
+			AND account_no = #{accountNo}
+			AND account_id = #{accountId}
+			AND account_pw = #{accountPw}
+		</where>
+	</delete>
 	
 	
 </mapper>
