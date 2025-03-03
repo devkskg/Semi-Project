@@ -20,10 +20,10 @@
 							<form action="/resetPwSetPw" id="resetPw_form" name="resetPw_form" method="post">
 								<c:choose>
 									<c:when test="${not empty searchIdResetPw }">
-										<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" value="${searchIdResetPw }"><br>
+										<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" required value="${searchIdResetPw }"><br>
 									</c:when>
 									<c:otherwise>
-										<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" required value="test"><br>
+										<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" required><br>
 									</c:otherwise>
 								</c:choose>
 								<label for="account_ssn">주민등록번호 : </label><input name="account_ssn" id="account_ssn" type="text" required>

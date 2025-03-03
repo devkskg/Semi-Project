@@ -31,4 +31,14 @@ public class AccountDao {
 		return result;
 	}
 
+	public Account mypageUpdateDuplicateCheck(SqlSession session, Account act) {
+		Account account = session.selectOne("accountMapper.mypageUpdateDuplicateCheck", act);
+		return account;
+	}
+
+	public int mypageUpdateEndFin(SqlSession session, Account act) {
+		int result = session.update("accountMapper.mypageUpdateEndFin", act);
+		return result;
+	}
+
 }

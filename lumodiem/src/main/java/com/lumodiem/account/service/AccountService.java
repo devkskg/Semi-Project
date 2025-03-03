@@ -41,8 +41,21 @@ public class AccountService {
 	public int resetPw(Account act) {
 		SqlSession session = getSqlSession();
 		int result = new AccountDao().resetPw(session, act);
-		System.out.println("서비스 act : " + act);
-		System.out.println("서비스 result : " + result);
+		commitRollback(session, result);
+		session.close();
+		return result;
+	}
+
+	public Account mypageUpdateDuplicateCheck(Account act) {
+		SqlSession session = getSqlSession();
+		Account account = new AccountDao().mypageUpdateDuplicateCheck(session, act);
+		session.close();
+		return account;
+	}
+
+	public int mypageUpdateEndFin(Account act) {
+		SqlSession session = getSqlSession();
+		int result = new AccountDao().mypageUpdateEndFin(session, act);
 		commitRollback(session, result);
 		session.close();
 		return result;
