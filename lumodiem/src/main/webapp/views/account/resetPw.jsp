@@ -18,7 +18,14 @@
 					<div class="col-xl-8 py-5 px-md-5">
 						<div class="row pt-md-4">
 							<form action="/resetPwSetPw" id="resetPw_form" name="resetPw_form" method="post">
-								<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" required><br>
+								<c:choose>
+									<c:when test="${not empty searchIdResetPw }">
+										<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" value="${searchIdResetPw }"><br>
+									</c:when>
+									<c:otherwise>
+										<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text" required value="test"><br>
+									</c:otherwise>
+								</c:choose>
 								<label for="account_ssn">주민등록번호 : </label><input name="account_ssn" id="account_ssn" type="text" required>
 								<button type="button" id="searchBtn">다음</button>
 							</form>

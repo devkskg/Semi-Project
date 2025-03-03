@@ -26,10 +26,10 @@ public class LoginServlet extends HttpServlet {
 			session.invalidate();
 			response.sendRedirect("/");
 		} else {
-			String searchId = request.getParameter("searchId");
+			String searchIdLogin = request.getParameter("searchIdLogin");
 			RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
-			if(searchId != null) {
-				request.setAttribute("searchId", searchId);
+			if(searchIdLogin != null) {
+				request.setAttribute("searchIdLogin", searchIdLogin);
 			}
 			view.forward(request, response);
 		}
