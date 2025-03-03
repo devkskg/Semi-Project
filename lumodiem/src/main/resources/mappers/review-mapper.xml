@@ -61,7 +61,12 @@
 		INSERT INTO `review_attach`(attach_ori, attach_new ,attach_path)
 		VALUES (#{attachOri} ,#{attachNew}, #{attachPath})
 	</insert>
-	<update id="reviewUpdate" parameterType="reviewVo">
+	<insert id="reviewMappingInsert" parameterType="reviewMappingVo" useGeneratedKeys="true" keyProperty="mappingNo">
+		INSERT INTO `review_mapping`(review_no ,attach_no)
+		VALUES (#{reviewNo} ,#{attachNo})
+	</insert>
+	
+	<update id="reviewUpdate" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		UPDATE `review`
 		SET review_name = #{reviewName}
 		,review_txt = #{reviewTxt}
