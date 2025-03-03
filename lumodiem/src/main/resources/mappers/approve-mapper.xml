@@ -36,12 +36,13 @@
 		<result property="approveNo" column="approve_no"/>
 		<result property="klassNo" column="klass_no"/>
 		<result property="approveCode" column="approve_code"/>
-		<result property="approveFd" column="approve_fd"/>
+		<result property="approveFb" column="approve_fb"/>
 		
 	</resultMap>
 	<update id="updateApprove" parameterType="approveVo" useGeneratedKeys="true" keyProperty="approveNo">
 	UPDATE `approve`
 	SET `approve_code` = #{approveCode}
+		,`approve_fb` = #{approveFb}
 	<where>
 	klass_no = #{klassNo}
 	</where>
