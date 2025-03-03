@@ -10,30 +10,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+
+@WebServlet("/mypageUpdateDelete")
+public class MypageUpdateDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public LoginServlet() {
+    public MypageUpdateDeleteServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		String urlPath = "/";
+		String val = null;
 		if(session != null && session.getAttribute("account") != null) {
-			session.removeAttribute("account");
-			session.removeAttribute("accountResetPw");
-			session.invalidate();
-			response.sendRedirect("/");
-		} else {
-			String searchIdLogin = request.getParameter("searchIdLogin");
-			RequestDispatcher view = request.getRequestDispatcher("/views/account/login.jsp");
-			if(searchIdLogin != null) {
-				request.setAttribute("searchIdLogin", searchIdLogin);
+			val = request.getParameter("val");
+			if(val != null) {
+				if("update".equals(val)) {
+					urlPath = request.getContextPath()+"/views/mypage/mypageUpdate.jsp";
+				} else {
+					urlPath = request.getContextPath()+"/views/mypage/mypageDelete.jsp";
+				}
 			}
+			RequestDispatcher view = request.getRequestDispatcher(urlPath);
 			view.forward(request, response);
+		} else {
+			response.sendRedirect(urlPath);
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

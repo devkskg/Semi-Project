@@ -25,7 +25,7 @@
 	<select id="loginSelect" parameterType="accountVo" resultMap="accountMap">
 		SELECT * FROM `account` WHERE account_id=#{accountId} and account_pw=#{accountPw}
 	</select>
-	<!-- 중복확인 -->
+	<!-- 회원가입 중복확인 -->
 	<select id="accountDuplicateCheck" parameterType="accountVo" resultMap="accountMap">
 		SELECT * FROM `account` 
 		<where>
@@ -66,6 +66,31 @@
 			AND account_ssn = #{accountSsn}
 		</where>
 	</update>
+	<!-- 개인정보수정 중복확인 -->
+	<select id="mypageUpdateDuplicateCheck" parameterType="accountVo" resultMap="accountMap">
+		SELECT * FROM `account` 
+		<where>
+			<if test="accountNickname != null and accountNickname.equals('') == false">
+				AND account_nickname=#{accountNickname}
+			</if>
+			<if test="accountPhone != null and accountPhone.equals('') == false">
+				AND account_phone=#{accountPhone}
+			</if>
+			AND account_no != #{accountNo}
+		</where> 
+	</select>
+	<!-- 회원가입 -->
+	<insert id="mypageUpdateEndFin" parameterType="accountVo" useGeneratedKeys="true" keyProperty="accountNo">
+		UPDATE `account`
+		SET account_pw = #{accountPw}
+		,account_nickname = #{accountNickname}
+		,account_phone = #{accountPhone}
+		,account_address = #{accountAddress}
+		,account_email = #{accountEmail}
+		<where>
+			AND account_no = #{accountNo}
+		</where>
+	</insert>
 	
 	
 </mapper>

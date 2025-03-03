@@ -21,8 +21,8 @@
 								
 									<form action="/loginEnd" method="post">
 										<c:choose>
-											<c:when test="${not empty searchId }">
-												<label for="login_id">아이디 : </label><input name="login_id" id="login_id" type="text" value="${searchId }">
+											<c:when test="${not empty searchIdLogin }">
+												<label for="login_id">아이디 : </label><input name="login_id" id="login_id" type="text" value="${searchIdLogin }">
 											</c:when>
 											<c:otherwise>
 												<label for="login_id">아이디 : </label><input name="login_id" id="login_id" type="text">

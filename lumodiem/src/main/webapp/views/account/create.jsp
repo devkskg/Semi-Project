@@ -37,7 +37,7 @@
 					
 					
 					<button type="button" id="submitBtn">가입하기</button>
-					<button type="button"><a href="/" style="color: black">홈으로 돌아가기</a></button>
+					<a href="/" style="color: black"><button type="button">홈으로 돌아가기</button></a>
 				</form>
 			
 			</div>
@@ -289,6 +289,18 @@
 					$('#account_pw_check').css('backgroundColor', '#98FB98');
 				} else{
 					$('#account_pw_check').css('backgroundColor', '#FF9999');
+				}
+			});
+			/* 비밀번호 다시 쳤을 때 비밀번호 확인과 일치 여부 확인 */
+			$('#account_pw').keyup(function(){
+				let passValue = form.account_pw.value;
+				let passCheckValue = form.account_pw_check.value;
+				if(passValue == passCheckValue && passValue != '' && passCheckValue != ''){
+					$('#account_pw_check').css('backgroundColor', '#98FB98');
+					pwBoolean = true;
+				} else{
+					$('#account_pw_check').css('backgroundColor', '#FF9999');
+					pwBoolean = false;
 				}
 			});
 			
