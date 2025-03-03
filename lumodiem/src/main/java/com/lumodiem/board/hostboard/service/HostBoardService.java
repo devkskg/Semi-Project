@@ -65,6 +65,12 @@ public class HostBoardService {
 		return searchList;
 	}
 	
+	public List<KlassAttach> selectAttachList(int klassNo) {
+		SqlSession session = getSqlSession();
+		List<KlassAttach> klassAttach = new HostBoardDao().selectAttachList(session,klassNo);
+		return klassAttach;
+	}
+	
 	public int insertKlassDate(KlassDate klassDate) {
 		SqlSession session = getSqlSession();
 		int dateResult = new HostBoardDao().insertKlassDate(session,klassDate);
@@ -100,5 +106,6 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
+
 	
 }

@@ -119,6 +119,16 @@
 	</where>	
 	</select>
 	
+	<select id="klassAttachList" resultMap="klassAttachMap" parameterType="_int" resultType="klassAttachVo">
+		SELECT a.*
+		FROM `klass_attach` a
+		JOIN `klass_mapping` m
+		ON a.attach_no = m.attach_no
+	<where>
+		AND m.klass_no = #{klassNo}
+	</where>	
+	</select>
+	
 	<select id="klassDateList" resultMap="klassDateMap" parameterType="_int" resultType="klassDateVo">
 		SELECT d.*
 		FROM `klass_date` d
