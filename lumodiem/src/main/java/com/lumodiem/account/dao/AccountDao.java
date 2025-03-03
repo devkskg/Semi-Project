@@ -21,9 +21,14 @@ public class AccountDao {
 		return account;
 	}
 
-	public Account searchIdByNameSsn(SqlSession session, Account act) {
-		Account account = session.selectOne("accountMapper.searchIdByNameSsn", act);
+	public Account searchIdNameByTwoInfo(SqlSession session, Account act) {
+		Account account = session.selectOne("accountMapper.searchIdNameByTwoInfo", act);
 		return account;
+	}
+
+	public int resetPw(SqlSession session, Account act) {
+		int result = session.update("accountMapper.resetPw", act);
+		return result;
 	}
 
 }

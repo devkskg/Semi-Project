@@ -19,9 +19,9 @@
 					<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text">
 					<button type="button" id="duplicate_id" name="duplicate_id" class="duplicate">중복확인</button><br>
 					
-					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password">
-					
+					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password"><br>
 					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="password"><br>
+					
 					<label for="account_name">이름 : </label><input name="account_name" id="account_name" type="text"><br>
 					<label for="account_nickname">닉네임 : </label><input name="account_nickname" id="account_nickname" type="text">
 					<button type="button" id="duplicate_nickname" name="duplicate_nickname" class="duplicate">중복확인</button> <br>
@@ -260,6 +260,7 @@
 								alert(data.res_msg + '핸드폰 번호입니다.');
 							} else{
 								alert(data.res_msg + '핸드폰 번호입니다.');
+								$('#account_phone').css('backgroundColor', '#FF9999');
 							}
 						}
 					});
@@ -271,16 +272,13 @@
 			
 
 			/* 비밀번호 정규식 검사 */
-			let pwBoolean = false;
 			$('#account_pw').keyup(function(){
 				let pwInput = form.account_pw.value;
 				let pwReg =  /^[A-Za-z0-9!@#$%^&*()_+={}\[\]:;<>,.?/~`|-]{3,15}$/;
 				if(pwReg.test(pwInput)){
 					$('#account_pw').css('backgroundColor', '#98FB98');
-					pwBoolean = true;
 				} else{
 					$('#account_pw').css('backgroundColor', '#FF9999');
-					pwBoolean = false;
 				}
 			});	
 			/* 비밀번호와 비밀번호 재입력 일치 확인 */

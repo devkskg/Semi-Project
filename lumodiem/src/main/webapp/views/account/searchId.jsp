@@ -17,10 +17,10 @@
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">
 						<div class="row pt-md-4">
-							<form action="" id="searchId_form" name="searchId_form">
-								<label for="account_name">이름 : </label><input name="account_name" id="account_name" type="text"><br>
-								<label for="account_ssn">주민등록번호 : </label><input name="account_ssn" id="account_ssn" type="text">
-								<button type="button" id="searchBtn">아이디 찾기</button>
+							<form action="/searchIdEnd" id="searchId_form" name="searchId_form" method="post">
+								<label for="account_name">이름 : </label><input name="account_name" id="account_name" type="text" required><br>
+								<label for="account_ssn">주민등록번호 : </label><input name="account_ssn" id="account_ssn" type="text" required>
+								<button type="submit" id="searchBtn">아이디 찾기</button>
 							</form>
 						</div>
 					</div>
@@ -32,6 +32,16 @@
 		$(function(){
 			const form = document.searchId_form;
 			$('#searchBtn').click(function(){
+				if(!form.account_name.value){
+					alert("이름을 입력하세요.")
+					form.account_name.focus();
+				} else if(!form.account_ssn.value){
+					alert("주민등록번호를 입력하세요.")
+					form.account_ssn.focus();
+				}
+			});
+			
+			/* $('#searchBtn').click(function(){
 				if(!form.account_name.value){
 					alert("이름을 입력하세요.")
 					form.account_name.focus();
@@ -57,7 +67,7 @@
 						}
 					});
 				}
-			});
+			}); */
 		})
 	</script>
 </body>

@@ -44,9 +44,28 @@
 		</where> 
 	</select>
 	<!-- id 조회 -->
-	<select id="searchIdByNameSsn" parameterType="accountVo" resultMap="accountMap">
-		SELECT * FROM `account` WHERE account_name=#{accountName} and account_ssn=#{accountSsn}
+	<select id="searchIdNameByTwoInfo" parameterType="accountVo" resultMap="accountMap">
+		SELECT account_no, account_id, account_ssn, account_name FROM `account` 
+		<where>
+			<if test="accountName != null and accountSsn != null">
+				AND account_name=#{accountName}
+				AND account_ssn=#{accountSsn}
+			</if>
+			<if test="accountId != null and accountSsn != null">
+				AND account_id=#{accountId} 
+				AND account_ssn=#{accountSsn}
+			</if>
+		</where>
 	</select>
+	<!-- pw 재설정 -->
+	<update id="resetPw" parameterType="accountVo">
+		UPDATE `account`
+		SET account_pw = #{accountPw}
+		<where>
+			AND account_id = #{accountId}
+			AND account_ssn = #{accountSsn}
+		</where>
+	</update>
 	
 	
 </mapper>

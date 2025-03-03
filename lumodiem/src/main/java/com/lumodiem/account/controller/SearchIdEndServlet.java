@@ -16,10 +16,10 @@ import com.lumodiem.account.service.AccountService;
 import com.lumodiem.account.vo.Account;
 
 @WebServlet("/searchIdEnd")
-public class SearchIdEnd extends HttpServlet {
+public class SearchIdEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SearchIdEnd() {
+    public SearchIdEndServlet() {
         super();
     }
 
@@ -38,28 +38,29 @@ public class SearchIdEnd extends HttpServlet {
 				.accountName(accountName)
 				.accountSsn(accountSsn)
 				.build();
-				searchAccount = new AccountService().searchIdByNameSsn(account);
+				searchAccount = new AccountService().searchIdNameByTwoInfo(account);
 			} else {
 				response.sendRedirect("/");
 			}
 			
 			
-			JSONObject obj = new JSONObject();
-			
-			obj.put("res_code", "500");
-			obj.put("res_msg", "아이디 찾기중 오류가 발생했습니다.");
+//			JSONObject obj = new JSONObject();
+//			
+//			obj.put("res_code", "500");
+//			obj.put("res_msg", "아이디 찾기중 오류가 발생했습니다.");
 			
 			if(searchAccount != null) {
-				obj.put("res_code", "200");
-				obj.put("res_msg", "아이디 찾기를 완료했습니다.");
+//				obj.put("res_code", "200");
+//				obj.put("res_msg", "아이디 찾기를 완료했습니다.");
 				
-//				RequestDispatcher view = request.getRequestDispatcher(request.getContextPath()+"/views/account/searchIdSuccess.jsp");
-//				view.forward(request, response);
+				RequestDispatcher view = request.getRequestDispatcher(request.getContextPath()+"/views/account/searchIdSuccess.jsp");
+				request.setAttribute("searchAccount", searchAccount);
+				view.forward(request, response);
 			} else {
-//				response.sendRedirect(request.getContextPath()+"/views/account/searchIdFail.jsp");
+				response.sendRedirect(request.getContextPath()+"/views/account/searchIdFail.jsp");
 			}
-			response.setContentType("application/json; charset=utf-8");
-			response.getWriter().print(obj);
+//			response.setContentType("application/json; charset=utf-8");
+//			response.getWriter().print(obj);
 		}
 	}
 
