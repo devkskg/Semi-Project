@@ -23,6 +23,20 @@
 	
 		<form action="" name="detail_klass_form">
 		<div>
+			<c:choose>
+				<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
+				<button type="button" id="updateBtn" name="updateBtn">
+					<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
+				</button>
+				<button type="button" id="deleteBtn" name="deleteBtn">
+					삭제
+				</button>
+				</c:when>
+			
+			</c:choose>
+			
+		</div>
+		<div>
 			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
 				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}">
 			</c:forEach>
@@ -91,14 +105,6 @@
 
 		<form>
 		<c:choose >
-			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
-			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
-			</button>
-			<button type="button" id="deleteBtn" name="deleteBtn">
-				삭제
-			</button>
-			</c:when>
 
 			<c:when test="${account.accountGrade eq 'M'}">
 				<button type="button" id="resBtn" name="resBtn">
