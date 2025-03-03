@@ -63,13 +63,30 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	
-	<update id="klassUpdate" parameterType="klassVo" useGeneratedKeys="true" keyProperty="klassNo">
+	<update id="klassUpdate" parameterType="klassVo" >
 	 	UPDATE `klass`
 	 	SET klass_name = #{klassName}
 	 		,klass_max = #{klassMax}
 	 		,klass_price = #{klassPrice}
 	 		,klass_txt = #{klassTxt}
+	 		,klass_mod_date = #{klassModDate}
 	 	WHERE klass_no = #{klassNo}	
+	</update>
+	
+	<update id="klassDateUpdate" parameterType="klassDateVo" >
+		UPDATE `klass_date` 
+		SET klass_start = #{klassStart}
+			,klass_end = #{klassEnd}
+		WHERE klass_no = #{klassNo}	
+	</update>
+	
+	<update id="klassAttachUpdate" parameterType="klassAttachVo">
+		UPDATE `klass_attach`
+		SET attach_ori = #{attachOri}
+			,attach_new = #{attachNew}
+			,attach_path = #{attachPath}
+		WHERE attach_no = #{attachNo}	
+	
 	</update>
 	
  	<delete id="klassDelete" parameterType="_int">

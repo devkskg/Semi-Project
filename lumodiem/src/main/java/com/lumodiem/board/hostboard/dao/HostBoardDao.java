@@ -15,6 +15,16 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassDelete",klass);
 	}
 	
+	public int updateKlassAttach(SqlSession session, KlassAttach a) {
+		int result = session.update("klassMapper.klassAttachUpdate",a);
+		return result;
+	}
+	
+	public int updateKlassDate(SqlSession session, KlassDate klassDate) {
+		int result = session.update("klassMapper.klassDateUpdate",klassDate);
+		return result;
+	}
+	
 	public int updateKlass(SqlSession session, Klass option) {
 		int result = session.update("klassMapper.klassUpdate",option);
 		return result;

@@ -26,16 +26,22 @@ public class HostBoardService {
 		return result;
 	}
 	
-	public int updateKlass(Klass option) {
+	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a) {
 		SqlSession session = getSqlSession();
-		int result = new HostBoardDao().updateKlass(session,option);
-		if(result > 0) {
+		int result = 0;
+		int updateResult = new HostBoardDao().updateKlass(session, option);
+		klassDate.setKlassNo(option.getKlassNo());
+		int updateDateResult = new HostBoardDao().updateKlassDate(session,klassDate);
+		int updateAttachResult = new HostBoardDao().updateKlassAttach(session,a);
+		if(updateResult > 0 && updateDateResult >0 && updateAttachResult > 0) {
+			result = 1;
 			session.commit();
 		}else {
 			session.rollback();
 		}
 		session.close();
 		return result;
+		
 	}
 	
 	public KlassAttach selectAttachOne(int attachNo) {
@@ -92,8 +98,8 @@ public class HostBoardService {
 		
 		int attachNo = new HostBoardDao().insertKlassAttach(session,a);
 		
-		m.setKlassNo(klassNo);
-		m.setAttachNo(attachNo);
+		m.setKlassNo(option.getKlassNo());
+		m.setAttachNo(a.getAttachNo());
 		
 		int mappingNo = new HostBoardDao().insertKlassMapping(session,m);
 		
