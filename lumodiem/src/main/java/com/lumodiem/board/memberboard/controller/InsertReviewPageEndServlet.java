@@ -67,9 +67,9 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					
 					}
-//					if(r.getResNo() == 0) {
-//						response.sendRedirect("/");
-//					}
+					if(r.getResNo() == 0) {
+						response.sendRedirect("/");
+					}
 				}else {
 					if(fileItem.getSize() > 0) {
 						String oriName = fileItem.getName();

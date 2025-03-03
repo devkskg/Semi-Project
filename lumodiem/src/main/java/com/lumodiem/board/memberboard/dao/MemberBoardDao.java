@@ -13,14 +13,16 @@ public class MemberBoardDao {
 
 	public int insertReview(SqlSession session, Review r) {
 		session.insert("reviewMapper.reviewInsert",r);
+		System.out.println("r.dao : "+r.getReviewNo());
 		return r.getReviewNo();
 	}
 	public int insertReviewAttach(SqlSession session, ReviewAttach a) {
 		session.insert("reviewMapper.reviewAttachInsert",a);
+		System.out.println("a.dao :"+a.getAttachNo());
 		return a.getAttachNo(); 
 	}
 	public int insertReviewMapping(SqlSession session, ReviewMapping m) {
-		int result = session.insert("reviewMapper.reviewMappingInsert");
+		int result = session.insert("reviewMapper.reviewMappingInsert",m);
 		return result;
 	}
 	public int UpdateReview(SqlSession session, Review review) {
