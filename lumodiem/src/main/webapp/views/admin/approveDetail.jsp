@@ -122,6 +122,8 @@
 	});
 			$('#rejectBtn').click(function(){
 				const klassNo = ${klass.klassNo}; 
+				const approveFb = prompt("반려사유");
+				console.log(approveFb);
 				const check = confirm("반려하시겠습니까?");
 				if(check == true){
 				const approveCode = 'D';
@@ -129,7 +131,8 @@
 							url : "approveUpdate?klass_no=${klass.klassNo }",
 							type : "post",
 							data : {"klass_no" : klassNo,
-									"approve_code" :approveCode
+									"approve_code" :approveCode,
+									"approve_fb" : approveFb
 									},
 							dataType : "JSON",
 							contentType : "application/x-www-form-urlencoded; charset=UTF-8",

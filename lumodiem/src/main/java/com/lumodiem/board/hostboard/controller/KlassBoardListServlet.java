@@ -38,9 +38,6 @@ public class KlassBoardListServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		
-		
-//		Klass option = new Klass();
-		
 		List<Klass> resultList = new HostBoardService().searchBoardList(option);
 		request.setAttribute("resultList", resultList);
 		System.out.println(resultList);

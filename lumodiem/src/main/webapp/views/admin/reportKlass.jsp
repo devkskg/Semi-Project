@@ -45,7 +45,7 @@
 					<c:choose>
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
-								<tr>
+								<tr data-klass-no="${list.klassNo }">
 									<td>${list.klassName}</td>
 									<td>${list.accountNickname}</td>
 									<td>${list.klassTxt }</td>
@@ -73,7 +73,11 @@
 		</section>
 	</div>
 	<script>
-		
+	$('.report_klass_list tbody tr').click(function(){
+		const klassNo = $(this).data('klass-no');
+		location.href='/approveDetail?klass_no='+klassNo;
+	})
+
  		 
  		 $('.report_klass_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
