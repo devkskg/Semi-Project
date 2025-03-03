@@ -37,7 +37,7 @@
 					
 					
 					<button type="button" id="submitBtn">가입하기</button>
-					<button type="button"><a href="/" style="color: black">홈으로 돌아가기</a></button>
+					<a href="/" style="color: black"><button type="button">홈으로 돌아가기</button></a>
 				</form>
 			
 			</div>
