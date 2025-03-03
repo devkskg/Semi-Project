@@ -8,18 +8,24 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
-import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewMapping;
 public class MemberBoardService {
 	
-	public int insertReview(Review r,ReviewAttach a) {
+	public int insertReview(Review r,ReviewAttach a,ReviewMapping m) {
 		SqlSession session = getSqlSession();
 		int result = 0;	 
+		
 		int reviewNo = new MemberBoardDao().insertReview(session,r);
 		int attachNo = new MemberBoardDao().insertReviewAttach(session,a);
 		
-		if(reviewNo != 0 && attachNo != 0) {
+		m.setReviewNo(reviewNo);
+		m.setAttachNo(attachNo);
+		
+		int mappingNo = new MemberBoardDao().insertReviewMapping(session,m);
+		
+		if(reviewNo > 0 && attachNo > 0 && mappingNo > 0) {
 			result = 1;
 			session.commit();
 		}else {
@@ -28,12 +34,6 @@ public class MemberBoardService {
 		session.close();
 		return result;
 	}
-//	public List<Reservation> searchResNoByAccountNo(String accountNo) {
-//		SqlSession session = getSqlSession();
-//		List<Reservation> resList = new MemberBoardDao().searchResNoByAccountNo(session, accountNo);
-//		session.close();
-//		return resList;
-//	}
 	public int UpdateReview(Review review) {
 		SqlSession session = getSqlSession();
 		int result = new MemberBoardDao().UpdateReview(session,review);

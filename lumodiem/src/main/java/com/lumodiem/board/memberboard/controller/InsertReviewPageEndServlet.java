@@ -33,17 +33,17 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Review r = new Review();
-		ReviewAttach a = new ReviewAttach();
-//		ReviewMapping m = new ReviewMapping();
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
+		Review r = new Review();
+		
+		ReviewAttach a = new ReviewAttach();
+		
+		ReviewMapping m = new ReviewMapping();
+		
 		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
 		
-//		int reviewNo = Integer.parseInt(request.getParameter("review_no"));
-//		int attachNo = Integer.parseInt(request.getParameter("attach_no"));
-//		m = ReviewMapping.builder().reviewNo(reviewNo).attachNo(attachNo).build();
 		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
@@ -65,10 +65,11 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 					case"review_txt":r.setReviewTxt(fileItem.getString("utf-8"));break;
 					case"account_no":r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					
 					}
-					if(r.getResNo() == 0) {
-						response.sendRedirect("/");
-					}
+//					if(r.getResNo() == 0) {
+//						response.sendRedirect("/");
+//					}
 				}else {
 					if(fileItem.getSize() > 0) {
 						String oriName = fileItem.getName();
@@ -81,15 +82,19 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
-						a = ReviewAttach.builder().attachOri(oriName).attachNew(newName).attachPath(path+"\\"+newName).build();
+						a = ReviewAttach.builder()
+								.attachOri(oriName)
+								.attachNew(newName)
+								.attachPath(path+"\\"+newName)
+								.build();
 					}
 				}
 			}
 			// 잘들어갔는지 확인용도
-			System.out.println(r);
-			System.out.println(a);
+			System.out.println("review :"+r);
+			System.out.println("attach :"+a);
 			
-			int result = new MemberBoardService().insertReview(r,a);
+			int result = new MemberBoardService().insertReview(r,a,m);
 			
 			JSONObject obj = new JSONObject();
 			if(result > 0) {

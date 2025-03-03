@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.hostboard.vo.Klass;
-import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewMapping;
 
 public class MemberBoardDao {
 
@@ -16,12 +16,13 @@ public class MemberBoardDao {
 		return r.getReviewNo();
 	}
 	public int insertReviewAttach(SqlSession session, ReviewAttach a) {
-		int result = session.insert("reviewMapper.reviewAttachInsert",a);
+		session.insert("reviewMapper.reviewAttachInsert",a);
+		return a.getAttachNo(); 
+	}
+	public int insertReviewMapping(SqlSession session, ReviewMapping m) {
+		int result = session.insert("reviewMapper.reviewMappingInsert");
 		return result;
 	}
-//	public List<Reservation> searchResNoByAccountNo(SqlSession session ,String accountNo) {
-//	    return session.selectList("reviewMapper.searchResNoByAccountNo", accountNo);
-//	}
 	public int UpdateReview(SqlSession session, Review review) {
 		return session.update("reviewMapper.reviewUpdate",review);
 	}
