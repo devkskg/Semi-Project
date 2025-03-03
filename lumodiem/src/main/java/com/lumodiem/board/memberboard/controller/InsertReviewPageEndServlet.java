@@ -18,10 +18,10 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.simple.JSONObject;
 
-import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewMapping;
 
 @WebServlet("/insertReviewPageEnd")
 public class InsertReviewPageEndServlet extends HttpServlet {
@@ -35,15 +35,15 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Review r = new Review();
 		ReviewAttach a = new ReviewAttach();
+//		ReviewMapping m = new ReviewMapping();
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//		String resNoStr = request.getParameter("klass_title");
-//		System.out.println(resNoStr);
-//		int res = Integer.parseInt(resNoStr);
-//		List<Klass> klass = new MemberBoardService().searchResNo(res);
-//		request.setAttribute("klass", klass);
 		
 		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
+		
+//		int reviewNo = Integer.parseInt(request.getParameter("review_no"));
+//		int attachNo = Integer.parseInt(request.getParameter("attach_no"));
+//		m = ReviewMapping.builder().reviewNo(reviewNo).attachNo(attachNo).build();
 		
 		String path ="C:\\dev\\lumodiem\\file\\memberattach";
 		File dir = new File(path);
@@ -66,7 +66,6 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 					case"account_no":r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
 					}
-					// 1 번 서블릿에서 홈화면 보내는 방법
 					if(r.getResNo() == 0) {
 						response.sendRedirect("/");
 					}

@@ -41,15 +41,17 @@
 				<label for="review_txt">내용 : </label><br>
 				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
 				<input type="hidden" name="account_no" value="${account.accountNo}">
-				<%-- <input type="hidden" name="klass_date_no" value="${klassDate.klassDateNo}"> --%>
-				<%-- <input type="hidden" name=" " value="${reservation.resNo}"> --%>
+				
+				<%-- <input type="hidden" name="review_no" value="${review.reviewNo}"> 
+				<input type="hidden" name="attach_no" value="${review.attachNo}">  --%>
+				
 				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 				<button type="button" onclick="createReviewForm();">작성하기</button>
 				<c:choose>
 					<c:when test="${not empty klass}">
 						<p>
 						<c:forEach var="li" items="${klass}" varStatus="vs">
-							클래스 제목 : ${li.klassName }							
+							클래스 제목 : ${li.klassName }					
 						</c:forEach>
 						</p>
 					</c:when>
