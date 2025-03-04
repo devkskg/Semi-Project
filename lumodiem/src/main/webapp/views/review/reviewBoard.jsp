@@ -77,7 +77,7 @@
 							<td><c:out value="${vs.count}" /></td>
 							<td><c:out value="${rb.reviewName}" /></td>
 							<td><c:out value="${rb.reviewTxt}" /></td>
-							<td><c:out value="${rb.accountNickName}"/></td>
+							<td><c:out value="${rb.accountNickname}"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>

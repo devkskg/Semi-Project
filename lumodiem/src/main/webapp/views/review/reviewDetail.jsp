@@ -34,7 +34,7 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td>${review.accountNickName}</td>
+						<td>${review.accountNickname}</td>
 					</tr>
 					<tr>
 						<td>등록일</td>
