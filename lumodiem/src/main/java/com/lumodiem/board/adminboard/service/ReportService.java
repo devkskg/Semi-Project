@@ -11,8 +11,6 @@ import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
-import com.lumodiem.board.hostboard.dao.HostBoardDao;
-import com.lumodiem.board.hostboard.vo.Klass;
 
 public class ReportService {
 	ReportDao dao = new ReportDao();
@@ -40,20 +38,22 @@ public class ReportService {
 		return result;
 	}
 	
-	public List<ReportReview> selectReportReviewList(){
+	public ReportReview selectReportReviewOne(ReportReview option) {
 		SqlSession session = getSqlSession();
-		List<ReportReview> resultList = dao.selectReportReviewList(session);
+		option = dao.selectReportReviewOne(option,session);
+		session.close();
+		return option;
+	}
+	
+	
+	
+	public List<ReportReview> selectReportReviewList(ReportReview option){
+		SqlSession session = getSqlSession();
+		List<ReportReview> resultList = dao.selectReportReviewList(option,session);
 		session.close();
 		return resultList;
 	}
 	
-	public int deleteReportKlass(int klassNo) {
-		SqlSession session = getSqlSession();
-		int result = dao.deleteReportKlass(klassNo, session);
-		commitRollback(session, result);
-		session.close();
-		return result;
-	}
 	
 //	public List<ReportKlass> selectReportKlassList (int reportKlassNo){
 //		SqlSession session = getSqlSession();
@@ -61,6 +61,13 @@ public class ReportService {
 //		session.close();
 //		return resultList;
 //	}
+	public int deleteReportKlass(int klassNo) {
+		SqlSession session = getSqlSession();
+		int result = dao.deleteReportKlass(klassNo, session);
+		commitRollback(session, result);
+		session.close();
+		return result;
+	}
 	
 	public ReportKlass selectReportKlassOne(ReportKlass klass) {
 		SqlSession session = getSqlSession();

@@ -1,7 +1,6 @@
 package com.lumodiem.board.adminboard.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,37 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lumodiem.board.adminboard.service.ReportService;
 import com.lumodiem.board.adminboard.vo.ReportReview;
+import com.lumodiem.board.memberboard.vo.Review;
 
-@WebServlet("/reportReview")
-public class ReportReviewServlet extends HttpServlet {
+@WebServlet("/reportReviewDetail")
+public class ReportReviewDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ReportReviewServlet() {
+    public ReportReviewDetailServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = request.getParameter("review_no");
-		String searchType = request.getParameter("search_type");
-		String searchTxt = request.getParameter("search_txt");
-		String accountNickname = request.getParameter("account_nickname");
-		String reviewName = request.getParameter("review_name");
-		String reviewTxt = request.getParameter("review_txt");
-
-		int reviewNo = 0;
-		if(temp!=null) reviewNo=Integer.parseInt(temp);
+		int reviewNo =0;
+		if(temp!=null)reviewNo=Integer.parseInt(temp);
 		ReportReview option = ReportReview.builder()
 				.reviewNo(reviewNo)
-				.searchTxt(searchTxt)
-				.searchType(searchType)
-				.accountNickname(accountNickname)
-				.reviewName(reviewName)
-				.reviewTxt(reviewTxt)
 				.build();
-		System.out.println(option);
-		List<ReportReview> resultList= new ReportService().selectReportReviewList(option);
-		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReview.jsp");
-		request.setAttribute("resultList", resultList);
+		
+		option  = new ReportService().selectReportReviewOne(option);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReviewDetail.jsp");
+		request.setAttribute("review", option);
 		view.forward(request, response);
 	}
 
