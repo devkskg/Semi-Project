@@ -43,6 +43,23 @@
 		<result property="attachNo" column="attach_no"/>
 	</resultMap>
 	
+	<resultMap type="reviewVo" id="reviewMap">
+		<result property="reviewNo" column="review_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="resNo" column="res_no"/>
+		<result property="reviewTxt" column="review_txt"/>
+		<result property="reviewName" column="review_name"/>
+		<result property="accountNickName" column="account_nickname"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
+		<result property="reviewModDate" column="review_mod_date"/>
+		<result property="attachNo" column="attach_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="payTime" column="pay_time"/>
+		<result property="payStatus" column="pay_status"/>
+		<result property="payPrice" column="pay_price"/>
+		<result property="attachPath" column="attach_path"/>
+	</resultMap>
+	
 	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
 		INSERT INTO `klass_mapping`(klass_no ,attach_no)
 		VALUES (#{klassNo} ,#{attachNo})
@@ -95,6 +112,10 @@
 			klass_no = ${klassNo}
 		</where>
 	</delete>
+	
+	<select id="klassReviewList" resultMap="">
+	
+	</select>
  	
 	<select id="klassList" resultMap="klassMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname

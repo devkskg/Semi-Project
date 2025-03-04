@@ -14,6 +14,7 @@ import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.memberboard.vo.Review;
 
 @WebServlet("/klassDetail")
 public class KlassDetailServlet extends HttpServlet {
@@ -32,10 +33,13 @@ public class KlassDetailServlet extends HttpServlet {
 		
 		List<KlassAttach> klassAttach = new HostBoardService().selectAttachList(klassNo);
 		
+		List<Review> review = new HostBoardService().selectReviewByKlass(klassNo);
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassDetail.jsp");
 		request.setAttribute("klass", klass);
 		request.setAttribute("klassDate", klassDate);
 		request.setAttribute("klassAttach", klassAttach);
+		request.setAttribute("review", review);
 		System.out.println(klass);
 		System.out.println(klassDate);
 		view.forward(request, response);

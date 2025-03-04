@@ -121,6 +121,39 @@
 		</c:choose>
 		
 		</form>
+		
+		<form>
+			<div>
+				${klass.klassTxt}
+			</div>
+		</form>
+		
+		<form>
+			<table>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>내용</th>
+						<th>닉네임</th>
+						<th>날짜</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="li" items=${klassDate } varStatus="vs">
+					<tr>
+						<td>${vs.count}</td>						
+						<td>${li.reviewName}</td>
+						<td>${li.reviewTxt}</td>
+						<td>${li.accountNickname}</td>
+						<td>${li.reviewRegDate}</td>
+					</tr>
+							
+					</c:forEach>
+				
+				</tbody>
+			</table>
+		</form>
 	
 	</div>				
 

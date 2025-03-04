@@ -8,6 +8,7 @@ import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
+import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardDao {
 	
@@ -40,6 +41,10 @@ public class HostBoardDao {
 	
 	public Klass selectKlassOne(SqlSession session, int klassNo) {
 		return session.selectOne("klassMapper.klassOne",klassNo);
+	}
+	
+	public List<Review> selectReviewByKlass(SqlSession session, int klassNo){
+		return session.selectList("klassMapper.klassReviewList",klassNo);
 	}
 	
 	public List<KlassAttach> selectAttachList(SqlSession session, int klassNo) {

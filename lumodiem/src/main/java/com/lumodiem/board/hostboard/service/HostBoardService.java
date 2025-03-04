@@ -11,6 +11,7 @@ import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
+import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardService {
 	
@@ -69,6 +70,12 @@ public class HostBoardService {
 		List<Klass> searchList = new HostBoardDao().searchBoardList(session,option);
 		session.close();
 		return searchList;
+	}
+	
+	public List<Review> selectReviewByKlass(int klassNo){
+		SqlSession session = getSqlSession();
+		List<Review> review = new HostBoardDao().selectReviewByKlass(session,klassNo);
+		return review;
 	}
 	
 	public List<KlassAttach> selectAttachList(int klassNo) {
