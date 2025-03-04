@@ -17,8 +17,8 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassMapDelete",m);
 	}
 	
-	public int deleteAttachOne(SqlSession session, KlassAttach a) {
-		return session.delete("klassMapper.klassAttachDelete",a);
+	public int deleteAttachOne(SqlSession session, KlassAttach atc) {
+		return session.delete("klassMapper.klassAttachDelete",atc);
 	}
 	
 	public int deleteDateOne(SqlSession session, Klass option) {

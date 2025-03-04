@@ -108,7 +108,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			}
 			
 			
-			a.setAttachNo(atc.getAttachNo());
+//			a.setAttachNo(atc.getAttachNo());
 //			m.setAttachNo(atc.getAttachNo());
 			m.setKlassNo(option.getKlassNo());
 			System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
@@ -116,11 +116,27 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			System.out.println("날짜"+klassOfDate);
 			System.out.println("attach : " +a);
 			System.out.println("mapping : "+m);
+			int result = 0;
+			
 			if(atc.getAttachNo() > 0) {
+				// 파일이 원래 있던 것
+				if(a == null) {
+					// 새로운 파일이 없음 (있음 -> 없음) / delete하고 insert는 X
+					result = new HostBoardService().updateNoImgKlass(option,klassDate,a,atc);
+				}else {
+					// 새로운 파일이 있음 (있음 -> 있음) / delete하고 insert도 O
+					result = new HostBoardService().updateKlass(option,klassDate,a,m,atc);
+				}
 				
+			}else {
+				// 원래 파일 없던 것
+				if(a == null) {
+					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update
+				}else {
+					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O 
+				}
 			}
 			
-			int result = new HostBoardService().updateKlass(option,klassDate,a,m);
 			
 			JSONObject obj = new JSONObject();
 			

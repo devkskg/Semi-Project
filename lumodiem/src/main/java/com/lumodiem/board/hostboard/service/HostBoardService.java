@@ -28,7 +28,25 @@ public class HostBoardService {
 		return result;
 	}
 	
-	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a,KlassMapping m) {
+	public int updateNoImgKlass(Klass option,KlassDate klassDate, KlassAttach a,KlassAttach atc) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		// 기존 파일 delete만 하고 클래스 정보만 insert 하기 
+		// 클래스 정보 업데이트
+		int updateResult = new HostBoardDao().updateKlass(session, option);
+		// 클래스 예약일 delete -> insert
+		int deleteDateResult = new HostBoardDao().deleteDateOne(session,option);
+		int insertDateResult = new HostBoardDao().insertKlassDate(session,klassDate);
+		
+		// 저장되어있는 사진 지우기
+		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,atc);
+		// mapping 은 attach가 지워지면 지워지도록 되어있어서 따로 delete 안해줘도 된다.
+		
+		if()
+		
+	}
+	
+	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a,KlassMapping m,KlassAttach atc) {
 		SqlSession session = getSqlSession();
 		int result = 0;
 		// 수정하면서 꼭 사용해야 할 메소드 3개 
@@ -43,7 +61,7 @@ public class HostBoardService {
 		
 		
 		// 이전 사진 지우기 메소드
-		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,a);
+		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,atc);
 		
 		
 		
