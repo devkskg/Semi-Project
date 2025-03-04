@@ -128,5 +128,11 @@ public class MemberBoardService {
 		session.close();
 		return review;
 	}
+	public int countLikeByReviewNo(int reviewNo) {
+		SqlSession session = getSqlSession();
+		int count = new MemberBoardDao().countLikeByReviewNo(session,reviewNo);
+		session.close();
+		return count;
+	}
 	
 }
