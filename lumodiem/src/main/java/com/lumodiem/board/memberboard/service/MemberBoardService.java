@@ -1,6 +1,7 @@
 package com.lumodiem.board.memberboard.service;
 
 import static com.lumodiem.common.sql.SqlSessionTemplate.getSqlSession;
+import static com.lumodiem.common.sql.SqlSessionTemplate.commitRollback;
 
 import java.util.List;
 
@@ -102,4 +103,30 @@ public class MemberBoardService {
 		session.close();
 		return r;
 	}
+	public int deleteReview(int reviewNo, int attachNo) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		int review = new MemberBoardDao().deleteReview(session,reviewNo);
+		int attach = new MemberBoardDao().deleteAttach(session,attachNo);
+//		int mapping = new MemberBoardDao().deleteMapping(session,reviewNo);
+//		System.out.println("r : "+review);
+//		System.out.println("a : "+attach);
+//		System.out.println("m : "+mapping);
+		if(review > 0 && attach > 0 ) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	public int deleteReview(int reviewNo) {
+		SqlSession session = getSqlSession();
+		int review = new MemberBoardDao().deleteReviewOne(session,reviewNo);
+		commitRollback(review, session);
+		session.close();
+		return review;
+	}
+	
 }

@@ -56,6 +56,18 @@ public class MemberBoardDao {
 		return session.selectOne("reviewMapper.noImgReview",reviewNo);
 	}
 	public Review selectReviewNo(SqlSession session, int reviewNo) {
-		return session.selectOne("reviewMapper.reviewNo",reviewNo);
+		return session.selectOne("reviewMapper.reviewNoimg",reviewNo);
+	}
+	public int deleteReview(SqlSession session, int reviewNo) {
+		return session.delete("reviewMapper.deleteReview",reviewNo);
+	}
+	public int deleteAttach(SqlSession session, int attachNo) {
+		return session.delete("reviewMapper.deleteAttach",attachNo);
+	}
+//	public int deleteMapping(SqlSession session, int reviewNo) {
+//		return session.delete("reviewMapper.deleteMapping",reviewNo);
+//	}
+	public int deleteReviewOne(SqlSession session, int reviewNo) {
+		return session.delete("reviewMapper.deleteReviewOne",reviewNo);
 	}
 }
