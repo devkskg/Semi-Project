@@ -79,7 +79,7 @@
 		<if test='reviewTxt != null and reviewTxt.equals("") == false'>
 			AND r.review_txt LIKE CONCAT('%',#{reviewTxt},'%')
 		</if>
-		<if test='accountNickName != null and accountNickName.equals("") == false'>
+		<if test='accountNickname != null and accountNickname.equals("") == false'>
 			AND a.account_nickname LIKE CONCAT('%',#{accountNickname},'%')
 		</if>
 	</where>
