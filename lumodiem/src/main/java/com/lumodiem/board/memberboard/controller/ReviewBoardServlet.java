@@ -23,7 +23,7 @@ public class ReviewBoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String reviewName = request.getParameter("review_name");
 		String reviewTxt = request.getParameter("review_txt");
-		String accountNickName = request.getParameter("account_nickname");
+		String accountNickname = request.getParameter("account_nickname");
 		String orderType = request.getParameter("order_type");
 		
 //		int accountNo = Integer.parseInt(request.getParameter("account_no"));
@@ -31,7 +31,7 @@ public class ReviewBoardServlet extends HttpServlet {
 		Review option = Review.builder()
 				.reviewName(reviewName)
 				.reviewTxt(reviewTxt)
-				.accountNickName(accountNickName)
+				.accountNickname(accountNickname)
 				.orderType(orderType)
 				.build();
 		List<Review> resultList = new MemberBoardService().selectReviewList(option);
