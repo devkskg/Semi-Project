@@ -86,7 +86,7 @@
 	<delete id="deleteReportKlass" parameterType="_int" >
 		DELETE FROM `klass_report`
 		<where>
-		 report_klass_no = #{reportKlassNo};
+		 klass_no = #{klassNo};
 		 </where>
 	</delete>
 	<!-- <select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >

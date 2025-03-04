@@ -22,9 +22,9 @@ public class ApproveSerview {
 		return result;
 	}
 	
-	public List<Klass> selectApproveList (){
+	public List<Klass> selectApproveList (Klass option){
 		SqlSession session = getSqlSession();
-		List<Klass> resultList = dao.selectApproveList(session);
+		List<Klass> resultList = dao.selectApproveList(option, session);
 		session.close();
 		return resultList;
 	}

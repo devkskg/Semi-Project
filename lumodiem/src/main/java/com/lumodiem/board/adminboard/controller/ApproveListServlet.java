@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lumodiem.board.adminboard.service.ApproveSerview;
+import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 
 @WebServlet("/arreoveList")
@@ -36,7 +37,8 @@ public class ApproveListServlet extends HttpServlet {
 				.searchTxt(searchTxt)
 				.orderType(orderType)
 				.build();
-		List<Klass> resultList = new ApproveSerview().selectApproveList();
+		//List<Klass> resultList = new HostBoardService().searchBoardList(option);
+		List<Klass> resultList = new ApproveSerview().selectApproveList(option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/approveList.jsp");
 		view.forward(request, response);

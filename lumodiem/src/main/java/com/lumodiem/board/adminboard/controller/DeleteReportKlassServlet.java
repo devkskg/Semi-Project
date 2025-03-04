@@ -23,10 +23,10 @@ public class DeleteReportKlassServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String temp = request.getParameter("report_klass_no");
-		int reportKlassNo = 0;
-		if(temp!=null)reportKlassNo = Integer.parseInt(temp);
-		int result = new ReportService().deleteReportKlass(reportKlassNo);
+		String temp = request.getParameter("klass_no");
+		int klassNo = 0;
+		if(temp!=null)klassNo = Integer.parseInt(temp);
+		int result = new ReportService().deleteReportKlass(klassNo);
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
 		obj.put("res_msg", "삭제 오류");

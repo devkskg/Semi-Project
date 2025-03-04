@@ -45,9 +45,9 @@ public class ReportService {
 		return resultList;
 	}
 	
-	public int deleteReportKlass(int rk) {
+	public int deleteReportKlass(int klassNo) {
 		SqlSession session = getSqlSession();
-		int result = dao.deleteReportKlass(rk, session);
+		int result = dao.deleteReportKlass(klassNo, session);
 		commitRollback(session, result);
 		session.close();
 		return result;

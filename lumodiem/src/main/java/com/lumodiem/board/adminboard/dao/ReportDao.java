@@ -27,8 +27,8 @@ public class ReportDao {
 		
 	}
 	
-	public int deleteReportKlass(int rk, SqlSession session) {
-		return session.insert("reportMapper.deleteReportKlass",rk);
+	public int deleteReportKlass(int klassNo, SqlSession session) {
+		return session.insert("reportMapper.deleteReportKlass",klassNo);
 	}
 		
 	
