@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class ReviewDTO {
-	private String accountNickName;
+	private String accountNickname;
 	
 	private int klassNo;
 	private String klassName;
