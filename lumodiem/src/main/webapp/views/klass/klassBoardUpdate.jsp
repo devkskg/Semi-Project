@@ -11,7 +11,7 @@
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
-
+<%@ include file="/views/include/nav.jsp" %>
 <div id="colorlib-main">
 				<section class="ftco-section ftco-no-pt ftco-no-pb">
 					<div class="container">
@@ -35,6 +35,15 @@
 			<label for="klass_address">주소 : </label>
 			<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address"><br>
 			
+			<label for="klass_date">날짜 : </label>
+			<input type=date name="klass_date" id="klass_date" required value="${klass.klassOfDate}"><br>
+			
+			<label for="klass_start">시작 : </label>
+			<input type="time" name="klass_start" id="klass_start" required value="${klass.klassStart}"><br>
+			
+			<label for="klass_end">종료 : </label>
+			<input type="time" name="klass_end" id="klass_end" required value="${klass.klassEnd }"><br>
+			
 			<label for="klass_max">최대 참가인원 : </label>
 			<input type="number" name="klass_max" id="klass_max" 
 			required placeholder="숫자만 입력해주세요." value="${klass.klassMax}"><br>
@@ -46,7 +55,9 @@
 			<label for="klass_txt">클래스 상세 내용</label><br>
 			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
 			
-			<button type="button" id="updateBtn" onclick="updateKlass();">수정하기</button>
+			<input type="file" name="klass_file" accept=".png,.jpg,.jpeg"><br>
+			
+			<button type="button" id="updateBtn">수정하기</button>
 			<!-- <button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button> -->
 		
 		</fieldset>
@@ -55,7 +66,69 @@
 
 </div>	
 <script type="text/javascript">
-	const updateKlass = function(){
+	$(function(){
+		const form = document.update_klass_form;
+		$('#updateBtn').click(function(){
+			const check = confirm("수정하시겠습니까?");
+			if(check){
+				const val = form.klass_file.value;
+				const idx = val.lastIndexOf('.');
+				const type = val.substring(idx+1,val.length);
+				if(val){
+					if(type == 'jpg' || type == 'png' || type== 'jpeg'){
+						let sendData = new FormData(form);
+						$.ajax({
+							url : "/klassBoardUpdateEnd",
+							type : "post",
+							enctype : "multipart/form-data",
+							cache : false,
+							async : false,
+							contentType:false,
+							processData:false,
+							data:sendData,
+							dataType : "JSON",
+							success : function(data){
+								alert(data.res_msg);
+								if(data.res_code == "200"){
+									location.href='/klassDetail?klass_no='+klassNo;
+								}
+							}
+						});
+					}else{
+						alert('이미지 파일만 선택할 수 있습니다.')
+						form.klass_file.value = '';
+					}
+				}else{
+					let sendData = new FormData(form);
+					$.ajax({
+						url : "/klassBoardUpdateEnd",
+						type : "post",
+						enctype : "multipart/form-data",
+						cache : false,
+						async : false,
+						contentType:false,
+						processData:false,
+						data:sendData,
+						dataType : "JSON",
+						success : function(data){
+							alert(data.res_msg);
+							if(data.res_code == "200"){
+								location.href='/klassDetail?klass_no='+klassNo;
+							} 
+						} 
+					});
+				}
+			}
+			
+			
+			
+		})
+	})
+	
+
+
+
+/* 	const updateKlass = function(){
 		const form = document.update_klass_form;
 		const klassNo = ${klass.klassNo}; 
 		const check = confirm("수정하시겠습니까?");
@@ -70,6 +143,9 @@
 						"klass_max" : form.klass_max.value,
 						"klass_price" : form.klass_price.value,
 						"klass_txt" : form.klass_txt.value,
+						"klass_date" : form.klass_date.value,
+						"klass_start" : form.klass_start.value,
+						"klass_end" : form.klass_end.value,
 						"klass_no" : form.klass_no.value
 						
 				},
@@ -89,7 +165,7 @@
 		}else{
 			location.href="/klassBoardList";
 		}
-	}
+	} */
 	
 /* 	const deleteKlass = function(){
 		const form = document.update_klass_form;
