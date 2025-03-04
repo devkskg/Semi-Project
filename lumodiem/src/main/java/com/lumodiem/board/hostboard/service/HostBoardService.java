@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
@@ -76,6 +77,13 @@ public class HostBoardService {
 		SqlSession session = getSqlSession();
 		List<KlassDate> klassDate = new HostBoardDao().selectKlassDate(session,klassNo);
 		return klassDate;
+	}
+	
+	public Account selectAccountOne(int klassNo) {
+		SqlSession session = getSqlSession();
+		Account account = new HostBoardDao().selectAccountOne(session,klassNo);
+		session.close();
+		return account;
 	}
 	
 	public Klass selectKlassOne(int klassNo) {

@@ -116,6 +116,10 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			System.out.println("날짜"+klassOfDate);
 			System.out.println("attach : " +a);
 			System.out.println("mapping : "+m);
+			if(atc.getAttachNo() > 0) {
+				
+			}
+			
 			int result = new HostBoardService().updateKlass(option,klassDate,a,m);
 			
 			JSONObject obj = new JSONObject();

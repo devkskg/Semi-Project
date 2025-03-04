@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
@@ -49,6 +50,10 @@ public class HostBoardDao {
 	
 	public KlassAttach selectAttachOne(SqlSession session, int attachNo) {
 		return session.selectOne("klassMapper.attachOne",attachNo);
+	}
+	
+	public Account selectAccountOne(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.accountOne",klassNo);
 	}
 	
 	public Klass selectKlassOne(SqlSession session, int klassNo) {
