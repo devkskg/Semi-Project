@@ -26,6 +26,7 @@ public class UpdateReviewServlet extends HttpServlet {
 		if(temp != null) reviewNo = Integer.parseInt(temp);
 		Review review = new MemberBoardService().selectReviewOne(reviewNo);
 		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/updateReview.jsp");
 		request.setAttribute("review", review);
 		System.out.println(review);

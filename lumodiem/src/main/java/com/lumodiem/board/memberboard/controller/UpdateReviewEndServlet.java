@@ -1,6 +1,8 @@
 package com.lumodiem.board.memberboard.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,14 +24,20 @@ public class UpdateReviewEndServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
 		int accountNo = Integer.parseInt(request.getParameter("account_no"));
 		String reviewName = request.getParameter("reivew_name");
 		String reviewTxt = request.getParameter("review_txt");
-		
+		int reviewNo = Integer.parseInt(request.getParameter("review_no"));
 		
 		Review review = Review.builder()
+				.accountNo(accountNo)
 				.reviewName(reviewName)
 				.reviewTxt(reviewTxt)
+				.reviewNo(reviewNo)
+				.reviewModDate(ldt.format(dtf))
 				.build();
 		
 		int result = new MemberBoardService().UpdateReview(review);
