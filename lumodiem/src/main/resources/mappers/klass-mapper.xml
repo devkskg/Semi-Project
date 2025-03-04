@@ -59,7 +59,15 @@
 		<result property="payPrice" column="pay_price"/>
 		<result property="attachPath" column="attach_path"/>
 	</resultMap>
-	
+	<resultMap type="reservationVo" id="reservationMap">
+		<result property="resNo" column="res_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassDataNo" column="klass_data_no"/>
+		<result property="resPpl" column="res_ppl"/>
+		<result property="payTime" column="pay_time"/>
+		<result property="payStatus" column="pay_status"/>
+		<result property="payPrice" column="pay_price"/>
+	</resultMap>
 	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
 		INSERT INTO `klass_mapping`(klass_no ,attach_no)
 		VALUES (#{klassNo} ,#{attachNo})
@@ -79,7 +87,6 @@
 		INSERT INTO `klass`(account_no ,klass_name ,klass_address ,klass_max ,klass_price ,klass_txt ,klass_reg_date ,klass_mod_date)
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
-	
 	<update id="klassUpdate" parameterType="klassVo" >
 	 	UPDATE `klass`
 	 	SET klass_name = #{klassName}
@@ -218,6 +225,12 @@
 		ON m.klass_no = k.klass_no
 		WHERE k.klass_no = #{klassNo}
 	</select>
-	
+	<select id="resKlassDate" resultMap="klassDateMap" parameterType="_int" resultType="klassDateVo">
+		SELECT kd.*
+		FROM `klass_date` kd
+		JOIN `klass` k
+		ON kd.klass_no = k.klass_no
+		WHERE k.klass_no = #{klassNo}
+	</select>
 	
 </mapper>

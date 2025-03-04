@@ -106,19 +106,17 @@
 
 		<form>
 		<c:choose >
-
 			<c:when test="${account.accountGrade eq 'M'}">
-				<button type="button" id="resBtn" name="resBtn">
-					<a href="/klassReservation">예약하기</a>
-				</button>
+				<span id="minusSpan">➖</span>
+				<span id="numberSpan">0</span>
+				<span id="plusSpan">➕</span><br>
+				<button type="button" id="resBtn" name="resBtn">예약하기</button>
 			</c:when>
-			
 			<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}">
 				<button type="button" id="rptBtn" name="rptBtn">
 					<a href="/klassReport">신고하기</a>
 				</button>
 			</c:when>
-		
 		</c:choose>
 		
 		</form>
@@ -193,7 +191,40 @@
 			});
 		}
 	});
-
+	$('#minusSpan').click(function(){
+		let downPpl = document.getElementById('numberSpan').innerHTML;
+		let downResCnt = Number(downPpl);
+		downResCnt --;
+		document.getElementById('numberSpan').innerHTML = downResCnt;
+	})
+	$('#plusSpan').click(function(){
+		let upPpl = document.getElementById('numberSpan').innerHTML;
+		let upRescnt = Number(upPpl);
+		upRescnt ++;
+		document.getElementById('numberSpan').innerHTML = upRescnt;
+	})
+	
+	$('#resBtn').click(function(){
+		const klassDateNo = ${klassDate.klassDateNo};
+		const resPpl = $('#numberSpan').val();
+		const ck = confirm("예약하시겠습니까?");
+		if(ck){
+			$.ajax({
+				url : "/klassReservation",
+				type : "post",
+				data : {"klass_date_no" : klassDateNo
+						,"res_ppl" : resPpl},
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/klassBoardList";
+					} else{
+						location.href='/';
+					}
+				}
+			})
+		}
+	})
 </script>
 
 					</div>
