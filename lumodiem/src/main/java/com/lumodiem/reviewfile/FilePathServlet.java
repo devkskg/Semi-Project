@@ -29,7 +29,10 @@ public class FilePathServlet extends HttpServlet {
 		System.out.println("attachNo : " +attachNo);
 		ReviewAttach a = new MemberBoardService().selectAttachOne(attachNo);
 		// 2. 파일명이 비어있는지 확인
-		String filePath = a.getAttachPath();
+		String filePath = null;
+		if(a != null) {
+			filePath = a.getAttachPath();
+		}
 //		문자열 검사할때는 trim을 한 후에 비어있는 값과 비교!
 		if(filePath == null || filePath.trim().equals("")) {
 //			400(잘못된 요청(클라이언트의 유효하지않은 요청)) 오류 발생 시키자 + 중단 시켜버리기

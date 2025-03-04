@@ -25,9 +25,6 @@ public class MemberBoardDao {
 		int result = session.insert("reviewMapper.reviewMappingInsert",m);
 		return result;
 	}
-	public int UpdateReview(SqlSession session, Review review) {
-		return session.update("reviewMapper.reviewUpdate",review);
-	}
 	public List<Review> selectReviewList(SqlSession session,Review option){
 		return session.selectList("reviewMapper.reviewList",option);
 	}
@@ -46,5 +43,19 @@ public class MemberBoardDao {
 	public List<Klass> searchKlassDateNo(SqlSession session, int klassDateNo){
 		return session.selectList("reviewMapper.attendedKlass",klassDateNo);
 	}
-
+	public int updateReview(SqlSession session ,Review r) {
+		return session.update("reviewMapper.reviewUpdate",r);
+	}
+	public int updateAttach(SqlSession session ,ReviewAttach a) {
+		return session.update("reviewMapper.attachUpdate",a);
+	}
+	public int updateMapping(SqlSession session ,ReviewMapping m) {
+		return session.update("reviewMapper.mappingUpdate",m);
+	}
+	public ReviewAttach selectNoImgReview(SqlSession session, int reviewNo) {
+		return session.selectOne("reviewMapper.noImgReview",reviewNo);
+	}
+	public Review selectReviewNo(SqlSession session, int reviewNo) {
+		return session.selectOne("reviewMapper.reviewNo",reviewNo);
+	}
 }

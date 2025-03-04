@@ -15,13 +15,14 @@
 	<form action="<c:url value='/updateReviewEnd'/>" method="post" name="update_review_form" enctype="multipart/form-data">
 		<fieldset>
 			<legend>리뷰 수정</legend>
+			<input type="hidden" name="review_no" value="${review.reviewNo}">
 			<input type="hidden" name="account_no" value="${account.accountNo}">
 			
 			<label for="review_name">게시글 제목 : </label>
 			<input type="text" name="review_name" id="review_name" required value="<c:out value='${review.reviewName}'/>"><br>
 			
 			<label for="review_txt">내용 : </label><br>
-			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요." value="${review.reviewTxt }"></textarea>
+			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."><c:out value='${review.reviewTxt }'/></textarea>
 			<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 			<button type="button" onclick="updateReviewForm();">수정하기</button>
 		</fieldset>

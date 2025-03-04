@@ -46,7 +46,7 @@
 													<c:forEach var="list2" varStatus="vs2" items="${reviewDTO }">
 														<c:if test="${list1.klassDateNo eq list2.klassDateNo }">
 															<c:set var="check" value="false" />
-															<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo }"/>">클래스 + 내가 쓴 리뷰 : ${list2.klassName } ${list2.accountNickName } ${list2.reviewName }</a><br>
+															<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo }"/>">클래스 + 내가 쓴 리뷰 : ${list2.klassName } ${list2.accountNickname } ${list2.reviewName }</a><br>
 														</c:if>
 													</c:forEach>
 														<c:if test="${check }">
@@ -57,7 +57,7 @@
 											
 											<%-- <c:when test="${not empty reviewDTO }">
 												<c:forEach var="list2" varStatus="vs" items="${reviewDTO }">
-													<a href="<c:url value="/reviewboard?review_no=${reviewDTO.review_no }"/>">클래스 + 내가 쓴 리뷰 : ${reviewDTO.klassName } ${reviewDTO.accountNickName } ${reviewDTO.reviewName }</a>
+													<a href="<c:url value="/reviewboard?review_no=${reviewDTO.review_no }"/>">클래스 + 내가 쓴 리뷰 : ${reviewDTO.klassName } ${reviewDTO.accountNickname } ${reviewDTO.reviewName }</a>
 												</c:forEach>
 												</c:when>
 												<c:otherwise>
