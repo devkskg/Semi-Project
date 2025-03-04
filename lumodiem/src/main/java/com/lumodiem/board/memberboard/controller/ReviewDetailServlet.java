@@ -43,9 +43,11 @@ public class ReviewDetailServlet extends HttpServlet {
 				
 			}
 			totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
+			System.out.println("토탈좋아요"+totalLikeCount);
 			reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
+			System.out.println("해당리뷰Vo"+reviewLike);
 			myLikeCount = new MemberBoardService().countLikeByAccountNoReviewNo(reviewLike);
-			
+			System.out.println("내가 눌렀는지"+myLikeCount);
 			RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
 			request.setAttribute("totalLikeCount", totalLikeCount);
 			request.setAttribute("myLikeCount", myLikeCount);

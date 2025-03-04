@@ -72,9 +72,15 @@ public class MemberBoardDao {
 		return session.delete("reviewMapper.deleteReviewOne",reviewNo);
 	}
 	public int countLikeByReviewNo(SqlSession session, int reviewNo) {
-		return session.selectOne("reviewMapper.countLikeByReviewNo",reviewNo);
+		return session.selectOne("reviewMapper.countLikeByReviewNo", reviewNo);
 	}
 	public int countLikeByAccountNoReviewNo(SqlSession session, ReviewLike reviewLike) {
-		return session.selectOne("reviewMapper.countLikeByAccountNoReviewNo",reviewLike);
+		return session.selectOne("reviewMapper.countLikeByAccountNoReviewNo", reviewLike);
+	}
+	public int unlikeToLike(SqlSession session, ReviewLike reviewLike) {
+		return session.insert("reviewMapper.unlikeToLike",reviewLike);
+	}
+	public int likeToUnlike(SqlSession session, ReviewLike reviewLike) {
+		return session.delete("reviewMapper.likeToUnlike",reviewLike);
 	}
 }

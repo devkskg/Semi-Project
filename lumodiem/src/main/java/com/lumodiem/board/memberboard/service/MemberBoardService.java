@@ -141,5 +141,19 @@ public class MemberBoardService {
 		session.close();
 		return count;
 	}
+	public int unlikeToLike(ReviewLike reviewLike) {
+		SqlSession session = getSqlSession();
+		int result = new MemberBoardDao().unlikeToLike(session,reviewLike);
+		commitRollback(result, session);
+		session.close();
+		return result;
+	}
+	public int likeToUnlike(ReviewLike reviewLike) {
+		SqlSession session = getSqlSession();
+		int result = new MemberBoardDao().likeToUnlike(session,reviewLike);
+		commitRollback(result, session);
+		session.close();
+		return result;
+	}
 	
 }
