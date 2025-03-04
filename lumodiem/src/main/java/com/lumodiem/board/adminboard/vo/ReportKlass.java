@@ -26,5 +26,23 @@ public class ReportKlass {
 	private String accountNickname;
 	private String klassTxt;
 	
+
+	private String klassAddress;
+	private int klassPrice;
+	private int klassMax;
+	private String klassStatus;
+
+	private String klassRegDate;
+	private String klassModDate;
+	private String searchType;
+	private String searchTxt;
+	private String approveCode;
+	private String orderType;
+	private int resNo;
+	private int klassDateNo;
+	private String klassStart;
+	private String klassEnd;
+	private int attachNo;
+	private String klassOfDate;
 	
 }
