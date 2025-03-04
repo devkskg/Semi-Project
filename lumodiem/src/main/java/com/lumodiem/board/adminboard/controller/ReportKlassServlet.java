@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.board.adminboard.service.ReportService;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 
+
 @WebServlet("/reportKlass")
 public class ReportKlassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +23,22 @@ public class ReportKlassServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<ReportKlass> resultList = new ReportService().selectReportKlassList();
+		String klassName = request.getParameter("klass_name");
+		String accountNickname = request.getParameter("account_nickname");
+		String klassTxt = request.getParameter("klass_txt");
+		String searchType = request.getParameter("search_type");
+		String searchTxt = request.getParameter("search_txt");
+		String orderType = request.getParameter("order_type"); 
+		
+		ReportKlass option  = ReportKlass.builder()
+				.klassName(klassName)
+				.accountNickname(accountNickname)
+				.klassTxt(klassTxt)
+				.searchType(searchType)
+				.searchTxt(searchTxt)
+				.orderType(orderType)
+				.build();
+		List<ReportKlass> resultList = new ReportService().selectReportKlassList(option);
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportKlass.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);

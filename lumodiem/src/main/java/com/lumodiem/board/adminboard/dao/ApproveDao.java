@@ -13,7 +13,7 @@ public class ApproveDao {
 		return session.update("approveMapper.updateApprove",approve);
 	}
 	
-	public List<Klass> selectApproveList(SqlSession session){
-		return session.selectList("approveMapper.approveList");
+	public List<Klass> selectApproveList(Klass option,SqlSession session){
+		return session.selectList("approveMapper.approveList", option);
 	}
 }
