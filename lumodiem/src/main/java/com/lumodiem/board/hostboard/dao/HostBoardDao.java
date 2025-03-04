@@ -12,6 +12,18 @@ import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardDao {
 	
+	public int deleteMappingOne(SqlSession session, KlassMapping m) {
+		return session.delete("klassMapper.klassMapDelete",m);
+	}
+	
+	public int deleteAttachOne(SqlSession session, KlassAttach a) {
+		return session.delete("klassMapper.klassAttachDelete",a);
+	}
+	
+	public int deleteDateOne(SqlSession session, Klass option) {
+		return session.delete("klassMapper.klassDateDelete",option);
+	}
+	
 	public int deleteKlassOne(SqlSession session, Klass klass) {
 		return session.delete("klassMapper.klassDelete",klass);
 	}
@@ -21,10 +33,10 @@ public class HostBoardDao {
 		return result;
 	}
 	
-	public int updateKlassDate(SqlSession session, KlassDate klassDate) {
-		int result = session.update("klassMapper.klassDateUpdate",klassDate);
-		return result;
-	}
+//	public int updateKlassDate(SqlSession session, KlassDate klassDate) {
+//		int result = session.update("klassMapper.klassDateUpdate",klassDate);
+//		return result;
+//	}
 	
 	public int updateKlass(SqlSession session, Klass option) {
 		int result = session.update("klassMapper.klassUpdate",option);
@@ -66,13 +78,17 @@ public class HostBoardDao {
 	}
 	
 	public int insertKlassAttach(SqlSession session, KlassAttach a) {
-		int result = session.insert("klassMapper.klassAttachCreate",a);
-		return result;
+		session.insert("klassMapper.klassAttachCreate",a);
+		return a.getAttachNo();
 	}
 	
 	public int insertKlassMapping(SqlSession session, KlassMapping m) {
 		int result = session.insert("klassMapper.klassMappingCreate",m);
 		return result;
+	}
+
+	public KlassAttach selectAttachOneByKlassNo(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.selectAttachOneByKlassNo",klassNo);
 	}
 
 	
