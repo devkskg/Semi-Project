@@ -43,6 +43,23 @@
 		<result property="attachNo" column="attach_no"/>
 	</resultMap>
 	
+	<resultMap type="reviewVo" id="reviewMap">
+		<result property="reviewNo" column="review_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="resNo" column="res_no"/>
+		<result property="reviewTxt" column="review_txt"/>
+		<result property="reviewName" column="review_name"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
+		<result property="reviewModDate" column="review_mod_date"/>
+		<result property="attachNo" column="attach_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="payTime" column="pay_time"/>
+		<result property="payStatus" column="pay_status"/>
+		<result property="payPrice" column="pay_price"/>
+		<result property="attachPath" column="attach_path"/>
+	</resultMap>
+	
 	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
 		INSERT INTO `klass_mapping`(klass_no ,attach_no)
 		VALUES (#{klassNo} ,#{attachNo})
@@ -63,13 +80,30 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	
-	<update id="klassUpdate" parameterType="klassVo" useGeneratedKeys="true" keyProperty="klassNo">
+	<update id="klassUpdate" parameterType="klassVo" >
 	 	UPDATE `klass`
 	 	SET klass_name = #{klassName}
 	 		,klass_max = #{klassMax}
 	 		,klass_price = #{klassPrice}
 	 		,klass_txt = #{klassTxt}
+	 		,klass_mod_date = #{klassModDate}
 	 	WHERE klass_no = #{klassNo}	
+	</update>
+	
+	<update id="klassDateUpdate" parameterType="klassDateVo" >
+		UPDATE `klass_date` 
+		SET klass_start = #{klassStart}
+			,klass_end = #{klassEnd}
+		WHERE klass_no = #{klassNo}	
+	</update>
+	
+	<update id="klassAttachUpdate" parameterType="klassAttachVo">
+		UPDATE `klass_attach`
+		SET attach_ori = #{attachOri}
+			,attach_new = #{attachNew}
+			,attach_path = #{attachPath}
+		WHERE attach_no = #{attachNo}	
+	
 	</update>
 	
  	<delete id="klassDelete" parameterType="_int">
@@ -78,6 +112,20 @@
 			klass_no = ${klassNo}
 		</where>
 	</delete>
+	
+	<select id="klassReviewList" resultMap="reviewMap" parameterType="_int">
+		SELECT r.review_name ,r.review_txt ,a.account_nickname ,r.review_reg_date
+		FROM `review` r
+		JOIN `reservation` rs
+		ON r.res_no = rs.res_no
+		JOIN `klass_date` d
+		ON rs.klass_date_no = d.klass_date_no
+		JOIN `klass` k
+		ON d.klass_no = k.klass_no
+		JOIN `account` a
+		ON r.account_no = a.account_no
+		WHERE k.klass_no = ${klassNo}
+	</select>
  	
 	<select id="klassList" resultMap="klassMap" parameterType="klassVo">
 		SELECT k.* ,a.account_nickname

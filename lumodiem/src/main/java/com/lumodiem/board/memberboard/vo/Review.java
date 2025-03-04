@@ -21,7 +21,7 @@ public class Review {
 	private int resNo; // 예약번호
 	private String reviewTxt;
 	private String reviewName;
-	private String accountNickName;
+	private String accountNickname;
 	private String reviewRegDate;
 	private String reviewModDate;
 	private String orderType;

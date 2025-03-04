@@ -23,10 +23,25 @@
 	
 		<form action="" name="detail_klass_form">
 		<div>
+			<c:choose>
+				<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
+				<button type="button" id="updateBtn" name="updateBtn">
+					<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
+				</button>
+				<button type="button" id="deleteBtn" name="deleteBtn">
+					삭제
+				</button>
+				</c:when>
+			
+			</c:choose>
+			
+		</div>
+		<div>
 			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
 				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}">
 			</c:forEach>
 		</div>
+		<hr>
 		<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<table>
 				<tr>
@@ -80,10 +95,10 @@
 					<th>작성일</th>
 					<td>${klass.klassRegDate}</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>상세 내용</th>
 					<td>${klass.klassTxt}</td>
-				</tr>
+				</tr> --%>
 			
 			</table>		
 		
@@ -91,14 +106,6 @@
 
 		<form>
 		<c:choose >
-			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
-			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
-			</button>
-			<button type="button" id="deleteBtn" name="deleteBtn">
-				삭제
-			</button>
-			</c:when>
 
 			<c:when test="${account.accountGrade eq 'M'}">
 				<button type="button" id="resBtn" name="resBtn">
@@ -114,6 +121,52 @@
 		
 		</c:choose>
 		
+		</form>
+		<hr>
+		<form>
+			<div>
+				${klass.klassTxt}
+			</div>
+		</form>
+		<hr>
+		<form>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>내용</th>
+						<th>닉네임</th>
+						<th>날짜</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${not empty review }">
+						
+							<c:forEach var="list" items="${review }" varStatus="vs">
+							<tr>
+								<td>${vs.count}</td>						
+								<td>${list.reviewName}</td>
+								<td>${list.reviewTxt}</td>
+								<td>${list.accountNickname}</td>
+								<td>${list.reviewRegDate}</td>
+							</tr>
+									
+							</c:forEach>
+						
+						</c:when>
+						<c:otherwise>
+							<td colspan="5">작성된 리뷰가 없습니다.</td>
+						</c:otherwise>					
+					
+					</c:choose>
+				
+				
+				
+				
+				</tbody>
+			</table>
 		</form>
 	
 	</div>				
