@@ -113,6 +113,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			m.setKlassNo(option.getKlassNo());
 			System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
 			System.out.println("date : " + klassDate);
+			System.out.println("날짜"+klassOfDate);
 			System.out.println("attach : " +a);
 			System.out.println("mapping : "+m);
 			int result = new HostBoardService().updateKlass(option,klassDate,a,m);

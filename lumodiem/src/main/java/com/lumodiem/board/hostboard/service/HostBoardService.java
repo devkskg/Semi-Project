@@ -30,13 +30,23 @@ public class HostBoardService {
 	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a,KlassMapping m) {
 		SqlSession session = getSqlSession();
 		int result = 0;
+		// 수정하면서 꼭 사용해야 할 메소드 3개 
 		int updateResult = new HostBoardDao().updateKlass(session, option);
 //		klassDate.setKlassNo(option.getKlassNo());
 		// klassNo 값의 klass_date 를 delete 후 insert 
 		int deleteDateResult = new HostBoardDao().deleteDateOne(session,option);
 		int insertDateResult = new HostBoardDao().insertKlassDate(session,klassDate);
 		
+		
+		
+		
+		
+		// 이전 사진 지우기 메소드
 		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,a);
+		
+		
+		
+		// 사진 넣기 메소드 2개 
 		int insertAttachResult = new HostBoardDao().insertKlassAttach(session,a);
 		m.setAttachNo(insertAttachResult);
 		// 추후 attach_no delete되면 mappin_no까지 같이 지워지는 작업 진행 되면 안써도 될 메소드임.

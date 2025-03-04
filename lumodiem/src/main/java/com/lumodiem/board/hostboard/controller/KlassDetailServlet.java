@@ -41,8 +41,10 @@ public class KlassDetailServlet extends HttpServlet {
 		request.setAttribute("klassDate", klassDate);
 		request.setAttribute("klassAttach", klassAttach);
 		request.setAttribute("review", review);
-		System.out.println(klass);
-		System.out.println(klassDate);
+		System.out.println("클래스"+klass);
+		System.out.println("데이트"+klassDate);
+//		System.out.println("스타트"+);
+//		System.out.println("엔드"+);
 		view.forward(request, response);
 	
 	}

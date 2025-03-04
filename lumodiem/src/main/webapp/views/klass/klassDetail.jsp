@@ -115,7 +115,7 @@
 			
 			<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}">
 				<button type="button" id="rptBtn" name="rptBtn">
-					<a href="/klassReport">신고하기</a>
+					<a href="/klassReport?klass_no=${klass.klassNo }">신고하기</a>
 				</button>
 			</c:when>
 		
@@ -193,6 +193,14 @@
 			});
 		}
 	});
+	
+/* 	$('#rptBtn').click(function(){
+		const klassNo = ${klass.klassNo}
+		const check = confirm("신고하시겠습니까?");
+		if(check){
+			
+		}
+	}) */
 
 </script>
 
