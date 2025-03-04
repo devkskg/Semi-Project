@@ -4,12 +4,8 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approveMapper">
-
+<!--   주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석                                                             -->
 	<resultMap type="klassVo" id="approveKlassMap">
-		<!-- 
-			컬럼명과 필드명을 1대1로 써준다.
-		 	vo의 필드명과 테이블의 컬럼명이 다르기 때문에 맞춰즌 것!
-		 -->
 		<result property="klassNo" column="klass_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="klassName" column="klass_name"/>
@@ -22,6 +18,7 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 	</resultMap>
+	<!--   주석  주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 -->
 	
 	<resultMap type="klassDateVo" id="klassDateMap">
 		<result property="klassDateNo" column="klass_date_no"/>

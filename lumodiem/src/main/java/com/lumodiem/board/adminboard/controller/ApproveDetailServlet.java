@@ -27,13 +27,13 @@ public class ApproveDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String temp = request.getParameter("klass_no");
-		String approve_code = request.getParameter("approve_code");
+		String approveCode = request.getParameter("approve_code");
 		int klassNo = 0;
 		if(temp!=null) klassNo=Integer.parseInt(request.getParameter("klass_no"));
 		
 		ReportKlass klass = ReportKlass.builder()
 				.klassNo(klassNo)
-				.approveCode(approve_code)
+				.approveCode(approveCode)
 				.build();
 		
 		

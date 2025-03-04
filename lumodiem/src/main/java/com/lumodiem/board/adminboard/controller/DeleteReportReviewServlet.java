@@ -21,8 +21,10 @@ public class DeleteReportReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = request.getParameter("report_review_no");
+		System.out.println(temp);
 		int reportReviewNo = 0;
 		if(temp!=null)reportReviewNo = Integer.parseInt(temp);
+		
 		int result = new ReportService().deleteReportReview(reportReviewNo);
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");

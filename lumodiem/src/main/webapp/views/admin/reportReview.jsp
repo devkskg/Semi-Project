@@ -33,6 +33,7 @@
 				</select>
 				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 				<button name="searchBtn" id="searchBtn">검색</button>
+				<input type="hidden" value="${review.reviewNo }" name="review_no" id="review_no">
 		</form>
 	<form>
 		<div class="report_review_list">
@@ -48,10 +49,13 @@
 					<c:choose>
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
-								<tr data-review-no="${list.reviewNo }">
+								<tr data-report-review-no="${list.reportReviewNo }">
 									<td>${list.reviewName}</td>
 									<td>${list.reviewTxt}</td>
 									<td>${list.accountNickname }</td>
+									
+										
+								
 									<%-- <td><button type='button' data-report-review-no="${list.reportReviewNo }">삭제</button></td>
  --%>
 								</tr>
@@ -78,33 +82,12 @@
 	</div>
 	<script>
 	$('.report_review_list tbody tr').click(function(){
-		const reviewNo = $(this).data('review-no');
-		location.href='/reportReviewDetail?reviewNo='+reviewNo;
+		const reportReviewNo = $(this).data('report-review-no');
+		location.href='/reportReviewDetail?report_review_no='+reportReviewNo;
 	});
 		
  		 
- 		 $('.report_review_list tbody button').click(function(){
- 			if(confirm("삭제하시겠습니까?")){
- 			 const reportReviewNo = $(this).data('report-review-no');
-			$.ajax({
-				url : "/deleteReportReview",
-				type : "post",
-				data : {"report_review_no":reportReviewNo},
-				dataType : "JSON",
-				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-				
-				success:function(data){
-					alert(data.res_msg);
-					
-					if(data.res_code==200){
-						location.href="";
-					}else{
- 				
- 					}
-				}
-			});
- 			}
- 		}); 
+ 		
  		
  	</script>
 </body>

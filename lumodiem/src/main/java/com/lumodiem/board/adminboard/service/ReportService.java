@@ -11,6 +11,8 @@ import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
+import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.memberboard.vo.Review;
 
 public class ReportService {
 	ReportDao dao = new ReportDao();
@@ -30,6 +32,7 @@ public class ReportService {
 		return resultList;
 	}
 	
+	/////////////////////////////////////////////
 	public int deleteReportReview(int reportReviewNo) {
 		SqlSession session = getSqlSession();
 		int result = dao.deleteReportReview(reportReviewNo, session);
@@ -44,9 +47,9 @@ public class ReportService {
 		session.close();
 		return option;
 	}
+
 	
-	
-	
+
 	public List<ReportReview> selectReportReviewList(ReportReview option){
 		SqlSession session = getSqlSession();
 		List<ReportReview> resultList = dao.selectReportReviewList(option,session);
@@ -69,14 +72,14 @@ public class ReportService {
 		return result;
 	}
 	
-	public ReportKlass selectReportKlassOne(ReportKlass klass) {
+	public ReportKlass selectReportKlassOne(ReportKlass klass ) {
 		SqlSession session = getSqlSession();
 		klass = dao.selectReportKlassOne(klass,session);
 		session.close();
 		return klass;
 	}
 	
-	public List<ReportKlass> selectReportKlassList (ReportKlass option){
+	public List<ReportKlass> selectReportKlassList (Klass option){
 		SqlSession session = getSqlSession();
 		List<ReportKlass> resultList = dao.selectReportKlassList(option,session);
 		session.close();

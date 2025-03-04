@@ -108,7 +108,7 @@
 	JOIN `account` a
 	ON rr.account_no = a.account_no
 	<where>
-		 r.review_no = #{reviewNo}
+		 rr.report_review_no = #{reportReviewNo}
 	</where>
 	</select>
 	
@@ -155,7 +155,7 @@
 	</select>
 	
 	
-	<delete id="deleteReportKlass" parameterType="_int" >
+	<delete id="deleteReportKlass" parameterType="_int">
 		DELETE FROM `klass`
 		<where>
 		 klass_no = #{klassNo};

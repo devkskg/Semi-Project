@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="com.lumodiem.board.memberboard.vo.*"  %>
-<%Review review = (Review)request.getAttribute("review"); %>
+<%@ page import="com.lumodiem.board.adminboard.vo.*"  %>
+<% ReportReview review = (ReportReview)request.getAttribute("review"); %>
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +25,8 @@
 		<ul>
 			<li>
 				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width:300px" > 
+				<input type="hidden" data-report-review-no="${review.reportReviewNo }" name="report_review_no">
+				<input type="hidden" data-review-no="${review.reviewNo }" name="review_no">
 			</li> 
 			<li>
 				<table>
@@ -53,11 +55,40 @@
 		</ul> 
 	</div>
 	<div>
-
-		<button type="button" class="deletebtn" name="deletebtn">
-			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
-		</button>
+		<button type="button" id="deletebtn" name="deletebtn">삭제</button>
 	</div>
+		
+	
+	<script type="text/javascript">
+	 $('#deletebtn').click(function(){
+			if(confirm("삭제하시겠습니까?")){
+			 const reportReviewNo = $(this).data('report-review-no');
+			 const reviewNo = ""
+			 
+			 console.log(reportReviewNo);
+			 console.log(reviewNo);
+			$.ajax({
+				url : "/deleteReportReview?report_review_no=${review.reportReviewNo}",
+				type : "post",
+				data : {"report_review_no":reportReviewNo},
+				dataType : "JSON",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				
+				success:function(data){
+					alert(data.res_msg);
+					
+					if(data.res_code==200){
+						location.href="";
+					}else{
+						location.href="";
+					}
+				}
+			});
+			}
+		}); 
+	</script>
+	
+	
 					<div class="col-xl-8 py-5 px-md-5">
 				</div>
 			</div>
