@@ -70,4 +70,7 @@ public class MemberBoardDao {
 	public int deleteReviewOne(SqlSession session, int reviewNo) {
 		return session.delete("reviewMapper.deleteReviewOne",reviewNo);
 	}
+	public int countLikeByReviewNo(SqlSession session, int reviewNo) {
+		return session.selectOne("reviewMapper.countLikeByReviewNo",reviewNo);
+	}
 }
