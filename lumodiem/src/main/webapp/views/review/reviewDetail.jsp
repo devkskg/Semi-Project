@@ -49,7 +49,16 @@
 						<td>${review.reviewModDate}</td>
 					</tr>
 					<tr>
-						<td><div class="icon"><span class="icon-heart-o"></span></div></td>
+						<td colspan="2">
+							<c:choose>
+								<c:when test="${myLikeCount eq 0 }">
+									<div class="icon"><span class="icon-heart-o">${totalLikeCount }</span></div>
+								</c:when>
+								<c:otherwise>
+									<div class="icon"><span class="icon-heart">${totalLikeCount }</span></div>
+								</c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 				</table>
 			</li>

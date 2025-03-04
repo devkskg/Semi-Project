@@ -174,12 +174,21 @@
 		WHERE review_no = #{reviewNo}
 	</delete>
 	<!-- 해당 클래스의 좋아요 갯수 -->
-	<select id='countLikeByReviewNo' resultMap="reviewAttachMap" parameterType="_int">
-		SELECT a.*
-		FROM `review_attach` a
-		JOIN `review_mapping` m ON a.attach_no = m.attach_no
-		JOIN `review` r ON r.review_no = m.review_no
-		WHERE r.review_no = #{reviewNo}
+	<select id='countLikeByReviewNo' resultMap="reviewLikeMap" parameterType="_int">
+		SELECT count(*)
+		FROM `review_like`
+		<where>
+			AND review_no = #{reviewNo}
+		</where>
+	</select>
+	<!-- 해당 클래스의 좋아요 갯수 -->
+	<select id='countLikeByAccountNoReviewNo' resultMap="reviewLikeMap" parameterType="reviewLikeVo">
+		SELECT count(*)
+		FROM `review_like`
+		<where>
+			AND review_no = #{reviewNo}
+			AND account_no = #{accountNO}
+		</where>
 	</select>
 	
 </mapper>

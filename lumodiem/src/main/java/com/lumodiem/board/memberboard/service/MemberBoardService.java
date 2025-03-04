@@ -11,6 +11,7 @@ import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewLike;
 import com.lumodiem.board.memberboard.vo.ReviewMapping;
 public class MemberBoardService {
 	
@@ -131,6 +132,12 @@ public class MemberBoardService {
 	public int countLikeByReviewNo(int reviewNo) {
 		SqlSession session = getSqlSession();
 		int count = new MemberBoardDao().countLikeByReviewNo(session,reviewNo);
+		session.close();
+		return count;
+	}
+	public int countLikeByAccountNoReviewNo(ReviewLike reviewLike) {
+		SqlSession session = getSqlSession();
+		int count = new MemberBoardDao().countLikeByAccountNoReviewNo(session,reviewLike);
 		session.close();
 		return count;
 	}

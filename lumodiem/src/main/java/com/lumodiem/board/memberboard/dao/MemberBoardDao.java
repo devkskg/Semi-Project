@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewLike;
 import com.lumodiem.board.memberboard.vo.ReviewMapping;
 
 public class MemberBoardDao {
@@ -72,5 +73,8 @@ public class MemberBoardDao {
 	}
 	public int countLikeByReviewNo(SqlSession session, int reviewNo) {
 		return session.selectOne("reviewMapper.countLikeByReviewNo",reviewNo);
+	}
+	public int countLikeByAccountNoReviewNo(SqlSession session, ReviewLike reviewLike) {
+		return session.selectOne("reviewMapper.countLikeByAccountNoReviewNo",reviewLike);
 	}
 }
