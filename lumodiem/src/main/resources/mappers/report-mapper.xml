@@ -35,7 +35,6 @@
 		<result property="klassStatus" column="klass_status"/>
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
-		<result property="approveCode" column="approve_code"/>
 	</resultMap>
 	
 	<resultMap type="reportReviewVo" id="reportReviewMap">
@@ -105,28 +104,31 @@
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	
 	<select id="reportKlassOne" resultMap="reportKlassMap" parameterType="reportKlassVo">
-	SELECT k.* ,a.account_nickname			
+<!-- 	SELECT k.* ,a.account_nickname			
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
 	<where>
 		AND k.klass_no = #{klassNo}
-	</where>
+	</where> -->
 	
 	
-		<!-- SELECT k.* 
+		SELECT k.* 
 		,a.account_nickname
 		,ap.approve_code		
 		FROM `approve` ap
 		JOIN `klass` k
 		ON k.klass_no = ap.klass_no
 		JOIN `account` a
-		ON k.account_no = a.account_no -->
+		ON k.account_no = a.account_no
+		<where>
+			 k.klass_no = #{klassNo}
+		</where>
 	</select>
 	
 	
 	<delete id="deleteReportKlass" parameterType="_int" >
-		DELETE FROM `klass_report`
+		DELETE FROM `klass`
 		<where>
 		 klass_no = #{klassNo};
 		 </where>
@@ -139,8 +141,8 @@
 		</where>
 	</select> -->
 	
-	<select id="selectReportKlass"  resultMap="reportKlassMap" >
-		SELECT k.klass_no
+	<select id="selectReportKlass"  resultMap="reportKlassMap" parameterType="reportKlassVo">
+			<!-- SELECT k.klass_no
 			,kr.report_klass_no 
 			,k.klass_name
 			,a.account_nickname
@@ -149,8 +151,33 @@
 			JOIN `klass` k 
 			ON kr.klass_no = k.klass_no
 			JOIN `account` a
+			ON a.account_no = kr. account_no -->
+			
+			SELECT k.*
+			,a.account_nickname
+			
+			FROM `klass_report` kr 
+			JOIN `klass` k 
+			ON kr.klass_no = k.klass_no
+			JOIN `account` a
 			ON a.account_no = kr. account_no
-
+		
+	<!-- 	SELECT k.* ,a.account_nickname
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+		JOIN `approve` p ON k.klass_no = p.klass_no -->
+		<where>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
 
 	</select>
 

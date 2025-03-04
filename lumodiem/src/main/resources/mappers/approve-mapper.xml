@@ -41,8 +41,15 @@
 	</resultMap>
 	<update id="updateApprove" parameterType="approveVo" useGeneratedKeys="true" keyProperty="approveNo">
 	UPDATE `approve`
+	
+	<if test="approveFb != null">
 	SET `approve_code` = #{approveCode}
 		,`approve_fb` = #{approveFb}
+	</if>
+	<if test="approveFb == null">
+	SET `approve_code` = #{approveCode}
+	</if>
+		
 	<where>
 	klass_no = #{klassNo}
 	</where>

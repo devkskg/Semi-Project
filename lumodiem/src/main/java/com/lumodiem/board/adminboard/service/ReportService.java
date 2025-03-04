@@ -55,12 +55,12 @@ public class ReportService {
 		return result;
 	}
 	
-	public List<ReportKlass> selectReportKlassList (int reportKlassNo){
-		SqlSession session = getSqlSession();
-		List<ReportKlass> resultList = dao.selectReportKlassList(reportKlassNo, session);
-		session.close();
-		return resultList;
-	}
+//	public List<ReportKlass> selectReportKlassList (int reportKlassNo){
+//		SqlSession session = getSqlSession();
+//		List<ReportKlass> resultList = dao.selectReportKlassList(reportKlassNo, session);
+//		session.close();
+//		return resultList;
+//	}
 	
 	public ReportKlass selectReportKlassOne(ReportKlass klass) {
 		SqlSession session = getSqlSession();
@@ -69,9 +69,9 @@ public class ReportService {
 		return klass;
 	}
 	
-	public List<ReportKlass> selectReportKlassList (){
+	public List<ReportKlass> selectReportKlassList (ReportKlass option){
 		SqlSession session = getSqlSession();
-		List<ReportKlass> resultList = dao.selectReportKlassList(session);
+		List<ReportKlass> resultList = dao.selectReportKlassList(option,session);
 		session.close();
 		return resultList;
 	}

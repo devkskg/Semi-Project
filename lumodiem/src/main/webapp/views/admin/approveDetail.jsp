@@ -90,11 +90,11 @@
 			<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
 				
 				<c:choose>
-					<c:when test="${approve.approveCode eq 'S' }">
+					<c:when test="${klass.approveCode eq 'S' }">
 						<button type="button" id="updateBtn" name="updateBtn">승인</button>
 						<button type="button" id="rejectBtn" name="rejectBtn">반려</button>
 					</c:when>
-					<c:when test="${approve.approveCode eq 'A' }">
+					<c:when test="${klass.approveCode eq 'A' }">
 						<button type='button' id="deleteBtn" name="deleteBtn">삭제</button>
 					</c:when>
 					
@@ -172,7 +172,9 @@
 						alert(data.res_msg);
 						
 						if(data.res_code==200){
-							location.href="/arreoveList";
+							location.href="/reportKlass";
+						}else{
+							location.href="/reportKlass";
 						}
 					}
 				});

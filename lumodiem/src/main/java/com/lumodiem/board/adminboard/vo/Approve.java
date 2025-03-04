@@ -19,6 +19,4 @@ public class Approve {
 	private int klassNo;
 	private String approveCode;
 	private String approveFb;
-	
-	private String orderType;
 }

@@ -33,15 +33,15 @@ public class ReportDao {
 	}
 		
 	
-	public List<ReportKlass> selectReportKlassList (int reportKlassNo, SqlSession session){
-		return session.selectList("reportMapper.reportKlassSelect", reportKlassNo);
-	}
+//	public List<ReportKlass> selectReportKlassList (int reportKlassNo, SqlSession session){
+//		return session.selectList("reportMapper.reportKlassSelect", reportKlassNo);
+//	}
 	
 	public ReportKlass selectReportKlassOne(ReportKlass klass,SqlSession session) {
 		return session.selectOne("reportMapper.reportKlassOne",klass);
 	}
 	
-	public List<ReportKlass> selectReportKlassList (SqlSession session){
-		return session.selectList("reportMapper.selectReportKlass");
+	public List<ReportKlass> selectReportKlassList (ReportKlass option,SqlSession session){
+		return session.selectList("reportMapper.selectReportKlass",option);
 	}
 }
