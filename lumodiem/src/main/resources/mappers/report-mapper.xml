@@ -5,6 +5,21 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportMapper">
 
+	
+	<resultMap type="klassVo" id="klassMap">
+		<result property="klassNo" column="klass_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="klassAddress" column="klass_address"/>
+		<result property="klassPrice" column="klass_price"/>
+		<result property="klassMax" column="klass_max"/>
+		<result property="klassStatus" column="klass_status"/>
+		<result property="klassTxt" column="klass_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="klassRegDate" column="klass_reg_date"/>
+		<result property="klassModDate" column="klass_mod_date"/>
+	</resultMap>
+	
 	<resultMap type="reportKlassVo" id="reportKlassMap">
 		<result property="reportKlassNo" column="report_klass_no"/>
 		<result property="klassNo" column="klass_no"/>
@@ -12,6 +27,15 @@
 		<result property="klassName" column="klass_name"/>
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassTxt" column="klass_txt"/>
+		
+
+		<result property="klassAddress" column="klass_address"/>
+		<result property="klassPrice" column="klass_price"/>
+		<result property="klassMax" column="klass_max"/>
+		<result property="klassStatus" column="klass_status"/>
+		<result property="klassRegDate" column="klass_reg_date"/>
+		<result property="klassModDate" column="klass_mod_date"/>
+		<result property="approveCode" column="approve_code"/>
 	</resultMap>
 	
 	<resultMap type="reportReviewVo" id="reportReviewMap">
@@ -80,7 +104,25 @@
 	</select>
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	
+	<select id="reportKlassOne" resultMap="reportKlassMap" parameterType="reportKlassVo">
+	SELECT k.* ,a.account_nickname			
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+	<where>
+		AND k.klass_no = #{klassNo}
+	</where>
 	
+	
+		<!-- SELECT k.* 
+		,a.account_nickname
+		,ap.approve_code		
+		FROM `approve` ap
+		JOIN `klass` k
+		ON k.klass_no = ap.klass_no
+		JOIN `account` a
+		ON k.account_no = a.account_no -->
+	</select>
 	
 	
 	<delete id="deleteReportKlass" parameterType="_int" >

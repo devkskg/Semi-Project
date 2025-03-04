@@ -29,13 +29,15 @@ public class ApproveListServlet extends HttpServlet {
 		String searchType = request.getParameter("search_type");
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
-		Klass option = Klass.builder()
+		String approveCode = request.getParameter(accountNickname);
+ 		Klass option = Klass.builder()
 				.klassName(klassName)
 				.accountNickname(accountNickname)
 				.klassTxt(klassTxt)
 				.searchType(searchType)
 				.searchTxt(searchTxt)
 				.orderType(orderType)
+				.approveCode(approveCode)
 				.build();
 		//List<Klass> resultList = new HostBoardService().searchBoardList(option);
 		List<Klass> resultList = new ApproveSerview().selectApproveList(option);

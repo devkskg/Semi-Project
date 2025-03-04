@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lumodiem.board.adminboard.service.ReportService;
+import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
@@ -23,8 +25,19 @@ public class ApproveDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
-		Klass klass = new HostBoardService().selectKlassOne(klassNo);
+		
+		String temp = request.getParameter("klass_no");
+		String approve_code = request.getParameter("approve_code");
+		int klassNo = 0;
+		if(temp!=null) klassNo=Integer.parseInt(request.getParameter("klass_no"));
+		
+		ReportKlass klass = ReportKlass.builder()
+				.klassNo(klassNo)
+				.approveCode(approve_code)
+				.build();
+		
+		
+		klass = new ReportService().selectReportKlassOne(klass);
 		List<KlassDate> klassDate = new HostBoardService().selectKlassDate(klassNo);
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/approveDetail.jsp");
 		request.setAttribute("klass", klass);

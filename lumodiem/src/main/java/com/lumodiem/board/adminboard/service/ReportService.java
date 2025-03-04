@@ -11,6 +11,8 @@ import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
+import com.lumodiem.board.hostboard.dao.HostBoardDao;
+import com.lumodiem.board.hostboard.vo.Klass;
 
 public class ReportService {
 	ReportDao dao = new ReportDao();
@@ -59,6 +61,14 @@ public class ReportService {
 		session.close();
 		return resultList;
 	}
+	
+	public ReportKlass selectReportKlassOne(ReportKlass klass) {
+		SqlSession session = getSqlSession();
+		klass = dao.selectReportKlassOne(klass,session);
+		session.close();
+		return klass;
+	}
+	
 	public List<ReportKlass> selectReportKlassList (){
 		SqlSession session = getSqlSession();
 		List<ReportKlass> resultList = dao.selectReportKlassList(session);

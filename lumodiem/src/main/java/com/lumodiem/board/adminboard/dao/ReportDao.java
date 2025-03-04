@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
+import com.lumodiem.board.hostboard.vo.Klass;
 
 public class ReportDao {
 	
@@ -35,6 +36,11 @@ public class ReportDao {
 	public List<ReportKlass> selectReportKlassList (int reportKlassNo, SqlSession session){
 		return session.selectList("reportMapper.reportKlassSelect", reportKlassNo);
 	}
+	
+	public ReportKlass selectReportKlassOne(ReportKlass klass,SqlSession session) {
+		return session.selectOne("reportMapper.reportKlassOne",klass);
+	}
+	
 	public List<ReportKlass> selectReportKlassList (SqlSession session){
 		return session.selectList("reportMapper.selectReportKlass");
 	}
