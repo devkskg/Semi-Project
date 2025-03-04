@@ -34,4 +34,5 @@ public class Klass {
 	private String klassStart;
 	private String klassEnd;
 	private int attachNo;
+	private String klassOfDate;
 }
