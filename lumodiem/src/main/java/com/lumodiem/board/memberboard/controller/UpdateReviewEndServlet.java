@@ -1,8 +1,11 @@
 package com.lumodiem.board.memberboard.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.simple.JSONObject;
 
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
+import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewMapping;
 
 @WebServlet("/updateReviewEnd")
 public class UpdateReviewEndServlet extends HttpServlet {
@@ -27,21 +35,65 @@ public class UpdateReviewEndServlet extends HttpServlet {
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		int accountNo = Integer.parseInt(request.getParameter("account_no"));
-		String reviewName = request.getParameter("reivew_name");
-		String reviewTxt = request.getParameter("review_txt");
-		int reviewNo = Integer.parseInt(request.getParameter("review_no"));
+		Review r = new Review();
+		ReviewAttach a = new ReviewAttach();
+		ReviewMapping m = new ReviewMapping();
 		
-		Review review = Review.builder()
-				.accountNo(accountNo)
-				.reviewName(reviewName)
-				.reviewTxt(reviewTxt)
-				.reviewNo(reviewNo)
-				.reviewModDate(ldt.format(dtf))
-				.build();
+		r = Review.builder().reviewRegDate(ldt.format(dtf)).reviewModDate(ldt.format(dtf)).build();
 		
-		int result = new MemberBoardService().UpdateReview(review);
-		System.out.println("review : "+ review);
+		
+		String path ="C:\\dev\\lumodiem\\file\\memberattach";
+		File dir = new File(path);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setRepository(dir);
+		factory.setSizeThreshold(1024*1024*10);
+		
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		try {
+			List<FileItem> items = upload.parseRequest(request);
+			for(int i = 0; i<items.size(); i++) {
+				FileItem fileItem = items.get(i);
+				if(fileItem.isFormField()) {
+					switch(fileItem.getFieldName()) {
+					case"review_name":r.setReviewName(fileItem.getString("utf-8")); break;
+					case"review_txt":r.setReviewTxt(fileItem.getString("utf-8"));break;
+					case"account_no":r.setAccountNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					case"res_no":r.setResNo(Integer.parseInt(fileItem.getString("utf-8")));break;
+					}
+					if(r.getResNo() == 0) {
+						response.sendRedirect("/");
+					}
+				}else {
+					if(fileItem.getSize() > 0) {
+						String oriName = fileItem.getName();
+						int idx = oriName.lastIndexOf(".");
+						String ext = oriName.substring(idx);
+						
+						String uuid = UUID.randomUUID().toString().replace("-","");
+						String newName = uuid+ext;
+						
+						File uploadFile = new File(dir,newName);
+						fileItem.write(uploadFile);
+						
+						a = ReviewAttach.builder()
+								.attachOri(oriName)
+								.attachNew(newName)
+								.attachPath(path+"\\"+newName)
+								.build();
+					}
+				}
+			}
+			// 잘들어갔는지 확인용도
+			System.out.println("review :"+r);
+			System.out.println("attach :"+a);
+			
+			int result = new MemberBoardService().UpdateReview(r,a,m);		
+		
+		
+		
 		
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
@@ -53,8 +105,11 @@ public class UpdateReviewEndServlet extends HttpServlet {
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");

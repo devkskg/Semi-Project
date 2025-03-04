@@ -11,7 +11,7 @@
 		<result property="klassDateNo" column="klass_date_no"/>
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="reviewName" column="review_name"/>
-		<result property="accountNickName" column="account_nickname"/>
+		<result property="accountNickname" column="account_nickname"/>
 		<result property="reviewRegDate" column="review_reg_date"/>
 		<result property="reviewModDate" column="review_mod_date"/>
 		<result property="orderType" column="order_type"/>
@@ -66,12 +66,6 @@
 		VALUES (#{reviewNo} ,#{attachNo})
 	</insert>
 	
-	<update id="reviewUpdate" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
-		UPDATE `review`
-		SET review_name = #{reviewName}
-		,review_txt = #{reviewTxt}
-		WHERE account_no = #{accountNo}
-	</update>
 	
 	<select id="reviewList" resultMap="reviewMap" parameterType="reviewVo">
 	SELECT r.* , a.account_nickname
@@ -86,7 +80,7 @@
 			AND r.review_txt LIKE CONCAT('%',#{reviewTxt},'%')
 		</if>
 		<if test='accountNickName != null and accountNickName.equals("") == false'>
-			AND a.account_nickname LIKE CONCAT('%',#{accountNickName},'%')
+			AND a.account_nickname LIKE CONCAT('%',#{accountNickname},'%')
 		</if>
 	</where>
 	<if test="orderType == null or orderType.equals('0') == true">
@@ -124,5 +118,26 @@
 		JOIN `reservation` r ON d.klass_date_no = r.klass_date_no
 		WHERE r.account_no = #{accountNo}
 	</select>
-	
+	<update id="reviewUpdate" parameterType="reviewVo">
+		UPDATE `review`
+		SET account_no = #{accountNo}
+			,res_no = #{resNo}
+			,review_txt = #{reviewTxt}
+			,review_name = #{reviewName}
+			,review_mod_date = #{reviewModDate}
+		WHERE review_no = #{reviewNo}
+	</update>
+	<update id="attachUpdate" parameterType="reviewAttachVo">
+		UPDATE `review_attach`
+		SET attach_ori = #{attachOri}
+			,attach_new = #{attachNew}
+			,attach_path = #{attachPath}
+		WHERE attach_no = #{attachNo}
+	</update>
+	<update id="mappingUpdate" parameterType="reviewMappingVo">
+		UPDATE `review_mapping`
+		SET attach_no = #{attachNo}
+			,review_no = #{reviewNo}
+		WHERE mapping_no = #{mappingNo)
+	</update>
 </mapper>
