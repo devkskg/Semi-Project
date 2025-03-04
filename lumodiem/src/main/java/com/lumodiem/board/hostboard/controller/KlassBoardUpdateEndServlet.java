@@ -45,6 +45,8 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 		KlassDate klassDate = new KlassDate();
 		String klassOfDate = "";
 		
+		KlassAttach atc = null;
+		
 		String path ="C:\\dev\\lumodiem\\file\\klassattach";
 		File dir = new File(path);
 		if(!dir.exists()) {
@@ -77,7 +79,9 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 						case "klass_end" : klassDate.setKlassEnd(klassOfDate + " " + fileItem.getString("UTF-8") + ":00");
 							option.setKlassEnd(fileItem.getString("UTF-8"));break;
 						case "klass_no" : option.setKlassNo(Integer.parseInt(fileItem.getString("UTF-8")));
-										klassDate.setKlassNo(Integer.parseInt(fileItem.getString("UTF-8"))); break;
+										klassDate.setKlassNo(Integer.parseInt(fileItem.getString("UTF-8"))); 
+										atc = new HostBoardService().selectAttachOneByKlassNo(Integer.parseInt(fileItem.getString("UTF-8")));
+										break;
 						default : option.setKlassModDate(ldt.format(dtf)); break;
 					}
 				}else {
@@ -92,6 +96,8 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
+						
+						
 						a = KlassAttach.builder()
 							.attachOri(oriName)
 							.attachNew(newName)
@@ -101,10 +107,14 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 				}
 			}
 			
+			
+			a.setAttachNo(atc.getAttachNo());
+//			m.setAttachNo(atc.getAttachNo());
+			m.setKlassNo(option.getKlassNo());
 			System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
 			System.out.println("date : " + klassDate);
 			System.out.println("attach : " +a);
-			
+			System.out.println("mapping : "+m);
 			int result = new HostBoardService().updateKlass(option,klassDate,a,m);
 			
 			JSONObject obj = new JSONObject();

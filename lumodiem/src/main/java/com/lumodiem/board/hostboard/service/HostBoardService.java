@@ -38,14 +38,13 @@ public class HostBoardService {
 		
 		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,a);
 		int insertAttachResult = new HostBoardDao().insertKlassAttach(session,a);
-		
+		m.setAttachNo(insertAttachResult);
 		// 추후 attach_no delete되면 mappin_no까지 같이 지워지는 작업 진행 되면 안써도 될 메소드임.
-		int deleteMapResult = new HostBoardDao().deleteMappingOne(session,m);
-		int insertMappResult = new HostBoardDao().insertKlassMapping(session, m);
+//		int deleteMapResult = new HostBoardDao().deleteMappingOne(session,m);
+		int insertMapResult = new HostBoardDao().insertKlassMapping(session, m);
 		
-		if(updateResult > 0 && updateDateResult >0 
-				&& deleteAttachResult > 0 && insertAttachResult > 0 
-				&& deleteMapResult > 0 && insertMappResult > 0) {
+		if(updateResult > 0 && deleteDateResult >0 && insertDateResult > 0 
+				&& deleteAttachResult > 0 && insertAttachResult > 0 && insertMapResult > 0) {
 			result = 1;
 			session.commit();
 		}else {
@@ -130,6 +129,13 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
+
+	public KlassAttach selectAttachOneByKlassNo(int klassNo) {
+		SqlSession session = getSqlSession();
+		KlassAttach result = new HostBoardDao().selectAttachOneByKlassNo(session,klassNo);
+		return result;
+	}
+
 
 	
 }
