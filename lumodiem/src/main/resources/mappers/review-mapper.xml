@@ -105,6 +105,12 @@
 		JOIN `review_attach` ra ON ra.attach_no = m.attach_no
 		WHERE r.review_no = #{reviewNo}
 	</select>
+	<select id='reviewNo' resultMap="reviewMap" parameterType="_int">
+		SELECT r.*, a.account_nickname
+		FROM `review` r
+		JOIN `account` a ON r.account_no = a.account_no
+		WHERE r.review_no = #{reviewNo}
+	</select>
 	<select id='attachOne' resultMap="reviewAttachMap" parameterType="_int">
 		SELECT *
 		FROM `review_attach`
@@ -140,4 +146,11 @@
 			,review_no = #{reviewNo}
 		WHERE mapping_no = #{mappingNo)
 	</update>
+	<select id='noImgReview' resultMap="reviewAttachMap" parameterType="_int">
+		SELECT a.*
+		FROM `review_attach` a
+		JOIN `review_mapping` m ON a.attach_no = m.attach_no
+		JOIN `review` r ON r.review_no = m.review_no
+		WHERE r.review_no = #{reviewNo}
+	</select>
 </mapper>

@@ -90,4 +90,16 @@ public class MemberBoardService {
 		session.close();
 		return klass;
 	}
+	public ReviewAttach selectNoImgReview(int reviewNo) {
+		SqlSession session = getSqlSession();
+		ReviewAttach a = new MemberBoardDao().selectNoImgReview(session,reviewNo);
+		session.close();
+		return a;
+	}
+	public Review selectReviewNo(int reviewNo) {
+		SqlSession session = getSqlSession();
+		Review r = new MemberBoardDao().selectReviewNo(session,reviewNo);
+		session.close();
+		return r;
+	}
 }

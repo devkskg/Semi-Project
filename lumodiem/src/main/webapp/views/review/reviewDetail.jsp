@@ -27,7 +27,6 @@
 				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width:300px" > 
 			</li> 
 			<li>
-					<%-- <c:out value="attachNo : ${review.attachNo }"/> --%>
 				<table>
 					<tr>
 						<td>제목</td>
@@ -54,10 +53,10 @@
 		</ul> 
 	</div>
 	<div>
-		<button type="button" class="selectBtn" name="update">
+		<button type="button" class="updateBtn" name="updateBtn">
 			<a href="/updateReviewPage?review_no=${review.reviewNo}">수정</a>
 		</button>
-		<button type="button" class="selectBtn" name="delete">
+		<button type="button" class="deletebtn" name="deletebtn">
 			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
 		</button>
 	</div>
