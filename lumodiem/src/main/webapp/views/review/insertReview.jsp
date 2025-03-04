@@ -42,9 +42,6 @@
 				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
 				<input type="hidden" name="account_no" value="${account.accountNo}">
 				
-				<%-- <input type="hidden" name="review_no" value="${review.reviewNo}"> 
-				<input type="hidden" name="attach_no" value="${review.attachNo}">  --%>
-				
 				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 				<button type="button" onclick="createReviewForm();">작성하기</button>
 				<c:choose>

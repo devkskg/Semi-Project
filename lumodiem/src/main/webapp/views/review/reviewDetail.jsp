@@ -14,15 +14,19 @@
 <title>클래스 조회</title>
 </head>
 <body>
+<%@ include file="/views/include/nav.jsp" %>
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<div class="row d-flex">
 	<h3>리뷰 상세 정보</h3>
 	<!-- 이건 나중에 작성 -->
 	<div class="review">
 		<ul>
 			<li>
-				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}"> 
+				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width:300px" > 
 			</li> 
 			<li>
-					<%-- <c:out value="attachNo : ${review.attachNo }"/> --%>
 				<table>
 					<tr>
 						<td>제목</td>
@@ -49,12 +53,18 @@
 		</ul> 
 	</div>
 	<div>
-		<button type="button" class="selectBtn" name="update">
-			<a href="<c:url value='/updateReviewPage'/>">수정</a>
+		<button type="button" class="updateBtn" name="updateBtn">
+			<a href="/updateReviewPage?review_no=${review.reviewNo}">수정</a>
 		</button>
-		<button type="button" class="selectBtn" name="delete">
+		<button type="button" class="deletebtn" name="deletebtn">
 			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
 		</button>
 	</div>
+					<div class="col-xl-8 py-5 px-md-5">
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 </body>
 </html>

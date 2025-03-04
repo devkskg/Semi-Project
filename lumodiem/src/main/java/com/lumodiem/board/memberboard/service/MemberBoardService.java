@@ -34,9 +34,23 @@ public class MemberBoardService {
 		session.close();
 		return result;
 	}
-	public int UpdateReview(Review review) {
+	public int UpdateReview(Review r ,ReviewAttach a ,ReviewMapping m) {
 		SqlSession session = getSqlSession();
-		int result = new MemberBoardDao().UpdateReview(session,review);
+		int result = 0;
+		
+		int updateResult = new MemberBoardDao().updateReview(session,r);
+		int updateAttachResult = new MemberBoardDao().updateAttach(session,a);
+		m.setReviewNo(updateResult);
+		m.setAttachNo(updateAttachResult);
+		
+		int updateMappingResult = new MemberBoardDao().updateMapping(session,m);
+		
+		if(updateResult > 0 && updateAttachResult > 0 && updateMappingResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
 		session.close();
 		return result;
 	}
@@ -75,5 +89,17 @@ public class MemberBoardService {
 		List<Klass> klass = new MemberBoardDao().searchKlassDateNo(session,klassDateNo);
 		session.close();
 		return klass;
+	}
+	public ReviewAttach selectNoImgReview(int reviewNo) {
+		SqlSession session = getSqlSession();
+		ReviewAttach a = new MemberBoardDao().selectNoImgReview(session,reviewNo);
+		session.close();
+		return a;
+	}
+	public Review selectReviewNo(int reviewNo) {
+		SqlSession session = getSqlSession();
+		Review r = new MemberBoardDao().selectReviewNo(session,reviewNo);
+		session.close();
+		return r;
 	}
 }

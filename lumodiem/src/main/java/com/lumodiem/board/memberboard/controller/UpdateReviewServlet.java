@@ -22,8 +22,10 @@ public class UpdateReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String temp = request.getParameter("review_no");
+		System.out.println(temp);
 		int reviewNo = 0;
 		if(temp != null) reviewNo = Integer.parseInt(temp);
+		System.out.println(reviewNo);
 		Review review = new MemberBoardService().selectReviewOne(reviewNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/updateReview.jsp");
