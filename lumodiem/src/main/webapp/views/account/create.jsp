@@ -32,8 +32,20 @@
 					<label for="account_phone">전화번호 : </label><input name="account_phone" id="account_phone" type="text">
 					<button type="button" id="duplicate_phone" name="duplicate_phone" class="duplicate">중복확인</button> <br>
 					
-					<label for="account_address">주소 : </label><input name="account_address" id="account_address" type="text"><br>
+					<!-- <label for="account_address">주소 : </label><input name="account_address" id="account_address" type="text"><br> -->
+					
+					
+					<input type="text" name="postcode" id="postcode" placeholder="우편번호">
+					<input type="button" name="findPostCode_btn" id="findPostCode_btn" value="우편번호 찾기"><br>
+					<input type="text" name="address" id="address" placeholder="주소"><br>
+					<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"><br>
+					
+					
 					<label for="account_email">이메일 : </label><input name="account_email" id="account_email" type="text"><br>
+					
+					
+					
+					
 					
 					
 					<button type="button" id="submitBtn">가입하기</button>
@@ -75,7 +87,7 @@
 				} else if(!form.account_phone.value){
 					alert("전화번호을 입력하세요.")
 					form.account_phone.focus();
-				} else if(!form.account_address.value){
+				} else if(!form.address.value){
 					alert("주소를 입력하세요.")
 					form.account_address.focus();
 				}  else if(!form.account_email.value){
@@ -92,7 +104,9 @@
 								"account_nickname" : form.account_nickname.value,
 								"account_ssn" : form.account_ssn.value,
 								"account_phone" : form.account_phone.value,
-								"account_address" : form.account_address.value,
+								"postcode" : form.postcode.value,
+								"address" : form.address.value,
+								"detailAddress" : form.detailAddress.value,
 								"account_email" : form.account_email.value,
 						},
 						dataType : "JSON",
@@ -304,6 +318,30 @@
 				}
 			});
 			
+			
+			$('#findPostCode_btn').click(function(){
+			    new daum.Postcode({
+			        oncomplete: function(data) {
+			            var addr = data.roadAddress; // 도로명 주소
+			            var extraAddr = ''; // 참고항목
+
+			            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+			                extraAddr += data.bname;
+			            }
+			            if(data.buildingName !== '' && data.apartment === 'Y'){
+			                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+			            }
+			            if(extraAddr !== ''){
+			                extraAddr = ' (' + extraAddr + ')';
+			            }
+
+			            $('#postcode').val(data.zonecode);
+			            $("#address").val(addr + extraAddr);
+			            $("#detailAddress").focus();
+			        }
+			    }).open();
+			});
+			
 		})
 		
 		
@@ -311,7 +349,7 @@
 		
 		
 	</script>
-	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 </body>
 </html>
