@@ -34,6 +34,7 @@ public class KlassDetailServlet extends HttpServlet {
 		List<KlassAttach> klassAttach = new HostBoardService().selectAttachList(klassNo);
 		
 		List<Review> review = new HostBoardService().selectReviewByKlass(klassNo);
+		System.out.println("review"+review);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassDetail.jsp");
 		request.setAttribute("klass", klass);

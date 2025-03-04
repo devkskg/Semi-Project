@@ -41,6 +41,7 @@
 				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}">
 			</c:forEach>
 		</div>
+		<hr>
 		<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<table>
 				<tr>
@@ -94,10 +95,10 @@
 					<th>작성일</th>
 					<td>${klass.klassRegDate}</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>상세 내용</th>
 					<td>${klass.klassTxt}</td>
-				</tr>
+				</tr> --%>
 			
 			</table>		
 		
@@ -121,15 +122,15 @@
 		</c:choose>
 		
 		</form>
-		
+		<hr>
 		<form>
 			<div>
 				${klass.klassTxt}
 			</div>
 		</form>
-		
+		<hr>
 		<form>
-			<table>
+			<table border="1">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -140,16 +141,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="li" items=${klassDate } varStatus="vs">
-					<tr>
-						<td>${vs.count}</td>						
-						<td>${li.reviewName}</td>
-						<td>${li.reviewTxt}</td>
-						<td>${li.accountNickname}</td>
-						<td>${li.reviewRegDate}</td>
-					</tr>
-							
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty review }">
+						
+							<c:forEach var="list" items="${review }" varStatus="vs">
+							<tr>
+								<td>${vs.count}</td>						
+								<td>${list.reviewName}</td>
+								<td>${list.reviewTxt}</td>
+								<td>${list.accountNickname}</td>
+								<td>${list.reviewRegDate}</td>
+							</tr>
+									
+							</c:forEach>
+						
+						</c:when>
+						<c:otherwise>
+							<td colspan="5">작성된 리뷰가 없습니다.</td>
+						</c:otherwise>					
+					
+					</c:choose>
+				
+				
+				
 				
 				</tbody>
 			</table>
