@@ -102,4 +102,16 @@ public class MemberBoardService {
 		session.close();
 		return r;
 	}
+	public Review delectReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ReviewAttach delectAttach(int reviewNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ReviewMapping delectMapping(int reviewNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

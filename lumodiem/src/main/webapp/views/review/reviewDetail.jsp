@@ -53,13 +53,38 @@
 		</ul> 
 	</div>
 	<div>
-		<button type="button" class="updateBtn" name="updateBtn">
-			<a href="/updateReviewPage?review_no=${review.reviewNo}">수정</a>
-		</button>
-		<button type="button" class="deletebtn" name="deletebtn">
-			<a href="<c:url value='/deleteReviewPage'/>">삭제</a>
-		</button>
+	<c:choose>
+		<c:when test="${review.accountNo eq account.accountNo }">
+			<button type="button" id="updateBtn" name="updateBtn">
+				<a href="/updateReviewPage?review_no=${review.reviewNo}">수정</a>
+			</button>
+			<button type="button" id="deleteBtn" name="deleteBtn">
+				삭제
+			</button>
+		</c:when>
+	</c:choose>
 	</div>
+	<script>
+		$('#deleteBtn').click(function(){
+			const reviewNo = ${review.reviewNo};
+			const check = confirm("삭제하시겠습니까?");
+			if(check){
+				$.ajax({
+					url : "/deleteReviewPage",
+					type : "post",
+					data : {"review_no" : reviewNo},
+					dataType : "JSON",
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data){
+						alert(data.res_msg);
+						if(data.res_code == "200"){
+							location.href="/reviewBoard";
+						} 
+					}
+			});
+			}
+		})
+	</script>
 					<div class="col-xl-8 py-5 px-md-5">
 				</div>
 			</div>
