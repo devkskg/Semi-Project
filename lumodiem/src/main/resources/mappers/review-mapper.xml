@@ -54,7 +54,7 @@
 		<result property="klassDateNo" column="klass_date_no"/>
 	</resultMap>
 	<resultMap type="reviewLikeVo" id="reviewLikeMap">
-		<result property="reviewLikeNo" column="reviewLike_no"/>
+		<result property="reviewLikeNo" column="review_like_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="reviewNo" column="review_no"/>
 		<result property="reviewName" column="review_name"/>
@@ -173,13 +173,35 @@
 		DELETE FROM `review`
 		WHERE review_no = #{reviewNo}
 	</delete>
-	<!-- 해당 클래스의 좋아요 갯수 -->
-	<select id='countLikeByReviewNo' resultMap="reviewAttachMap" parameterType="_int">
-		SELECT a.*
-		FROM `review_attach` a
-		JOIN `review_mapping` m ON a.attach_no = m.attach_no
-		JOIN `review` r ON r.review_no = m.review_no
-		WHERE r.review_no = #{reviewNo}
+	<!-- 해당 리뷰의 좋아요 갯수 -->
+	<select id='countLikeByReviewNo' parameterType="_int" resultType="int">
+		SELECT count(*)
+		FROM `review_like`
+		<where>
+			review_no = #{reviewNo}
+		</where>
 	</select>
+	<!-- 해당 리뷰의 좋아요 갯수 -->
+	<select id='countLikeByAccountNoReviewNo' parameterType="reviewLikeVo" resultType="int">
+		SELECT count(*)
+		FROM `review_like`
+		<where>
+			review_no = #{reviewNo}
+			AND account_no = #{accountNo}
+		</where>
+	</select>
+	<!-- 좋아요 추가 -->
+	<insert id="reviewUnlikeToLike" parameterType="reviewLikeVo" useGeneratedKeys="true" keyProperty="reviewNo">
+		INSERT INTO `review_like`(account_no ,review_no)
+		VALUES (#{accountNo} ,#{reviewNo})
+	</insert>
+	<!-- 좋아요 제거 -->
+ 	<delete id="reviewLikeToUnlike" parameterType="reviewLikeVo">
+		DELETE FROM `review_like`
+		<where>
+			review_no = #{reviewNo}
+			AND account_no = #{accountNo}
+		</where>
+	</delete>
 	
 </mapper>
