@@ -48,6 +48,9 @@
 						<td>수정일</td>
 						<td>${review.reviewModDate}</td>
 					</tr>
+					<tr>
+						<td><div class="icon"><span class="icon-heart-o"></span></div></td>
+					</tr>
 				</table>
 			</li>
 		</ul> 

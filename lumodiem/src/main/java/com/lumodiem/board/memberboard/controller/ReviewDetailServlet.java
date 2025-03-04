@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -22,20 +23,28 @@ public class ReviewDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int reviewNo = Integer.parseInt(request.getParameter("review_no"));
-		System.out.println(reviewNo);
-		Review review = null;
-		ReviewAttach noImg = new MemberBoardService().selectNoImgReview(reviewNo);
-		if(noImg == null) {
-			review = new MemberBoardService().selectReviewNo(reviewNo);
+		HttpSession session = request.getSession();
+		String url = request.getContextPath() + "/";
+		int likeCount = 0; 
+		if(session != null && session.getAttribute("account") != null) {
+			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
+			System.out.println(reviewNo);
+			Review review = null;
+			ReviewAttach noImg = new MemberBoardService().selectNoImgReview(reviewNo);
+			if(noImg == null) {
+				review = new MemberBoardService().selectReviewNo(reviewNo);
+			} else {
+				review = new MemberBoardService().selectReviewOne(reviewNo);
+				
+			}
+			likeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
+			RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
+			request.setAttribute("likeCount", likeCount);
+			request.setAttribute("review", review);
+			view.forward(request, response);
 		} else {
-			review = new MemberBoardService().selectReviewOne(reviewNo);
-			
+			response.sendRedirect(url);
 		}
-		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
-		request.setAttribute("review", review);
-		System.out.println(review);
-		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

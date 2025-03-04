@@ -53,6 +53,12 @@
 		<result property="resNo" column="res_no"/>
 		<result property="klassDateNo" column="klass_date_no"/>
 	</resultMap>
+	<resultMap type="reviewLikeVo" id="reviewLikeMap">
+		<result property="reviewLikeNo" column="reviewLike_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="reviewNo" column="review_no"/>
+		<result property="reviewName" column="review_name"/>
+	</resultMap>
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO `review`(account_no, res_no,  review_name ,review_txt ,review_reg_date ,review_mod_date)
 		VALUES (#{accountNo} ,#{resNo}, #{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
@@ -159,7 +165,7 @@
 		JOIN `review_attach` a ON a.attach_no = rm.attach_no
 		WHERE r.review_no = #{reviewNo};
 	</delete>
-<delete id="deleteAttach" parameterType="reviewAttachVo">
+	<delete id="deleteAttach" parameterType="reviewAttachVo">
 		DELETE FROM `review_attach`
 		WHERE attach_no = #{accountNo}
 	</delete>
@@ -167,5 +173,13 @@
 		DELETE FROM `review`
 		WHERE review_no = #{reviewNo}
 	</delete>
+	<!-- 해당 클래스의 좋아요 갯수 -->
+	<select id='countLikeByReviewNo' resultMap="reviewAttachMap" parameterType="_int">
+		SELECT a.*
+		FROM `review_attach` a
+		JOIN `review_mapping` m ON a.attach_no = m.attach_no
+		JOIN `review` r ON r.review_no = m.review_no
+		WHERE r.review_no = #{reviewNo}
+	</select>
 	
 </mapper>
