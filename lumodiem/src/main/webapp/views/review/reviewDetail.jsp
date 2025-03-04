@@ -67,21 +67,24 @@
 	<script>
 		$('#deleteBtn').click(function(){
 			const reviewNo = ${review.reviewNo};
+			const attachNo = ${review.attachNo};
 			const check = confirm("삭제하시겠습니까?");
 			if(check){
 				$.ajax({
 					url : "/deleteReviewPage",
 					type : "post",
-					data : {"review_no" : reviewNo},
-					dataType : "JSON",
-					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					data : {"review_no" : reviewNo
+							,"attach_no" : attachNo},
+					dataType : "json",
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
 							location.href="/reviewBoard";
-						} 
+						}else{
+							location.href="/";
+						}
 					}
-			});
+				});
 			}
 		})
 	</script>
