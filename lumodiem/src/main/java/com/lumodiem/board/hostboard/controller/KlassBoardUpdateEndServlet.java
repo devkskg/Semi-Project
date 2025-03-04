@@ -40,7 +40,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 		
 		Klass option = new Klass();
 		
-//		KlassMapping m = new KlassMapping();
+		KlassMapping m = new KlassMapping();
 		
 		KlassDate klassDate = new KlassDate();
 		String klassOfDate = "";
@@ -105,7 +105,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			System.out.println("date : " + klassDate);
 			System.out.println("attach : " +a);
 			
-			int result = new HostBoardService().updateKlass(option,klassDate,a);
+			int result = new HostBoardService().updateKlass(option,klassDate,a,m);
 			
 			JSONObject obj = new JSONObject();
 			

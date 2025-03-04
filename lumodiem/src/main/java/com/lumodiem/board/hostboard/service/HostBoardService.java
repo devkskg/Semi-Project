@@ -27,14 +27,25 @@ public class HostBoardService {
 		return result;
 	}
 	
-	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a) {
+	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a,KlassMapping m) {
 		SqlSession session = getSqlSession();
 		int result = 0;
 		int updateResult = new HostBoardDao().updateKlass(session, option);
-		klassDate.setKlassNo(option.getKlassNo());
-		int updateDateResult = new HostBoardDao().updateKlassDate(session,klassDate);
-		int updateAttachResult = new HostBoardDao().updateKlassAttach(session,a);
-		if(updateResult > 0 && updateDateResult >0 && updateAttachResult > 0) {
+//		klassDate.setKlassNo(option.getKlassNo());
+		// klassNo 값의 klass_date 를 delete 후 insert 
+		int deleteDateResult = new HostBoardDao().deleteDateOne(session,option);
+		int insertDateResult = new HostBoardDao().insertKlassDate(session,klassDate);
+		
+		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,a);
+		int insertAttachResult = new HostBoardDao().insertKlassAttach(session,a);
+		
+		// 추후 attach_no delete되면 mappin_no까지 같이 지워지는 작업 진행 되면 안써도 될 메소드임.
+		int deleteMapResult = new HostBoardDao().deleteMappingOne(session,m);
+		int insertMappResult = new HostBoardDao().insertKlassMapping(session, m);
+		
+		if(updateResult > 0 && updateDateResult >0 
+				&& deleteAttachResult > 0 && insertAttachResult > 0 
+				&& deleteMapResult > 0 && insertMappResult > 0) {
 			result = 1;
 			session.commit();
 		}else {

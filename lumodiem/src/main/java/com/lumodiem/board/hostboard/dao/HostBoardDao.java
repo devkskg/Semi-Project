@@ -21,10 +21,10 @@ public class HostBoardDao {
 		return result;
 	}
 	
-	public int updateKlassDate(SqlSession session, KlassDate klassDate) {
-		int result = session.update("klassMapper.klassDateUpdate",klassDate);
-		return result;
-	}
+//	public int updateKlassDate(SqlSession session, KlassDate klassDate) {
+//		int result = session.update("klassMapper.klassDateUpdate",klassDate);
+//		return result;
+//	}
 	
 	public int updateKlass(SqlSession session, Klass option) {
 		int result = session.update("klassMapper.klassUpdate",option);
