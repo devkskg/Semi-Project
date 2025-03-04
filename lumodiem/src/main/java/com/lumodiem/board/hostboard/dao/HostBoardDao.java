@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
 import com.lumodiem.board.memberboard.vo.Review;
 
@@ -89,6 +90,22 @@ public class HostBoardDao {
 
 	public KlassAttach selectAttachOneByKlassNo(SqlSession session, int klassNo) {
 		return session.selectOne("klassMapper.selectAttachOneByKlassNo",klassNo);
+	}
+
+	public int countLikeByKlassNo(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.countLikeByKlassNo", klassNo);
+	}
+
+	public int countLikeByAccountNoKlassNo(SqlSession session, KlassLike klassLike) {
+		return session.selectOne("klassMapper.countLikeByAccountNoKlassNo", klassLike);
+	}
+
+	public int klassUnlikeToLike(SqlSession session, KlassLike klassLike) {
+		return session.insert("klassMapper.klassUnlikeToLike",klassLike);
+	}
+
+	public int klassLikeToUnlike(SqlSession session, KlassLike klassLike) {
+		return session.delete("klassMapper.klassLikeToUnlike",klassLike);
 	}
 
 	

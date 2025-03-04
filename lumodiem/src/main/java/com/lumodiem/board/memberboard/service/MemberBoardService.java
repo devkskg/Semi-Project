@@ -141,16 +141,16 @@ public class MemberBoardService {
 		session.close();
 		return count;
 	}
-	public int unlikeToLike(ReviewLike reviewLike) {
+	public int reviewUnlikeToLike(ReviewLike reviewLike) {
 		SqlSession session = getSqlSession();
-		int result = new MemberBoardDao().unlikeToLike(session,reviewLike);
+		int result = new MemberBoardDao().reviewUnlikeToLike(session,reviewLike);
 		commitRollback(result, session);
 		session.close();
 		return result;
 	}
-	public int likeToUnlike(ReviewLike reviewLike) {
+	public int reviewLikeToUnlike(ReviewLike reviewLike) {
 		SqlSession session = getSqlSession();
-		int result = new MemberBoardDao().likeToUnlike(session,reviewLike);
+		int result = new MemberBoardDao().reviewLikeToUnlike(session,reviewLike);
 		commitRollback(result, session);
 		session.close();
 		return result;

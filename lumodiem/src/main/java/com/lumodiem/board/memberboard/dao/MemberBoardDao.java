@@ -77,10 +77,10 @@ public class MemberBoardDao {
 	public int countLikeByAccountNoReviewNo(SqlSession session, ReviewLike reviewLike) {
 		return session.selectOne("reviewMapper.countLikeByAccountNoReviewNo", reviewLike);
 	}
-	public int unlikeToLike(SqlSession session, ReviewLike reviewLike) {
-		return session.insert("reviewMapper.unlikeToLike",reviewLike);
+	public int reviewUnlikeToLike(SqlSession session, ReviewLike reviewLike) {
+		return session.insert("reviewMapper.reviewUnlikeToLike",reviewLike);
 	}
-	public int likeToUnlike(SqlSession session, ReviewLike reviewLike) {
-		return session.delete("reviewMapper.likeToUnlike",reviewLike);
+	public int reviewLikeToUnlike(SqlSession session, ReviewLike reviewLike) {
+		return session.delete("reviewMapper.reviewLikeToUnlike",reviewLike);
 	}
 }

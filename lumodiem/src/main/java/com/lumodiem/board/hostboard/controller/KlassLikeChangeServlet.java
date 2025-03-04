@@ -1,7 +1,6 @@
-package com.lumodiem.board.memberboard.controller;
+package com.lumodiem.board.hostboard.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,38 +11,40 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.hostboard.service.HostBoardService;
+import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
 
-@WebServlet("/reviewLikeChange")
-public class ReviewLikeChangeServlet extends HttpServlet {
+@WebServlet("/klassLikeChange")
+public class KlassLikeChangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ReviewLikeChangeServlet() {
+    public KlassLikeChangeServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String like = null;
-		int reviewNo = 0;
+		int klassNo = 0;
 		Account account = null;
-		ReviewLike reviewLike = null;
+		KlassLike klassLike = null;
 		int newTotalLikeCount = 0;
 		int result = 0;
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
 			like = request.getParameter("like");
-			String temp = request.getParameter("review_no");
+			String temp = request.getParameter("klass_no");
 			if(temp != null) {
-				reviewNo = Integer.parseInt(temp);
-				reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
+				klassNo = Integer.parseInt(temp);
+				klassLike = KlassLike.builder().accountNo(account.getAccountNo()).klassNo(klassNo).build();
 				if("unlikeToLike".equals(like)) {
-					result = new MemberBoardService().reviewUnlikeToLike(reviewLike);
+					result = new HostBoardService().klassUnlikeToLike(klassLike);
 				} else if("likeToUnlike".equals(like)) {
-					result = new MemberBoardService().reviewLikeToUnlike(reviewLike);
+					result = new HostBoardService().klassLikeToUnlike(klassLike);
 				}
-				newTotalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
+				newTotalLikeCount = new HostBoardService().countLikeByKlassNo(klassNo);
 				request.setAttribute("newTotalLikeCount", newTotalLikeCount);
 				JSONObject obj = new JSONObject();
 				obj.put("res_code", "500");
