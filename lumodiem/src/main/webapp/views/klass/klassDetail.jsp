@@ -117,19 +117,24 @@
 
 		<form>
 		<c:choose >
-
 			<c:when test="${account.accountGrade eq 'M'}">
-				<button type="button" id="resBtn" name="resBtn">
-					<a href="/klassReservation">예약하기</a>
-				</button>
+			<a>클래스 예약 가능일 : </a>
+			<select name="resKlassSelect" id="resKlassSelect">
+				<c:forEach var="date" items="${klassDate}" varStatus="vs">
+					<option value="${date.klassDateNo}">${date.klassStart} ~ ${fn:substring(date.klassEnd,11,19)}</option>
+					${fn:substring(date.klassEnd,11,19)}
+				</c:forEach>
+			</select><br>
+				<span id="minusSpan">➖</span>
+				<span id="numberSpan">0</span>
+				<span id="plusSpan">➕</span>
+				<button type="button" id="resBtn" name="resBtn">예약하기</button>
 			</c:when>
-			
 			<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}">
 				<button type="button" id="rptBtn" name="rptBtn">
 					<a href="/klassReport">신고하기</a>
 				</button>
 			</c:when>
-		
 		</c:choose>
 		
 		</form>
@@ -173,15 +178,54 @@
 					
 					</c:choose>
 				
-				
-				
-				
 				</tbody>
 			</table>
 		</form>
 	
 	</div>				
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 <script>
 	$('#deleteBtn').click(function(){
 		const klassNo = ${klass.klassNo}; 
@@ -196,6 +240,7 @@
 					success : function(data){
 						alert(data.res_msg);
 						if(data.res_code == "200"){
+							alert(data.res_msg);
 							location.href="/klassBoardList";
 						} else{
 							location.href='/klassDetail?klass_no='+klassNo;
@@ -204,15 +249,43 @@
 			});
 		}
 	});
-
+	$('#minusSpan').click(function(){
+		let downPpl = document.getElementById('numberSpan').innerHTML;
+		let downResCnt = Number(downPpl);
+		downResCnt --;
+		document.getElementById('numberSpan').innerHTML = downResCnt;
+	});
+	$('#plusSpan').click(function(){
+		let upPpl = document.getElementById('numberSpan').innerHTML;
+		let upRescnt = Number(upPpl);
+		upRescnt ++;
+		document.getElementById('numberSpan').innerHTML = upRescnt;
+	});
+	
+	$(document).on('click','#resBtn',function(){
+		const klassDateNo = $('#resKlassSelect').val();
+		const resPpltxt = $('#numberSpan').text();
+		resPpl = Number(resPpltxt);
+		const ck = confirm("예약하시겠습니까?");
+		if(ck){
+			$.ajax({
+				url : "/klassReservation",
+				type : "post",
+				data : {"klass_date_no" : klassDateNo
+						,"res_ppl" : resPpl},
+				dataType:'json',
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/klassBoardList";
+					} else{
+						location.href='/';
+					}
+				}
+			});
+		}
+	});
 </script>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
 
 	<script>
 		$(function(){
@@ -270,6 +343,57 @@
 				});
 			});
 		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 </body>
 </html>
