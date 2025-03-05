@@ -97,6 +97,17 @@ public class HostBoardDao {
 		return session.selectOne("klassMapper.selectAttachOneByKlassNo",klassNo);
 	}
 
+
+	public int reserveKlassDate(SqlSession session, int klassDateNo) {
+		int result = session.selectOne("klassMapper.resKlassDate",klassDateNo);
+		return result;
+	}
+
+	public int reserveKlassRes(SqlSession session, int resPpl) {
+		int result = session.insert("klassMapper.resKlassRes",resPpl);
+		return result;
+	}
+
 	public int countLikeByKlassNo(SqlSession session, int klassNo) {
 		return session.selectOne("klassMapper.countLikeByKlassNo", klassNo);
 	}
@@ -113,5 +124,4 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassLikeToUnlike",klassLike);
 	}
 
-	
 }
