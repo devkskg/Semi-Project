@@ -58,7 +58,7 @@
 											<ul>
 												<c:forEach var="list2" varStatus="vs" items="${reviewLikeList }">
 													<li>
-														<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>">${list2.reviewName}</a>
+														<a href="<c:url value="/reviewDetail?review_no=${list2.reviewNo}"/>">${list2.reviewNo} : ${list2.reviewName}</a>
 													</li>
 												</c:forEach>
 											</ul>

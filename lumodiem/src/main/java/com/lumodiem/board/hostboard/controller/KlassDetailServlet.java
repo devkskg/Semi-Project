@@ -9,12 +9,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassLike;
+import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
+import com.lumodiem.board.memberboard.vo.ReviewLike;
 
 @WebServlet("/klassDetail")
 public class KlassDetailServlet extends HttpServlet {
@@ -25,27 +30,51 @@ public class KlassDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
-		System.out.println(klassNo);
-		
-		Klass klass = new HostBoardService().selectKlassOne(klassNo);
-		List<KlassDate> klassDate = new HostBoardService().selectKlassDate(klassNo);
-		
-		List<KlassAttach> klassAttach = new HostBoardService().selectAttachList(klassNo);
-		
-		List<Review> review = new HostBoardService().selectReviewByKlass(klassNo);
-		System.out.println("review"+review);
-		
-		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassDetail.jsp");
-		request.setAttribute("klass", klass);
-		request.setAttribute("klassDate", klassDate);
-		request.setAttribute("klassAttach", klassAttach);
-		request.setAttribute("review", review);
-		System.out.println("클래스"+klass);
-		System.out.println("데이트"+klassDate);
-//		System.out.println("스타트"+);
-//		System.out.println("엔드"+);
-		view.forward(request, response);
+		HttpSession session = request.getSession();
+		String url = request.getContextPath() + "/";
+		int totalLikeCount = 0;
+		int myLikeCount = 0;
+		KlassLike klassLike = null;
+		List<KlassDate> klassDate = null;
+		List<KlassAttach> klassAttach = null;
+		List<Review> review = null;
+		if(session != null && session.getAttribute("account") != null) {
+			int klassNo = Integer.parseInt(request.getParameter("klass_no"));
+//			System.out.println(klassNo);
+			
+			Klass klass = new HostBoardService().selectKlassOne(klassNo);
+			klassDate = new HostBoardService().selectKlassDate(klassNo);
+			
+			klassAttach = new HostBoardService().selectAttachList(klassNo);
+			
+			review = new HostBoardService().selectReviewByKlass(klassNo);
+//			System.out.println("review"+review);
+			
+			Account account = (Account)session.getAttribute("account");
+			totalLikeCount = new HostBoardService().countLikeByKlassNo(klassNo);
+			klassLike = KlassLike.builder().accountNo(account.getAccountNo()).klassNo(klassNo).build();
+			myLikeCount = new  HostBoardService().countLikeByAccountNoKlassNo(klassLike);
+			request.setAttribute("totalLikeCount", totalLikeCount);
+			request.setAttribute("myLikeCount", myLikeCount);
+			request.setAttribute("review", review);
+			
+			
+			
+			
+			
+			url= request.getContextPath() + "/views/klass/klassDetail.jsp";
+			RequestDispatcher view = request.getRequestDispatcher(url);
+			request.setAttribute("klass", klass);
+			request.setAttribute("klassDate", klassDate);
+			request.setAttribute("klassAttach", klassAttach);
+			request.setAttribute("review", review);
+			System.out.println(klass);
+			System.out.println(klassDate);
+			view.forward(request, response);
+			
+		} else {
+			response.sendRedirect(url);
+		}
 	
 	}
 

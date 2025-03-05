@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewLike;
 
 @WebServlet("/reviewDetail")
 public class ReviewDetailServlet extends HttpServlet {
@@ -25,10 +27,12 @@ public class ReviewDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String url = request.getContextPath() + "/";
-		int likeCount = 0; 
+		int totalLikeCount = 0;
+		int myLikeCount = 0;
+		ReviewLike reviewLike = null;
 		if(session != null && session.getAttribute("account") != null) {
+			Account account = (Account)session.getAttribute("account");
 			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
-			System.out.println(reviewNo);
 			Review review = null;
 			ReviewAttach noImg = new MemberBoardService().selectNoImgReview(reviewNo);
 			if(noImg == null) {
@@ -37,9 +41,13 @@ public class ReviewDetailServlet extends HttpServlet {
 				review = new MemberBoardService().selectReviewOne(reviewNo);
 				
 			}
-			likeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
+			totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
+			reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
+			myLikeCount = new MemberBoardService().countLikeByAccountNoReviewNo(reviewLike);
+			
 			RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
-			request.setAttribute("likeCount", likeCount);
+			request.setAttribute("totalLikeCount", totalLikeCount);
+			request.setAttribute("myLikeCount", myLikeCount);
 			request.setAttribute("review", review);
 			view.forward(request, response);
 		} else {
