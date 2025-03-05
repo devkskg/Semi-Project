@@ -14,6 +14,7 @@ import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
+import com.lumodiem.board.memberboard.vo.ReviewCmt;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
 
 @WebServlet("/reviewDetail")
@@ -30,6 +31,7 @@ public class ReviewDetailServlet extends HttpServlet {
 		int totalLikeCount = 0;
 		int myLikeCount = 0;
 		ReviewLike reviewLike = null;
+		ReviewCmt reviewCmt = null;
 		if(session != null && session.getAttribute("account") != null) {
 			Account account = (Account)session.getAttribute("account");
 			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
@@ -44,7 +46,7 @@ public class ReviewDetailServlet extends HttpServlet {
 			totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
 			reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
 			myLikeCount = new MemberBoardService().countLikeByAccountNoReviewNo(reviewLike);
-			
+//			reviewCmt = new ReviewCommentService().selectReviewComment();
 			RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
 			request.setAttribute("totalLikeCount", totalLikeCount);
 			request.setAttribute("myLikeCount", myLikeCount);

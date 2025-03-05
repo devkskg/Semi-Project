@@ -12,7 +12,6 @@ import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.adminboard.vo.ReportReviewCmt;
 import com.lumodiem.board.hostboard.vo.Klass;
-import com.lumodiem.board.memberboard.vo.Review;
 
 public class ReportService {
 	ReportDao dao = new ReportDao();
