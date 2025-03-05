@@ -193,6 +193,9 @@
 				<when test='orderType.equals("b") == true'>
 					ORDER BY k.klass_reg_date ASC
 				</when>
+				<when test='orderType.equals("c") == true'>
+					ORDER BY k.klass_like_count DESC
+				</when>
 				<otherwise>
 					ORDER BY k.klass_reg_date DESC
 				</otherwise>

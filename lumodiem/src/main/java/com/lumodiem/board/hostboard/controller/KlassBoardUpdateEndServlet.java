@@ -146,13 +146,15 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			if(result > 0) {
 				obj.put("res_code", "200");
 				obj.put("res_msg", "정상적으로 게시글이 등록되었습니다.");
+				if(atc != null) {
+					String deletePath = a.getAttachPath();
+					File deleteFile = new File(deletePath);
+					if(deleteFile.exists()) {
+						deleteFile.delete();
+				}
 			}else {
 				obj.put("res_code", "500");
 				obj.put("res_msg", "게시글 등록중 오류가 발생하였습니다.");
-				String deletePath = a.getAttachPath();
-				File deleteFile = new File(deletePath);
-				if(deleteFile.exists()) {
-					deleteFile.delete();
 				}
 				
 			}
