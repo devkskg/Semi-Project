@@ -9,6 +9,7 @@ import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
+import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardDao {
@@ -91,15 +92,8 @@ public class HostBoardDao {
 	public KlassAttach selectAttachOneByKlassNo(SqlSession session, int klassNo) {
 		return session.selectOne("klassMapper.selectAttachOneByKlassNo",klassNo);
 	}
-
-
-	public int reserveKlassDate(SqlSession session, int klassDateNo) {
-		int result = session.selectOne("klassMapper.resKlassDate",klassDateNo);
-		return result;
-	}
-
-	public int reserveKlassRes(SqlSession session, int resPpl) {
-		int result = session.insert("klassMapper.resKlassRes",resPpl);
+	public int reserveKlassRes(SqlSession session, Reservation reservation) {
+		int result = session.insert("klassMapper.resKlassRes",reservation);
 		return result;
 	}
 

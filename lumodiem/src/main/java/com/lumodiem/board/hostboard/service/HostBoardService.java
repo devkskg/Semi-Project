@@ -15,7 +15,6 @@ import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
-import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 
 public class HostBoardService {
 	
@@ -140,19 +139,9 @@ public class HostBoardService {
 		return result;
 	}
 
-	public int reserveKlass(int klassDateNo, int resPpl) {
+	public int reserveKlass(Reservation reservation) {
 		SqlSession session = getSqlSession();
-		int result = 0;
-		
-		int kd = new HostBoardDao().reserveKlassDate(session,klassDateNo);
-		int res = new HostBoardDao().reserveKlassRes(session,resPpl);
-		
-		if(kd > 0 && res > 0) {
-			result = 1;
-			session.commit();
-		}else {
-			session.rollback();
-		}
+		int result = new HostBoardDao().reserveKlassRes(session,reservation);
 		session.close();
 		return result;
 	}

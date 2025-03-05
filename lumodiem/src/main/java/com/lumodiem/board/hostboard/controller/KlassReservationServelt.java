@@ -1,19 +1,18 @@
 package com.lumodiem.board.hostboard.controller;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
 import com.lumodiem.board.hostboard.service.HostBoardService;
-import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.memberboard.vo.Reservation;
 
 @WebServlet("/klassReservation")
 public class KlassReservationServelt extends HttpServlet {
@@ -24,14 +23,19 @@ public class KlassReservationServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("kdn 변환 : "+request.getParameter("klass_date_no"));
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
 		System.out.println("kdn : "+klassDateNo);
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
 //		System.out.println("rp : "+request.getParameter("res_ppl"));
 		System.out.println("rp : "+resPpl);
+		HttpSession session = request.getSession();
 		
-		int klassDate = new HostBoardService().reserveKlass(klassDateNo,resPpl);
+		Reservation reservation = Reservation.builder()
+				.klassDateNo(klassDateNo)
+				.resPpl(resPpl)
+				.build();
+		
+		int klassDate = new HostBoardService().reserveKlass(reservation);
 		
 		JSONObject obj = new JSONObject();
 		if(klassDate > 0) {
