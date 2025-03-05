@@ -30,11 +30,12 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
-	
-	public int updateNoImgKlass(Klass option,KlassDate klassDate, KlassAttach a,KlassAttach atc) {
+
+	// 기존 파일 O 새로운 파일 X , 클래스 정보만 update insert 하는 메소드
+	public int updateImgToNoImg(Klass option,KlassDate klassDate,KlassAttach atc) {
 		SqlSession session = getSqlSession();
 		int result = 0;
-		// 기존 파일 delete만 하고 클래스 정보만 insert 하기 
+		// 기존 파일 delete만 하고 클래스 정보만 update 하기 , date는 delete->insert
 		// 클래스 정보 업데이트
 		int updateResult = new HostBoardDao().updateKlass(session, option);
 		// 클래스 예약일 delete -> insert
@@ -45,11 +46,19 @@ public class HostBoardService {
 		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,atc);
 		// mapping 은 attach가 지워지면 지워지도록 되어있어서 따로 delete 안해줘도 된다.
 		
-		if()
-		
+		if(updateResult > 0 && deleteDateResult > 0 
+				&& insertDateResult > 0 && deleteAttachResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
 	}
 	
-	public int updateKlass(Klass option,KlassDate klassDate,KlassAttach a,KlassMapping m,KlassAttach atc) {
+	// 기존파일O 새로운파일 O *****테스트 성공*****
+	public int updateImgToImg(Klass option,KlassDate klassDate,KlassAttach a,KlassMapping m,KlassAttach atc) {
 		SqlSession session = getSqlSession();
 		int result = 0;
 		// 수정하면서 꼭 사용해야 할 메소드 3개 
@@ -59,14 +68,8 @@ public class HostBoardService {
 		int deleteDateResult = new HostBoardDao().deleteDateOne(session,option);
 		int insertDateResult = new HostBoardDao().insertKlassDate(session,klassDate);
 		
-		
-		
-		
-		
 		// 이전 사진 지우기 메소드
 		int deleteAttachResult = new HostBoardDao().deleteAttachOne(session,atc);
-		
-		
 		
 		// 사진 넣기 메소드 2개 
 		int insertAttachResult = new HostBoardDao().insertKlassAttach(session,a);
@@ -87,6 +90,54 @@ public class HostBoardService {
 		
 	}
 	
+	// 기존 파일 X 새로운 파일 X 클래스 정보만 update,insert
+	public int updateNoImgToNoImg(Klass option, KlassDate klassDate) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		// 클래스 정보 업데이트
+		int updateResult = new HostBoardDao().updateKlass(session, option);
+		
+		// 예약일 정보 delete -> insert
+		int deleteDateResult = new HostBoardDao().deleteDateOne(session,option);
+		int insertDateResult = new HostBoardDao().insertKlassDate(session,klassDate);
+		
+		if(updateResult > 0 && deleteDateResult > 0 && insertDateResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	
+	// 기존 파일 X 새로운 파일 O -> 클래스 정보 update & 파일정보 insert *****테스트 성공!!!!!*****
+	public int updateNoImgToImg(Klass option,KlassDate klassDate, KlassAttach a,KlassMapping m) {
+		SqlSession session = getSqlSession();
+		int result = 1;
+		
+		// 클래스 정보 update
+		int updateResult = new HostBoardDao().updateKlass(session, option);
+		// klassDate 를 delete-> insert
+		int deleteDateResult = new HostBoardDao().deleteDateOne(session,option);
+		int insertDateResult = new HostBoardDao().insertKlassDate(session,klassDate);
+		
+		// 파일 정보 insert / mappint&attach
+		int insertAttachResult = new HostBoardDao().insertKlassAttach(session,a);
+		m.setAttachNo(insertAttachResult);
+		int insertMapResult = new HostBoardDao().insertKlassMapping(session, m);
+		
+		if(updateResult > 0 && deleteDateResult > 0 && insertDateResult > 0 
+				&& insertAttachResult > 0 && insertMapResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+
 	public KlassAttach selectAttachOne(int attachNo) {
 		SqlSession session = getSqlSession();
 		KlassAttach a = new HostBoardDao().selectAttachOne(session,attachNo);
