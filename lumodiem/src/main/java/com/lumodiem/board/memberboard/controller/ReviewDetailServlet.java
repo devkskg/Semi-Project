@@ -1,6 +1,7 @@
 package com.lumodiem.board.memberboard.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
@@ -31,7 +33,7 @@ public class ReviewDetailServlet extends HttpServlet {
 		int totalLikeCount = 0;
 		int myLikeCount = 0;
 		ReviewLike reviewLike = null;
-		ReviewCmt reviewCmt = null;
+		List<ReviewCmt> reviewCmt = null;
 		if(session != null && session.getAttribute("account") != null) {
 			Account account = (Account)session.getAttribute("account");
 			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
@@ -46,11 +48,18 @@ public class ReviewDetailServlet extends HttpServlet {
 			totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
 			reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
 			myLikeCount = new MemberBoardService().countLikeByAccountNoReviewNo(reviewLike);
-//			reviewCmt = new ReviewCommentService().selectReviewComment();
+			// 리뷰 댓글 불러오기
+			ReviewCmt option = ReviewCmt.builder().reviewNo(reviewNo).build();
+			reviewCmt =  new ReviewCommentService().selectReviewComment(option);
+			// 테스트
+			// 리뷰 댓글 불러오기
 			RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
 			request.setAttribute("totalLikeCount", totalLikeCount);
 			request.setAttribute("myLikeCount", myLikeCount);
 			request.setAttribute("review", review);
+			// 리뷰 댓글 보내기
+			request.setAttribute("reviewCmt", reviewCmt);
+			//
 			view.forward(request, response);
 		} else {
 			response.sendRedirect(url);

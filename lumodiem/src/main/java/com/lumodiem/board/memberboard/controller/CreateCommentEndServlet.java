@@ -41,11 +41,11 @@ public class CreateCommentEndServlet extends HttpServlet {
 		System.out.println(cmt2);
 		int result = new ReviewCommentService().insertReviewComment(cmt2);
 		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt2);
-		RequestDispatcher view = request.getRequestDispatcher("/views/comment/createComment.jsp");
-		request.setAttribute("resultList", resultList);
-//		request.setAttribute(reviewCmtTxt, response)
+		//reviewDetail?review_no=42
+		RequestDispatcher view = request.getRequestDispatcher("/reviewDetail?review_no"+reviewNo);
+		//request.setAttribute("resultList", resultList);
+//		request.setAttribute(reviewCmtTxt, response);
 		view.forward(request, response);
-		System.out.println(result);
 		
 	}
 
