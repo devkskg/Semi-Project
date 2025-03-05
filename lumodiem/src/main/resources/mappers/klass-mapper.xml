@@ -20,6 +20,7 @@
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
+		<result property="klassLikeCount" column="klass_like_count"/>
 	</resultMap>
 	
 	<resultMap type="klassDateVo" id="klassDateMap">
@@ -186,15 +187,19 @@
 				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
 			</if>
 		</where>
+		
 		<if test='orderType != null and orderType.equals("x") == false'>
 			<choose>
-				<when test='orderType.equals("a") == true'>
-					ORDER BY k.klass_reg_date DESC
+				<when test='orderType.equals("b") == true'>
+					ORDER BY k.klass_reg_date ASC
 				</when>
 				<otherwise>
-					ORDER BY k.klass_reg_date ASC
+					ORDER BY k.klass_reg_date DESC
 				</otherwise>
 			</choose>
+		</if>
+		<if test ='orderType == null or orderType.equals("x") == true'>
+			ORDER BY k.klass_reg_date DESC
 		</if>
 	</select>
 	

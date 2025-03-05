@@ -180,6 +180,7 @@ public class HostBoardService {
 	public List<Klass> searchBoardList(Klass option){
 		SqlSession session = getSqlSession();
 		List<Klass> searchList = new HostBoardDao().searchBoardList(session,option);
+		List<Klass> likeList = new HostBoardDao().
 		session.close();
 		return searchList;
 	}
