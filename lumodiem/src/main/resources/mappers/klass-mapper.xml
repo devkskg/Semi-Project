@@ -282,4 +282,9 @@
 			AND account_no = #{accountNo}
 		</where>
 	</delete>
+	<!-- 채팅내역 추가 -->
+	<insert id="insertKlassChat" parameterType="string" useGeneratedKeys="true" keyProperty="klassNo">
+		INSERT INTO `klass_like`(account_no ,klass_no)
+		VALUES (#{accountNo} ,#{klassNo})
+	</insert>
 </mapper>

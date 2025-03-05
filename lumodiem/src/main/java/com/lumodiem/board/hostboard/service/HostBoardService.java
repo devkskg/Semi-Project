@@ -296,8 +296,11 @@ public class HostBoardService {
 	}
 //	클래스 주최자의 채팅 내역
 	public int insertKlassChat(String chatTxt) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().insertKlassChat(session, chatTxt);
+		commitRollback(result, session);
+		session.close();
+		return result;
 	}
 	
 }

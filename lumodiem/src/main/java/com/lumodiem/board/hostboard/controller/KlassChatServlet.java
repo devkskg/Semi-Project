@@ -41,10 +41,10 @@ public class KlassChatServlet extends HttpServlet {
 					klassAccountNo = Integer.parseInt(temp);
 					if(klassAccountNo == account.getAccountNo()) {
 //						클래스 주최자 = 로그인한 사용자
-						chatTxt = "Host " + account.getAccountNickname() + chatTxt;
+						chatTxt = "(Host)" + account.getAccountNickname() + " : " + chatTxt;
 					} else {
 //						그 외
-						chatTxt = "Member" + account.getAccountNickname() + chatTxt;
+						chatTxt = "(Member)" + account.getAccountNickname() + " : " + chatTxt;
 					}
 					result = new HostBoardService().insertKlassChat(chatTxt);
 				}

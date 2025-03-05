@@ -126,4 +126,8 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassLikeToUnlike",klassLike);
 	}
 
+	public int insertKlassChat(SqlSession session, String chatTxt) {
+		return session.insert("klassMapper.insertKlassChat",chatTxt);
+	}
+
 }
