@@ -7,8 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<%-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script> --%>
 <title>클래스 상세조회</title>
+<link rel="stylesheet" href="<c:url value='/chatcss/chat.css'/>">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -184,39 +188,68 @@
 	
 	</div>				
 	
-<iframe src="<c:url value='/klassChatFrame'/>" width="500" height="400"></iframe>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li style="text-align: center"><a target="_blank" href="https://www.istockphoto.com/kr/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow-gm1967994177-558259453?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=%EA%B7%80%EC%97%AC%EC%9A%B4+%EB%8F%99%EB%AC%BC">
+                            😉빛나는 하루!😉</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat" id="chatUl">
+                    	
+                    	<c:choose>
+                    		<c:when test="">
+                    			<c:forEach items="" varStatus="">
+                    				
+                    			</c:forEach>
+                    		</c:when>
+                    	</c:choose>
+                    	
+                        <li class="left clearfix">
+                            <div class="chat-body clearfix" style="text-align: right">
+                                    <strong class="primary-font">Jack Sparrow</strong>
+                                <p style="text-align: right">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li class="right clearfix">
+                            <div class="chat-body clearfix" style="text-align: left">
+                                    <strong class="primary-font">Bhaumik Patel</strong>
+                                <p style="text-align: left">
+                                    Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="sendInput" type="text" class="form-control input-sm" placeholder="메세지를 입력해주세요." />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning btn-sm" id="sendBtn">
+                                Send
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 					</div>
@@ -349,7 +382,9 @@
 		})
 		
 		
-		
+		$(function(){
+			
+		})
 		
 		
 		
