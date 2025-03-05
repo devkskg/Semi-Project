@@ -32,6 +32,9 @@ public class MemberBoardDao {
 	public Review selectReviewOne(SqlSession session, int reviewNo) {
 		return session.selectOne("reviewMapper.reviewOne",reviewNo);
 	}
+	public Review ReviewOne(SqlSession session, int reviewNo) {
+		return session.selectOne("reviewMapper.selectReviewOne",reviewNo);
+	}
 	public ReviewAttach selectAttachOne(SqlSession session, int attachNo) {
 		return session.selectOne("reviewMapper.attachOne",attachNo);
 	}
@@ -43,15 +46,6 @@ public class MemberBoardDao {
 	}
 	public List<Klass> searchKlassDateNo(SqlSession session, int klassDateNo){
 		return session.selectList("reviewMapper.attendedKlass",klassDateNo);
-	}
-	public int updateReview(SqlSession session ,Review r) {
-		return session.update("reviewMapper.reviewUpdate",r);
-	}
-	public int updateAttach(SqlSession session ,ReviewAttach a) {
-		return session.update("reviewMapper.attachUpdate",a);
-	}
-	public int updateMapping(SqlSession session ,ReviewMapping m) {
-		return session.update("reviewMapper.mappingUpdate",m);
 	}
 	public ReviewAttach selectNoImgReview(SqlSession session, int reviewNo) {
 		return session.selectOne("reviewMapper.noImgReview",reviewNo);
@@ -82,5 +76,15 @@ public class MemberBoardDao {
 	}
 	public int reviewLikeToUnlike(SqlSession session, ReviewLike reviewLike) {
 		return session.delete("reviewMapper.reviewLikeToUnlike",reviewLike);
+	}
+	public ReviewAttach selectAttachOneByReviewNo(SqlSession session, int reviewNo) {
+		return session.selectOne("reviewMapper.noImgReview",reviewNo);
+	}
+	public int updateReview(SqlSession session, Review review) {
+		int result = session.update("reviewMapper.reviewUpdate");
+		return result;
+	}
+	public int deletebeforeImg(SqlSession session, ReviewAttach beforeImg) {
+		return session.delete("reviewMapper.deletebeforeImg",beforeImg);
 	}
 }
