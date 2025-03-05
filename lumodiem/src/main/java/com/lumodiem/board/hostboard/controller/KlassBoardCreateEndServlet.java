@@ -139,9 +139,9 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 			System.out.println("attach : " +a);
 			
 			
-			if(a != null) {
-				
-			}
+//			if(a != null) {
+//				
+//			}
 			
 			int result = new HostBoardService().insertBoard(option,klassDate,a,m);
 			
