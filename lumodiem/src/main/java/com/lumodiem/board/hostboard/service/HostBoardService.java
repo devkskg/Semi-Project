@@ -17,6 +17,7 @@ import com.lumodiem.board.hostboard.vo.KlassMapping;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 
+public class HostBoardService {
 	
 	public int deleteKlassOne(int klassNo) {
 		SqlSession session = getSqlSession();
