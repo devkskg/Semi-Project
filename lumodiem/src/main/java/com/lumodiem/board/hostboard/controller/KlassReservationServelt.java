@@ -30,6 +30,8 @@ public class KlassReservationServelt extends HttpServlet {
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
 		int accountNo = 0;
+		int klassDate = 0;
+		
 		Account ac = null;
 		HttpSession session = request.getSession();
 		if(session != null && session.getAttribute("account") != null) {
@@ -44,16 +46,18 @@ public class KlassReservationServelt extends HttpServlet {
 				.resPpl(resPpl)
 				.accountNo(accountNo)
 				.build();
-		
-		int klassDate = new HostBoardService().reserveKlass(reservation);
+		if(resPpl > 1 && resPpl < 4) {
+			klassDate = new HostBoardService().reserveKlass(reservation);
+		}
+			
 		
 		JSONObject obj = new JSONObject();
 		if(klassDate > 0) {
 			obj.put("res_code","200");
-			obj.put("res_msg", "정상적으로 게시글 삭제");
+			obj.put("res_msg", "예약이 완료 되었습니다");
 		}else {
 			obj.put("res_code","500");
-			obj.put("res_msg", "게시글 삭제 중 오류가 발생");
+			obj.put("res_msg", "예약시도중 문제가 발생하였습니다.");
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);
