@@ -137,31 +137,8 @@
 						});
 					}
 					
-    /* 			    	$.ajax({
-						url : "/klassBoardCreateEnd",
-						type : "post",
-						data : {"klass_name" : form.klass_name.value,
-								"account_nickname" : form.account_nickname.value,
-								"klass_address" : form.klass_address.value,
-								"klass_date" : form.klass_date.value,
-								"klass_start" : form.klass_start.value,
-								"klass_end" : form.klass_end.value,
-								"klass_max" : form.klass_max.value,
-								"klass_price" : form.klass_price.value,
-								"klass_txt" : form.klass_txt.value,
-								"account_no" : form.account_no.value
-						},
-						dataType : "JSON",
-						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-						success : function(data){
-							alert(data.res_msg);
-							if(data.res_code == "200"){
-								location.href="/klassBoardList";
-							} else{
-								location.href="/klassBoardCreateEnd";
-							}
-						}
-					}); */
+				}else{
+					location.href="/klassBoardList";
 				}
 				
 			}
