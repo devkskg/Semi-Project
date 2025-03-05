@@ -22,4 +22,5 @@ public class Reservation {
 	private String payTime;
 	private String payStatus;
 	private int payPrice;
+	private int resPpl;
 }

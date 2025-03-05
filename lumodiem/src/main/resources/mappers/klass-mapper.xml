@@ -95,9 +95,9 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	<!-- 참여자가 예약한 인원 -->
-	<insert id="">
-		INSERT INTO `reservation` (account_no ,klass_date_no, res_ppl ,pay_time ,pay_status ,pay_price)
-		VALUE(#{accountNo} ,#{klassDateNo} ,#{resPpl} ,#{payTime} ,#{payStatus} ,#{payPrice})
+	<insert id="resKlassRes" parameterType="klassDateVo" useGeneratedKeys="true">
+		INSERT INTO `reservation`(account_no ,klass_date_no, res_ppl)
+		VALUE(#{accountNo} ,#{klassDateNo} ,#{resPpl})
 	</insert>
 	<update id="klassUpdate" parameterType="klassVo" >
 	 	UPDATE `klass`
@@ -235,13 +235,6 @@
 		ON a.attach_no = m.attach_no
 		JOIN `klass` k
 		ON m.klass_no = k.klass_no
-		WHERE k.klass_no = #{klassNo}
-	</select>
-	<select id="resKlassDate" resultMap="klassDateMap" parameterType="_int" resultType="klassDateVo">
-		SELECT kd.*
-		FROM `klass_date` kd
-		JOIN `klass` k
-		ON kd.klass_no = k.klass_no
 		WHERE k.klass_no = #{klassNo}
 	</select>
 	<!-- 해당 클래스의 좋아요 갯수 -->

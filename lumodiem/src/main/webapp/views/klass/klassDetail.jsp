@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+.<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -126,7 +126,7 @@
 				</c:forEach>
 			</select><br>
 				<span id="minusSpan">➖</span>
-				<span id="numberSpan">0</span>
+				<span id="numberSpan">1</span>
 				<span id="plusSpan">➕</span>
 				<button type="button" id="resBtn" name="resBtn">예약하기</button>
 			</c:when>
@@ -251,16 +251,21 @@
 	$('#minusSpan').click(function(){
 		let downPpl = document.getElementById('numberSpan').innerHTML;
 		let downResCnt = Number(downPpl);
-		downResCnt --;
-		document.getElementById('numberSpan').innerHTML = downResCnt;
+		if(downResCnt > 1){
+			downResCnt --;
+			document.getElementById('numberSpan').innerHTML = downResCnt;
+		}
+			
 	});
 	$('#plusSpan').click(function(){
 		let upPpl = document.getElementById('numberSpan').innerHTML;
 		let upRescnt = Number(upPpl);
-		upRescnt ++;
-		document.getElementById('numberSpan').innerHTML = upRescnt;
+		if(upRescnt < 4){
+			upRescnt ++;
+			document.getElementById('numberSpan').innerHTML = upRescnt;
+		}
 	});
-	
+
 	$(document).on('click','#resBtn',function(){
 		const klassDateNo = $('#resKlassSelect').val();
 		const resPpltxt = $('#numberSpan').text();
