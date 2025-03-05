@@ -46,7 +46,7 @@ public class KlassReservationServelt extends HttpServlet {
 				.resPpl(resPpl)
 				.accountNo(accountNo)
 				.build();
-		if(resPpl > 1 && resPpl < 4) {
+		if(resPpl >= 1 && resPpl < 4) {
 			klassDate = new HostBoardService().reserveKlass(reservation);
 		}
 			
