@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.ReviewCmt;
 
@@ -42,10 +44,18 @@ public class CreateCommentEndServlet extends HttpServlet {
 		int result = new ReviewCommentService().insertReviewComment(cmt2);
 		List<ReviewCmt> resultList = new ReviewCommentService().selectReviewComment(cmt2);
 		//reviewDetail?review_no=42
-		RequestDispatcher view = request.getRequestDispatcher("/reviewDetail?review_no"+reviewNo);
-		//request.setAttribute("resultList", resultList);
-//		request.setAttribute(reviewCmtTxt, response);
-		view.forward(request, response);
+		//RequestDispatcher view = request.getRequestDispatcher("/reviewDetail?review_no"+reviewNo);
+		//view.forward(request, response);
+		JSONObject obj = new JSONObject();
+		obj.put("res_code", "500");
+		obj.put("res_msg", "등록 오류");
+		
+		if(result>0) {
+			obj.put("res_code", "200");
+			obj.put("res_msg","등록 완료");
+		}
+		response.setContentType("application/json; charset=UTF-8");
+		response.getWriter().print(obj);
 		
 	}
 

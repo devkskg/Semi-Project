@@ -88,14 +88,12 @@
 									<input type="text" class="account_nickname" value="${list.accountNickname}" readonly="readonly">
 								</td>
 								
-								<%-- <td>${list.accountNickname}</td>  --%>
 								<c:choose>
 									<c:when test="${list.accountNo eq account.accountNo}">
 										<td>
 											<input class="a" type="button" value="수정">
-											 <input type="button" class="delete_btn" value="삭제" style="display:none;">
+											<input type="button" class="delete_btn" value="삭제" style="display:none;">
 										</td>
-										<!-- <td><button class="a" type="button" >수정</button></td> -->
 									</c:when>
 								</c:choose>
 								
@@ -112,15 +110,15 @@
 			</table>
 		</form>
 		</div>
-		
-		<form action="<c:url value='/createCommentEnd'/>" method="post">
-			<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
-			<input type="hidden" name="account_no" value="${review.accountNo }">
-			<input type="hidden" name="review_no" value="${review.reviewNo }">
-			<input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요.">
-			<input type="submit" value="등록">
-			<!-- <input type="reset" value="취소"> -->
-		</form>
+		<div class="create_comment_form">
+			<form name="create_comment_form" method="post">
+				<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
+				<%-- <input type="hidden" name="account_no" value="${review.accountNo }"> --%>
+				<input type="hidden" name="review_no" value="${review.reviewNo }">
+				<input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요.">
+				<input type="button" id="create_comment" value="등록">
+			</form>
+		</div>
 	</div>
 	<div>
 	<c:choose>
@@ -283,6 +281,33 @@
 				}
 			});
 		})
+		 $(document).on('click','#create_comment',function(){
+			 	const form = document.create_comment_form;
+			 	console.log({
+			        "review_cmt_txt": form.review_cmt_txt.value,
+			        "review_no": form.review_no.value,
+			        "account_no": form.account_no.value
+			    });
+				$.ajax({
+					url : "/createCommentEnd",
+					type : "post",
+					data : {"review_cmt_txt":form.review_cmt_txt.value,
+							"review_no":form.review_no.value,
+							"account_no":form.account_no.value},
+					dataType : "JSON",
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					
+					success:function(data){
+						alert(data.res_msg);
+						
+						if(data.res_code==200){
+							location.reload();
+						}else{
+							location.reload();
+						}
+				}
+			});
+		 })
 		
 		
 		
