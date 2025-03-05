@@ -36,7 +36,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		KlassAttach a = new KlassAttach();
+		KlassAttach a = null;
 		
 		Klass option = new Klass();
 		
@@ -97,7 +97,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 						fileItem.write(uploadFile);
 						
 						
-						
+						a = new KlassAttach();
 						a = KlassAttach.builder()
 							.attachOri(oriName)
 							.attachNew(newName)
@@ -108,14 +108,38 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			}
 			
 			
-			a.setAttachNo(atc.getAttachNo());
+//			a.setAttachNo(atc.getAttachNo());
 //			m.setAttachNo(atc.getAttachNo());
 			m.setKlassNo(option.getKlassNo());
 			System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
 			System.out.println("date : " + klassDate);
+			System.out.println("날짜"+klassOfDate);
 			System.out.println("attach : " +a);
+			System.out.println("atc : " + atc);
 			System.out.println("mapping : "+m);
-			int result = new HostBoardService().updateKlass(option,klassDate,a,m);
+			int result = 0;
+			
+			if(atc != null) {
+				// 파일이 원래 있던 것
+				if(a == null) {
+					// 새로운 파일이 없음 (있음 -> 없음) / delete하고 insert는 X
+					result = new HostBoardService().updateImgToNoImg(option,klassDate,atc);
+				}else {
+					// 새로운 파일이 있음 (있음 -> 있음) / delete하고 insert도 O ***성공***
+					result = new HostBoardService().updateImgToImg(option,klassDate,a,m,atc);
+				}
+				
+			}else {
+				// 원래 파일 없던 것
+				if(a == null) {
+					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update ***성공***
+					result = new HostBoardService().updateNoImgToNoImg(option,klassDate);
+				}else {
+					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O ***성공***
+					result = new HostBoardService().updateNoImgToImg(option,klassDate,a,m);
+				}
+			}
+			
 			
 			JSONObject obj = new JSONObject();
 			
