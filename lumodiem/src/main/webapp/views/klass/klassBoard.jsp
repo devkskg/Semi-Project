@@ -26,14 +26,9 @@
 			<option value="x">정렬하기</option>
 			<option value="a">최신순</option>
 			<option value="b">오래된순</option>
+			<option value="c">좋아요순</option>
 		</select>
 	</form>
-	<script>
-		const orderType = document.getElementById('order_type');
-		orderType.onchange = function(){
-			document.getElementById('arrangeKlass').submit();
-		}
-	</script>
 
 
 		<form>
@@ -85,16 +80,6 @@
 	
 	</form>
 </div>	
-<script>
-	$('.klass_list tbody tr').click(function(){
-		const klassNo = $(this).data('klass-no');
-		location.href='/klassDetail?klass_no='+klassNo;
-	})
-
-
-
-
-</script>	
 
 	<form>
 		<p>페이징 위치(중앙 정렬 할거임)</p>
@@ -123,5 +108,18 @@
 		</div>
 	</section>	
 </div>
+	<script>
+		const orderType = document.getElementById('order_type');
+		orderType.onchange = function(){
+			document.getElementById('arrangeKlass').submit();
+		}
+	</script>
+	<script>
+		$('.klass_list tbody tr').click(function(){
+			const klassNo = $(this).data('klass-no');
+			location.href='/klassDetail?klass_no='+klassNo;
+		})
+	
+	</script>	
 </body>
 </html>
