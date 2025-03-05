@@ -9,53 +9,6 @@
 <meta charset="UTF-8">
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 <title>클래스 상세조회</title>
-    <style>
-
-
-        .chat-container {
-            position: relative;
-            width: 800px;
-            height: 500px;
-            border: 3px solid black;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .chat-messages {
-            flex-grow: 1;
-            position: relative;
-            padding: 10px;
-        }
-
-        .message {
-            position: absolute;
-            border: 2px solid black;
-            padding: 10px;
-            background-color: white;
-        }
-
-        .message1 {
-            top: 100px;
-            left: 10px;
-        }
-
-        .message2 {
-            top: 50px;
-            right: 10px;
-        }
-
-        .chat-input {
-            height: 60px;
-            border-top: 3px solid black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            background-color: white;
-        }
-    </style>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -231,14 +184,7 @@
 	
 	</div>				
 	
-    <div class="chat-container">
-	<span>채팅방</span>
-        <div class="chat-messages">
-            <div class="message message1">다른사람의 말풍선</div>
-            <div class="message message2">나의 말풍선</div>
-        </div>
-        <input class="chat-input" placeholder="채팅을 입력해주세요."></div>
-    </div>
+<iframe src="<c:url value='/klassChatFrame'/>" width="500" height="400"></iframe>
 
 
 
