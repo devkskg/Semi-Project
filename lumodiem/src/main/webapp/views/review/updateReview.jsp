@@ -12,6 +12,13 @@
 </head>
 <body>
 <div>
+<%@ include file="/views/include/nav.jsp" %>
+	<div id="colorlib-main">
+		<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<div class="row d-flex">
+					<div class="col-xl-8 py-5 px-md-5">
+				
 	<form action="<c:url value='/updateReviewEnd'/>" method="post" name="update_review_form" enctype="multipart/form-data">
 		<fieldset>
 			<legend>리뷰 수정</legend>
@@ -21,12 +28,21 @@
 			<label for="review_name">게시글 제목 : </label>
 			<input type="text" name="review_name" id="review_name" required value="<c:out value='${review.reviewName}'/>"><br>
 			
-			<label for="review_txt">내용 : </label><br>
-			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."><c:out value='${review.reviewTxt }'/></textarea>
+			<label>작성자 : </label>
+			<input type="text" name="nickName" id="nickName" readonly value="${review.accountNickname}"><br>
+			
+			<label for="review_txt">내용 : </label>
+			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."><c:out value='${review.reviewTxt }'/></textarea><br>
+			
 			<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
 			<button type="button" onclick="updateReviewForm();">수정하기</button>
 		</fieldset>
 	</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>	
 	<script>
 	const updateReviewForm = function(){
 		let form = document.update_review_form;
@@ -90,5 +106,7 @@
 	}
 </script>
 </div>
+
+
 </body>
 </html>

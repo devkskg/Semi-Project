@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -36,26 +37,6 @@ public class MemberBoardService {
 		session.close();
 		return result;
 	}
-	public int UpdateReview(Review r ,ReviewAttach a ,ReviewMapping m) {
-		SqlSession session = getSqlSession();
-		int result = 0;
-		
-		int updateResult = new MemberBoardDao().updateReview(session,r);
-		int updateAttachResult = new MemberBoardDao().updateAttach(session,a);
-		m.setReviewNo(updateResult);
-		m.setAttachNo(updateAttachResult);
-		
-		int updateMappingResult = new MemberBoardDao().updateMapping(session,m);
-		
-		if(updateResult > 0 && updateAttachResult > 0 && updateMappingResult > 0) {
-			result = 1;
-			session.commit();
-		}else {
-			session.rollback();
-		}
-		session.close();
-		return result;
-	}
 	public List<Review> selectReviewList(Review option){
 		SqlSession session = getSqlSession();
 		List<Review> resultList = new MemberBoardDao().selectReviewList(session,option);
@@ -65,6 +46,12 @@ public class MemberBoardService {
 	public Review selectReviewOne(int reviewNo) {
 		SqlSession session = getSqlSession();
 		Review review = new MemberBoardDao().selectReviewOne(session,reviewNo);
+		session.close();
+		return review;
+	}
+	public Review ReviewOne(int reviewNo) {
+		SqlSession session = getSqlSession();
+		Review review = new MemberBoardDao().ReviewOne(session,reviewNo);
 		session.close();
 		return review;
 	}
@@ -152,6 +139,84 @@ public class MemberBoardService {
 		SqlSession session = getSqlSession();
 		int result = new MemberBoardDao().reviewLikeToUnlike(session,reviewLike);
 		commitRollback(result, session);
+		session.close();
+		return result;
+	}
+	public ReviewAttach selectAttachOneByReviewNo(int reviewNo) {
+		SqlSession session = getSqlSession();
+		ReviewAttach result = new MemberBoardDao().selectAttachOneByReviewNo(session,reviewNo);
+		session.close();
+		return result;
+	}
+	public int updateImgToNoImg(Review review, ReviewAttach beforeImg) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		
+		int deleteResult = new MemberBoardDao().deletebeforeImg(session,beforeImg);
+		if(updateResult > 0 && deleteResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		System.out.println("트랜잭션 결과 : " + result);
+		return result;
+		
+	}
+	public int updateImgToImg(Review review, ReviewAttach afterImg, ReviewMapping mapping, ReviewAttach beforeImg) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		int deleteAttachResult = new MemberBoardDao().deletebeforeImg(session,beforeImg);
+		
+		int insertAttachResult = new MemberBoardDao().insertReviewAttach(session,afterImg);
+		mapping.setAttachNo(insertAttachResult);
+		int insertMapResult = new MemberBoardDao().insertReviewMapping(session,mapping);
+		
+		if(updateResult > 0 && deleteAttachResult > 0 && insertAttachResult > 0 && insertMapResult > 0 ) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	public int updateNoImgToNoImg(Review review) {
+		SqlSession session = getSqlSession();
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		
+		System.out.println("updateResult : "+updateResult);
+		commitRollback(session, updateResult);
+		session.close();
+		return updateResult;
+	}
+	public int noImgInsertReview(Review r) {
+		SqlSession session = getSqlSession();
+		int reviewNo = new MemberBoardDao().insertReview(session,r);
+		commitRollback(session, reviewNo);
+		session.close();
+		return reviewNo;
+	}
+	public int updateNoImgToImg(Review review, ReviewAttach afterImg, ReviewMapping mapping) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		int insertAttachResult = new MemberBoardDao().insertReviewAttach(session,afterImg);
+		mapping.setAttachNo(insertAttachResult);
+		int insertMapResult = new MemberBoardDao().insertReviewMapping(session,mapping);
+		
+		if(updateResult > 0 && insertAttachResult > 0 && insertMapResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
 		session.close();
 		return result;
 	}
