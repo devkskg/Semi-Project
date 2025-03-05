@@ -37,6 +37,7 @@ public class ReviewDetailServlet extends HttpServlet {
 		if(session != null && session.getAttribute("account") != null) {
 			Account account = (Account)session.getAttribute("account");
 			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
+			System.out.println("리뷰넘버 : "+reviewNo);
 			Review review = null;
 			ReviewAttach noImg = new MemberBoardService().selectNoImgReview(reviewNo);
 			if(noImg == null) {
