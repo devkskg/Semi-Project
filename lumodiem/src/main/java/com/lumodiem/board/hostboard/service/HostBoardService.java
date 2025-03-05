@@ -19,10 +19,22 @@ import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardService {
 	
-	public int deleteKlassOne(Klass klass) {
+	public int deleteKlassOne(int klassNo) {
 		SqlSession session = getSqlSession();
-		int result = new HostBoardDao().deleteKlassOne(session,klass);
-		if(result > 0) {
+		int klassResult = new HostBoardDao().deleteKlassOne(session,klassNo);
+		commitRollback(klassResult,session);
+		session.close();
+		return klassResult;
+	}
+	
+	public int deleteKlassAndAttach(int klassNo, int attachNo) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		int klassResult = new HostBoardDao().deleteKlass(session, klassNo);
+		int attachResult = new HostBoardDao().deleteAttachOneByKlass(session, attachNo);		
+//				new HostBoardDao().deleteKlassOne(session,klass);
+		if(klassResult > 0 && attachResult > 0) {
+			result = 1;
 			session.commit();
 		}else {
 			session.rollback();

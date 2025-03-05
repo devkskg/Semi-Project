@@ -15,6 +15,14 @@ import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardDao {
 	
+	public int deleteKlassOne(SqlSession session, int klassNo) {
+		return session.delete("klassMapper.klassDeleteOne",klassNo);
+	}
+	
+	public int deleteAttachOneByKlass(SqlSession session, int attachNo) {
+		return session.delete("klassMapper.klassAttachDelete",attachNo);
+	}
+	
 	public int deleteMappingOne(SqlSession session, KlassMapping m) {
 		return session.delete("klassMapper.klassMapDelete",m);
 	}
@@ -27,8 +35,8 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassDateDelete",option);
 	}
 	
-	public int deleteKlassOne(SqlSession session, Klass klass) {
-		return session.delete("klassMapper.klassDelete",klass);
+	public int deleteKlass(SqlSession session, int klassNo) {
+		return session.delete("klassMapper.klassDelete",klassNo);
 	}
 	
 	public int updateKlassAttach(SqlSession session, KlassAttach a) {
