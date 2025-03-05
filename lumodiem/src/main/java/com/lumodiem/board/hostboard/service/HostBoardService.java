@@ -1,5 +1,6 @@
 package com.lumodiem.board.hostboard.service;
 
+import static com.lumodiem.common.sql.SqlSessionTemplate.commitRollback;
 import static com.lumodiem.common.sql.SqlSessionTemplate.getSqlSession;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
+import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 
 public class HostBoardService {
 	
@@ -154,6 +157,34 @@ public class HostBoardService {
 		return result;
 	}
 
+	public int countLikeByKlassNo(int klassNo) {
+		SqlSession session = getSqlSession();
+		int count = new HostBoardDao().countLikeByKlassNo(session,klassNo);
+		session.close();
+		return count;
+	}
 
+	public int countLikeByAccountNoKlassNo(KlassLike klassLike) {
+		SqlSession session = getSqlSession();
+		int count = new HostBoardDao().countLikeByAccountNoKlassNo(session,klassLike);
+		session.close();
+		return count;
+	}
+
+	public int klassUnlikeToLike(KlassLike klassLike) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().klassUnlikeToLike(session,klassLike);
+		commitRollback(result, session);
+		session.close();
+		return result;
+	}
+
+	public int klassLikeToUnlike(KlassLike klassLike) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().klassLikeToUnlike(session,klassLike);
+		commitRollback(result, session);
+		session.close();
+		return result;
+	}
 	
 }

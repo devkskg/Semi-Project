@@ -68,6 +68,13 @@
 		<result property="payStatus" column="pay_status"/>
 		<result property="payPrice" column="pay_price"/>
 	</resultMap>
+	<resultMap type="klassLikeVo" id="klassLikeMap">
+		<result property="klassLikeNo" column="klass_like_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="klassName" column="klass_name"/>
+	</resultMap>
+	
 	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
 		INSERT INTO `klass_mapping`(klass_no ,attach_no)
 		VALUES (#{klassNo} ,#{attachNo})
@@ -232,5 +239,34 @@
 		ON kd.klass_no = k.klass_no
 		WHERE k.klass_no = #{klassNo}
 	</select>
-	
+	<!-- 해당 클래스의 좋아요 갯수 -->
+	<select id='countLikeByKlassNo' parameterType="_int" resultType="int">
+		SELECT count(*)
+		FROM `klass_like`
+		<where>
+			klass_no = #{klassNo}
+		</where>
+	</select>
+	<!-- 해당 클래스의 좋아요 갯수 -->
+	<select id='countLikeByAccountNoKlassNo' parameterType="klassLikeVo" resultType="int">
+		SELECT count(*)
+		FROM `klass_like`
+		<where>
+			klass_no = #{klassNo}
+			AND account_no = #{accountNo}
+		</where>
+	</select>
+	<!-- 좋아요 추가 -->
+	<insert id="klassUnlikeToLike" parameterType="klassLikeVo" useGeneratedKeys="true" keyProperty="klassNo">
+		INSERT INTO `klass_like`(account_no ,klass_no)
+		VALUES (#{accountNo} ,#{klassNo})
+	</insert>
+	<!-- 좋아요 제거 -->
+ 	<delete id="klassLikeToUnlike" parameterType="klassLikeVo">
+		DELETE FROM `klass_like`
+		<where>
+			klass_no = #{klassNo}
+			AND account_no = #{accountNo}
+		</where>
+	</delete>
 </mapper>

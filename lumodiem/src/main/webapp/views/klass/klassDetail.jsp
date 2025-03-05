@@ -99,7 +99,18 @@
 					<th>상세 내용</th>
 					<td>${klass.klassTxt}</td>
 				</tr> --%>
-			
+				<tr>
+					<td colspan="2">
+						<c:choose>
+							<c:when test="${myLikeCount eq 0 }">
+								<div class="icon"><span class="icon-heart-o" id="unlikeToLike">${totalLikeCount }</span></div>
+							</c:when>
+							<c:otherwise>
+								<div class="icon"><span class="icon-heart" id="likeToUnlike">${totalLikeCount }</span></div>
+							</c:otherwise>
+						</c:choose>
+					</td>
+				</tr>
 			</table>		
 		
 		</form>
@@ -234,5 +245,62 @@
 	</section>
 </div>
 
+	<script>
+		$(function(){
+			let klassNumber = "${klass.klassNo}";
+			let unlikeToLike = "unlikeToLike";
+			let likeToUnlike = "likeToUnlike";
+			$(document).on('click', '#unlikeToLike', function(){
+				$.ajax({
+					url : "/klassLikeChange",
+					type : "post",
+					data : {
+						"klass_no" : klassNumber,
+						"like" : unlikeToLike
+					},
+					dataType : 'json',
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data){
+						if(data.res_code == "200"){
+							alert('좋아요!');
+							$('#unlikeToLike').text(data.newTotalLikeCount);
+							$('#unlikeToLike').attr("id", "likeToUnlike").removeClass('icon-heart-o').addClass('icon-heart');
+						} else{
+							alert('오류. 홈페이지로 이동합니다.');
+							location.href="/";
+						}
+					},
+					error : function(){
+						alert('ajax 실패1');
+					}
+				});
+			});
+			$(document).on('click', '#likeToUnlike', function(){
+				$.ajax({
+					url : "/klassLikeChange",
+					type : "post",
+					data : {
+						"klass_no" : klassNumber,
+						"like" : likeToUnlike
+						},
+					dataType : 'json',
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data){
+						if(data.res_code == "200"){
+							alert('좋아요를 취소합니다.');
+							$('#likeToUnlike').text(data.newTotalLikeCount);
+							$('#likeToUnlike').attr("id", "unlikeToLike").removeClass('icon-heart').addClass('icon-heart-o');
+						} else{
+							alert('오류. 홈페이지로 이동합니다.');
+							location.href="/";
+						}
+					},
+					error : function(){
+						alert('ajax 실패2');
+					}
+				});
+			});
+		})
+	</script>
 </body>
 </html>
