@@ -36,7 +36,7 @@
 			<table border="1">
 				<thead>
 					<tr>
-						<th>리뷰이름</th>			
+						<!-- <th>리뷰이름</th>	 -->		
 						<th>내용</th>			
 						<th>닉네임</th>			
 					</tr>
@@ -46,7 +46,7 @@
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
 								<tr>
-									<%-- <td>${list.reviewName}</td> --%>
+									<%-- <td>${list.reviewName}</td>  --%>
 									<td>${list.reviewCmtTxt}</td>
 									<td>${list.accountNickname }</td>
 									<td><button type='button' data-report-review-cmt-no="${list.reportReviewCmtNo }">삭제</button></td>
@@ -77,8 +77,10 @@
  		 
  		 $('.report_review_cmt_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
- 			 const ReportReviewCmtNo = $(this).data('report-review-cmt-no');
-			$.ajax({
+ 				const ReportReviewCmtNo = $(this).data('report-review-cmt-no');
+				
+ 				
+ 			$.ajax({
 				url : "/deleteReportReviewCmt",
 				type : "post",
 				data : {"report_review_cmt_no":ReportReviewCmtNo},

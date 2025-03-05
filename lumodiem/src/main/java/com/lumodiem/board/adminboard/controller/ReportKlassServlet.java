@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lumodiem.board.adminboard.service.ReportService;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
+import com.lumodiem.board.hostboard.vo.Klass;
 
 
 @WebServlet("/reportKlass")
@@ -30,7 +31,7 @@ public class ReportKlassServlet extends HttpServlet {
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
 		
-		ReportKlass option  = ReportKlass.builder()
+		Klass option  = Klass.builder()
 				.klassName(klassName)
 				.accountNickname(accountNickname)
 				.klassTxt(klassTxt)
