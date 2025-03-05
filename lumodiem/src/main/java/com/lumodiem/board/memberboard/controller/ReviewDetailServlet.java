@@ -34,12 +34,14 @@ public class ReviewDetailServlet extends HttpServlet {
 			Account account = (Account)session.getAttribute("account");
 			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
 			Review review = null;
+			
 			ReviewAttach noImg = new MemberBoardService().selectNoImgReview(reviewNo);
 			if(noImg == null) {
 				review = new MemberBoardService().selectReviewNo(reviewNo);
+				System.out.println("사진 없는 거 조회");
 			} else {
 				review = new MemberBoardService().selectReviewOne(reviewNo);
-				
+				System.out.println("사진 있는 거 조회");
 			}
 			totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
 			reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();

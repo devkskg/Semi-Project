@@ -96,33 +96,33 @@ public class UpdateReviewEndServlet extends HttpServlet {
 				}
 			}
 			// 잘들어갔는지 확인용도
+			mapping.setReviewNo(review.getReviewNo());
 			System.out.println("review :"+review);
 			System.out.println("before : "+beforeImg);
 			System.out.println("mapping :"+mapping);
 			System.out.println("after :"+afterImg);
 			int result = 0;
 			
-//			if(beforeImg != null) {
+			if(beforeImg != null) {
 //				// 파일이 원래 있던 것
-//				if(afterImg == null) {
+				if(afterImg == null) {
 //					// 새로운 파일이 없음 (있음 -> 없음) / delete하고 insert는 X
-////					result = new HostBoardService().updateImgToNoImg(option,klassDate,atc);
 					result = new MemberBoardService().updateImgToNoImg(review,beforeImg);	
-//				}else {
+				}else {
 //					// 새로운 파일이 있음 (있음 -> 있음) / delete하고 insert도 O ***성공***
-////					result = new HostBoardService().updateImgToImg(option,klassDate,a,m,atc);
-//				}
-//				
-//			}else {
-//				// 원래 파일 없던 것
-//				if(afterImg == null) {
-//					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update ***성공***
-////					result = new HostBoardService().updateNoImgToNoImg(option,klassDate);
-//				}else {
-//					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O ***성공***
-////					result = new HostBoardService().updateNoImgToImg(option,klassDate,a,m);
-//				}
-//			}
+					result = new MemberBoardService().updateImgToImg(review,afterImg,mapping,beforeImg);
+				}
+			}else {
+				// 원래 파일 없던 것
+				if(afterImg == null) {
+					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update ***성공***
+//					result = new HostBoardService().updateNoImgToNoImg(option,klassDate);
+					result = new MemberBoardService().updateNoImgToNoImg(review);
+				}else {
+					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O ***성공***
+//					result = new HostBoardService().updateNoImgToImg(option,klassDate,a,m);
+				}
+			}
 		
 		
 		
@@ -130,15 +130,17 @@ public class UpdateReviewEndServlet extends HttpServlet {
 			
 			if(result > 0) {
 				obj.put("res_code", "200");
-				obj.put("res_msg", "정상적으로 게시글이 등록되었습니다.");
+				obj.put("res_msg", "정상적으로 게시글이 수정되었습니다.");
+				if(beforeImg != null) {
+					String deletePath = beforeImg.getAttachPath();
+					File deleteFile = new File(deletePath);
+					if(deleteFile.exists()) {
+						deleteFile.delete();
+					}
+				}
 			}else {
 				obj.put("res_code", "500");
-				obj.put("res_msg", "게시글 등록중 오류가 발생하였습니다.");
-				String deletePath = beforeImg.getAttachPath();
-				File deleteFile = new File(deletePath);
-				if(deleteFile.exists()) {
-					deleteFile.delete();
-				}
+				obj.put("res_msg", "게시글 수정중 오류가 발생하였습니다.");
 				
 			}
 			response.setContentType("application/json; charset=UTF-8");

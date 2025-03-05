@@ -33,7 +33,6 @@ public class DeleteReviewServlet extends HttpServlet {
 		if(temp != null) attachNo = Integer.parseInt(temp);
 		
 		int result = 0;
-		
 		if(attachNo > 0) {
 			result = new MemberBoardService().deleteReview(reviewNo, attachNo);
 		}else {
@@ -51,6 +50,7 @@ public class DeleteReviewServlet extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);
 	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

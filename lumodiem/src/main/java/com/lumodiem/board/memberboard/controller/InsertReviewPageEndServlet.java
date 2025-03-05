@@ -91,10 +91,13 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 				}
 			}
 			// 잘들어갔는지 확인용도
-			System.out.println("review :"+r);
-			System.out.println("attach :"+a);
+			int result = 0;
+			if(a != null) {
+				result = new MemberBoardService().insertReview(r,a,m);
+			}else {
+				result = new MemberBoardService().noImgInsertReview(r);
+			}
 			
-			int result = new MemberBoardService().insertReview(r,a,m);
 			
 			JSONObject obj = new JSONObject();
 			if(result > 0) {

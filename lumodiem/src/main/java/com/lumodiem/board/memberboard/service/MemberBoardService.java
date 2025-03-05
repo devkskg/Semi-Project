@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -154,8 +155,6 @@ public class MemberBoardService {
 		int updateResult = new MemberBoardDao().updateReview(session,review);
 		
 		int deleteResult = new MemberBoardDao().deletebeforeImg(session,beforeImg);
-		System.out.println("updateResult : "+updateResult);
-		System.out.println("deleteResult : "+deleteResult);
 		if(updateResult > 0 && deleteResult > 0) {
 			result = 1;
 			session.commit();
@@ -163,8 +162,45 @@ public class MemberBoardService {
 			session.rollback();
 		}
 		session.close();
+		System.out.println("트랜잭션 결과 : " + result);
 		return result;
 		
+	}
+	public int updateImgToImg(Review review, ReviewAttach afterImg, ReviewMapping mapping, ReviewAttach beforeImg) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		int deleteAttachResult = new MemberBoardDao().deletebeforeImg(session,beforeImg);
+		
+		int insertAttachResult = new MemberBoardDao().insertReviewAttach(session,afterImg);
+		mapping.setAttachNo(insertAttachResult);
+		int insertMapResult = new MemberBoardDao().insertReviewMapping(session,mapping);
+		
+		if(updateResult > 0 && deleteAttachResult > 0 && insertAttachResult > 0 && insertMapResult > 0 ) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	public int updateNoImgToNoImg(Review review) {
+		SqlSession session = getSqlSession();
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		
+		System.out.println("updateResult : "+updateResult);
+		commitRollback(session, updateResult);
+		session.close();
+		return updateResult;
+	}
+	public int noImgInsertReview(Review r) {
+		SqlSession session = getSqlSession();
+		int reviewNo = new MemberBoardDao().insertReview(session,r);
+		commitRollback(session, reviewNo);
+		session.close();
+		return reviewNo;
 	}
 	
 }
