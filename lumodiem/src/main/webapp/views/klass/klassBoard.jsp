@@ -10,16 +10,17 @@
 <head>
 <meta charset="UTF-8">
 <title>클래스 게시판</title>
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<!--<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>  -->
 </head>
 <body>
 
-<%@ include file="/views/include/nav.jsp" %>
+
 	<div id="colorlib-main">
 		<section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">	
+						<div class="row pt-md-4">
 <div class="klass_list">
 	<form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass">
 		<select name="order_type" id="order_type">
@@ -42,7 +43,52 @@
 		</c:choose>
 	</form>
 	
-	<form>
+	
+	<c:choose>
+		<c:when test="${not empty resultList }">
+			<c:forEach var="list" varStatus="vs" items="${resultList }">
+		
+	<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
+	
+	
+	
+	<div class="col-md-12 ">
+		<div class="blog-entry ftco-animate d-md-flex">
+			<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}"></a>
+			<div class="text text-2 pl-md-4">
+				<h3 class="mb-2"><a href="/klassDetail?klass_no=${list.klassNo}">${list.klassName}</a></h3>
+				<div class="meta-wrap">
+					<p class="meta">
+						<span><i class="icon-calendar mr-2"></i>${list.accountNickname}</span>
+						<span><a href="single.html"><i class="icon-folder-o mr-2"></i>좋아요 아이콘 넣기</a></span>
+						
+						<c:forEach var="li" items="${klassDate }" varStatus="vs">
+							<span><i class="icon-comment2 mr-2"></i>${klass.klassMax}명(${klass.klassMax - li.klassCount}명)</span>
+						</c:forEach>
+					</p>
+				</div>
+				<p class="mb-4">${list.klassTxt }</p>
+				<p><a href="/klassDetail?klass_no=${list.klassNo}" class="btn-custom">더 보기..<span class="ion-ios-arrow-forward"></span></a></p>
+			</div>
+		</div>
+	</div>
+	<!-- 한 줄 끝! -->
+	
+	
+	
+			</c:forEach>
+		</c:when>
+	</c:choose>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<%-- <form>
 		<table border="1">
 		<thead>
 			<tr>
@@ -78,7 +124,7 @@
 		
 		</table>
 	
-	</form>
+	</form> --%>
 </div>	
 
 	<form>
@@ -101,7 +147,6 @@
 	
 	
 	
-						<div class="row pt-md-4">
 					</div>
 				</div>
 			</div>
@@ -114,12 +159,13 @@
 			document.getElementById('arrangeKlass').submit();
 		}
 	</script>
-	<script>
+<!-- 	<script>
 		$('.klass_list tbody tr').click(function(){
 			const klassNo = $(this).data('klass-no');
 			location.href='/klassDetail?klass_no='+klassNo;
 		})
 	
-	</script>	
+	</script>	 -->
+<%@ include file="/views/include/nav.jsp" %>
 </body>
 </html>
