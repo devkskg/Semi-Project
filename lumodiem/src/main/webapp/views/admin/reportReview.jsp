@@ -6,14 +6,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.adminboard.vo.ReportReview" %>
 <%@ page import="com.lumodiem.board.memberboard.vo.Review" %>
-<%-- <% List<ReportReview> list = (List<ReportReview>)request.getAttribute("resultList"); %> --%>
+<% List<ReportReview> list = (List<ReportReview>)request.getAttribute("resultList"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <script src="<c:url value='/views/jquery-3.7.1.js'/>"></script> --%>
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>	
@@ -48,12 +46,15 @@
 					<c:choose>
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
-								<tr>
+								<tr data-report-review-no="${list.reportReviewNo }">
 									<td>${list.reviewName}</td>
 									<td>${list.reviewTxt}</td>
 									<td>${list.accountNickname }</td>
-									<td><button type='button' data-report-review-no="${list.reportReviewNo }">삭제</button></td>
-
+									
+										
+								
+									<%-- <td><button type='button' data-report-review-no="${list.reportReviewNo }">삭제</button></td>
+ --%>
 								</tr>
 							</c:forEach>
 						
@@ -77,31 +78,18 @@
 		</section>
 	</div>
 	<script>
+	$('.report_review_list tbody tr').click(function(){
+		const reportReviewNo = $(this).data('report-review-no');
+
+		if(reportReviewNo!=undefined){
+			location.href='/reportReviewDetail?report_review_no='+reportReviewNo;
+		}else{
+			location.reload();
+		}
+	});
 		
  		 
- 		 $('.report_review_list tbody button').click(function(){
- 			if(confirm("삭제하시겠습니까?")){
- 			 const reportReviewNo = $(this).data('report-review-no');
-			$.ajax({
-				url : "/deleteReportReview",
-				type : "post",
-				data : {"report_review_no":reportReviewNo},
-				dataType : "JSON",
-				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-				
-				success:function(data){
-					alert(data.res_msg);
-					
-					if(data.res_code==200){
-						location.href="";
-					}
-				}
-			});
-			
- 			}else{
- 				
- 			}
- 		}); 
+ 		
  		
  	</script>
 </body>

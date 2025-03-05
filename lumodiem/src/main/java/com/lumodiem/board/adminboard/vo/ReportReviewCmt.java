@@ -18,7 +18,10 @@ public class ReportReviewCmt {
 	private int accountNo;
 	private int reviewCmtNo;
 	
+	
 	private String reviewName;
 	private String reviewCmtTxt;
 	private String accountNickname;
+	private String searchType;
+	private String searchTxt;
 }

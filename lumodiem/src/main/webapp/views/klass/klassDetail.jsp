@@ -156,12 +156,12 @@
 						<th>날짜</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="moveReviewDetail">
 					<c:choose>
 						<c:when test="${not empty review }">
 						
 							<c:forEach var="list" items="${review }" varStatus="vs">
-							<tr>
+							<tr data-review-no="${list.reviewNo }">
 								<td>${vs.count}</td>						
 								<td>${list.reviewName}</td>
 								<td>${list.reviewTxt}</td>
@@ -230,19 +230,21 @@
 	$('#deleteBtn').click(function(){
 		const klassNo = ${klass.klassNo}; 
 		const check = confirm("삭제하시겠습니까?");
+		const attachNo = ${klass.attachNo};
 		if(check){
 			$.ajax({
 					url : "klassBoardDelete",
 					type : "post",
-					data : {"klass_no" : klassNo},
+					data : {"klass_no" : klassNo
+						,"attach_no" : attachNo},
 					dataType : "JSON",
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data){
-						alert(data.res_msg);
 						if(data.res_code == "200"){
 							alert(data.res_msg);
 							location.href="/klassBoardList";
 						} else{
+							alert(data.res_msg);
 							location.href='/klassDetail?klass_no='+klassNo;
 						}
 					}
@@ -403,7 +405,10 @@
 		
 		
 		
-		
+		$('#moveReviewDetail tr').click(function(){
+			const reviewNum = $(this).data('review-no');
+			location.href='/reviewDetail?review_no='+reviewNum;
+		})	
 	</script>
 </body>
 </html>

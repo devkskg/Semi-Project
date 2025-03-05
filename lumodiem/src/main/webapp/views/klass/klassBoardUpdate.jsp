@@ -55,8 +55,9 @@
 			<label for="klass_txt">클래스 상세 내용</label><br>
 			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
 			
-			<input type="file" name="klass_file" accept=".png,.jpg,.jpeg"><br>
-			
+			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
+				<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" value="${list.attachOri}"><br>
+			</c:forEach>
 			<button type="button" id="updateBtn">수정하기</button>
 			<!-- <button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button> -->
 		
@@ -68,6 +69,7 @@
 <script type="text/javascript">
 	$(function(){
 		const form = document.update_klass_form;
+		const klassNo = '${klass.klassNo}';
 		$('#updateBtn').click(function(){
 			const check = confirm("수정하시겠습니까?");
 			if(check){

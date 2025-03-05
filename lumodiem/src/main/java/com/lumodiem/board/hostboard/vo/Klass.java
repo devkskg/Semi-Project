@@ -35,4 +35,5 @@ public class Klass {
 	private String klassEnd;
 	private int attachNo;
 	private String klassOfDate;
+	private int klassLikeCount;
 }

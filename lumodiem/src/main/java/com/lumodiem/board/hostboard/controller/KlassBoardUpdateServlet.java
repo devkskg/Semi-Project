@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 
 @WebServlet("/klassBoardUpdate")
@@ -30,12 +29,15 @@ public class KlassBoardUpdateServlet extends HttpServlet {
 		if(temp != null) klassNo = Integer.parseInt(temp);
 		Klass klass = new HostBoardService().selectKlassOne(klassNo);
 		List<KlassDate> klassDate = new HostBoardService().selectKlassDate(klassNo);
+		List<KlassAttach> klassAttach = new HostBoardService().selectAttachList(klassNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardUpdate.jsp");
 		request.setAttribute("klass", klass);
 		request.setAttribute("klassDate", klassDate);
+		request.setAttribute("klassAttach", klassAttach);
 		System.out.println("klass"+klass);
 		System.out.println("klassDate"+klassDate);
+		
 		view.forward(request, response);
 		
 	}
