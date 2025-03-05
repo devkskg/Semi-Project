@@ -44,7 +44,6 @@ public class ReportReviewServlet extends HttpServlet {
 				.reviewTxt(reviewTxt)
 				.build();
 		
-		System.out.println(option);
 		List<ReportReview> resultList= new ReportService().selectReportReviewList(option);
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReview.jsp");
 		request.setAttribute("resultList", resultList);
