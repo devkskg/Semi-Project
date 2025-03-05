@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
@@ -18,8 +19,8 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassMapDelete",m);
 	}
 	
-	public int deleteAttachOne(SqlSession session, KlassAttach a) {
-		return session.delete("klassMapper.klassAttachDelete",a);
+	public int deleteAttachOne(SqlSession session, KlassAttach atc) {
+		return session.delete("klassMapper.klassAttachDelete",atc);
 	}
 	
 	public int deleteDateOne(SqlSession session, Klass option) {
@@ -51,6 +52,10 @@ public class HostBoardDao {
 	
 	public KlassAttach selectAttachOne(SqlSession session, int attachNo) {
 		return session.selectOne("klassMapper.attachOne",attachNo);
+	}
+	
+	public Account selectAccountOne(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.accountOne",klassNo);
 	}
 	
 	public Klass selectKlassOne(SqlSession session, int klassNo) {

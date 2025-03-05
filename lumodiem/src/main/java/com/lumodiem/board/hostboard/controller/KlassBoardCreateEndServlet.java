@@ -51,7 +51,7 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		KlassAttach a = new KlassAttach();
+		KlassAttach a = null;
 		
 		Klass option = new Klass();
 		
@@ -136,9 +136,16 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 			
 			System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
 			System.out.println("date : " + klassDate);
-			System.out.println("attach : " +a);
+			System.out.println("create attach : " +a);
+			int result = 0;
 			
-			int result = new HostBoardService().insertBoard(option,klassDate,a,m);
+			if(a != null) {
+				result = new HostBoardService().insertBoardWithImg(option,klassDate,a,m);
+				
+			}else {
+				result = new HostBoardService().insertBoardWithoutImg(option,klassDate);
+			}
+			
 			
 			JSONObject obj = new JSONObject();
 			
