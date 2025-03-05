@@ -132,7 +132,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			}else {
 				// 원래 파일 없던 것
 				if(a == null) {
-					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update
+					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update ***성공***
 					result = new HostBoardService().updateNoImgToNoImg(option,klassDate);
 				}else {
 					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O ***성공***

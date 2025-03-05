@@ -14,9 +14,7 @@ import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
-import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
-import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 
 public class HostBoardService {
 	
@@ -197,7 +195,26 @@ public class HostBoardService {
 		return dateResult;
 	}
 	
-	public int insertBoard(Klass option, KlassDate klassDate,KlassAttach a, KlassMapping m) {
+	public int insertBoardWithoutImg(Klass option, KlassDate klassDate) {
+		// 이미지 없이 등록하는 클래스 게시글
+		SqlSession session = getSqlSession();
+		int result =0;
+		int klassNo = new HostBoardDao().insertBoard(session, option); 
+		klassDate.setKlassNo(klassNo);
+		int klassDateNo = new HostBoardDao().insertKlassDate(session, klassDate);
+		
+		if(klassNo > 0 && klassDateNo > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	
+	public int insertBoardWithImg(Klass option, KlassDate klassDate,KlassAttach a, KlassMapping m) {
+		// 이미지랑 같이 등록하는 클래스 게시글
 		SqlSession session = getSqlSession();
 		int result = 0;
 		int klassNo = new HostBoardDao().insertBoard(session, option); 

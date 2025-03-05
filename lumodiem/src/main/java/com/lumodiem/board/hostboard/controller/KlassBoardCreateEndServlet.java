@@ -136,14 +136,16 @@ public class KlassBoardCreateEndServlet extends HttpServlet {
 			
 			System.out.println("klass : "+option); // 입력 된 값 확인 출력문 추후에 지울 예정
 			System.out.println("date : " + klassDate);
-			System.out.println("attach : " +a);
+			System.out.println("create attach : " +a);
+			int result = 0;
 			
+			if(a != null) {
+				result = new HostBoardService().insertBoardWithImg(option,klassDate,a,m);
+				
+			}else {
+				result = new HostBoardService().insertBoardWithoutImg(option,klassDate);
+			}
 			
-//			if(a != null) {
-//				
-//			}
-			
-			int result = new HostBoardService().insertBoard(option,klassDate,a,m);
 			
 			JSONObject obj = new JSONObject();
 			
