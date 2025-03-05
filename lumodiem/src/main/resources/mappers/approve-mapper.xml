@@ -4,7 +4,7 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approveMapper">
-<!--   주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석                                                             -->
+                                                        
 	<resultMap type="klassVo" id="approveKlassMap">
 		<result property="klassNo" column="klass_no"/>
 		<result property="accountNo" column="account_no"/>
@@ -18,7 +18,7 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 	</resultMap>
-	<!--   주석  주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 주석 -->
+
 	
 	<resultMap type="klassDateVo" id="klassDateMap">
 		<result property="klassDateNo" column="klass_date_no"/>

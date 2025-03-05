@@ -113,11 +113,9 @@
 	</select>
 	
 	<select id="selectReportReview" resultMap="reportReviewMap" parameterType="reportReviewVo">
-	SELECT r.review_name
-	,r.review_txt
+	SELECT r.*
 	,a.account_nickname
 	,rr.report_review_no
-	,r.review_no
 	FROM `report_review` rr
 	JOIN `review` r
 	ON rr.review_no = r.review_no
@@ -155,11 +153,11 @@
 	</select>
 	
 	
-	<delete id="deleteReportKlass" parameterType="_int">
+	<delete id="deleteReportKlass" parameterType="_int" >
 		DELETE FROM `klass`
 		<where>
-		 klass_no = #{klassNo};
-		 </where>
+			klass_no = #{klassNo}
+		</where>
 	</delete>
 	
 	

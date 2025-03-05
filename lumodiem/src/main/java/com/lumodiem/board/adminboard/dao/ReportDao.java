@@ -41,7 +41,7 @@ public class ReportDao {
 //		return session.selectList("reportMapper.reportKlassSelect", reportKlassNo);
 //	}
 	public int deleteReportKlass(int klassNo, SqlSession session) {
-		return session.insert("reportMapper.deleteReportKlass",klassNo);
+		return session.delete("reportMapper.deleteReportKlass",klassNo);
 	}
 	
 	public ReportKlass selectReportKlassOne(ReportKlass klass,SqlSession session) {
