@@ -38,7 +38,7 @@ public class InsertReviewPageEndServlet extends HttpServlet {
 		
 		Review r = new Review();
 		
-		ReviewAttach a = new ReviewAttach();
+		ReviewAttach a = null;
 		
 		ReviewMapping m = new ReviewMapping();
 		
