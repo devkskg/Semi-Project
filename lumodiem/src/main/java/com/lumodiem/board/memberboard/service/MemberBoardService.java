@@ -202,5 +202,23 @@ public class MemberBoardService {
 		session.close();
 		return reviewNo;
 	}
+	public int updateNoImgToImg(Review review, ReviewAttach afterImg, ReviewMapping mapping) {
+		SqlSession session = getSqlSession();
+		int result = 0;
+		
+		int updateResult = new MemberBoardDao().updateReview(session,review);
+		int insertAttachResult = new MemberBoardDao().insertReviewAttach(session,afterImg);
+		mapping.setAttachNo(insertAttachResult);
+		int insertMapResult = new MemberBoardDao().insertReviewMapping(session,mapping);
+		
+		if(updateResult > 0 && insertAttachResult > 0 && insertMapResult > 0) {
+			result = 1;
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
 	
 }

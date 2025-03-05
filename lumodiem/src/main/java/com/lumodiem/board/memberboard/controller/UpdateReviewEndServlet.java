@@ -38,7 +38,7 @@ public class UpdateReviewEndServlet extends HttpServlet {
 		
 		Review review = new Review();
 		
-		ReviewAttach afterImg = new ReviewAttach();
+		ReviewAttach afterImg = null;
 		
 		ReviewMapping mapping= new ReviewMapping();
 		
@@ -87,6 +87,7 @@ public class UpdateReviewEndServlet extends HttpServlet {
 						File uploadFile = new File(dir,newName);
 						fileItem.write(uploadFile);
 						
+						afterImg =new ReviewAttach();
 						afterImg = ReviewAttach.builder()
 								.attachOri(oriName)
 								.attachNew(newName)
@@ -97,10 +98,6 @@ public class UpdateReviewEndServlet extends HttpServlet {
 			}
 			// 잘들어갔는지 확인용도
 			mapping.setReviewNo(review.getReviewNo());
-			System.out.println("review :"+review);
-			System.out.println("before : "+beforeImg);
-			System.out.println("mapping :"+mapping);
-			System.out.println("after :"+afterImg);
 			int result = 0;
 			
 			if(beforeImg != null) {
@@ -116,15 +113,14 @@ public class UpdateReviewEndServlet extends HttpServlet {
 				// 원래 파일 없던 것
 				if(afterImg == null) {
 					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update ***성공***
-//					result = new HostBoardService().updateNoImgToNoImg(option,klassDate);
 					result = new MemberBoardService().updateNoImgToNoImg(review);
 				}else {
 					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O ***성공***
-//					result = new HostBoardService().updateNoImgToImg(option,klassDate,a,m);
+					result = new MemberBoardService().updateNoImgToImg(review,afterImg,mapping);
 				}
 			}
 		
-		
+		 
 		
 			JSONObject obj = new JSONObject();
 			
