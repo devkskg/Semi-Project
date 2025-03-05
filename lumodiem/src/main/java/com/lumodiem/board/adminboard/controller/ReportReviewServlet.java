@@ -22,7 +22,29 @@ public class ReportReviewServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<ReportReview> resultList= new ReportService().selectReportReviewList();
+		String temp = request.getParameter("review_no");
+		String temp2 = request.getParameter("report_review_no");
+		String searchType = request.getParameter("search_type");
+		String searchTxt = request.getParameter("search_txt");
+		String accountNickname = request.getParameter("account_nickname");
+		String reviewName = request.getParameter("review_name");
+		String reviewTxt = request.getParameter("review_txt");
+		
+		int reviewNo = 0;
+		int reportReviewNo=0;
+		if(temp!=null) reviewNo=Integer.parseInt(temp);
+		if(temp2!=null) reportReviewNo=Integer.parseInt(temp);
+		ReportReview option = ReportReview.builder()
+				.reportReviewNo(reportReviewNo)
+				.reviewNo(reviewNo)
+				.searchTxt(searchTxt)
+				.searchType(searchType)
+				.accountNickname(accountNickname)
+				.reviewName(reviewName)
+				.reviewTxt(reviewTxt)
+				.build();
+		
+		List<ReportReview> resultList= new ReportService().selectReportReviewList(option);
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReview.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);

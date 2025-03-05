@@ -72,9 +72,15 @@
 		</section>
 	</div>
 	<script>
+	
 	$('.report_klass_list tbody tr').click(function(){
 		const klassNo = $(this).data('klass-no');
-		location.href='/approveDetail?klass_no='+klassNo;
+		if(klassNo!=undefined){
+			location.href='/approveDetail?klass_no='+klassNo;
+		}else{
+			location.reload();
+		}
+		
 	})
 
  	</script>

@@ -30,6 +30,7 @@ public class ApproveListServlet extends HttpServlet {
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
 		String approveCode = request.getParameter(accountNickname);
+		
  		Klass option = Klass.builder()
 				.klassName(klassName)
 				.accountNickname(accountNickname)
@@ -39,6 +40,7 @@ public class ApproveListServlet extends HttpServlet {
 				.orderType(orderType)
 				.approveCode(approveCode)
 				.build();
+ 		System.out.println(option);
 		//List<Klass> resultList = new HostBoardService().searchBoardList(option);
 		List<Klass> resultList = new ApproveSerview().selectApproveList(option);
 		request.setAttribute("resultList", resultList);
