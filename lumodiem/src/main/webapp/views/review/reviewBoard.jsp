@@ -81,6 +81,7 @@
 							<td><c:out value="${rb.reviewTxt}" /></td>
 							<td><c:out value="${rb.accountNickname}"/></td>
 						</tr>
+						
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
