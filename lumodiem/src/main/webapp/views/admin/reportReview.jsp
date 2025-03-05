@@ -6,14 +6,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.adminboard.vo.ReportReview" %>
 <%@ page import="com.lumodiem.board.memberboard.vo.Review" %>
-<%-- <% List<ReportReview> list = (List<ReportReview>)request.getAttribute("resultList"); %> --%>
+<% List<ReportReview> list = (List<ReportReview>)request.getAttribute("resultList"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <script src="<c:url value='/views/jquery-3.7.1.js'/>"></script> --%>
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>	
@@ -33,7 +31,6 @@
 				</select>
 				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 				<button name="searchBtn" id="searchBtn">검색</button>
-				<input type="hidden" value="${review.reviewNo }" name="review_no" id="review_no">
 		</form>
 	<form>
 		<div class="report_review_list">
@@ -83,7 +80,12 @@
 	<script>
 	$('.report_review_list tbody tr').click(function(){
 		const reportReviewNo = $(this).data('report-review-no');
-		location.href='/reportReviewDetail?report_review_no='+reportReviewNo;
+
+		if(reportReviewNo!=undefined){
+			location.href='/reportReviewDetail?report_review_no='+reportReviewNo;
+		}else{
+			location.reload();
+		}
 	});
 		
  		 

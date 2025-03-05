@@ -25,8 +25,7 @@
 		<ul>
 			<li>
 				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width:300px" > 
-				<input type="hidden" data-report-review-no="${review.reportReviewNo }" name="report_review_no">
-				<input type="hidden" data-review-no="${review.reviewNo }" name="review_no">
+				<input type="hidden" value="${review.reviewNo }" id="review_no" name="review_no">
 			</li> 
 			<li>
 				<table>
@@ -62,15 +61,15 @@
 	<script type="text/javascript">
 	 $('#deletebtn').click(function(){
 			if(confirm("삭제하시겠습니까?")){
-			 const reportReviewNo = $(this).data('report-review-no');
-			 const reviewNo = ""
+			// const reportReviewNo = `${reivew.reportReviewNo}`;
+			 const reviewNo = `${review.reviewNo}`;
 			 
-			 console.log(reportReviewNo);
+			// console.log(reportReviewNo);
 			 console.log(reviewNo);
-			$.ajax({
-				url : "/deleteReportReview?report_review_no=${review.reportReviewNo}",
+			 $.ajax({
+				url : "/deleteReportReview?review_no=${review.reviewNo}",
 				type : "post",
-				data : {"report_review_no":reportReviewNo},
+				data : {"review_no":reviewNo},
 				dataType : "JSON",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				
@@ -78,12 +77,12 @@
 					alert(data.res_msg);
 					
 					if(data.res_code==200){
-						location.href="";
+						location.href="/reportReview";
 					}else{
-						location.href="";
+						location.href="/reportReview";
 					}
 				}
-			});
+			}); 
 			}
 		}); 
 	</script>

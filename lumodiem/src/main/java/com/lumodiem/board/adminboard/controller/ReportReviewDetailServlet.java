@@ -34,7 +34,6 @@ public class ReportReviewDetailServlet extends HttpServlet {
 				.reviewNo(reviewNo)
 				.build();
 
-		System.out.println(option);
 		option  = new ReportService().selectReportReviewOne(option);
 
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReviewDetail.jsp");

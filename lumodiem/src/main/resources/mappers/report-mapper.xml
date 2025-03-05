@@ -94,9 +94,9 @@
 	
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	<delete id="deleteReportReview" parameterType="_int">
-		DELETE FROM `report_review`
+		DELETE FROM `review`
 		<where>
-		 report_review_no = #{reportReviewNo};
+		 review_no = #{reviewNo};
 		 </where>
 	</delete>
 	

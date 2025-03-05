@@ -22,8 +22,8 @@ public class ReportDao {
 	
 	//////////////////////////////////////////////////////
 	
-	public int deleteReportReview(int reportReviewNo, SqlSession session) {
-		return session.insert("reportMapper.deleteReportReview",reportReviewNo);
+	public int deleteReportReview(int reviewNo, SqlSession session) {
+		return session.insert("reportMapper.deleteReportReview",reviewNo);
 	}
 	
 	
