@@ -384,17 +384,19 @@
 			});
 		})
 		
-		/* 작업중 */
+		/* 채팅방 새로고침, 채팅치기 */
 		$(function(){
 			$(document).on('click', '#refreshBtn, #sendBtn', function(){
 				// let klassNo = "${klass.klassNo}";
-				let chatVal = $('#sendInput').value;
+				let chatTxt = $('#sendInput').value;
+				let klassAccountNo = "${klass.accountNo}";
 				console.log('두개 다 작동');
 					$.ajax({
 						url : "/klassChat",
 						type : "post",
 						data : {
-							"chatVal" : chatVal
+							"chatTxt" : chatTxt,
+							"klassAccountNo" : klassAccountNo
 							},
 						dataType : 'json',
 						contentType: "application/x-www-form-urlencoded; charset=UTF-8",

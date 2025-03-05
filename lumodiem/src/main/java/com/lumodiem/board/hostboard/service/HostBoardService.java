@@ -294,5 +294,10 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
+//	클래스 주최자의 채팅 내역
+	public int insertKlassChat(String chatTxt) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

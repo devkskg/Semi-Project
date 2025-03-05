@@ -11,6 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.hostboard.service.HostBoardService;
+
 
 @WebServlet("/klassChat")
 public class KlassChatServlet extends HttpServlet {
@@ -23,7 +26,31 @@ public class KlassChatServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int result = 0;
+		String chatTxt = null;
+		String temp = null;
+		int klassAccountNo = 0;
+//		String accountGrade = null;
+		Account account = null;
 		if(session != null && session.getAttribute("account") != null) {
+			account = (Account)session.getAttribute("account");
+			chatTxt = request.getParameter("chatTxt");
+			temp = request.getParameter("klassAccountNo");
+//			accountGrade = account.getAccountGrade();
+			if(chatTxt != null && "".equals(chatTxt) == false) {
+				if(temp != null) {
+					klassAccountNo = Integer.parseInt(temp);
+					if(klassAccountNo == account.getAccountNo()) {
+//						클래스 주최자 = 로그인한 사용자
+						chatTxt = "Host " + account.getAccountNickname() + chatTxt;
+					} else {
+//						그 외
+						chatTxt = "Member" + account.getAccountNickname() + chatTxt;
+					}
+					result = new HostBoardService().insertKlassChat(chatTxt);
+				}
+				
+			}
+			
 			
 			JSONObject obj = new JSONObject();
 			obj.put("res_code", "500");
