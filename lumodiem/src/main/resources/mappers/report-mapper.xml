@@ -35,6 +35,7 @@
 		<result property="klassStatus" column="klass_status"/>
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
+		<result property="approveCode" column="approve_code"/>
 	</resultMap>
 	
 	<resultMap type="reportReviewVo" id="reportReviewMap">
@@ -46,6 +47,15 @@
 		<result property="reviewName" column="review_name"/>
 		<result property="reviewTxt" column="review_txt"/>
 		<result property="accountNickname" column="account_nickname"/>
+		
+		
+		<result property="reviewRegDate" column="review_reg_date"/>
+		<result property="reviewModDate" column="review_mod_date"/>
+		<result property="orderType" column="order_type"/>
+		<result property="attachNo" column="attach_no"/>
+		<result property="attachPath" column="attach_path"/>
+		
+		
 		
 	</resultMap>
 	<resultMap type="reportReviewCmtVo" id="reportReviewCmtMap">
@@ -84,15 +94,26 @@
 	
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	<delete id="deleteReportReview" parameterType="_int">
-		DELETE FROM `report_review`
+		DELETE FROM `review`
 		<where>
-		 report_review_no = #{reportReviewNo};
+		 review_no = #{reviewNo};
 		 </where>
 	</delete>
 	
-	<select id="selectReportReview" resultMap="reportReviewMap">
-	SELECT r.review_name
-	,r.review_txt
+	<select id="reportReviewOne" resultMap="reportReviewMap" parameterType="reportReviewVo">
+	SELECT r.*, a.account_nickname
+	FROM report_review rr
+	JOIN review r 
+	ON r.review_no = rr.review_no
+	JOIN `account` a
+	ON rr.account_no = a.account_no
+	<where>
+		 rr.report_review_no = #{reportReviewNo}
+	</where>
+	</select>
+	
+	<select id="selectReportReview" resultMap="reportReviewMap" parameterType="reportReviewVo">
+	SELECT r.*
 	,a.account_nickname
 	,rr.report_review_no
 	FROM `report_review` rr
@@ -100,19 +121,24 @@
 	ON rr.review_no = r.review_no
 	JOIN `account` a
 	ON a.account_no = rr.account_no
+	
+	<where>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND r.review_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND r.review_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
+	
 	</select>
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	
 	<select id="reportKlassOne" resultMap="reportKlassMap" parameterType="reportKlassVo">
-<!-- 	SELECT k.* ,a.account_nickname			
-		FROM `klass` k
-		JOIN `account` a
-		ON k.account_no = a.account_no
-	<where>
-		AND k.klass_no = #{klassNo}
-	</where> -->
-	
-	
+
 		SELECT k.* 
 		,a.account_nickname
 		,ap.approve_code		
@@ -130,43 +156,20 @@
 	<delete id="deleteReportKlass" parameterType="_int" >
 		DELETE FROM `klass`
 		<where>
-		 klass_no = #{klassNo};
-		 </where>
-	</delete>
-	<!-- <select id="reportKlassSelect" parameterType="_int" resultMap="reportMap" >
-		SELECT *
-		FROM klass_report
-		<where>
-			report_klass_no = ${reportKlassNo}
+			klass_no = #{klassNo}
 		</where>
-	</select> -->
+	</delete>
+	
 	
 	<select id="selectReportKlass"  resultMap="reportKlassMap" parameterType="reportKlassVo">
-			<!-- SELECT k.klass_no
-			,kr.report_klass_no 
-			,k.klass_name
-			,a.account_nickname
-			,k.klass_txt
-			FROM `klass_report` kr 
-			JOIN `klass` k 
-			ON kr.klass_no = k.klass_no
-			JOIN `account` a
-			ON a.account_no = kr. account_no -->
-			
+
 			SELECT k.*
 			,a.account_nickname
-			
 			FROM `klass_report` kr 
 			JOIN `klass` k 
 			ON kr.klass_no = k.klass_no
 			JOIN `account` a
 			ON a.account_no = kr. account_no
-		
-	<!-- 	SELECT k.* ,a.account_nickname
-		FROM `klass` k
-		JOIN `account` a
-		ON k.account_no = a.account_no
-		JOIN `approve` p ON k.klass_no = p.klass_no -->
 		<where>
 			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
 				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
