@@ -45,7 +45,7 @@
 	<resultMap type="reviewLikeVo" id="reviewLikeMap">
 		<result property="reviewLikeNo" column="review_like_no"/>
 		<result property="accountNo" column="account_no"/>
-		<result property="klassNo" column="klass_no"/>
+		<result property="reviewNo" column="review_no"/>
 		<result property="reviewName" column="review_name"/>
 	</resultMap>
 	<resultMap type="reviewCmtVo" id="reviewCmtMap">
