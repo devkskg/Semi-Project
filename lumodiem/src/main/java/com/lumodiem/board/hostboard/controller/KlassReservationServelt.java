@@ -1,6 +1,7 @@
 package com.lumodiem.board.hostboard.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.service.HostBoardService;
+import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Reservation;
 
 @WebServlet("/klassReservation")
@@ -24,15 +28,21 @@ public class KlassReservationServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
-		System.out.println("kdn : "+klassDateNo);
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
-//		System.out.println("rp : "+request.getParameter("res_ppl"));
-		System.out.println("rp : "+resPpl);
+		int accountNo = 0;
+		Account ac = null;
 		HttpSession session = request.getSession();
+		if(session != null && session.getAttribute("account") != null) {
+			ac = (Account)session.getAttribute("account");
+			accountNo = ac.getAccountNo();
+		}
+
+		
 		
 		Reservation reservation = Reservation.builder()
 				.klassDateNo(klassDateNo)
 				.resPpl(resPpl)
+				.accountNo(accountNo)
 				.build();
 		
 		int klassDate = new HostBoardService().reserveKlass(reservation);
