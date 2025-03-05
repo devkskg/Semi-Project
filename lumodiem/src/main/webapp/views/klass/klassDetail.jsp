@@ -199,8 +199,9 @@
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
-                        <ul class="dropdown-menu slidedown">
-                            <li style="text-align: center"><a target="_blank" href="https://www.istockphoto.com/kr/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow-gm1967994177-558259453?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=%EA%B7%80%EC%97%AC%EC%9A%B4+%EB%8F%99%EB%AC%BC">
+                        <ul style="text-align: center" class="dropdown-menu slidedown">
+                        	<li><span id="refreshBtn" class="glyphicon glyphicon-refresh">새로고침</span></li>
+                            <li><a target="_blank" href="https://www.istockphoto.com/kr/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow-gm1967994177-558259453?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=%EA%B7%80%EC%97%AC%EC%9A%B4+%EB%8F%99%EB%AC%BC">
                             😉빛나는 하루!😉</a></li>
                         </ul>
                     </div>
@@ -383,9 +384,34 @@
 			});
 		})
 		
-		
+		/* 작업중 */
 		$(function(){
-			
+			$(document).on('click', '#refreshBtn, #sendBtn', function(){
+				// let klassNo = "${klass.klassNo}";
+				let chatVal = $('#sendInput').value;
+				console.log('두개 다 작동');
+					$.ajax({
+						url : "/klassChat",
+						type : "post",
+						data : {
+							"chatVal" : chatVal
+							},
+						dataType : 'json',
+						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+						success : function(data){
+							if(data.res_code == "200"){
+								$('#likeToUnlike').text(data.newTotalLikeCount);
+							} else{
+								alert('오류. 홈페이지로 이동합니다.');
+								location.href="/";
+							}
+						},
+						error : function(){
+							alert('채팅 ajax 실패');
+						}
+					});
+				
+			});
 		})
 		
 		
