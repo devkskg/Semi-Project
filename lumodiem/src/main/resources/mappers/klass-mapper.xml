@@ -156,7 +156,7 @@
 	</delete>
 	
 	<select id="klassReviewList" resultMap="reviewMap" parameterType="_int">
-		SELECT r.review_name ,r.review_txt ,a.account_nickname ,r.review_reg_date
+		SELECT r.*,a.account_nickname
 		FROM `review` r
 		JOIN `reservation` rs
 		ON r.res_no = rs.res_no
