@@ -387,22 +387,32 @@
 		/* 채팅방 새로고침, 채팅치기 */
 		$(function(){
 			$(document).on('click', '#refreshBtn, #sendBtn', function(){
-				// let klassNo = "${klass.klassNo}";
+				let klassNo = "${klass.klassNo}";
 				let chatTxt = $('#sendInput').value;
 				let klassAccountNo = "${klass.accountNo}";
-				console.log('두개 다 작동');
 					$.ajax({
 						url : "/klassChat",
 						type : "post",
 						data : {
 							"chatTxt" : chatTxt,
-							"klassAccountNo" : klassAccountNo
+							"klassAccountNo" : klassAccountNo,
+							"klassNo" : klassNo
 							},
 						dataType : 'json',
 						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 						success : function(data){
 							if(data.res_code == "200"){
 								$('#likeToUnlike').text(data.newTotalLikeCount);
+								
+								let val;
+								
+								for(let i = 0; i < data.chatList.length; i++){
+									chatList.
+									/* 여기서부터!!!!!!!! */
+								}
+								
+								$('#chatUl').appen(val);
+								
 							} else{
 								alert('오류. 홈페이지로 이동합니다.');
 								location.href="/";

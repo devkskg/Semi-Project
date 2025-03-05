@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.hostboard.vo.Chat;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
@@ -126,8 +127,13 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassLikeToUnlike",klassLike);
 	}
 
-	public int insertKlassChat(SqlSession session, String chatTxt) {
-		return session.insert("klassMapper.insertKlassChat",chatTxt);
+	public int insertKlassChat(SqlSession session, Chat chat) {
+		session.insert("klassMapper.insertKlassChat",chat);
+		return chat.getChatNo();
+	}
+
+	public Chat selectKlassChatByChatNo(SqlSession session, int result) {
+		return session.selectOne("klassMapper.selectKlassChatByChatNo", result);
 	}
 
 }
