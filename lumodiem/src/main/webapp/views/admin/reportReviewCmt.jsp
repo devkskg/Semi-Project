@@ -77,8 +77,10 @@
  		 
  		 $('.report_review_cmt_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
- 			 const ReportReviewCmtNo = $(this).data('report-review-cmt-no');
-			$.ajax({
+ 				const ReportReviewCmtNo = $(this).data('report-review-cmt-no');
+				
+ 				
+ 			$.ajax({
 				url : "/deleteReportReviewCmt",
 				type : "post",
 				data : {"report_review_cmt_no":ReportReviewCmtNo},

@@ -22,6 +22,11 @@ public class ReportReviewCmtServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String temp = request.getParameter("report_review_cmt_no");
+		String searchType = request.getParameter("search_type");
+		String searchTxt = request.getParameter("search_txt");
+		int reportReviewCmtNo = 0;
+		if(temp!=null) reportReviewCmtNo = Integer.parseInt(temp);
 		List<ReportReviewCmt> resultList= new ReportService().selectReportReviewCmtList();
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReviewCmt.jsp");
 		request.setAttribute("resultList", resultList);
