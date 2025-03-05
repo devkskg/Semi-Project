@@ -130,7 +130,7 @@
 		WHERE klass_no = #{klassNo}
 	</delete>
 	
-	<delete id="klassAttachDelete" parameterType="_int">
+	<delete id="klassAttachDelete" parameterType="klassAttachVo">
 		DELETE FROM `klass_attach`
 		WHERE attach_no = #{attachNo}
 	</delete>
@@ -140,11 +140,18 @@
 		WHERE klass_no = #{klassNo}
 	</delete>
 	
- 	<delete id="klassDelete" parameterType="_int">
-		DELETE FROM `klass`
+ 	<delete id="klassDelete" parameterType="klassVo">
+		DELETE k FROM `klass` k
+		JOIN `klass_mapping` m ON k.klass_no = m.klass_no
+		JOIN `klass_attach` a ON a.attach_no = m.attach_no
 		<where>
 			klass_no = #{klassNo}
 		</where>
+	</delete>
+	
+	<delete id="klassDeleteOne" parameterType="klassVo">
+		DELETE FROM `klass`
+		WHERE klass_no = #{klassNo}
 	</delete>
 	
 	<select id="klassReviewList" resultMap="reviewMap" parameterType="_int">
