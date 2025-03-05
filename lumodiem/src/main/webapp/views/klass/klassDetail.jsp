@@ -293,7 +293,6 @@
 			}
 		}else{
 			alert('예약할 클래스 날짜를 정해주세요');
-			location.href="/klassBoardList";
 		}
 	});
 </script>

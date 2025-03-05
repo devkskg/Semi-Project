@@ -39,7 +39,7 @@ public class KlassReservationServelt extends HttpServlet {
 			accountNo = ac.getAccountNo();
 		}
 
-		
+		// 예약테이블 account_no 랑 klass_date 테이블에서 account_no 랑 비교해서 같으면 예약X
 		
 		Reservation reservation = Reservation.builder()
 				.klassDateNo(klassDateNo)
