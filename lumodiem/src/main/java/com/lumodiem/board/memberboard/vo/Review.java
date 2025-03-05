@@ -31,5 +31,8 @@ public class Review {
 	private String payStatus;
 	private int payPrice;
 	private String attachPath;
+	private int ReviewLikeCount;
+	private String searchTxt;
+	private String searchType;
 }
 

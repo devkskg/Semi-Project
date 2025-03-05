@@ -24,6 +24,8 @@ public class ReviewBoardServlet extends HttpServlet {
 		String reviewName = request.getParameter("review_name");
 		String reviewTxt = request.getParameter("review_txt");
 		String accountNickname = request.getParameter("account_nickname");
+		String searchType = request.getParameter("search_type");
+		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type");
 		
 //		int accountNo = Integer.parseInt(request.getParameter("account_no"));
@@ -32,6 +34,8 @@ public class ReviewBoardServlet extends HttpServlet {
 				.reviewName(reviewName)
 				.reviewTxt(reviewTxt)
 				.accountNickname(accountNickname)
+				.searchType(searchType)
+				.searchTxt(searchTxt)
 				.orderType(orderType)
 				.build();
 		List<Review> resultList = new MemberBoardService().selectReviewList(option);

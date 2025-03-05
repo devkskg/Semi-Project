@@ -17,6 +17,9 @@
 		<result property="orderType" column="order_type"/>
 		<result property="attachNo" column="attach_no"/>
 		<result property="attachPath" column="attach_path"/>
+		<result property="ReviewLikeCount" column="review_like_count"/>
+		<result property="searchTxt" column="search_txt"/>
+		<result property="searchType" column="search_type"/>
 	</resultMap>
 	<resultMap type="reviewAttachVo" id="reviewAttachMap">
 		<result property="attachNo" column="attach_no"/>
@@ -79,28 +82,31 @@
 	JOIN `account` a
 	ON r.account_no = a.account_no
 	<where>
-		<if test='reviewName != null and reviewName.equals("") == false'>
-			AND r.review_name LIKE CONCAT('%',#{reviewName},'%')
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+			AND r.review_name LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='reviewTxt != null and reviewTxt.equals("") == false'>
-			AND r.review_txt LIKE CONCAT('%',#{reviewTxt},'%')
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+			AND r.review_txt LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='accountNickname != null and accountNickname.equals("") == false'>
-			AND a.account_nickname LIKE CONCAT('%',#{accountNickname},'%')
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+			AND a.account_nickname LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
 	</where>
-	<if test="orderType == null or orderType.equals('0') == true">
-		ORDER BY r.review_reg_date ASC
-	</if>
-	<if test='orderType != null and orderType.equals("0") == false'>
+	<if test='orderType != null and orderType.equals("x") == false'>
 		<choose>
-			<when test='orderType.equals("1") == true'>
-				ORDER BY r.review_reg_date DESC
-			</when>	
-			<otherwise>
+			<when test='orderType.equals("b") == true'>
 				ORDER BY r.review_reg_date ASC
+			</when>
+			<when test='orderType.equals("c") == true'>
+				ORDER BY r.review_like_count DESC
+			</when>
+			<otherwise>
+				ORDER BY r.review_reg_date DESC
 			</otherwise>
 		</choose>
+	<if test="orderType == null or orderType.equals('x') == true">
+		ORDER BY r.review_reg_date DESC
+	</if>
 	</if>
 	</select>
 	<select id="reviewOne" resultMap="reviewMap" parameterType="_int">
