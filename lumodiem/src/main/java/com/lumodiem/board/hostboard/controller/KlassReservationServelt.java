@@ -24,8 +24,12 @@ public class KlassReservationServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("kdn 변환 : "+request.getParameter("klass_date_no"));
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
+		System.out.println("kdn : "+klassDateNo);
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
+//		System.out.println("rp : "+request.getParameter("res_ppl"));
+		System.out.println("rp : "+resPpl);
 		
 		int klassDate = new HostBoardService().reserveKlass(klassDateNo,resPpl);
 		
