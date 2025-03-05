@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
+import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 
 public class HostBoardDao {
@@ -17,8 +19,8 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassMapDelete",m);
 	}
 	
-	public int deleteAttachOne(SqlSession session, KlassAttach a) {
-		return session.delete("klassMapper.klassAttachDelete",a);
+	public int deleteAttachOne(SqlSession session, KlassAttach atc) {
+		return session.delete("klassMapper.klassAttachDelete",atc);
 	}
 	
 	public int deleteDateOne(SqlSession session, Klass option) {
@@ -50,6 +52,10 @@ public class HostBoardDao {
 	
 	public KlassAttach selectAttachOne(SqlSession session, int attachNo) {
 		return session.selectOne("klassMapper.attachOne",attachNo);
+	}
+	
+	public Account selectAccountOne(SqlSession session, int klassNo) {
+		return session.selectOne("klassMapper.accountOne",klassNo);
 	}
 	
 	public Klass selectKlassOne(SqlSession session, int klassNo) {
@@ -91,15 +97,8 @@ public class HostBoardDao {
 	public KlassAttach selectAttachOneByKlassNo(SqlSession session, int klassNo) {
 		return session.selectOne("klassMapper.selectAttachOneByKlassNo",klassNo);
 	}
-
-
-	public int reserveKlassDate(SqlSession session, int klassDateNo) {
-		int result = session.selectOne("klassMapper.resKlassDate",klassDateNo);
-		return result;
-	}
-
-	public int reserveKlassRes(SqlSession session, int resPpl) {
-		int result = session.insert("klassMapper.resKlassRes",resPpl);
+	public int reserveKlassRes(SqlSession session, Reservation reservation) {
+		int result = session.insert("klassMapper.resKlassRes",reservation);
 		return result;
 	}
 

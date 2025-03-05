@@ -36,13 +36,13 @@
 			<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address"><br>
 			
 			<label for="klass_date">날짜 : </label>
-			<input type=date name="klass_date" id="klass_date" required value="${klass.klassOfDate}"><br>
+			<input type=date name="klass_date" id="klass_date" required value="${fn:substring(klassDate[0].klassStart , 0, 10 )}"><br>
 			
 			<label for="klass_start">시작 : </label>
-			<input type="time" name="klass_start" id="klass_start" required value="${klass.klassStart}"><br>
+			<input type="time" name="klass_start" id="klass_start" required value="${fn:substring(klassDate[0].klassStart , 11, 16 )}"><br>
 			
 			<label for="klass_end">종료 : </label>
-			<input type="time" name="klass_end" id="klass_end" required value="${klass.klassEnd }"><br>
+			<input type="time" name="klass_end" id="klass_end" required value="${fn:substring(klassDate[0].klassEnd , 11, 16 )}"><br>
 			
 			<label for="klass_max">최대 참가인원 : </label>
 			<input type="number" name="klass_max" id="klass_max" 
