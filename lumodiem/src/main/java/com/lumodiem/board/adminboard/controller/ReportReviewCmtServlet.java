@@ -26,10 +26,15 @@ public class ReportReviewCmtServlet extends HttpServlet {
 		String searchType = request.getParameter("search_type");
 		String searchTxt = request.getParameter("search_txt");
 		int reportReviewCmtNo = 0;
-		
-		
 		if(temp!=null) reportReviewCmtNo = Integer.parseInt(temp);
-		List<ReportReviewCmt> resultList= new ReportService().selectReportReviewCmtList();
+		ReportReviewCmt option = ReportReviewCmt.builder()
+				.reportReviewCmtNo(reportReviewCmtNo)
+				.searchTxt(searchTxt)
+				.searchType(searchType)
+				.build();
+		System.out.println(option);
+		
+		List<ReportReviewCmt> resultList= new ReportService().selectReportReviewCmtList(option);
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportReviewCmt.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);

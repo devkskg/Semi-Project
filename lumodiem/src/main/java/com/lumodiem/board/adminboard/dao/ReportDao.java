@@ -12,12 +12,12 @@ import com.lumodiem.board.memberboard.vo.Review;
 
 public class ReportDao {
 	
-	public int deleteReportReviewCmt(int reportReviewCmtNo, SqlSession session) {
-		return session.insert("reportMapper.deleteReportReviewCmt",reportReviewCmtNo);
+	public int deleteReportReviewCmt(int reviewCmtNo, SqlSession session) {
+		return session.insert("reportMapper.deleteReportReviewCmt",reviewCmtNo);
 	}
 	
-	public List<ReportReviewCmt> selectReportReviewCmtList(SqlSession session){
-		return session.selectList("reportMapper.selectReportReviewCmt");
+	public List<ReportReviewCmt> selectReportReviewCmtList(ReportReviewCmt option, SqlSession session){
+		return session.selectList("reportMapper.selectReportReviewCmt",option);
 	}
 	
 	//////////////////////////////////////////////////////
