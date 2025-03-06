@@ -6,17 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs4.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs4.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>게시글 작성하기</title>
+<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -57,7 +49,7 @@
 					<input type="number" required name="klass_price" id="klass_price" placeholder="숫자만 입력해주세요."><br>
 					
 					<label for="klass_txt">클래스 상세 내용</label><br>
-					<textarea name="klass_txt" id="summernote" required></textarea>
+					<textarea name="klass_txt" id="klass_txt" required></textarea>
 					
 					<input type="file" name="klass_file" accept=".png,.jpg,.jpeg"><br>
 					
@@ -68,12 +60,6 @@
 </div>
 	
 <script>
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  height: 400
-		  });
-	});
-
 	$(function(){
 		const form = document.create_klass_form;
 		$('#insertBtn').click(function(){
