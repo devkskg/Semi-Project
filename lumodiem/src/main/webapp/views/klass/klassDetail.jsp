@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script> --%>
+otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 <title>클래스 상세조회</title>
 <link rel="stylesheet" href="<c:url value='/chatcss/chat.css'/>">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -189,44 +190,7 @@
 	</div>				
 	
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </button>
-                        <ul style="text-align: center" class="dropdown-menu slidedown">
-                        	<li><span id="refreshBtn" class="glyphicon glyphicon-refresh">새로고침</span></li>
-                            <li><a target="_blank" href="https://www.istockphoto.com/kr/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow-gm1967994177-558259453?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=%EA%B7%80%EC%97%AC%EC%9A%B4+%EB%8F%99%EB%AC%BC">
-                            😉빛나는 하루!😉</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel-body" id="chatBody" style="display: flex; justify-content: center; align-items: center;">
-					<button type="button" id="chatStartBtn">채팅방 입장하기</button>
-                    <ul class="chat" id="chatUl">
-                    	
-                        
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="sendInput" type="text" class="form-control input-sm" placeholder="메세지를 입력해주세요." />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-warning btn-sm" id="sendBtn">
-                                Send
-                            </button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 					</div>

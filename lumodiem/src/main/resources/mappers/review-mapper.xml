@@ -62,6 +62,20 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="reviewName" column="review_name"/>
 	</resultMap>
+	<resultMap type="reportReviewVo" id="reportReviewMap">
+		<result property="reportReviewNo" column="report_review_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="reviewNo" column="review_no"/>
+		<result property="reviewName" column="review_name"/>
+		<result property="reviewTxt" column="review_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
+		<result property="reviewModDate" column="review_mod_date"/>
+		<result property="orderType" column="order_type"/>
+		<result property="attachNo" column="attach_no"/>
+		<result property="attachPath" column="attach_path"/>
+		<result property="reportReviewTxt" column="report_review_txt"/>
+	</resultMap>
 	<insert id="reviewInsert" parameterType="reviewVo" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO `review`(account_no, res_no,  review_name ,review_txt ,review_reg_date ,review_mod_date)
 		VALUES (#{accountNo} ,#{resNo}, #{reviewName} ,#{reviewTxt} ,#{reviewRegDate} ,#{reviewModDate})
@@ -199,4 +213,8 @@
 		DELETE FROM `review_attach`
 		WHERE attach_no = #{attachNo}
 	</delete>
+	<insert id="insertReportReview" parameterType="reportReviewVo" useGeneratedKeys="true">
+		INSERT INTO `report_review`(account_no ,review_no ,report_review_txt)
+		VALUES (#{accountNo} ,#{reviewNo} ,#{reportReviewTxt})
+	</insert>
 </mapper>

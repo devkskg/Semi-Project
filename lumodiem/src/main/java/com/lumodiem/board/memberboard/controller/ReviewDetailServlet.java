@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -62,7 +63,6 @@ public class ReviewDetailServlet extends HttpServlet {
 			request.setAttribute("review", review);
 			// 리뷰 댓글 보내기
 			request.setAttribute("reviewCmt", reviewCmt);
-			//
 			view.forward(request, response);
 		} else {
 			response.sendRedirect(url);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewAttach;
@@ -84,6 +85,9 @@ public class MemberBoardDao {
 	}
 	public int deletebeforeImg(SqlSession session, ReviewAttach beforeImg) {
 		return session.delete("reviewMapper.deletebeforeImg",beforeImg);
+	}
+	public int insertReportReview(SqlSession session, ReportReview rev) {
+		return session.insert("reviewMapper.insertReportReview",rev);
 	}
 	
 }

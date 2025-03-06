@@ -34,5 +34,7 @@ public class ReportReview {
 	private String payStatus;
 	private int payPrice;
 	private String attachPath;
+	
+	private String reportReviewTxt;
 
 }

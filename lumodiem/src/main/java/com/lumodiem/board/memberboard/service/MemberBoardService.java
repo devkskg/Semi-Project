@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.board.adminboard.vo.ReportReview;
 import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
@@ -217,6 +218,13 @@ public class MemberBoardService {
 		}else {
 			session.rollback();
 		}
+		session.close();
+		return result;
+	}
+	public int insertReportReview(ReportReview rev) {
+		SqlSession session = getSqlSession();
+		int result = new MemberBoardDao().insertReportReview(session,rev);
+		commitRollback(session, result);
 		session.close();
 		return result;
 	}
