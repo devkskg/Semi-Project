@@ -44,7 +44,7 @@
 											<c:forEach var="list1" varStatus="vs" items="${afterKlassList }">
 														
 														<li>
-															<a href="<c:url value="/klassDetail?review_no=${list1.klassNo}"/>">${list1.klassName} ${list1.accountNickname} ${list1.klassStart } ${list1.klassEnd }</a>
+															<a href="<c:url value="/klassDetail?klass_no=${list1.klassNo}"/>">${list1.klassName} ${list1.accountNickname} ${list1.klassStart } ${list1.klassEnd }</a>
 														</li>
 											</c:forEach>
 										</ul>
@@ -63,7 +63,7 @@
 										<ul>
 											<c:forEach var="list2" varStatus="vs" items="${beforeKlassList }">
 														<li>
-															<a href="<c:url value="/klassDetail?review_no=${list2.klassNo}"/>">${list2.klassName} ${list2.accountNickname} ${list2.klassStart } ${list2.klassEnd }</a>
+															<a href="<c:url value="/klassDetail?klass_no=${list2.klassNo}"/>">${list2.klassName} ${list2.accountNickname} ${list2.klassStart } ${list2.klassEnd }</a>
 														</li>
 											</c:forEach>
 										</ul>
