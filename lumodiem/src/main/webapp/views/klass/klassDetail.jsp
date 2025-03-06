@@ -29,9 +29,11 @@
 		<div>
 			<c:choose>
 				<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
-				<button type="button" id="updateBtn" name="updateBtn">
-					<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">수정</a>
-				</button>
+				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">
+					<button type="button" id="updateBtn" name="updateBtn">
+						수정
+					</button>
+				</a>
 				<button type="button" id="deleteBtn" name="deleteBtn">
 					삭제
 				</button>
@@ -135,9 +137,11 @@
 				<button type="button" id="resBtn" name="resBtn">예약하기</button>
 			</c:when>
 			<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}">
-				<button type="button" id="rptBtn" name="rptBtn">
-					<a href="/klassReport">신고하기</a>
-				</button>
+				<a href="/klassReport">
+					<button type="button" id="rptBtn" name="rptBtn">
+						신고하기
+					</button>
+				</a>
 			</c:when>
 		</c:choose>
 		
@@ -364,6 +368,7 @@
 		
 		/* 채팅방 기능 AJAX */
 		const chatAjax = function(klassNoPara, chatTxtPara, klassAccountNoPara){
+			// console.log("test합니다.");
 			return $.ajax({
 				url : "/klassChat",
 				type : "post",
