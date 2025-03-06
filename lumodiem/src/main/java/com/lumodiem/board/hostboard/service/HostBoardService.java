@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.dao.HostBoardDao;
+import com.lumodiem.board.hostboard.vo.Chat;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
@@ -300,6 +301,20 @@ public class HostBoardService {
 		commitRollback(result, session);
 		session.close();
 		return result;
+	}
+//	클래스의 채팅 내역 입력
+	public int updateKlassChat(Chat chat) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().updateKlassChat(session, chat);
+		commitRollback(result, session);
+		session.close();
+		return result;
+	}
+
+	public Chat selectKlassChatByKlassNo(Chat chat) {
+		SqlSession session = getSqlSession();
+		Chat returnChat = new HostBoardDao().selectKlassChatByKlassNo(session, chat);
+		return returnChat;
 	}
 	
 }
