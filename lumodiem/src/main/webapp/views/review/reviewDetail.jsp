@@ -27,6 +27,9 @@
 				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width:300px" > 
 			</li> 
 			<li>
+				어태치no. ${review.attachNo},  
+			</li>
+			<li>
 				<table>
 					<tr>
 						<td>제목</td>

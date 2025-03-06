@@ -70,16 +70,16 @@
 	</resultMap>
 	
 	<delete id="deleteReportReviewCmt" parameterType="_int">
-	DELETE FROM `report_review_cmt`
+	DELETE FROM `review_cmt`
 		<where>
-		 report_review_cmt_no = #{reportReviewCmtNo};
+		 review_cmt_no = #{reviewCmtNo};
 		 </where>
 	</delete>
 	
-	<select id="selectReportReviewCmt" resultMap="reportReviewCmtMap">
+	<select id="selectReportReviewCmt" resultMap="reportReviewCmtMap" parameterType="reportReviewCmtVo">
 	SELECT rc.review_cmt_txt
 	,a.account_nickname
-	,rrc.report_review_cmt_no
+	,rrc.review_cmt_no
 	FROM `report_review_cmt` rrc
 	JOIN `review_cmt` rc
 	ON rrc.review_cmt_no = rc.review_cmt_no
@@ -87,6 +87,19 @@
 	ON rrc.account_no = a.account_no
 	JOIN `review` r
 	ON r.review_no = rc.review_no
+	
+	<where>
+			<!-- <if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND r.review_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if> -->
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND rc.review_cmt_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
+	
 	</select>
 	
 	

@@ -16,17 +16,17 @@ import com.lumodiem.board.hostboard.vo.Klass;
 public class ReportService {
 	ReportDao dao = new ReportDao();
 	
-	public int deleteReportReviewCmt(int reportReviewCmtNo) {
+	public int deleteReportReviewCmt(int reviewCmtNo) {
 		SqlSession session = getSqlSession();
-		int result = dao.deleteReportReviewCmt(reportReviewCmtNo, session);
+		int result = dao.deleteReportReviewCmt(reviewCmtNo, session);
 		commitRollback(session, result);
 		session.close();
 		return result;
 	}
 	
-	public List<ReportReviewCmt> selectReportReviewCmtList(){
+	public List<ReportReviewCmt> selectReportReviewCmtList(ReportReviewCmt option){
 		SqlSession session = getSqlSession();
-		List<ReportReviewCmt> resultList = dao.selectReportReviewCmtList(session);
+		List<ReportReviewCmt> resultList = dao.selectReportReviewCmtList(option,session);
 		session.close();
 		return resultList;
 	}
