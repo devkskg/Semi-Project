@@ -17,8 +17,8 @@ import lombok.ToString;
 @ToString
 @Builder
 public class PaymentDTO {
-	private int resNo;
-	private String klassName;
-	private int resPpl;
-	private int klassPrice;
+	private int resNo; // 예약 번호
+	private String klassName; // 클래스명
+	private int resPpl; // 예약 인원
+	private int klassPrice; // 클래스 가격
 }
