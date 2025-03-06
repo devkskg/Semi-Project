@@ -23,10 +23,9 @@
 						
 		<form action="<c:url value='/reportReviewCmt'/>" id="search_report_klass" method="post">
 				<select name="search_type" id="search_type">
-					<option value="0">선택</option>			
-					<option value="1">제목</option>			
-					<option value="2">닉네임</option>			
-					<option value="3">내용</option>			
+					<option value="0">선택</option>					
+					<option value="1">닉네임</option>			
+					<option value="2">내용</option>			
 				</select>
 				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 				<button name="searchBtn" id="searchBtn">검색</button>
@@ -35,8 +34,7 @@
 		<div class="report_review_cmt_list">
 			<table border="1">
 				<thead>
-					<tr>
-						<!-- <th>리뷰이름</th>	 -->		
+					<tr>		
 						<th>내용</th>			
 						<th>닉네임</th>			
 					</tr>
@@ -46,10 +44,9 @@
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
 								<tr>
-									<%-- <td>${list.reviewName}</td>  --%>
 									<td>${list.reviewCmtTxt}</td>
 									<td>${list.accountNickname }</td>
-									<td><button type='button' data-report-review-cmt-no="${list.reportReviewCmtNo }">삭제</button></td>
+									<td><button type='button' data-review-cmt-no="${list.reviewCmtNo }">삭제</button></td>
 								</tr>
 							</c:forEach>
 						
@@ -77,13 +74,13 @@
  		 
  		 $('.report_review_cmt_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
- 				const ReportReviewCmtNo = $(this).data('report-review-cmt-no');
+ 				const reportReviewCmtNo = $(this).data('review-cmt-no');
 				
  				
  			$.ajax({
 				url : "/deleteReportReviewCmt",
 				type : "post",
-				data : {"report_review_cmt_no":ReportReviewCmtNo},
+				data : {"review_cmt_no":reportReviewCmtNo},
 				dataType : "JSON",
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 				
