@@ -118,15 +118,16 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 			System.out.println("atc : " + atc);
 			System.out.println("mapping : "+m);
 			int result = 0;
-			
 			if(atc != null) {
 				// 파일이 원래 있던 것
 				if(a == null) {
 					// 새로운 파일이 없음 (있음 -> 없음) / delete하고 insert는 X
 					result = new HostBoardService().updateImgToNoImg(option,klassDate,atc);
+					System.out.println("O -> X");
 				}else {
 					// 새로운 파일이 있음 (있음 -> 있음) / delete하고 insert도 O ***성공***
 					result = new HostBoardService().updateImgToImg(option,klassDate,a,m,atc);
+					System.out.println("O -> O");
 				}
 				
 			}else {
@@ -134,14 +135,19 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 				if(a == null) {
 					// 새로운 파일이 없음 ( 없음 -> 없음) / delete 필요 X insert 필요 X 게시글 정보만 update ***성공***
 					result = new HostBoardService().updateNoImgToNoImg(option,klassDate);
+					System.out.println("X -> X");
 				}else {
 					// 새로운 파일이 있음 ( 없음 -> 있음) / delete 필요 x insert만 O ***성공***
 					result = new HostBoardService().updateNoImgToImg(option,klassDate,a,m);
+					System.out.println("X -> O");
 				}
 			}
 			
 			
 			JSONObject obj = new JSONObject();
+			
+			obj.put("res_code", "500");
+			obj.put("res_msg", "게시글 등록중 오류가 발생하였습니다.");
 			
 			if(result > 0) {
 				obj.put("res_code", "200");
@@ -151,10 +157,7 @@ public class KlassBoardUpdateEndServlet extends HttpServlet {
 					File deleteFile = new File(deletePath);
 					if(deleteFile.exists()) {
 						deleteFile.delete();
-				}
-			}else {
-				obj.put("res_code", "500");
-				obj.put("res_msg", "게시글 등록중 오류가 발생하였습니다.");
+					}
 				}
 				
 			}

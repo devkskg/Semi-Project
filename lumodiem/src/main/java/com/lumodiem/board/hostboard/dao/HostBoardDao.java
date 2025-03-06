@@ -55,6 +55,10 @@ public class HostBoardDao {
 		return result;
 	}
 	
+	public List<KlassDate> selectDateList(SqlSession session,int klassNo){
+		return session.selectList("klassMapper.klassDateList",klassNo);
+	}
+	
 	public List<KlassDate> selectKlassDate(SqlSession session, int klassNo) {
 		return session.selectList("klassMapper.klassDateList",klassNo);
 	}
@@ -77,6 +81,10 @@ public class HostBoardDao {
 	
 	public List<KlassAttach> selectAttachList(SqlSession session, int klassNo) {
 		return session.selectList("klassMapper.klassAttachList",klassNo);
+	}
+	
+	public List<Klass> searchImgBoardList(SqlSession session, Klass option){
+		return session.selectList("klassMapper.imgklassList",option);
 	}
 	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
