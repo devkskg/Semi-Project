@@ -27,6 +27,7 @@
 		<result property="klassName" column="klass_name"/>
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassTxt" column="klass_txt"/>
+		<result property="reportKlassTxt" column="report_klass_txt"/>
 		
 
 		<result property="klassAddress" column="klass_address"/>
@@ -178,6 +179,7 @@
 
 			SELECT k.*
 			,a.account_nickname
+			,kr.report_klass_txt
 			FROM `klass_report` kr 
 			JOIN `klass` k 
 			ON kr.klass_no = k.klass_no
