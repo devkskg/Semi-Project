@@ -21,6 +21,7 @@
 		<result property="klassRegDate" column="klass_reg_date"/>
 		<result property="klassModDate" column="klass_mod_date"/>
 		<result property="klassLikeCount" column="klass_like_count"/>
+		<result property="attachNo" column="attach_no"/>
 	</resultMap>
 	
 	<resultMap type="klassDateVo" id="klassDateMap">
@@ -173,6 +174,44 @@
 		JOIN `account` a
 		ON r.account_no = a.account_no
 		WHERE k.klass_no = #{klassNo}
+	</select>
+	
+	<select id="imgklassList" resultMap="klassMap" parameterType="klassVo">
+		SELECT k.* ,a.account_nickname ,t.attach_no
+		FROM `klass` k
+		JOIN `account` a ON k.account_no = a.account_no
+		JOIN `approve` p ON k.klass_no = p.klass_no
+		LEFT JOIN `klass_mapping` m ON k.klass_no = m.klass_no
+		LEFT JOIN `klass_attach` t ON t.attach_no = m.attach_no
+		<where>
+				AND	p.approve_code = 'A'
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
+		
+		<if test='orderType != null and orderType.equals("x") == false'>
+			<choose>
+				<when test='orderType.equals("b") == true'>
+					ORDER BY k.klass_reg_date ASC
+				</when>
+				<when test='orderType.equals("c") == true'>
+					ORDER BY k.klass_like_count DESC
+				</when>
+				<otherwise>
+					ORDER BY k.klass_reg_date DESC
+				</otherwise>
+			</choose>
+		</if>
+		<if test ='orderType == null or orderType.equals("x") == true'>
+			ORDER BY k.klass_reg_date DESC
+		</if>
 	</select>
  	
 	<select id="klassList" resultMap="klassMap" parameterType="klassVo">
