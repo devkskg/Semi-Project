@@ -157,7 +157,13 @@ public class HostBoardService {
 		session.close();
 		return a;
 	}
-
+	
+	public List<KlassDate> selectDateList(int klassNo){
+		SqlSession session = getSqlSession();
+		List<KlassDate> dateList = new HostBoardDao().selectDateList(session,klassNo);
+		return dateList;
+	}
+	
 	public List<KlassDate> selectKlassDate(int klassNo) {
 		SqlSession session = getSqlSession();
 		List<KlassDate> klassDate = new HostBoardDao().selectKlassDate(session,klassNo);

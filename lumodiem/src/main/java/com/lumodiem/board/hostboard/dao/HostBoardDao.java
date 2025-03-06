@@ -55,6 +55,10 @@ public class HostBoardDao {
 		return result;
 	}
 	
+	public List<KlassDate> selectDateList(SqlSession session,int klassNo){
+		return session.selectList("klassMapper.klassDateList",klassNo);
+	}
+	
 	public List<KlassDate> selectKlassDate(SqlSession session, int klassNo) {
 		return session.selectList("klassMapper.klassDateList",klassNo);
 	}

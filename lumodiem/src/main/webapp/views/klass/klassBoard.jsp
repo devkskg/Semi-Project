@@ -49,9 +49,6 @@
 			<c:forEach var="list" varStatus="vs" items="${resultList }">
 		
 	<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
-	
-	
-	
 	<div class="col-md-12 ">
 		<div class="blog-entry ftco-animate d-md-flex">
 			<c:choose>
@@ -71,11 +68,19 @@
 				<div class="meta-wrap">
 					<p class="meta">
 						<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
-						<span><a href="single.html"><i class="icon-heart mr-2"></i>좋아요 아이콘 넣기</a></span>
+						<span><a href="single.html"><i class="icon-heart mr-2" style="color: #FF4848;"></i>${list.klassLikeCount}</a></span>
 						
-						<c:forEach var="li" items="${klassDate }" varStatus="vs">
-							<span><i class="icon-users mr-2"></i>${klass.klassMax}명(${klass.klassMax - li.klassCount}명)</span>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${not empty list.dateList }">
+								<c:forEach var="d" items="${list.dateList }" varStatus="vs">
+									<span><i class="icon-users mr-2"></i>${d.klassCount}명/${list.klassMax}명</span>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<span>없어요 test</span>
+							</c:otherwise>
+						</c:choose>
+						
 					</p>
 				</div>
 				<p class="mb-4">${list.klassTxt }</p>
@@ -84,8 +89,6 @@
 		</div>
 	</div>
 	<!-- 한 줄 끝! -->
-	
-	
 	
 			</c:forEach>
 		</c:when>
