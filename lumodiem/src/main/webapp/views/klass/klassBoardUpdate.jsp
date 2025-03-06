@@ -9,6 +9,13 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<!-- summer note -->
+<!-- <script src="/js/summernote-lite.js"></script>
+<script src="/js/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> -->
+<!-- summer note -->
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
