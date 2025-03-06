@@ -273,23 +273,28 @@
 		const klassDateNo = $('#resKlassSelect').val();
 		const resPpltxt = $('#numberSpan').text();
 		resPpl = Number(resPpltxt);
-		const ck = confirm("예약하시겠습니까?");
-		if(ck){
-			$.ajax({
-				url : "/klassReservation",
-				type : "post",
-				data : {"klass_date_no" : klassDateNo
-						,"res_ppl" : resPpl},
-				dataType:'json',
-				success : function(data){
-					alert(data.res_msg);
-					if(data.res_code == "200"){
-						location.href="/klassBoardList";
-					} else{
-						location.href='/';
+		const dateN = $('#resKlassSelect').val();
+		if(dateN != null){
+			const ck = confirm("예약하시겠습니까?");
+			if(ck){
+				$.ajax({
+					url : "/klassReservation",
+					type : "post",
+					data : {"klass_date_no" : klassDateNo
+							,"res_ppl" : resPpl},
+					dataType:'json',
+					success : function(data){
+						alert(data.res_msg);
+						if(data.res_code == "200"){
+							location.href="/klassBoardList";
+						} else{
+							location.href='/';
+						}
 					}
-				}
-			});
+				});
+			}
+		}else{
+			alert('예약할 클래스 날짜를 정해주세요');
 		}
 	});
 </script>

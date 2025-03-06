@@ -37,19 +37,21 @@
 	</c:choose>
 	
 		<form action="<c:url value='/reviewBoard'/>" method="post" id="searchFrm">
-			<fieldset>
-				<legend>검색하기</legend>
-				<input type="text" name="review_name" placeholder="제목">
-				<input type="text" name="review_txt" placeholder="내용">
-				<input type="text" name="account_nickname" placeholder="닉네임">
-				<input type="submit" value="조회">
-			</fieldset>
+			<select name="search_type" id="search_type">
+				<option value="0">선택</option>			
+				<option value="1">리뷰제목</option>			
+				<option value="2">닉네임</option>			
+				<option value="3">내용</option>			
+			</select>
+			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
+			<button name="searchBtn" id="searchBtn">검색</button>
 			<fieldset>		
 				<legend>정렬하기</legend>
 				<select name="order_type" id="order_type">
-					<option value="0">선택</option>
-					<option value="1">최신순</option>
-					<option value="2">오래된순</option>
+					<option value="x">정렬하기</option>
+					<option value="a">최신순</option>
+					<option value="b">오래된순</option>
+					<option value="c">좋아요순</option>
 				</select>
 			</fieldset>	
 		</form>

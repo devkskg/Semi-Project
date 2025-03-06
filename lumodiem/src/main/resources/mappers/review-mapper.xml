@@ -17,6 +17,9 @@
 		<result property="orderType" column="order_type"/>
 		<result property="attachNo" column="attach_no"/>
 		<result property="attachPath" column="attach_path"/>
+		<result property="ReviewLikeCount" column="review_like_count"/>
+		<result property="searchTxt" column="search_txt"/>
+		<result property="searchType" column="search_type"/>
 	</resultMap>
 	<resultMap type="reviewAttachVo" id="reviewAttachMap">
 		<result property="attachNo" column="attach_no"/>
@@ -79,31 +82,34 @@
 	JOIN `account` a
 	ON r.account_no = a.account_no
 	<where>
-		<if test='reviewName != null and reviewName.equals("") == false'>
-			AND r.review_name LIKE CONCAT('%',#{reviewName},'%')
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+			AND r.review_name LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='reviewTxt != null and reviewTxt.equals("") == false'>
-			AND r.review_txt LIKE CONCAT('%',#{reviewTxt},'%')
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+			AND r.review_txt LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='accountNickname != null and accountNickname.equals("") == false'>
-			AND a.account_nickname LIKE CONCAT('%',#{accountNickname},'%')
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+			AND a.account_nickname LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
 	</where>
-	<if test="orderType == null or orderType.equals('0') == true">
-		ORDER BY r.review_reg_date ASC
-	</if>
-	<if test='orderType != null and orderType.equals("0") == false'>
+	<if test='orderType != null and orderType.equals("x") == false'>
 		<choose>
-			<when test='orderType.equals("1") == true'>
-				ORDER BY r.review_reg_date DESC
-			</when>	
-			<otherwise>
+			<when test='orderType.equals("b") == true'>
 				ORDER BY r.review_reg_date ASC
+			</when>
+			<when test='orderType.equals("c") == true'>
+				ORDER BY r.review_like_count DESC
+			</when>
+			<otherwise>
+				ORDER BY r.review_reg_date DESC
 			</otherwise>
 		</choose>
+	<if test="orderType == null or orderType.equals('x') == true">
+		ORDER BY r.review_reg_date DESC
+	</if>
 	</if>
 	</select>
-	<select id='reviewOne' resultMap="reviewMap" parameterType="_int">
+	<select id="reviewOne" resultMap="reviewMap" parameterType="_int">
 		SELECT r.*, a.account_nickname, ra.attach_no ,ra.attach_path
 		FROM `review` r
 		JOIN `account` a ON r.account_no = a.account_no
@@ -111,13 +117,13 @@
 		JOIN `review_attach` ra ON ra.attach_no = m.attach_no
 		WHERE r.review_no = #{reviewNo}
 	</select>
-	<select id='reviewNoimg' resultMap="reviewMap" parameterType="_int">
+	<select id="reviewNoimg" resultMap="reviewMap" parameterType="_int">
 		SELECT r.*, a.account_nickname
 		FROM `review` r
 		JOIN `account` a ON r.account_no = a.account_no
 		WHERE r.review_no = #{reviewNo}
 	</select>
-	<select id='attachOne' resultMap="reviewAttachMap" parameterType="_int">
+	<select id="attachOne" resultMap="reviewAttachMap" parameterType="_int">
 		SELECT *
 		FROM `review_attach`
 		WHERE attach_no = #{attachNo}
@@ -130,29 +136,7 @@
 		JOIN `reservation` r ON d.klass_date_no = r.klass_date_no
 		WHERE r.account_no = #{accountNo}
 	</select>
-	<update id="reviewUpdate" parameterType="reviewVo">
-		UPDATE `review`
-		SET account_no = #{accountNo}
-			,res_no = #{resNo}
-			,review_txt = #{reviewTxt}
-			,review_name = #{reviewName}
-			,review_mod_date = #{reviewModDate}
-		WHERE review_no = #{reviewNo}
-	</update>
-	<update id="attachUpdate" parameterType="reviewAttachVo">
-		UPDATE `review_attach`
-		SET attach_ori = #{attachOri}
-			,attach_new = #{attachNew}
-			,attach_path = #{attachPath}
-		WHERE attach_no = #{attachNo}
-	</update>
-	<update id="mappingUpdate" parameterType="reviewMappingVo">
-		UPDATE `review_mapping`
-		SET attach_no = #{attachNo}
-			,review_no = #{reviewNo}
-		WHERE mapping_no = #{mappingNo)
-	</update>
-	<select id='noImgReview' resultMap="reviewAttachMap" parameterType="_int">
+	<select id="noImgReview" resultMap="reviewAttachMap" parameterType="_int">
 		SELECT a.*
 		FROM `review_attach` a
 		JOIN `review_mapping` m ON a.attach_no = m.attach_no
@@ -174,7 +158,7 @@
 		WHERE review_no = #{reviewNo}
 	</delete>
 	<!-- 해당 리뷰의 좋아요 갯수 -->
-	<select id='countLikeByReviewNo' parameterType="_int" resultType="int">
+	<select id="countLikeByReviewNo" parameterType="_int" resultType="int">
 		SELECT count(*)
 		FROM `review_like`
 		<where>
@@ -182,7 +166,7 @@
 		</where>
 	</select>
 	<!-- 해당 리뷰의 좋아요 갯수 -->
-	<select id='countLikeByAccountNoReviewNo' parameterType="reviewLikeVo" resultType="int">
+	<select id="countLikeByAccountNoReviewNo" parameterType="reviewLikeVo" resultType="int">
 		SELECT count(*)
 		FROM `review_like`
 		<where>
@@ -203,5 +187,16 @@
 			AND account_no = #{accountNo}
 		</where>
 	</delete>
-	
+	<!-- 리뷰 게시글 수정 페이지  -->
+	<update id="reviewUpdate" parameterType="reviewVo">
+		UPDATE `review`
+		SET review_name = #{reviewName}
+			,review_txt = #{reviewTxt}
+			,review_mod_date = #{reviewModDate}
+		WHERE review_no = #{reviewNo}
+	</update>
+	<delete id="deletebeforeImg" parameterType="reviewAttachVo">
+		DELETE FROM `review_attach`
+		WHERE attach_no = #{attachNo}
+	</delete>
 </mapper>
