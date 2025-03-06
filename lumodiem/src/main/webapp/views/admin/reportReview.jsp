@@ -53,8 +53,7 @@
 									
 										
 								
-									<%-- <td><button type='button' data-report-review-no="${list.reportReviewNo }">삭제</button></td>
- --%>
+									
 								</tr>
 							</c:forEach>
 						
