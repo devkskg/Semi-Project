@@ -19,8 +19,13 @@
 					<label for="account_id">아이디 : </label><input name="account_id" id="account_id" type="text">
 					<button type="button" id="duplicate_id" name="duplicate_id" class="duplicate">중복확인</button><br>
 					
-					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password"><br>
-					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="password"><br>
+					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password">
+					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="password">
+					<span class="dis" style="vertical-align: middle;"><ion-icon id="openEye" class="eye" name="eye-off-outline" size="large" style=""></span>
+					<!-- <span class="dis" style="vertical-align: middle;"><ion-icon id="closeEye" class="eye dis" name="eye-off-outline " size="large" style=""></span> -->
+					
+					<span class="icon eye-off-outline"></span>
+					<br>
 					
 					<label for="account_name">이름 : </label><input name="account_name" id="account_name" type="text"><br>
 					<label for="account_nickname">닉네임 : </label><input name="account_nickname" id="account_nickname" type="text">
@@ -318,7 +323,26 @@
 				}
 			});
 			
+			/* 비밀번호 보이고 안 보이고 */
+	        $(function(){
+	            $('.eye').click(function(){
+	                let pwtype = $('#account_pw').attr('type');
+	                let pwchecktype = $('#account_pw_check').attr('type');
+	                if(pwtype == 'text'){
+	                    $('#account_pw').attr('type', 'password');
+	                    $('#account_pw_check').attr('type', 'password');
+	                    $('#openEye').attr('name', 'eye-off-outline');
+	                } else{
+	                    $('#account_pw').attr('type', 'text');
+	                    $('#account_pw_check').attr('type', 'text');
+	                    $('#openEye').attr('name', 'eye-outline');
+	                }
+	                $('#closeEye').toggleClass('dis');
+	                $('#openEye').toggleClass('dis');
+	            });
+	        })
 			
+			/* 주소입력 API */
 			$('#findPostCode_btn').click(function(){
 			    new daum.Postcode({
 			        oncomplete: function(data) {

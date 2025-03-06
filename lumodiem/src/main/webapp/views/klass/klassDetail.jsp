@@ -7,8 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<%-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script> --%>
 <title>클래스 상세조회</title>
 <link rel="stylesheet" href="<c:url value='/chatcss/chat.css'/>">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -161,12 +160,12 @@ otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 						<th>날짜</th>
 					</tr>
 				</thead>
-				<tbody id="moveReviewDetail">
+				<tbody>
 					<c:choose>
 						<c:when test="${not empty review }">
 						
 							<c:forEach var="list" items="${review }" varStatus="vs">
-							<tr data-review-no="${list.reviewNo }">
+							<tr>
 								<td>${vs.count}</td>						
 								<td>${list.reviewName}</td>
 								<td>${list.reviewTxt}</td>
@@ -190,7 +189,44 @@ otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	</div>				
 	
 
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul style="text-align: center" class="dropdown-menu slidedown">
+                        	<li><span id="refreshBtn" class="glyphicon glyphicon-refresh">새로고침</span></li>
+                            <li><a target="_blank" href="https://www.istockphoto.com/kr/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow-gm1967994177-558259453?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=%EA%B7%80%EC%97%AC%EC%9A%B4+%EB%8F%99%EB%AC%BC">
+                            😉빛나는 하루!😉</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body" id="chatBody" style="display: flex; justify-content: center; align-items: center;">
+					<button type="button" id="chatStartBtn">채팅방 입장하기</button>
+                    <ul class="chat" id="chatUl">
+                    	
+                        
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="sendInput" type="text" class="form-control input-sm" placeholder="메세지를 입력해주세요." />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning btn-sm" id="sendBtn">
+                                Send
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 					</div>
@@ -246,28 +282,23 @@ otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		const klassDateNo = $('#resKlassSelect').val();
 		const resPpltxt = $('#numberSpan').text();
 		resPpl = Number(resPpltxt);
-		const dateN = $('#resKlassSelect').val();
-		if(dateN != null){
-			const ck = confirm("예약하시겠습니까?");
-			if(ck){
-				$.ajax({
-					url : "/klassReservation",
-					type : "post",
-					data : {"klass_date_no" : klassDateNo
-							,"res_ppl" : resPpl},
-					dataType:'json',
-					success : function(data){
-						alert(data.res_msg);
-						if(data.res_code == "200"){
-							location.href="/klassBoardList";
-						} else{
-							location.href='/';
-						}
+		const ck = confirm("예약하시겠습니까?");
+		if(ck){
+			$.ajax({
+				url : "/klassReservation",
+				type : "post",
+				data : {"klass_date_no" : klassDateNo
+						,"res_ppl" : resPpl},
+				dataType:'json',
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/klassBoardList";
+					} else{
+						location.href='/';
 					}
-				});
-			}
-		}else{
-			alert('예약할 클래스 날짜를 정해주세요');
+				}
+			});
 		}
 	});
 </script>
@@ -400,6 +431,7 @@ otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		$(function(){
 			$(document).on('click', '#refreshBtn', function(){
 				$("#chatBody").css("display", "");
+
 				let klassNo = "${klass.klassNo}";
 				chatAjax(klassNo).done(function(){
 					
@@ -411,10 +443,10 @@ otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		/* 채팅방 입장하는 버튼 = 새로고침 버튼 클릭과 연동 */
 		$(function(){
 			$(document).on('click', '#chatStartBtn', function(){
+				alert('채팅방에 입장합니다!');
 				setInterval(function(){
 					$('#refreshBtn').click();
 				}, 3000);
-				alert('채팅방에 입장합니다!');
 			});
 		})
 		
@@ -465,10 +497,7 @@ otstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		
 		
 		
-		$('#moveReviewDetail tr').click(function(){
-			const reviewNum = $(this).data('review-no');
-			location.href='/reviewDetail?review_no='+reviewNum;
-		})	
+		
 	</script>
 </body>
 </html>
