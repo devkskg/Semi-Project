@@ -98,7 +98,7 @@
 		const reviewNo = $(this).data('review-no');
 		location.href='/reviewDetail?review_no='+reviewNo;
 	})
-</script>	
+</script> 
 
 	
 	
