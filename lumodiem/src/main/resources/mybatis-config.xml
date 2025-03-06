@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.lumodiem.board.memberboard.vo.ReviewLike" alias="reviewLikeVo"/>
 		
 		<typeAlias type="com.lumodiem.board.hostboard.vo.Chat" alias="chatVo"/>
-		
+		<typeAlias type="com.lumodiem.board.hostboard.vo.KlassReport" alias="klassReportVo"/>
 	</typeAliases>
 	
 	<!-- 연결하는 DB 설정 시작 -->
