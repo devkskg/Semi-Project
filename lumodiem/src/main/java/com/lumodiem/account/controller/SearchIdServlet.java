@@ -23,7 +23,7 @@ public class SearchIdServlet extends HttpServlet {
 		if(session != null && session.getAttribute("account") != null) {
 			response.sendRedirect("/");
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("/views/account/searchId.jsp");
+			RequestDispatcher view = request.getRequestDispatcher(request.getContextPath() + "/views/account/searchId.jsp");
 			view.forward(request, response);
 		}
 	}

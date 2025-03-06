@@ -29,6 +29,7 @@
 											</c:otherwise>
 										</c:choose>
 										<label for="login_pw">비밀번호 : </label><input name="login_pw" id="login_pw" type="password">
+										<span class="dis" style="vertical-align: middle;"><ion-icon id="openEye" class="eye" name="eye-off-outline" size="large" style=""></span><br>
 										<button>로그인하기</button>
 									</form>
 									
@@ -46,7 +47,24 @@
 					 
 	
 	
+	<script>
+		/* 비밀번호 보이고 안 보이고 */
+	    $(function(){
+	        $('.eye').click(function(){
+	            let pwtype = $('#login_pw').attr('type');
+	            if(pwtype == 'text'){
+	                $('#login_pw').attr('type', 'password');
+	                $('#openEye').attr('name', 'eye-off-outline');
+	            } else{
+	                $('#login_pw').attr('type', 'text');
+	                $('#openEye').attr('name', 'eye-outline');
+	            }
+	            $('#closeEye').toggleClass('dis');
+	            $('#openEye').toggleClass('dis');
+	        });
+	    })
 	
+	</script>
 	
 	
 	
