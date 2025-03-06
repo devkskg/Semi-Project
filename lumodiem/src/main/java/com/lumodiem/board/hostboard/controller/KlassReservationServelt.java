@@ -48,16 +48,23 @@ public class KlassReservationServelt extends HttpServlet {
 				.resPpl(resPpl)
 				.accountNo(accountNo)
 				.build();
-		boolean bl = false;
+		int count = 0;
 		res = new HostBoardService().resSelect(reservation);
 		if((kd.getKlassMax()-kd.getKlassCount()) >= resPpl) {
-			if (!res.isEmpty() && res.get(0).getKlassDateNo() != kd.getKlassDateNo()) {
-			    klassDate = new HostBoardService().reserveKlass(reservation);
+			if(!res.isEmpty()) {
+				for(int i = 0; i < res.size(); i++) {
+					if (res.get(i).getKlassDateNo() == kd.getKlassDateNo()) {
+						count++;
+					}
+				}
+			}
+			if(count == 0) {
+				klassDate = new HostBoardService().reserveKlass(reservation);
+			} else {
+//				count 1인 경우 이미 같은 시간대 예약 했음.
 			}
 				
 		}
-			
-		
 		JSONObject obj = new JSONObject();
 		if(klassDate > 0) {
 			obj.put("res_code","200");
