@@ -10,7 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <!-- Bootstrap CSS -->
-<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap Bundle (JS + Popper.js) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -24,8 +23,17 @@
 			<div class="container">
 				<div class="row d-flex">
 	<h3>리뷰 상세 정보</h3>
-	<!-- 이건 나중에 작성 -->
 	<div class="review">
+	<c:choose>
+		<c:when test="${review.accountNo eq account.accountNo }">
+			<button type="button" id="updateBtn" name="updateBtn">
+				<a href="/updateReviewPage?review_no=${review.reviewNo}">수정</a>
+			</button>
+			<button type="button" id="deleteBtn" name="deleteBtn">
+				삭제
+			</button>
+		</c:when>
+	</c:choose>
 		<ul>
 			<li>
 				<img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width:300px" > 
@@ -68,6 +76,38 @@
 			</li>
 		</ul> 
 		<hr>
+		</div>
+	<button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+		style="font-size: 10px; padding: 4px 4px; width: 30px; line-height: 1;" >
+		🚨
+	</button>
+		<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">리뷰 게시글 신고하기</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <!-- <label for="memberBirth">신고하기</label> -->
+	              <!-- <input type="date" class="form-control" name="member_birth" id="memberBirth" value="yyyy-MM-dd"
+   					 min="1920-01-01"> -->
+   					 <input type="radio" name="reportReview" id="abuse" value="욕설">
+   					 <label for="aduse">욕설</label><br>
+   					 <input type="radio" name="reportReview" id="hateSpch" value="비하발언">
+   					 <label for="hateSpch">비하발언</label><br>
+   					 <input type="radio" name="reportReview" id="improperNickname" value="부적절한 닉네임">
+   					 <label for="improperNickname">부적절한 닉네임</label><br>
+   					 <input type="radio" name="reportReview" id="adv" value="광고">
+   					 <label for="adv">광고</label>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn-secondary" data-bs-dismiss="modal">취소</button>
+		        <button type="button" class="btn-primary">신고</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		<div class="reivew_cmt_list">
 		<form>
 			<table border="1">
@@ -125,47 +165,7 @@
 		</div>
 	</div>
 	<div>
-	<c:choose>
-		<c:when test="${review.accountNo eq account.accountNo }">
-			<button type="button" id="updateBtn" name="updateBtn">
-				<a href="/updateReviewPage?review_no=${review.reviewNo}">수정</a>
-			</button>
-			<button type="button" id="deleteBtn" name="deleteBtn">
-				삭제
-			</button>
-		</c:when>
-	</c:choose>
-	</div>
-	<button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-		🚨
-	</button>
-		<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        <!-- <label for="memberBirth">신고하기</label> -->
-	              <!-- <input type="date" class="form-control" name="member_birth" id="memberBirth" value="yyyy-MM-dd"
-   					 min="1920-01-01"> -->
-   					 <input type="radio" name="reportReview" id="abuse" value="욕설">
-   					 <label for="aduse">욕설</label><br>
-   					 <input type="radio" name="reportReview" id="hateSpch" value="비하발언">
-   					 <label for="hateSpch">비하발언</label><br>
-   					 <input type="radio" name="reportReview" id="improperNickname" value="부적절한 닉네임">
-   					 <label for="improperNickname">부적절한 닉네임</label><br>
-   					 <input type="radio" name="reportReview" id="adv" value="광고">
-   					 <label for="adv">광고</label>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn-secondary" data-bs-dismiss="modal">취소</button>
-		        <button type="button" class="btn-primary">신고</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+	
 	<script>
 		$('.btn-primary').click(function(){
 			const reviewNo = ${review.reviewNo};
