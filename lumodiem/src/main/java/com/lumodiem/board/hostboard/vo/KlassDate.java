@@ -1,5 +1,7 @@
 package com.lumodiem.board.hostboard.vo;
 
+import java.time.format.DateTimeFormatter;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,8 @@
 package com.lumodiem.board.hostboard.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -26,6 +28,9 @@ public class KlassReservationServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
 		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
@@ -49,21 +54,25 @@ public class KlassReservationServelt extends HttpServlet {
 				.accountNo(accountNo)
 				.build();
 		int count = 0;
+		LocalDateTime klassTimeStart =  LocalDateTime.parse(kd.getKlassStart(),dtf);
 		res = new HostBoardService().resSelect(reservation);
-		if((kd.getKlassMax()-kd.getKlassCount()) >= resPpl) {
-			if(!res.isEmpty()) {
-				for(int i = 0; i < res.size(); i++) {
-					if (res.get(i).getKlassDateNo() == kd.getKlassDateNo()) {
-						count++;
+		if(klassTimeStart.isAfter(ldt)) {
+			if((kd.getKlassMax()-kd.getKlassCount()) >= resPpl) {
+				if(!res.isEmpty()) {
+					for(int i = 0; i < res.size(); i++) {
+						if (res.get(i).getKlassDateNo() == kd.getKlassDateNo()) {
+							count++;
+						}
 					}
 				}
-			}
-			if(count == 0) {
-				klassDate = new HostBoardService().reserveKlass(reservation);
-			} else {
+				if(count == 0) {
+					klassDate = new HostBoardService().reserveKlass(reservation);
+				} else {
 //				count 1인 경우 이미 같은 시간대 예약 했음.
-			}
+				}
 				
+			}
+			
 		}
 		JSONObject obj = new JSONObject();
 		if(klassDate > 0) {
