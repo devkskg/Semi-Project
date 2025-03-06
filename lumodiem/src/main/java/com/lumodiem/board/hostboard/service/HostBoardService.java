@@ -323,6 +323,20 @@ public class HostBoardService {
 		Chat returnChat = new HostBoardDao().selectKlassChatByKlassNo(session, chat);
 		return returnChat;
 	}
+
+	public KlassDate klassCountByKlassMax(KlassDate option) {
+		SqlSession session = getSqlSession();
+		KlassDate kd = new HostBoardDao().klassCountByKlassMax(session,option);
+		session.close();
+		return kd;
+	}
+
+	public List<Reservation> resSelect(Reservation reservation) {
+		SqlSession session = getSqlSession();
+		List<Reservation> result = new HostBoardDao().resSelect(session,reservation);
+		session.close();
+		return result;
+	}
 	
 	// 클래스 신고
 	public int insertKlassReport(KlassReport klassReport) {

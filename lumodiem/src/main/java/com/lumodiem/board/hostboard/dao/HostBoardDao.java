@@ -149,4 +149,12 @@ public class HostBoardDao {
 		return session.insert("klassMapper.insertKlassReport",klassReport);
 	}
 
+	public KlassDate klassCountByKlassMax(SqlSession session, KlassDate option) {
+		return session.selectOne("klassMapper.klassCountByKlassMax",option);
+	}
+
+	public List<Reservation> resSelect(SqlSession session, Reservation reservation) {
+		return session.selectList("klassMapper.resSelect",reservation);
+	}
+
 }
