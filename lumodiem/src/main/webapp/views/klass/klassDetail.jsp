@@ -7,8 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<%-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script> --%>
 <title>클래스 상세조회</title>
+<link rel="stylesheet" href="<c:url value='/chatcss/chat.css'/>">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -183,41 +187,46 @@
 		</form>
 	
 	</div>				
+	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul style="text-align: center" class="dropdown-menu slidedown">
+                        	<li><span id="refreshBtn" class="glyphicon glyphicon-refresh">새로고침</span></li>
+                            <li><a target="_blank" href="https://www.istockphoto.com/kr/%EC%82%AC%EC%A7%84/cute-corgi-dog-in-a-wildflower-cage-sits-on-a-summer-sunny-meadow-gm1967994177-558259453?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=%EA%B7%80%EC%97%AC%EC%9A%B4+%EB%8F%99%EB%AC%BC">
+                            😉빛나는 하루!😉</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body" id="chatBody" style="display: flex; justify-content: center; align-items: center;">
+					<button type="button" id="chatStartBtn">채팅방 입장하기</button>
+                    <ul class="chat" id="chatUl">
+                    	
+                        
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="sendInput" type="text" class="form-control input-sm" placeholder="메세지를 입력해주세요." />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-warning btn-sm" id="sendBtn">
+                                Send
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 					</div>
@@ -300,6 +309,7 @@
 </script>
 
 	<script>
+		/* 좋아요X -> 좋아요O */
 		$(function(){
 			let klassNumber = "${klass.klassNo}";
 			let unlikeToLike = "unlikeToLike";
@@ -329,6 +339,7 @@
 					}
 				});
 			});
+			/* 좋아요O -> 좋아요X */
 			$(document).on('click', '#likeToUnlike', function(){
 				$.ajax({
 					url : "/klassLikeChange",
@@ -356,11 +367,96 @@
 			});
 		})
 		
+		/* 채팅방 기능 AJAX */
+		const chatAjax = function(klassNoPara, chatTxtPara, klassAccountNoPara){
+			return $.ajax({
+				url : "/klassChat",
+				type : "post",
+				data : {
+					"chatTxt" : chatTxtPara,
+					"klassAccountNo" : klassAccountNoPara,
+					"klassNo" : klassNoPara
+					},
+				dataType : 'json',
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				success : function(data){
+					$('#chatUl').html('');
+					if(data.res_code == "200"){
+						let val = "";
+						for(let i = 0; i < data.chatList.length; i++){
+							console.log(data.chatList[i].chatTxt);
+							if(data.chatList[i].includes("(Member)")){
+								val += '<li class="left clearfix"><div class="chat-body clearfix" style="text-align: right"><strong class="primary-font">' + '</strong><p style="text-align: right">' + data.chatList[i] + '</p></div></li>';									
+							} else{
+								val += '<li class="right clearfix"><div class="chat-body clearfix" style="text-align: left"><strong class="primary-font">' + '</strong><p style="text-align: left">' + data.chatList[i] + '</p></div></li>';
+							}
+						}
+						$('#chatUl').append(val);
+					} else{
+						alert('오류. 홈페이지로 이동합니다.');
+						location.href="/";
+					}
+				},
+				error : function(){
+					alert('채팅 불러오기에 실패했습니다.');
+				}
+			});
+		};
+		/* 채팅방 입력버튼(클릭) */
+		$(function(){
+			$(document).on('click', '#sendBtn', function(){
+				let klassNo = "${klass.klassNo}";
+				let klassAccountNo = "${klass.accountNo}";
+				let chatTxt = $('#sendInput').val();
+				$("#chatBody").css("display", "");
+				
+				if(chatTxt == ''){
+					alert('메세지를 입력해주세요!');
+				} else if(chatTxt.includes("(Host)") || chatTxt.includes("(Member)")){
+					alert('금칙어 (Host), (Member) 가 들어있습니다.');
+				} else{
+					chatAjax(klassNo, chatTxt, klassAccountNo).done(function(){
+						$('#sendInput').val('');
+						
+						$('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+						
+					});
+				}
+			});
+		})
+		/* 채팅방 입력버튼(엔터) = 입력버튼 클릭과 연동 */
+		$(function(){
+			$(document).on('keyup', '#sendInput', function(){
+				if(event.key == 'Enter'){
+					$('#sendBtn').click();
+				}
+			});
+		})
+		/* 채팅방만! 새로고침 */
+		$(function(){
+			$(document).on('click', '#refreshBtn', function(){
+				$("#chatBody").css("display", "");
+				let klassNo = "${klass.klassNo}";
+				chatAjax(klassNo).done(function(){
+					
+					$('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+					
+				});
+			});
+		})
+		/* 채팅방 입장하는 버튼 = 새로고침 버튼 클릭과 연동 */
+		$(function(){
+			$(document).on('click', '#chatStartBtn', function(){
+				setInterval(function(){
+					$('#refreshBtn').click();
+				}, 3000);
+				alert('채팅방에 입장합니다!');
+			});
+		})
 		
 		
 		
-		
-		
+			
 		
 		
 		
