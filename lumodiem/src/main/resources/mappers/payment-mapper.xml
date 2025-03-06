@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment-mapper">
+	<resultMap type="PaymentDTOVo" id="PaymentDTOMap">
+		<result property="resNo" column="res_no"/>
+		<result property="klassName" column="klass_name"/>
+		<result property="resPpl" column="res_ppl"/>
+		<result property="klassPrice" column="klass_price"/>
+	</resultMap>
+
+	<select id="loginSelect" parameterType="accountVo" resultMap="accountMap">
+		SELECT * FROM `account` WHERE account_id=#{accountId} and account_pw=#{accountPw}
+	</select>
+
+	
+	
+</mapper>
