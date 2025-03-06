@@ -54,16 +54,27 @@
 	
 	<div class="col-md-12 ">
 		<div class="blog-entry ftco-animate d-md-flex">
-			<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}"></a>
+			<c:choose>
+				<c:when test="${list.attachNo > 0}">
+					<a href="single.html" class="img img-2" style="display: flex; 
+			          justify-content: center; align-items: center; width: 244px; height: 244px; background-image: url();">
+          <img alt="사진" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" style="max-width: 100%; max-height: 100%;"></a>
+					
+				</c:when>
+				<c:otherwise>
+					<a href="single.html" class="img img-2" style="background-image: url();"><img alt="사진" src="" style="height: 244 px;">NoImage</a>
+				</c:otherwise>
+			</c:choose>
+			
 			<div class="text text-2 pl-md-4">
 				<h3 class="mb-2"><a href="/klassDetail?klass_no=${list.klassNo}">${list.klassName}</a></h3>
 				<div class="meta-wrap">
 					<p class="meta">
-						<span><i class="icon-calendar mr-2"></i>${list.accountNickname}</span>
+						<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
 						<span><a href="single.html"><i class="icon-folder-o mr-2"></i>좋아요 아이콘 넣기</a></span>
 						
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
-							<span><i class="icon-comment2 mr-2"></i>${klass.klassMax}명(${klass.klassMax - li.klassCount}명)</span>
+							<span><i class="icon-users mr-2"></i>${klass.klassMax}명(${klass.klassMax - li.klassCount}명)</span>
 						</c:forEach>
 					</p>
 				</div>

@@ -78,6 +78,10 @@ public class HostBoardDao {
 		return session.selectList("klassMapper.klassAttachList",klassNo);
 	}
 	
+	public List<Klass> searchImgBoardList(SqlSession session, Klass option){
+		return session.selectList("klassMapper.imgklassList",option);
+	}
+	
 	public List<Klass> searchBoardList(SqlSession session, Klass option){
 		return session.selectList("klassMapper.klassList",option);
 	}

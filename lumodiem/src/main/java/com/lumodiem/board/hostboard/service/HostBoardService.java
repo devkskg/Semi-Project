@@ -177,6 +177,13 @@ public class HostBoardService {
 		return klass;
 	}
 	
+	public List<Klass> searchImgBoardList(Klass option){
+		SqlSession session = getSqlSession();
+		List<Klass> searchList = new HostBoardDao().searchImgBoardList(session,option);
+		session.close();
+		return searchList;
+	}
+	
 	public List<Klass> searchBoardList(Klass option){
 		SqlSession session = getSqlSession();
 		List<Klass> searchList = new HostBoardDao().searchBoardList(session,option);

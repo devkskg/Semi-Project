@@ -28,6 +28,10 @@ public class KlassBoardListServlet extends HttpServlet {
 		String searchType = request.getParameter("search_type");
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
+//		String temp = request.getParameter("attach_no");
+		
+		List<Klass> resultList = null;
+		
 		
 		Klass option = Klass.builder()
 				.klassName(klassName)
@@ -38,7 +42,9 @@ public class KlassBoardListServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		
-		List<Klass> resultList = new HostBoardService().searchBoardList(option);
+		resultList = new HostBoardService().searchImgBoardList(option);
+		System.out.println("게시판 result"+resultList);
+		
 		request.setAttribute("resultList", resultList);
 		System.out.println(resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoard.jsp");
