@@ -347,4 +347,12 @@ public class HostBoardService {
 		return result;
 	}
 	
+//	예약 번호로 예약 정보 조회
+	public Reservation selectReservationOne(int resNo) {
+		SqlSession session = getSqlSession();
+		Reservation reservaion = new HostBoardDao().selectReservationOne(session,resNo);
+		session.close();
+		return reservaion;
+	}
+	
 }

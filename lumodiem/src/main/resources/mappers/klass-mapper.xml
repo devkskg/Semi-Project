@@ -115,7 +115,7 @@
 		VALUES(#{accountNo} ,#{klassName} ,#{klassAddress} ,#{klassMax} ,#{klassPrice} ,#{klassTxt} ,#{klassRegDate} ,#{klassModDate})
 	</insert>
 	<!-- 참여자가 예약한 인원 -->
-	<insert id="resKlassRes" parameterType="reservationVo" useGeneratedKeys="true">
+	<insert id="resKlassRes" parameterType="reservationVo" useGeneratedKeys="true" keyProperty="res_no">
 		INSERT INTO `reservation`(account_no ,klass_date_no, res_ppl)
 		VALUE(#{accountNo} ,#{klassDateNo} ,#{resPpl})
 	</insert>
@@ -367,5 +367,11 @@
 		FROM `reservation`
 		WHERE account_no = #{accountNo}
 		AND klass_date_no = #{klassDateNo}
+	</select>
+	<!-- res_no로 예약 테이블 정보 조회 -->
+	<select id='selectReservationOne' resultMap="reservationMap" parameterType="reservationVo">
+		SELECT *
+		FROM `reservation`
+		WHERE res_no = #{resNo}
 	</select>
 </mapper>

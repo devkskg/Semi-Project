@@ -117,7 +117,7 @@ public class HostBoardDao {
 	}
 	public int reserveKlassRes(SqlSession session, Reservation reservation) {
 		int result = session.insert("klassMapper.resKlassRes",reservation);
-		return result;
+		return reservation.getResNo();
 	}
 
 	public int countLikeByKlassNo(SqlSession session, int klassNo) {
@@ -155,6 +155,10 @@ public class HostBoardDao {
 
 	public List<Reservation> resSelect(SqlSession session, Reservation reservation) {
 		return session.selectList("klassMapper.resSelect",reservation);
+	}
+
+	public Reservation selectReservationOne(SqlSession session, int resNo) {
+		return session.selectOne("klassMapper.selectReservationOne",resNo);
 	}
 
 }

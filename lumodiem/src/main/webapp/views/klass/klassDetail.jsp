@@ -382,12 +382,22 @@
 				success : function(data){
 					alert(data.res_msg);
 					if(data.res_code == "200"){
-						location.href="/klassBoardList";
+						alert('예약에 성공했습니다.');
+						location.href = data.kakao_response.next_redirect_pc_url;
 					} else{
-						location.href='/';
+						alert('예약에 실패했습니다.');
 					}
+				},
+				error : function(a, b, c){
+					alert('결제 요청 중 오류 발생' + c);
 				}
 			});
+			// URL에서 pg_token 추출
+			function getPgTokenFromUrl() {
+			    const urlParams = new URLSearchParams(window.location.search);
+			    return urlParams.get("pg_token");
+			}
+			
 		}
 	});
 </script>
