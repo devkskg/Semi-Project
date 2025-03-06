@@ -15,6 +15,7 @@ import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
+import com.lumodiem.board.hostboard.vo.KlassReport;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 
@@ -333,6 +334,15 @@ public class HostBoardService {
 	public List<Reservation> resSelect(Reservation reservation) {
 		SqlSession session = getSqlSession();
 		List<Reservation> result = new HostBoardDao().resSelect(session,reservation);
+		session.close();
+		return result;
+	}
+	
+	// 클래스 신고
+	public int insertKlassReport(KlassReport klassReport) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().insertKlassReport(session,klassReport);
+		commitRollback(session,result);
 		session.close();
 		return result;
 	}

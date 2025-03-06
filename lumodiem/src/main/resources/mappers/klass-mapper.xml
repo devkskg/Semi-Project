@@ -83,6 +83,17 @@
 		<result property="chatTxt" column="chat_txt"/>
 		<result property="accountNickname" column="account_nickname"/>
 	</resultMap>
+	<resultMap type="klassReportVo" id="klassReportMap">
+		<result property="reportKlassNo" column="report_klass_no"/>
+		<result property="klassNo" column="klass_no"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="reportKlassTxt" column="report_klass_txt"/>
+	</resultMap>
+	
+	<insert id="insertKlassReport">
+		INSERT INTO `klass_report`(klass_no ,account_no ,report_klass_txt)
+		VALUES (#{klassNo} ,#{accountNo} ,#{reportKlassTxt})
+	</insert>
 	
 	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
 		INSERT INTO `klass_mapping`(klass_no ,attach_no)

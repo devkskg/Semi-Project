@@ -11,6 +11,7 @@ import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
+import com.lumodiem.board.hostboard.vo.KlassReport;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 
@@ -142,6 +143,10 @@ public class HostBoardDao {
 
 	public Chat selectKlassChatByKlassNo(SqlSession session, Chat chat) {
 		return session.selectOne("klassMapper.selectKlassChatByKlassNo", chat);
+	}
+	
+	public int insertKlassReport(SqlSession session,KlassReport klassReport) {
+		return session.insert("klassMapper.insertKlassReport",klassReport);
 	}
 
 	public KlassDate klassCountByKlassMax(SqlSession session, KlassDate option) {
