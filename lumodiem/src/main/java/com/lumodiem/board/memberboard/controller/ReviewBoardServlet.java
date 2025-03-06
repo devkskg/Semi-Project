@@ -38,6 +38,7 @@ public class ReviewBoardServlet extends HttpServlet {
 				.searchTxt(searchTxt)
 				.orderType(orderType)
 				.build();
+		
 		List<Review> resultList = new MemberBoardService().selectReviewList(option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewBoard.jsp");

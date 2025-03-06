@@ -81,6 +81,7 @@
 							<td><c:out value="${rb.reviewTxt}" /></td>
 							<td><c:out value="${rb.accountNickname}"/></td>
 						</tr>
+						
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
@@ -97,7 +98,7 @@
 		const reviewNo = $(this).data('review-no');
 		location.href='/reviewDetail?review_no='+reviewNo;
 	})
-</script>	
+</script> 
 
 	
 	
