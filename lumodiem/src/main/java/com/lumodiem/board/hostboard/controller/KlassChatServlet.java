@@ -45,7 +45,7 @@ public class KlassChatServlet extends HttpServlet {
 			temp1 = request.getParameter("klassAccountNo");
 			temp2 = request.getParameter("klassNo");
 //			accountGrade = account.getAccountGrade();
-			if(chatTxt != null && "".equals(chatTxt) == false) {
+			if(chatTxt != null && "".equals(chatTxt) == false && chatTxt.contains("(Host)") == false && chatTxt.contains("(Member)") == false) {
 				if(temp1 != null && temp2 != null) {
 					klassAccountNo = Integer.parseInt(temp1);
 					klassNo = Integer.parseInt(temp2);
@@ -59,24 +59,38 @@ public class KlassChatServlet extends HttpServlet {
 					chat = Chat.builder()
 							.klassNo(klassNo)
 							.chatTxt(chatTxt)
+							.accountNickname(account.getAccountNickname())
 							.build();
-					result = new HostBoardService().insertKlassChat(chat);
-					returnChat = new HostBoardService().selectKlassChatByChatNo(result);
+					result = new HostBoardService().updateKlassChat(chat);
+					returnChat = new HostBoardService().selectKlassChatByKlassNo(chat);
 					if(returnChat != null) {
-						chatList = Arrays.asList(returnChat.getChatTxt(), "\n");
+						chatList = Arrays.asList(returnChat.getChatTxt().split("\n"));
 					}
 				}
 				
+			} else if(chatTxt == null || "".equals(chatTxt)) {
+				if(temp2 != null) {
+					klassNo = Integer.parseInt(temp2);
+					chat = Chat.builder()
+							.klassNo(klassNo)
+							.chatTxt(chatTxt)
+							.accountNickname(account.getAccountNickname())
+							.build();
+					returnChat = new HostBoardService().selectKlassChatByKlassNo(chat);
+					if(returnChat != null) {
+						chatList = Arrays.asList(returnChat.getChatTxt().split("\n"));
+					}
+				}
 			}
 			
 			JSONObject obj = new JSONObject();
 			
 			obj.put("res_code", "500");
 			obj.put("res_msg", "비정상 작동");
-			if(result > 0 && chatList.size() > 0) {
+			if(chatList != null) {
 				obj.put("res_code", "200");
 				obj.put("res_msg", "정상 작동");
-				obj.put("returnChat", chatList);
+				obj.put("chatList", chatList);
 			}
 			response.setContentType("application/json; charset=utf-8");
 			response.getWriter().print(obj);

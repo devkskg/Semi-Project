@@ -206,34 +206,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="chatBody" style="display: flex; justify-content: center; align-items: center;">
+					<button type="button" id="chatStartBtn">채팅방 입장하기</button>
                     <ul class="chat" id="chatUl">
                     	
-                    	<c:choose>
-                    		<c:when test="">
-                    			<c:forEach items="" varStatus="">
-                    				
-                    			</c:forEach>
-                    		</c:when>
-                    	</c:choose>
-                    	
-                        <li class="left clearfix">
-                            <div class="chat-body clearfix" style="text-align: right">
-                                    <strong class="primary-font">Jack Sparrow</strong>
-                                <p style="text-align: right">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p>
-                            </div>
-                        </li>
-                        
-                        <li class="right clearfix">
-                            <div class="chat-body clearfix" style="text-align: left">
-                                    <strong class="primary-font">Bhaumik Patel</strong>
-                                <p style="text-align: left">
-                                    Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                </p>
-                            </div>
-                        </li>
                         
                     </ul>
                 </div>
@@ -328,6 +304,7 @@
 </script>
 
 	<script>
+		/* 좋아요X -> 좋아요O */
 		$(function(){
 			let klassNumber = "${klass.klassNo}";
 			let unlikeToLike = "unlikeToLike";
@@ -357,6 +334,7 @@
 					}
 				});
 			});
+			/* 좋아요O -> 좋아요X */
 			$(document).on('click', '#likeToUnlike', function(){
 				$.ajax({
 					url : "/klassLikeChange",
@@ -384,50 +362,96 @@
 			});
 		})
 		
-		/* 채팅방 새로고침, 채팅치기 */
-		$(function(){
-			$(document).on('click', '#refreshBtn, #sendBtn', function(){
-				let klassNo = "${klass.klassNo}";
-				let chatTxt = $('#sendInput').value;
-				let klassAccountNo = "${klass.accountNo}";
-					$.ajax({
-						url : "/klassChat",
-						type : "post",
-						data : {
-							"chatTxt" : chatTxt,
-							"klassAccountNo" : klassAccountNo,
-							"klassNo" : klassNo
-							},
-						dataType : 'json',
-						contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-						success : function(data){
-							if(data.res_code == "200"){
-								$('#likeToUnlike').text(data.newTotalLikeCount);
-								
-								let val;
-								
-								for(let i = 0; i < data.chatList.length; i++){
-									chatList.
-									/* 여기서부터!!!!!!!! */
-								}
-								
-								$('#chatUl').appen(val);
-								
+		/* 채팅방 기능 AJAX */
+		const chatAjax = function(klassNoPara, chatTxtPara, klassAccountNoPara){
+			return $.ajax({
+				url : "/klassChat",
+				type : "post",
+				data : {
+					"chatTxt" : chatTxtPara,
+					"klassAccountNo" : klassAccountNoPara,
+					"klassNo" : klassNoPara
+					},
+				dataType : 'json',
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				success : function(data){
+					$('#chatUl').html('');
+					if(data.res_code == "200"){
+						let val = "";
+						for(let i = 0; i < data.chatList.length; i++){
+							console.log(data.chatList[i].chatTxt);
+							if(data.chatList[i].includes("(Member)")){
+								val += '<li class="left clearfix"><div class="chat-body clearfix" style="text-align: right"><strong class="primary-font">' + '</strong><p style="text-align: right">' + data.chatList[i] + '</p></div></li>';									
 							} else{
-								alert('오류. 홈페이지로 이동합니다.');
-								location.href="/";
+								val += '<li class="right clearfix"><div class="chat-body clearfix" style="text-align: left"><strong class="primary-font">' + '</strong><p style="text-align: left">' + data.chatList[i] + '</p></div></li>';
 							}
-						},
-						error : function(){
-							alert('채팅 ajax 실패');
 						}
-					});
+						$('#chatUl').append(val);
+					} else{
+						alert('오류. 홈페이지로 이동합니다.');
+						location.href="/";
+					}
+				},
+				error : function(){
+					alert('채팅 불러오기에 실패했습니다.');
+				}
+			});
+		};
+		/* 채팅방 입력버튼(클릭) */
+		$(function(){
+			$(document).on('click', '#sendBtn', function(){
+				let klassNo = "${klass.klassNo}";
+				let klassAccountNo = "${klass.accountNo}";
+				let chatTxt = $('#sendInput').val();
+				$("#chatBody").css("display", "");
 				
+				if(chatTxt == ''){
+					alert('메세지를 입력해주세요!');
+				} else if(chatTxt.includes("(Host)") || chatTxt.includes("(Member)")){
+					alert('금칙어 (Host), (Member) 가 들어있습니다.');
+				} else{
+					chatAjax(klassNo, chatTxt, klassAccountNo).done(function(){
+						$('#sendInput').val('');
+						
+						$('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+						
+					});
+				}
+			});
+		})
+		/* 채팅방 입력버튼(엔터) = 입력버튼 클릭과 연동 */
+		$(function(){
+			$(document).on('keyup', '#sendInput', function(){
+				if(event.key == 'Enter'){
+					$('#sendBtn').click();
+				}
+			});
+		})
+		/* 채팅방만! 새로고침 */
+		$(function(){
+			$(document).on('click', '#refreshBtn', function(){
+				$("#chatBody").css("display", "");
+				let klassNo = "${klass.klassNo}";
+				chatAjax(klassNo).done(function(){
+					
+					$('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+					
+				});
+			});
+		})
+		/* 채팅방 입장하는 버튼 = 새로고침 버튼 클릭과 연동 */
+		$(function(){
+			$(document).on('click', '#chatStartBtn', function(){
+				setInterval(function(){
+					$('#refreshBtn').click();
+				}, 3000);
+				alert('채팅방에 입장합니다!');
 			});
 		})
 		
 		
 		
+			
 		
 		
 		

@@ -295,18 +295,18 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
-//	클래스의 채팅 내역
-	public int insertKlassChat(Chat chat) {
+//	클래스의 채팅 내역 입력
+	public int updateKlassChat(Chat chat) {
 		SqlSession session = getSqlSession();
-		int result = new HostBoardDao().insertKlassChat(session, chat);
+		int result = new HostBoardDao().updateKlassChat(session, chat);
 		commitRollback(result, session);
 		session.close();
 		return result;
 	}
 
-	public Chat selectKlassChatByChatNo(int result) {
+	public Chat selectKlassChatByKlassNo(Chat chat) {
 		SqlSession session = getSqlSession();
-		Chat returnChat = new HostBoardDao().selectKlassChatByChatNo(session, result);
+		Chat returnChat = new HostBoardDao().selectKlassChatByKlassNo(session, chat);
 		return returnChat;
 	}
 	

@@ -127,13 +127,13 @@ public class HostBoardDao {
 		return session.delete("klassMapper.klassLikeToUnlike",klassLike);
 	}
 
-	public int insertKlassChat(SqlSession session, Chat chat) {
-		session.insert("klassMapper.insertKlassChat",chat);
-		return chat.getChatNo();
+	public int updateKlassChat(SqlSession session, Chat chat) {
+		return session.update("klassMapper.updateKlassChat",chat);
+		
 	}
 
-	public Chat selectKlassChatByChatNo(SqlSession session, int result) {
-		return session.selectOne("klassMapper.selectKlassChatByChatNo", result);
+	public Chat selectKlassChatByKlassNo(SqlSession session, Chat chat) {
+		return session.selectOne("klassMapper.selectKlassChatByKlassNo", chat);
 	}
 
 }

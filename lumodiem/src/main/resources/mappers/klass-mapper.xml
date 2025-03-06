@@ -79,6 +79,7 @@
 		<result property="chatNo" column="chat_no"/>
 		<result property="klassNo" column="klass_no"/>
 		<result property="chatTxt" column="chat_txt"/>
+		<result property="accountNickname" column="account_nickname"/>
 	</resultMap>
 	
 	<insert id="klassMappingCreate" parameterType="klassMappingVo"  useGeneratedKeys="true" keyProperty="mappingNo">
@@ -288,15 +289,14 @@
 		</where>
 	</delete>
 	<!-- 해당 클래스 번호에 채팅 내역 추가 -->
-	<insert id="insertKlassChat" parameterType="string" useGeneratedKeys="true" keyProperty="chatNo">
-		INSERT INTO `chat`(chat_txt)
-		VALUES (#{chatTxt})
-		<where>
-			klass_no = #{klassNo}
-		</where>
-	</insert>
+	<update id="updateKlassChat" parameterType="chatVo">
+		UPDATE `chat`
+		SET chat_txt = CONCAT(chat_txt, #{chatTxt})
+		WHERE klass_no = #{klassNo}	
+	</update>
+
 	<!-- 해당 클래스 번호로 채팅 내역 가져오기 -->
-	<select id='countLikeByAccountNoKlassNo' parameterType="_int" resultType="chatVo">
+	<select id='selectKlassChatByKlassNo' resultMap="chatMap" parameterType="chatVo" resultType="chatVo">
 		SELECT *
 		FROM `chat`
 		<where>
