@@ -39,7 +39,8 @@
 					<tr>
 						<th>리뷰 제목</th>			
 						<th>리뷰 내용</th>			
-						<th>회원 아이디</th>			
+						<th>회원 아이디</th>		
+						<th>신고 사유</th>	
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +51,7 @@
 									<td>${list.reviewName}</td>
 									<td>${list.reviewTxt}</td>
 									<td>${list.accountNickname }</td>
-									
+									<td>${list.reportReviewTxt }</td>
 										
 								
 									

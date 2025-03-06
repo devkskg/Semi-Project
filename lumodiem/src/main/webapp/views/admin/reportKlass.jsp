@@ -39,7 +39,7 @@
 						<th>클래스명</th>			
 						<th>닉네임</th>			
 						<th>내용</th>		
-						<th>신고 내용</th>	
+						<th>신고 사유</th>	
 					</tr>
 				</thead>
 				<tbody>
