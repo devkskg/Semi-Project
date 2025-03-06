@@ -157,4 +157,12 @@ public class HostBoardDao {
 		return session.selectList("klassMapper.resSelect",reservation);
 	}
 
+	public Reservation selectResNo(SqlSession session, int resNo) {
+		return session.selectOne("klassMapper.selectResNo",resNo);
+	}
+
+	public int cnclReservation(SqlSession session, int resNo) {
+		return session.delete("klassMapper.cnclReservation",resNo);
+	}
+
 }

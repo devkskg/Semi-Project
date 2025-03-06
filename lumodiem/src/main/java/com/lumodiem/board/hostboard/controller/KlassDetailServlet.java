@@ -17,9 +17,8 @@ import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassAttach;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
-import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
-import com.lumodiem.board.memberboard.vo.ReviewLike;
 
 @WebServlet("/klassDetail")
 public class KlassDetailServlet extends HttpServlet {

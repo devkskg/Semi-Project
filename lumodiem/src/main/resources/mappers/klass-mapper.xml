@@ -368,4 +368,13 @@
 		WHERE account_no = #{accountNo}
 		AND klass_date_no = #{klassDateNo}
 	</select>
+	<select id="selectResNo" resultMap="reservationMap" parameterType="_int">
+		SELECT *
+		FROM `reservation`
+		WHERE res_no = #{resNo}
+	</select>
+	<delete id="cnclReservation" parameterType="reservationVo">
+		DELETE `reservation`
+		WHERE res_no = #{resNo};
+	</delete>
 </mapper>

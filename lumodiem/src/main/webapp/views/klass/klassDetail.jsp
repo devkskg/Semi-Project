@@ -183,6 +183,7 @@
 				<span id="numberSpan">1</span>
 				<span id="plusSpan">➕</span>
 				<button type="button" id="resBtn" name="resBtn">예약하기</button>
+			<button type="button" id="cnclBtn" name="cnclBtn">예약취소</button>
 			</c:when>
 		</c:choose>
 			<%-- <c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}"> --%>
@@ -347,6 +348,7 @@
 			});
 		}
 	});
+	// 예약 할 인원수
 	$('#minusSpan').click(function(){
 		let downPpl = document.getElementById('numberSpan').innerHTML;
 		let downResCnt = Number(downPpl);
@@ -356,6 +358,7 @@
 		}
 			
 	});
+	// 예약 할 인원수
 	$('#plusSpan').click(function(){
 		let upPpl = document.getElementById('numberSpan').innerHTML;
 		let upRescnt = Number(upPpl);
@@ -364,7 +367,7 @@
 			document.getElementById('numberSpan').innerHTML = upRescnt;
 		}
 	});
-
+	// 클래스 예약버튼
 	$(document).on('click','#resBtn',function(){
 		const klassDateNo = $('#resKlassSelect').val();
 		const resPpltxt = $('#numberSpan').text();
@@ -392,6 +395,31 @@
 	});
 </script>
 
+<!-- <script>
+// 클래스 예약취소 버튼
+	$(document).on('click','#cnclBtn',function(){
+		const klassDateNo = ${klassDate.klassDateNo};
+		const cnclCheck = confirm("예약취소 하시겠습니까?");
+		consol.log(klassDateNo);
+		alert(klassDateNo);
+		if(cnclCheck){
+			$.ajax({
+				url : "/cnclReservation",
+				type : "post",
+				data : {"klass_date_no" : klassDateNo},
+				dataType : "json",
+				success : function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/klassBoardList";
+					} else{
+						location.href='/';
+					}
+				}
+			});
+		}
+	})
+</script> -->
 	<script>
 		/* 좋아요X -> 좋아요O */
 		$(function(){
