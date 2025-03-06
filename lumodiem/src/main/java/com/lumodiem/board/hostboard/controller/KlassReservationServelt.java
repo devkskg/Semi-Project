@@ -14,8 +14,7 @@ import org.json.simple.JSONObject;
 
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.service.HostBoardService;
-import com.lumodiem.board.hostboard.vo.Klass;
-import com.lumodiem.board.memberboard.service.MemberBoardService;
+import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.memberboard.vo.Reservation;
 
 @WebServlet("/klassReservation")
@@ -29,9 +28,12 @@ public class KlassReservationServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
+		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
 		int accountNo = 0;
 		int klassDate = 0;
-		
+		List<Reservation> res = null;
+		KlassDate option = KlassDate.builder().klassDateNo(klassDateNo).klassNo(klassNo).build();
+		KlassDate kd = new HostBoardService().klassCountByKlassMax(option);
 		Account ac = null;
 		HttpSession session = request.getSession();
 		if(session != null && session.getAttribute("account") != null) {
@@ -46,8 +48,13 @@ public class KlassReservationServelt extends HttpServlet {
 				.resPpl(resPpl)
 				.accountNo(accountNo)
 				.build();
-		if(resPpl >= 1 && resPpl < 4) {
-			klassDate = new HostBoardService().reserveKlass(reservation);
+		boolean bl = false;
+		res = new HostBoardService().resSelect(reservation);
+		if((kd.getKlassMax()-kd.getKlassCount()) >= resPpl) {
+			if (!res.isEmpty() && res.get(0).getKlassDateNo() != kd.getKlassDateNo()) {
+			    klassDate = new HostBoardService().reserveKlass(reservation);
+			}
+				
 		}
 			
 		

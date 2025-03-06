@@ -30,6 +30,7 @@
 		<result property="klassStart" column="klass_start"/>
 		<result property="klassEnd" column="klass_end"/>
 		<result property="klassCount" column="klass_count"/>
+		<result property="klassMax" column="klass_max"/>
 	</resultMap>
 	
 	<resultMap type="klassAttachVo" id="klassAttachMap">
@@ -341,5 +342,19 @@
 		<where>
 			klass_no = #{klassNo}
 		</where>
+	</select>
+	<!-- 클래스 예약 가능인원,클래스예약 최대인원 -->
+	<select id='klassCountByKlassMax' resultMap="klassDateMap" parameterType="klassDateVo">
+		SELECT d.* ,k.klass_max
+		FROM `klass_date` d
+		JOIN `klass` k
+		ON d.klass_no = k.klass_no
+		WHERE d.klass_date_no = #{klassDateNo}
+	</select>
+	<select id='resSelect' resultMap="reservationMap" parameterType="reservationVo">
+		SELECT *
+		FROM `reservation`
+		WHERE account_no = #{accountNo}
+		AND klass_date_no = #{klassDateNo}
 	</select>
 </mapper>
