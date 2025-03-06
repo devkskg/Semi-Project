@@ -142,9 +142,28 @@
 				}
 				
 			}
-		})
+		});
+		 $('#klass_txt').summernote({
+			  width: 900,           // 가로 크기
+		      height: 400,          // 높이 설정
+		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
+		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스
+		      lang: 'ko-KR',        // 한국어 설정 (lang 파일 필요)
+		      toolbar: [
+		        // 툴바 그룹/버튼 구성
+		        ['groupName', ['list of button']],
+		        ['insert', ['picture']],
+		        ['style', ['fontname']],
+		        ['fontname', ['fontname']],
+		        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+		        ['color', ['color', 'backcolor']],
+		        ['para', ['ul', 'ol', 'paragraph']],
+		        ['height', ['height']],
+		        ['view', ['fullscreen', 'codeview', 'help']]
+		      ]
+			});
 		
-	})
+	});
 	
 </script>
 
