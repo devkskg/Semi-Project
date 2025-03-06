@@ -20,7 +20,7 @@
 								<form action="/login" method="post">
 									<input type="hidden" value="${accountResetPw.accountId }" name="searchId">
 									<button>로그인</button>
-									<a href='<c:url value="/resetPw" />'><button type="button">비밀번호 재설정</button></a>
+									<a href='<c:url value="/" />'><button type="button">홈</button></a>
 								</form>
 							</div>
 						</div>
