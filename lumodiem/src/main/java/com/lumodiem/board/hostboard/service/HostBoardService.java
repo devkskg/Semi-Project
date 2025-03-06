@@ -157,7 +157,13 @@ public class HostBoardService {
 		session.close();
 		return a;
 	}
-
+	
+	public List<KlassDate> selectDateList(int klassNo){
+		SqlSession session = getSqlSession();
+		List<KlassDate> dateList = new HostBoardDao().selectDateList(session,klassNo);
+		return dateList;
+	}
+	
 	public List<KlassDate> selectKlassDate(int klassNo) {
 		SqlSession session = getSqlSession();
 		List<KlassDate> klassDate = new HostBoardDao().selectKlassDate(session,klassNo);
@@ -176,6 +182,13 @@ public class HostBoardService {
 		Klass klass = new HostBoardDao().selectKlassOne(session,klassNo);
 		session.close();
 		return klass;
+	}
+	
+	public List<Klass> searchImgBoardList(Klass option){
+		SqlSession session = getSqlSession();
+		List<Klass> searchList = new HostBoardDao().searchImgBoardList(session,option);
+		session.close();
+		return searchList;
 	}
 	
 	public List<Klass> searchBoardList(Klass option){

@@ -53,8 +53,10 @@
 									<c:forEach var="list" varStatus="vs" items="${approveList }">
 										<div>
 											<ul>
-												<li>${list.klassName}${list.accountNickname}
-													${list.klassTxt }</li>
+												<li>
+													<a href="<c:url value='/klassDetail?klass_no=${list.klassNo }'/>">${list.klassName}${list.accountNickname}
+													${list.klassTxt }</a>
+												</li>
 											</ul>
 										</div>
 									</c:forEach>

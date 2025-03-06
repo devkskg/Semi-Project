@@ -39,7 +39,10 @@
 								<c:when test="${not empty approveList }">
 
 									<c:forEach var="list1" varStatus="vs" items="${approveList }">
-										<div>${list1.klassName} ${list1.accountNickname} ${list1.klassTxt } </div>
+										<div>
+											
+											<a href="<c:url value='/klassDetail?klass_no=${list1.klassNo }'/>">${list1.klassName} ${list1.accountNickname} ${list1.klassTxt }</a>
+										</div>
 											<c:choose>
 												<c:when test="${not empty reviewList }">
 												<ul>

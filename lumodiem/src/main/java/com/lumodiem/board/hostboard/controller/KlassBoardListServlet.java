@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
+import com.lumodiem.board.hostboard.vo.KlassDate;
 
 @WebServlet("/klassBoardList")
 public class KlassBoardListServlet extends HttpServlet {
@@ -28,6 +29,8 @@ public class KlassBoardListServlet extends HttpServlet {
 		String searchType = request.getParameter("search_type");
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
+		String temp = request.getParameter("klass_no");
+//		List<KlassDate> dateList = new HostBoardService().selectKlassDate(klassNo);
 		
 		Klass option = Klass.builder()
 				.klassName(klassName)
@@ -38,9 +41,21 @@ public class KlassBoardListServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		
-		List<Klass> resultList = new HostBoardService().searchBoardList(option);
+		List<Klass> resultList = new HostBoardService().searchImgBoardList(option);
+//		resultList = new HostBoardService().searchImgBoardList(option);
+		for(Klass k : resultList) {
+			int klassNo = k.getKlassNo();
+			List<KlassDate> dateList = new HostBoardService().selectDateList(klassNo);
+			k.setDateList(dateList);
+		}
+		
+		
+		System.out.println("게시판 result"+resultList);
+		
 		request.setAttribute("resultList", resultList);
+//		request.setAttribute("dateList", dateList);
 		System.out.println(resultList);
+//		System.out.println("데이트리스트 : "+dateList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoard.jsp");
 		view.forward(request, response);
 		
