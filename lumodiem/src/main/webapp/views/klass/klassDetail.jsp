@@ -368,6 +368,7 @@
 	$(document).on('click','#resBtn',function(){
 		const klassDateNo = $('#resKlassSelect').val();
 		const resPpltxt = $('#numberSpan').text();
+		const klassNo = ${klass.klassNo};
 		resPpl = Number(resPpltxt);
 		const ck = confirm("예약하시겠습니까?");
 		if(ck){
@@ -375,7 +376,8 @@
 				url : "/klassReservation",
 				type : "post",
 				data : {"klass_date_no" : klassDateNo
-						,"res_ppl" : resPpl},
+						,"res_ppl" : resPpl
+						,"klass_no" : klassNo},
 				dataType:'json',
 				success : function(data){
 					alert(data.res_msg);
