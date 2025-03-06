@@ -1,7 +1,5 @@
 package com.lumodiem.common.payment.vo;
 
-import com.lumodiem.board.memberboard.vo.Reservation;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -10,7 +10,7 @@
 		<result property="klassPrice" column="klass_price"/>
 	</resultMap>
 
-	<select id="loginSelect" parameterType="accountVo" resultMap="accountMap">
+	<select id="" parameterType="Vo" resultMap="Map">
 		SELECT * FROM `account` WHERE account_id=#{accountId} and account_pw=#{accountPw}
 	</select>
 
