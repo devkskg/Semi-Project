@@ -497,7 +497,10 @@
 		
 		
 		
-		
+		$('#moveReviewDetail tr').click(function(){
+			const reviewNum = $(this).data('review-no');
+			location.href='/reviewDetail?review_no='+reviewNum;
+		})
 	</script>
 </body>
 </html>
