@@ -71,7 +71,7 @@
 				<div class="meta-wrap">
 					<p class="meta">
 						<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
-						<span><a href="single.html"><i class="icon-folder-o mr-2"></i>좋아요 아이콘 넣기</a></span>
+						<span><a href="single.html"><i class="icon-heart mr-2"></i>좋아요 아이콘 넣기</a></span>
 						
 						<c:forEach var="li" items="${klassDate }" varStatus="vs">
 							<span><i class="icon-users mr-2"></i>${klass.klassMax}명(${klass.klassMax - li.klassCount}명)</span>
