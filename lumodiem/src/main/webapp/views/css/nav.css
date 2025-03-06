@@ -22,3 +22,9 @@ body {
 body.loaded {
     opacity: 1;
 }
+body.eye{
+    width: 30px;
+}
+body.dis{
+    display: none;
+}
