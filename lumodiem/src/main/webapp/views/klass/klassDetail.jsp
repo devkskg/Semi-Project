@@ -42,7 +42,7 @@
 		</div>
 		<div>
 			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
-				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}">
+				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" style="height: 255px">
 			</c:forEach>
 		</div>
 		<hr>
@@ -497,7 +497,10 @@
 		
 		
 		
-		
+		$('#moveReviewDetail tr').click(function(){
+			const reviewNum = $(this).data('review-no');
+			location.href='/reviewDetail?review_no='+reviewNum;
+		})
 	</script>
 </body>
 </html>

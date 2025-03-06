@@ -55,11 +55,13 @@
 				<c:when test="${list.attachNo > 0}">
 					<a href="single.html" class="img img-2" style="display: flex; 
 			          justify-content: center; align-items: center; width: 244px; height: 244px; background-image: url();">
-          <img alt="사진" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" style="max-width: 100%; max-height: 100%;"></a>
+          <img alt="사진" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" 
+          style="max-width: 100%; max-height: 100%;" href="/klassDetail?klass_no=${list.klassNo}"></a>
 					
 				</c:when>
 				<c:otherwise>
-					<a href="single.html" class="img img-2" style="background-image: url();"><img alt="사진" src="" style="height: 244 px;">NoImage</a>
+					<a href="single.html" class="img img-2" style="background-image: url();"><img alt="사진" src="" style="height: 244 px;"
+					href="/klassDetail?klass_no=${list.klassNo}" >NoImage</a>
 				</c:otherwise>
 			</c:choose>
 			
