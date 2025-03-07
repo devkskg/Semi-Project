@@ -7,10 +7,10 @@
 <html>
 <head>
     <title>부트스트랩 테스트</title>
-    <meta charset="utf-8">
+<!--     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
@@ -33,17 +33,18 @@
     
     <link rel="stylesheet" href="/css/flaticon.css">
     <link rel="stylesheet" href="/css/icomoon.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"> -->
 </head>
 <body>
+	include
 	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+<%-- 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight" >
 		
-			<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
-			<c:import url="${nav}"/> --%>
+			<c:url value="/views/include/nav.jsp" var="nav"/>
+			<c:import url="${nav}"/>
 			<!-- c태그 이상시 아래의 include 태그 활성화 -->
-			<%-- <%@ include file="/views/include/nav.jsp" %> --%>
+			<%@ include file="/views/include/nav.jsp" %>
 			<nav id="colorlib-main-menu" role="navigation">
 	<ul>
 		<li class="colorlib-active">
@@ -127,7 +128,7 @@
 					<a href="https://colorlib.com" target="_blank">응애 로켓단</a>
 				</p>
 			</div>
-		</aside>
+		</aside> --%>
 			
 			<!-- 메인 -->
 			<div id="colorlib-main">
