@@ -284,7 +284,7 @@
 		<div class="create_comment_form">
 			<form name="create_comment_form" method="post">
 				<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
-				 <input type="hidden" name="account_no" value="${review.accountNo }">
+				<%--  <input type="hidden" name="account_no" value="${review.accountNo }"> --%>
 				<input type="hidden" name="review_no" value="${review.reviewNo }">
 				<!-- <input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요."> -->
 				<textarea class="review_cmt_txt" name="review_cmt_txt" placeholder="내용을 입력하세요."></textarea>
