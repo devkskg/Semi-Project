@@ -27,7 +27,6 @@ public class DeleteReviewCommentServlet extends HttpServlet {
 		ReviewCmt cmt = ReviewCmt.builder()
 				.reviewCmtNo(reviewCmtNo)
 				.build();
-		System.out.println(temp);
 		int result = new ReviewCommentService().deleteReviewComment(cmt);
 		JSONObject obj = new JSONObject();
 		obj.put("res_code", "500");
