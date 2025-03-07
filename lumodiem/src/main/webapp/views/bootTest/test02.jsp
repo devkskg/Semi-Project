@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,17 +35,24 @@
 <div class="container my-5">
   <!-- 그리드 row -->
   <div class="row">
-    <!-- 단일 이미지 컬럼 (원한다면 여러 개 복제해서 3개씩 or 4개씩 배치 가능) -->
-    <div class="col-md-4 mb-4">
-      <article>
-        <!-- Masonry 템플릿에서 가져온 링크/이미지 부분 -->
-        <a href="single-standard.html">
-          <img src="images/thumbs/masonry/woodcraft-600.jpg"
-               alt="woodcraft thumb"
+    
+    <!-- resultList를 반복하여, 각각 하나의 col-md-4로 -->
+    <c:forEach var="list" items="${resultList}">
+      <div class="col-md-4 mb-4">
+        <article>
+          <!-- /klassFilePath?attach_no=xxx 형태의 URL 만들기 -->
+          <c:url var="imgUrl" value="/klassFilePath">
+            <c:param name="attach_no" value="${list.attachNo}" />
+          </c:url>
+          
+          <!-- 동적 이미지 -->
+          <img src="${imgUrl}" 
+               alt="사진" 
                class="img-fluid">
-        </a>
-      </article>
-    </div>
+        </article>
+      </div>
+    </c:forEach>
+    
   </div>
 </div>
 
