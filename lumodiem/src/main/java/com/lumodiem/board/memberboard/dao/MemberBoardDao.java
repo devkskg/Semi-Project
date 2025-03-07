@@ -46,8 +46,8 @@ public class MemberBoardDao {
 	public List<Klass> searchKlassDateNo(SqlSession session, int klassDateNo){
 		return session.selectList("reviewMapper.attendedKlass",klassDateNo);
 	}
-	public ReviewAttach selectNoImgReview(SqlSession session, int reviewNo) {
-		return session.selectOne("reviewMapper.noImgReview",reviewNo);
+	public List<ReviewAttach> selectNoImgReview(SqlSession session, int reviewNo) {
+		return session.selectList("reviewMapper.noImgReview",reviewNo);
 	}
 	public Review selectReviewNo(SqlSession session, int reviewNo) {
 		return session.selectOne("reviewMapper.reviewNoimg",reviewNo);

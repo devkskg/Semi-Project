@@ -77,10 +77,10 @@
 		</ul> 
 		<hr>
 		</div>
-	<button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-		style="font-size: 10px; padding: 4px 4px; width: 30px; line-height: 1;" >
-		🚨
-	</button>
+		<button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+			style="font-size: 10px; padding: 4px 4px; width: 30px; line-height: 1;" >
+			🚨
+		</button>
 		<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
