@@ -18,8 +18,9 @@
 							<div class="col-xl-8 py-5 px-md-5">
 								<div class="row pt-md-4">
 
-										<a href="/reportList">신고 목록 조회</a><br>
-										<a href="/arreoveList">대기중인 클래스 목록</a><br>
+										<a href="/reportList">신고 목록 조회</a>
+										<hr>
+										<a href="/arreoveList">대기중인 클래스 목록</a>
 										<!-- <a>/klassBoardList</a> -->
 								</div>
 							</div>
