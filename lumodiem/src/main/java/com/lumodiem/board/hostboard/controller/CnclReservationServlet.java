@@ -7,13 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
-import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.service.HostBoardService;
-import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.memberboard.vo.Reservation;
 
 @WebServlet("/cnclReservation")
 public class CnclReservationServlet extends HttpServlet {
@@ -24,27 +22,31 @@ public class CnclReservationServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("res_no"));
 		int resNo = Integer.parseInt(request.getParameter("res_no"));
-		int klassDateNo = Integer.parseInt(request.getParameter("kdn"));
-		int accountNo = 0;
+		System.out.println(resNo);
+//		int klassDateNo = Integer.parseInt(request.getParameter("kdn"));
+//    	int accountNo = 0;
 		int result = 0;
-		KlassDate option = KlassDate.builder().klassDateNo(klassDateNo).build();
-		KlassDate kd = new HostBoardService().klassCountByKlassMax(option);
-		Account ac = null;
-		HttpSession session = request.getSession();
-		if(session != null && session.getAttribute("account") != null) {
-			ac = (Account)session.getAttribute("account");
-			accountNo = ac.getAccountNo();
-		}
+//		KlassDate option = KlassDate.builder().klassDateNo(klassDateNo).build();
+//		KlassDate kd = new HostBoardService().klassCountByKlassMax(option);
+//		Account ac = null;
+//		HttpSession session = request.getSession();
+//		if(session != null && session.getAttribute("account") != null) {
+//			ac = (Account)session.getAttribute("account");
+//			accountNo = ac.getAccountNo();
+//		}
+		Reservation r= new Reservation();
+		r.setResNo(resNo);
 		result = new HostBoardService().cnclReservation(resNo);
 		
 		JSONObject obj = new JSONObject();
 		if(result > 0) {
 			obj.put("res_code","200");
-			obj.put("res_msg", "정상적으로 게시글 삭제");
+			obj.put("res_msg", "정상적으로 예약취소 되었습니다");
 		}else {
 			obj.put("res_code","500");
-			obj.put("res_msg", "게시글 삭제 중 오류가 발생");
+			obj.put("res_msg", "예약취소 중 오류가 발생");
 		}
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(obj);

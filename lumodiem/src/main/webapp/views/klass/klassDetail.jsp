@@ -181,10 +181,10 @@
 				<span id="minusSpan">➖</span>
 				<span id="numberSpan">1</span>
 				<span id="plusSpan">➕</span>
-			<%-- <c:choose>     결제 되면 예약취소로
+				<%-- <c:choose>     결제 되면 예약취소로
 				<c:when test="${reservation.pay_status eq 'C'}"> --%>
 				<button type="button" id="resBtn" name="resBtn">예약하기</button>
-		            <button type="button" id="cnclBtn" name="cnclBtn">예약취소</button>
+		           <button type="button" id="cnclBtn" name="cnclBtn">예약취소</button>
 				<%-- </c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -408,17 +408,16 @@
 	
 	$(document).on('click','#cnclBtn',function(){
 		const resNo = "${reservation.resNo}";
-		const kdn = "${reservation.klassDateNo}";
-		console.log(resNo)
-		console.log(kdn)
-		
+		// const kdn = "${reservation.klassDateNo}";
+		console.log(resNo);
 		const deleteCheck = confirm("예약 취소하시겠습니까?");
 		if(deleteCheck){
 			$.ajax({
 				url:"/cnclReservation",
 				type:"post",
-				data:{"res_no" : resNo ,"kdn" : kdn},
+				data:{"res_no" : resNo},
 				dataType:"json",
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 				success:function(data){
 					alert(data.res_msg);
 					if(data.res_code == "200"){
@@ -426,6 +425,7 @@
 					} else{
 						location.href='/';
 					}
+				}
 			});
 		}
 		

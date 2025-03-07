@@ -380,8 +380,9 @@
 	<!-- res_no로 예약 테이블 정보 조회 -->
 	<select id='selectReservationOne' resultMap="reservationMap" parameterType="reservationVo">
 		SELECT *
-		FROM `reservation`
-		WHERE res_no = #{resNo}
+		FROM `reservation` 
+		WHERE klass_date_no = #{klassDateNo}
+		AND account_no = #{accountNo}
 	</select>
 	<!-- 결제 성공시 C -> R 변경 -->
 	<update id="updateReservationOneCtoR" parameterType="_int">

@@ -358,7 +358,7 @@ public class HostBoardService {
 	public int cnclReservation(int resNo) {
 		SqlSession session = getSqlSession();
 		int result = new HostBoardDao().cnclReservation(session,resNo);
-		commitRollback(session, result);
+//		commitRollback(session, result);
 		session.close();
 		return result;
 	}
