@@ -29,18 +29,18 @@
 			<option value="b">오래된순</option>
 			<option value="c">좋아요순</option>
 		</select>
-	</form>
-
-
-		<form>
 		<c:choose>
 			<c:when test="${account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
-			<button type="button" id="insertBtn" name="insertBtn">
+			<button type="button" id="insertBtn" name="insertBtn" style="align-content: flex-end;">
 				<a href="/klassBoardCreate">작성하기</a>
 			</button>
 			</c:when>
 			
 		</c:choose>
+	</form>
+
+
+		<form>
 	</form>
 	
 	
