@@ -18,6 +18,16 @@
 <style>
 	.review_cmt_txt{resize: none;
 					}
+	.review_cmt_txt{
+		border: 1px dotted #cecece;
+		border-top: 1px solid #888;
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+		margin-top: 5px;
+		margin-left: 26px;
+		
+	}				
 </style>
 </head>
 <body>
@@ -115,26 +125,32 @@
 		<div class="reivew_cmt_list">
 		<form>
 			<table border="1">
-				<thead>
+				<!-- <thead>
 					<tr>
 						<th>내용</th>
 						<th>닉네임</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody> -->
 					<c:choose>
 						<c:when test="${not empty reviewCmt }">
 						
 							<c:forEach var="list" items="${reviewCmt }" varStatus="vs">
-							
+							<thead>
+									<tr>
+										<th>${list.accountNickname}</th>
+										<!-- <th>닉네임</th> -->
+									</tr>
+								</thead>
+								<tbody>
 							<tr>
 								<td>
 									<input type="hidden" class="review_cmt_no" value="${list.reviewCmtNo}">
 									<textarea class="review_cmt_txt" readonly="readonly" >${list.reviewCmtTxt}</textarea>
 								</td>
-								<td>
+								<%-- <td>
 									<input type="text" class="account_nickname" value="${list.accountNickname}" readonly="readonly">
-								</td>
+								</td> --%>
 								
 								<c:choose>
 									<c:when test="${list.accountNo eq account.accountNo}">
