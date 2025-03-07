@@ -176,7 +176,6 @@
 			<select name="resKlassSelect" id="resKlassSelect">
 				<c:forEach var="date" items="${klassDate}" varStatus="vs">
 					<option value="${date.klassDateNo}">${date.klassStart} ~ ${fn:substring(date.klassEnd,11,19)}</option>
-					${fn:substring(date.klassEnd,11,19)}
 				</c:forEach>
 			</select><br>
 				<span id="minusSpan">➖</span>
@@ -382,12 +381,20 @@
 				success : function(data){
 					alert(data.res_msg);
 					if(data.res_code == "200"){
-						location.href="/klassBoardList";
+						window.location.href = data.paymentResponse.next_redirect_pc_url;
 					} else{
-						location.href='/';
 					}
+				},
+				error : function(a, b, c){
+					alert('결제 요청 중 오류 발생' + "a: " + a + ", b: " + b + ", c:" + c);
 				}
 			});
+			/* // URL에서 pg_token 추출
+			function getPgTokenFromUrl() {
+			    const urlParams = new URLSearchParams(window.location.search);
+			    return urlParams.get("pg_token");
+			} */
+			
 		}
 	});
 </script>
