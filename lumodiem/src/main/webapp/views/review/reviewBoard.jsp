@@ -83,7 +83,7 @@
 					<p class="meta">
 						<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
 						<span><a href="single.html"><i class="icon-heart mr-2" style="color: #FF4848;"></i>${list.reviewLikeCount}</a></span>
-						<span>${klass.klassName}</span>
+						<span>${kName.klassName}</span>
 					</p>
 				</div>
 				<p><a href="/reviewDetail?review_no=${list.reviewNo}" class="btn-custom">더 보기.. <span class="ion-ios-arrow-forward"></span></a></p>

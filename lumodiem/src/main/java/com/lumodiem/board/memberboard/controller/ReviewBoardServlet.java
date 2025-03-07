@@ -47,13 +47,7 @@ public class ReviewBoardServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewBoard.jsp");
 		view.forward(request, response);
 		
-		Account ac = new Account();
-		int accountNo = ac.getAccountNo();
-		List<Klass> klass = new MemberBoardService().attendedKlass(accountNo);
-		request.setAttribute("klass", klass);
-		System.out.println(klass);
-		RequestDispatcher views = request.getRequestDispatcher("/views/review/reviewBoard.jsp");
-		views.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -27,48 +27,58 @@ public class ReviewDetailServlet extends HttpServlet {
     public ReviewDetailServlet() {
         super();
     }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String url = request.getContextPath() + "/";
+        int totalLikeCount = 0;
+        int myLikeCount = 0;
+        ReviewLike reviewLike = null;
+        List<ReviewAttach> noImg = null;
+        List<ReviewCmt> reviewCmt = null;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String url = request.getContextPath() + "/";
-		int totalLikeCount = 0;
-		int myLikeCount = 0;
-		ReviewLike reviewLike = null;
-		List<ReviewAttach> noImg = null;
-		List<ReviewCmt> reviewCmt = null;
-		if(session != null && session.getAttribute("account") != null) {
-			Account account = (Account)session.getAttribute("account");
-			int reviewNo = Integer.parseInt(request.getParameter("review_no"));
-			System.out.println("리뷰넘버 : "+reviewNo);
-			Review review = null;
-			
-			noImg = new MemberBoardService().selectNoImgReview(reviewNo);
-			if(noImg == null) {
-				review = new MemberBoardService().selectReviewNo(reviewNo);
-				System.out.println("사진 없는 거 조회");
-			} else {
-				review = new MemberBoardService().selectReviewOne(reviewNo);
-				System.out.println("사진 있는 거 조회");
-			}
-			totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
-			reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
-			myLikeCount = new MemberBoardService().countLikeByAccountNoReviewNo(reviewLike);
-			// 리뷰 댓글 불러오기
-			ReviewCmt option = ReviewCmt.builder().reviewNo(reviewNo).build();
-			reviewCmt =  new ReviewCommentService().selectReviewComment(option);
-			// 테스트
-			// 리뷰 댓글 불러오기
-			RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
-			request.setAttribute("totalLikeCount", totalLikeCount);
-			request.setAttribute("myLikeCount", myLikeCount);
-			request.setAttribute("review", review);
-			// 리뷰 댓글 보내기
-			request.setAttribute("reviewCmt", reviewCmt);
-			view.forward(request, response);
-		} else {
-			response.sendRedirect(url);
-		}
-	}
+        if(session != null && session.getAttribute("account") != null) {
+            Account account = (Account)session.getAttribute("account");
+            int reviewNo = Integer.parseInt(request.getParameter("review_no"));
+            System.out.println("리뷰 번호: " + reviewNo);
+            
+            Review review = null;
+            noImg = new MemberBoardService().selectNoImgReview(reviewNo);
+
+            // 이미지 여부 체크 방식 개선
+            if(noImg == null || noImg.isEmpty()) {
+                review = new MemberBoardService().selectReviewNo(reviewNo);
+                System.out.println("사진 없는 리뷰 조회");
+            } else {
+                review = new MemberBoardService().selectReviewOne(reviewNo);
+                System.out.println("사진 있는 리뷰 조회");
+            }
+
+            if (review == null) {
+                System.out.println("리뷰 데이터를 찾을 수 없음.");
+                response.sendRedirect(url); // 리뷰가 없으면 홈으로 이동
+                return;
+            }
+
+            totalLikeCount = new MemberBoardService().countLikeByReviewNo(reviewNo);
+            reviewLike = ReviewLike.builder().accountNo(account.getAccountNo()).reviewNo(reviewNo).build();
+            myLikeCount = new MemberBoardService().countLikeByAccountNoReviewNo(reviewLike);
+
+            // 리뷰 댓글 불러오기
+            ReviewCmt option = ReviewCmt.builder().reviewNo(reviewNo).build();
+            reviewCmt = new ReviewCommentService().selectReviewComment(option);
+
+            // JSP 페이지로 데이터 전달
+            RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
+            request.setAttribute("totalLikeCount", totalLikeCount);
+            request.setAttribute("myLikeCount", myLikeCount);
+            request.setAttribute("review", review);
+            request.setAttribute("reviewCmt", reviewCmt);
+            view.forward(request, response);
+        } else {
+            response.sendRedirect(url);
+        }
+    }
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
