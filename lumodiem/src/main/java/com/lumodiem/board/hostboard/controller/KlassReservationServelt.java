@@ -1,6 +1,15 @@
 package com.lumodiem.board.hostboard.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+>>>>>>> refs/heads/develop
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -74,6 +83,79 @@ public class KlassReservationServelt extends HttpServlet {
 				
 			}
 			
+<<<<<<< HEAD
+=======
+		
+		
+		
+		Klass klassPayment = new HostBoardService().selectKlassOne(klassNo);
+		Reservation resPayment = new HostBoardService().selectReservationOne(klassDate);
+		session.setAttribute("res_no", resPayment.getResNo());
+		
+//		카카오로 보내는 url
+		URL url = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
+		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Authorization", "SECRET_KEY " + KAKAO_API_KEY);
+//		conn.setRequestProperty("Authorization", "KakaoAK " + KAKAO_API_KEY);
+		
+		conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+		conn.setDoOutput(true);
+		
+
+        
+        String orderId = String.valueOf(resPayment.getResNo());
+// 		요청 데이터 설정
+		JSONObject jsonParams = new JSONObject();
+		jsonParams.put("cid", CID);
+        jsonParams.put("partner_order_id", orderId);
+        session.setAttribute("partner_order_id", orderId);
+        jsonParams.put("partner_user_id", ac.getAccountId());
+        session.setAttribute("partner_user_id", ac.getAccountId());
+        jsonParams.put("item_name", klassPayment.getKlassName());
+        jsonParams.put("quantity", resPayment.getResPpl());
+        jsonParams.put("total_amount", (resPayment.getResPpl() * klassPayment.getKlassPrice()));
+        jsonParams.put("vat_amount", "0");
+        jsonParams.put("tax_free_amount", "0");
+//        jsonParams.put("approval_url", "http://localhost:8090/pay/approve");
+//        String approvalUrl = URLEncoder.encode("http://localhost:8090/pay/success", "UTF-8");
+//        String cancelUrl = URLEncoder.encode("http://localhost:8090/pay/cancel", "UTF-8");
+//        String failUrl = URLEncoder.encode("http://localhost:8090/pay/fail", "UTF-8");
+//        jsonParams.put("approval_url", approvalUrl);
+//        jsonParams.put("cancel_url", cancelUrl);
+//        jsonParams.put("fail_url", failUrl);
+        jsonParams.put("approval_url", "http://localhost:8090/pay/success");
+        jsonParams.put("cancel_url", "http://localhost:8090/pay/cancel");
+        jsonParams.put("fail_url", "http://localhost:8090/pay/fail");
+
+		
+        
+		System.out.println("카카오페이 요청 시작...");
+		System.out.println("Authorization 헤더: KakaoAK " + KAKAO_API_KEY);
+		System.out.println("요청 URL: " + url);
+		System.out.println("JSON 데이터 : " + jsonParams.toJSONString());
+		
+		try (OutputStream os = conn.getOutputStream()) {
+            os.write(jsonParams.toJSONString().getBytes("UTF-8"));
+            os.flush();
+        }
+		
+//		
+		int responseCode = conn.getResponseCode();
+		System.out.println("카카오페이 응답 코드: " + responseCode);
+
+		if (responseCode != 200) {
+		    BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		    StringBuilder errorResponse = new StringBuilder();
+		    String errorLine;
+		    while ((errorLine = errorReader.readLine()) != null) {
+		        errorResponse.append(errorLine);
+		    }
+		    errorReader.close();
+
+		    System.err.println("카카오페이 요청 실패 응답: " + errorResponse.toString());
+		    throw new RuntimeException("카카오페이 요청 실패! 응답 확인 필요.");
+>>>>>>> refs/heads/develop
 		}
 		JSONObject obj = new JSONObject();
 		if(klassDate > 0) {

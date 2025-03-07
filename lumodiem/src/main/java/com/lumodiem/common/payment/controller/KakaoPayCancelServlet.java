@@ -19,6 +19,7 @@ public class KakaoPayCancelServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pay/cancel.jsp");
+        System.out.println("/pay/cancel");
         dispatcher.forward(request, response);
 	}
 
