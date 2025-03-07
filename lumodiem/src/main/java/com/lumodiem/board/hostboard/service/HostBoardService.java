@@ -354,5 +354,19 @@ public class HostBoardService {
 		session.close();
 		return reservaion;
 	}
+//	결제 성공시 C -> R 변경
+	public int updateReservationOneCtoR(int resNo) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().updateReservationOneCtoR(session,resNo);
+		commitRollback(result, session);
+		return result;
+	}
+
+	public int updateReservationOneRtoC(int resNo) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().updateReservationOneRtoC(session,resNo);
+		commitRollback(result, session);
+		return result;
+	}
 	
 }

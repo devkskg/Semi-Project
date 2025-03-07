@@ -161,4 +161,12 @@ public class HostBoardDao {
 		return session.selectOne("klassMapper.selectReservationOne",resNo);
 	}
 
+	public int updateReservationOneCtoR(SqlSession session, int resNo) {
+		return session.update("klassMapper.updateReservationOneCtoR",resNo);
+	}
+
+	public int updateReservationOneRtoC(SqlSession session, int resNo) {
+		return session.update("klassMapper.updateReservationOneRtoC",resNo);
+	}
+
 }

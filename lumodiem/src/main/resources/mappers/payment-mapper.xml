@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="payment-mapper">
+<mapper namespace="paymentMapper">
 	<resultMap type="paymentDTOVo" id="paymentDTOMap">
 		<result property="resNo" column="res_no"/>
 		<result property="klassName" column="klass_name"/>
@@ -10,16 +10,4 @@
 		<result property="klassPrice" column="klass_price"/>
 	</resultMap>
 
-	<select id="" parameterType="Vo" resultMap="Map">
-		SELECT r.*, klass_name, klass_price
-		FROM `reservation` r
-		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
-		JOIN `klass` k ON d.klass_no = k.klass_no
-		<where>
-			r.res_no = ${res_no}
-		</where>
-	</select>
-
-	
-	
 </mapper>
