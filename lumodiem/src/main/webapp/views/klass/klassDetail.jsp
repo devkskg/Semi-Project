@@ -41,7 +41,7 @@
 
 	
 		<form action="" name="detail_klass_form">
-		<div>
+		<div class="mt-3 d-flex gap-2 justify-content-end">
 			<c:choose>
 				<c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A' }">
 				<a href="/klassBoardUpdate?klass_no=${klass.klassNo }">
@@ -57,11 +57,11 @@
 			</c:choose>
 			
 		</div>
-		<div>
+<%-- 		<div>
 			<c:forEach var="list" items="${klassAttach }" varStatus="vs">
 				<img src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" style="height: 255px">
 			</c:forEach>
-		</div>
+		</div> --%>
 		<hr>
 		<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<table>
