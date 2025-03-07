@@ -78,11 +78,12 @@
 		</c:choose>
 			
 			<div class="text text-2 pl-md-4">
-				<h3 class="mb-2"><a href="/reviewDetail?review_no=${list.reviewNo}">${list.reviewTxt}</a></h3>
+				<h3 class="mb-2"><a href="/reviewDetail?review_no=${list.reviewNo}">${list.reviewName}</a></h3>
 				<div class="meta-wrap">
 					<p class="meta">
 						<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
 						<span><a href="single.html"><i class="icon-heart mr-2" style="color: #FF4848;"></i>${list.reviewLikeCount}</a></span>
+						<span>${kName.klassName}</span>
 					</p>
 				</div>
 				<p><a href="/reviewDetail?review_no=${list.reviewNo}" class="btn-custom">더 보기.. <span class="ion-ios-arrow-forward"></span></a></p>
