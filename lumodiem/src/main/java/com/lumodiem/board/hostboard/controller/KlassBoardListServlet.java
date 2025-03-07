@@ -30,6 +30,11 @@ public class KlassBoardListServlet extends HttpServlet {
 		String searchTxt = request.getParameter("search_txt");
 		String orderType = request.getParameter("order_type"); 
 		String temp = request.getParameter("klass_no");
+		
+//		String txt1 = klassTxt.substring(0,klassTxt.indexOf("<img"));
+//		String txt2 = klassTxt.substring(klassTxt.lastIndexOf("<br"),klassTxt.length()-1);
+//		
+//		txt1 += txt2;
 //		List<KlassDate> dateList = new HostBoardService().selectKlassDate(klassNo);
 		
 		Klass option = Klass.builder()
@@ -55,6 +60,7 @@ public class KlassBoardListServlet extends HttpServlet {
 		request.setAttribute("resultList", resultList);
 //		request.setAttribute("dateList", dateList);
 		System.out.println(resultList);
+		System.out.println("텍스트 : "+option.getKlassTxt());
 //		System.out.println("데이트리스트 : "+dateList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoard.jsp");
 		view.forward(request, response);
