@@ -22,6 +22,7 @@ public class ReservationFailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+        System.out.println("/reservation/fail");
 		if(session != null && session.getAttribute("account") != null) {
 			String temp = (String)request.getAttribute("res_no");
 			int resNo = 0;
