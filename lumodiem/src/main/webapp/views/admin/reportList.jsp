@@ -17,8 +17,10 @@
 								<div class="row pt-md-4">
 								
 								<a href="/reportKlass">신고된 클래스</a>
-								<a href="/reportReview">신고된 댓글</a><br>
-								<a href="/reportReviewCmt">신고된 리뷰</a><br>
+								<hr>
+								<a href="/reportReview">신고된 리뷰</a>
+								<hr>
+								<a href="/reportReviewCmt">신고된 리뷰 댓글</a>
 								
 								</div>
 							</div>
