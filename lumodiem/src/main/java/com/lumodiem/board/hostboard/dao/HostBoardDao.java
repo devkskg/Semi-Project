@@ -157,9 +157,14 @@ public class HostBoardDao {
 		return session.selectList("klassMapper.resSelect",reservation);
 	}
 
-	public Reservation selectReservationOne(SqlSession session, int resNo) {
-		return session.selectOne("klassMapper.selectReservationOne",resNo);
+	public Reservation selectResNo(SqlSession session, int resNo) {
+		return session.selectOne("klassMapper.selectResNo",resNo);
 	}
+
+	public int cnclReservation(SqlSession session, int resNo) {
+		return session.delete("klassMapper.cnclReservation",resNo);
+	}
+
 
 	public int updateReservationOneCtoR(SqlSession session, int resNo) {
 		return session.update("klassMapper.updateReservationOneCtoR",resNo);
@@ -168,5 +173,7 @@ public class HostBoardDao {
 	public int updateReservationOneRtoC(SqlSession session, int resNo) {
 		return session.update("klassMapper.updateReservationOneRtoC",resNo);
 	}
-
+	public Reservation selectReservationOne(SqlSession session, int resNo) {
+		return session.selectOne("klassMapper.selectReservationOne",resNo);
+	}
 }
