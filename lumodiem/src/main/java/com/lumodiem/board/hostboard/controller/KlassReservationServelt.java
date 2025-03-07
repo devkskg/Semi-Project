@@ -89,7 +89,7 @@ public class KlassReservationServelt extends HttpServlet {
 				
 			}
 			
-		}
+		
 		
 		
 		Klass klassPayment = new HostBoardService().selectKlassOne(klassNo);
