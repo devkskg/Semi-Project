@@ -29,6 +29,21 @@
 	<%-- <script src="<c:url value='/js/google-map.js'/>"></script> --%>
 	<script src="<c:url value='/js/main.js'/>"></script>
 	<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>   
+	<!-- Bootstrap 5 CSS (CDN) -->
+	<link rel="stylesheet"
+	      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+	
+	<!-- Bootstrap 5 JS (CDN) -->
+	<script type="text/javascript"
+	        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js">
+	</script>
+	
+	<!-- Summernote (BS5 버전) CSS/JS (로컬) -->
+	<link rel="stylesheet"
+	      href="<c:url value='/css/summernote/summernote-bs5.min.css'/>">
+	<script
+	    src="<c:url value='/css/summernote/summernote-bs5.min.js'/>">
+    </script>
     </head>
     
     <body>

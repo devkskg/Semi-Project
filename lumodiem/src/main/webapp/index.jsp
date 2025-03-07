@@ -8,7 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>LumoDiem</title>
-	<link rel="stylesheet" href="<c:url value='/views/css/nav.css'/>">
+
+<!-- index.jsp 전용 CSS가 필요하다면 여기 추가 -->
+<!-- Bootstrap 5, jQuery, Summernote는 nav.jsp에서 이미 로드됨 -->
+<link rel="stylesheet" href="<c:url value='/views/css/nav.css'/>">
 </head>
 <body>
 
@@ -124,6 +127,7 @@
 		</section>
 	</div>
 	
+	  <!-- nav.jsp include (마지막에) -->
 	<%-- 이거 왜 아래 있어야 적용되는거야.. --%>
 	<%@ include file="/views/include/nav.jsp" %>
 

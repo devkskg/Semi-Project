@@ -18,31 +18,35 @@ import com.lumodiem.board.hostboard.vo.KlassDate;
 @WebServlet("/klassBoardUpdate")
 public class KlassBoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public KlassBoardUpdateServlet() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public KlassBoardUpdateServlet() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String temp = request.getParameter("klass_no");
 		int klassNo = 0;
-		if(temp != null) klassNo = Integer.parseInt(temp);
+		if (temp != null)
+			klassNo = Integer.parseInt(temp);
+
 		Klass klass = new HostBoardService().selectKlassOne(klassNo);
 		List<KlassDate> klassDate = new HostBoardService().selectKlassDate(klassNo);
 		List<KlassAttach> klassAttach = new HostBoardService().selectAttachList(klassNo);
-		
+
 		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassBoardUpdate.jsp");
-		request.setAttribute("klass", klass);
-		request.setAttribute("klassDate", klassDate);
-		request.setAttribute("klassAttach", klassAttach);
-		System.out.println("klass"+klass);
-		System.out.println("klassDate"+klassDate);
 		
+		 request.setAttribute("klass", klass); request.setAttribute("klassDate",
+		 klassDate); request.setAttribute("klassAttach", klassAttach);
+		 System.out.println("klass"+klass); System.out.println("klassDate"+klassDate);
+		 
+
 		view.forward(request, response);
-		
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
