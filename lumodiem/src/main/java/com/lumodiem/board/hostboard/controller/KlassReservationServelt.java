@@ -111,6 +111,9 @@ public class KlassReservationServelt extends HttpServlet {
 
         
         String orderId = String.valueOf(resPayment.getResNo());
+        Integer quantity = Integer.valueOf(resPayment.getResPpl());
+        Integer total_amount = Integer.valueOf((resPayment.getResPpl() * klassPayment.getKlassPrice()));
+        Integer tax_free_amount = Integer.valueOf(0);
 // 		요청 데이터 설정
 		JSONObject jsonParams = new JSONObject();
 		jsonParams.put("cid", CID);
@@ -119,10 +122,10 @@ public class KlassReservationServelt extends HttpServlet {
         jsonParams.put("partner_user_id", ac.getAccountId());
         session.setAttribute("partner_user_id", ac.getAccountId());
         jsonParams.put("item_name", klassPayment.getKlassName());
-        jsonParams.put("quantity", resPayment.getResPpl());
-        jsonParams.put("total_amount", (resPayment.getResPpl() * klassPayment.getKlassPrice()));
-        jsonParams.put("vat_amount", "0");
-        jsonParams.put("tax_free_amount", "0");
+        jsonParams.put("quantity", quantity);
+        jsonParams.put("total_amount", total_amount);
+//        jsonParams.put("vat_amount", "0");
+        jsonParams.put("tax_free_amount", tax_free_amount);
 //        jsonParams.put("approval_url", "http://localhost:8090/pay/approve");
 //        String approvalUrl = URLEncoder.encode("http://localhost:8090/pay/success", "UTF-8");
 //        String cancelUrl = URLEncoder.encode("http://localhost:8090/pay/cancel", "UTF-8");
