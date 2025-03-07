@@ -15,6 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 <link rel="stylesheet" href="<c:url value='/views/css/reviewComment.css'/>">
+<%-- <link rel="stylesheet" href="<c:url value='/views/css/reviewCmtTest.css'/>"> --%>
 <title>클래스 조회</title>
 <style>		
 </style>
@@ -167,7 +168,7 @@
 		<div class="create_comment_form">
 			<form name="create_comment_form" method="post">
 				<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
-				<%-- <input type="hidden" name="account_no" value="${review.accountNo }"> --%>
+				 <input type="hidden" name="account_no" value="${review.accountNo }">
 				<input type="hidden" name="review_no" value="${review.reviewNo }">
 				<!-- <input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요."> -->
 				<textarea class="review_cmt_txt" name="review_cmt_txt" placeholder="내용을 입력하세요."></textarea>
