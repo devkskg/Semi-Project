@@ -11,12 +11,13 @@
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 </head>
 <body>
-<%@ include file="/views/include/nav.jsp" %>
+<%-- <%@ include file="/views/include/nav.jsp" %> --%>
 	<div id="colorlib-main">
 		<section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">
+						<div class="row pt-md-4">
 <div class="review_list">			
 	<c:choose>
 		<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
@@ -55,14 +56,57 @@
 				</select>
 			</fieldset>	
 		</form>
-		<script>
-			const orderType = document.getElementById('order_type');
-			orderType.onchange = function(){
-				document.getElementById('searchFrm').submit();
-			}
-		</script>
 		
-		<table border="1">
+	<c:choose>
+		<c:when test="${not empty resultList }">
+			<c:forEach var="list" varStatus="vs" items="${resultList }">
+	<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
+	<div class="col-md-12 ">
+		<div class="blog-entry ftco-animate d-md-flex">
+		<c:choose>
+				<c:when test="${list.attachNo > 0}">
+			<a href="/reviewDetail?review_no=${list.reviewNo}" class="img img-2" style="display: flex;
+				justify-content: center; align-items: center; width: 244px; height: 244px; background-image: url();">
+			<img alt="사진" src="/filePath?attach_no=${list.attachNo}"
+			style="max-width: 100%; max-height: 100%;"></a>
+			
+			</c:when>
+			<c:otherwise>
+				<a href="/reviewDetail?review_no=${list.reviewNo}" class="img img-2" style="background-image: url();"><img alt="사진" src="" style="height: 244 px;"
+					 >NoImage</a>
+			</c:otherwise>
+		</c:choose>
+			
+			<div class="text text-2 pl-md-4">
+				<h3 class="mb-2"><a href="/reviewDetail?review_no=${list.reviewNo}">${list.reviewTxt}</a></h3>
+				<div class="meta-wrap">
+					<p class="meta">
+						<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
+						<span><a href="single.html"><i class="icon-heart mr-2" style="color: #FF4848;"></i>${list.reviewLikeCount}</a></span>
+					</p>
+				</div>
+				<p><a href="/reviewDetail?review_no=${list.reviewNo}" class="btn-custom">더 보기.. <span class="ion-ios-arrow-forward"></span></a></p>
+			</div>
+		</div>
+	</div>
+	<!-- 한 줄 끝! -->
+		
+			</c:forEach>
+		</c:when>
+	</c:choose>	
+</div>
+	<form>
+		<p>페이징 위치(중앙 정렬 할거임)</p>
+	</form>
+		
+		
+		
+		
+		
+		
+		
+		
+		<%-- <table border="1">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -92,26 +136,27 @@
 			</c:choose>
 		</tbody>
 	</table>
-</div>	
-<script>
-	$('.review_list tbody tr').click(function(){
-		const reviewNo = $(this).data('review-no');
-		location.href='/reviewDetail?review_no='+reviewNo;
-	})
-</script> 
-
-	
-	
-	
-	
-	
-	
-						<div class="row pt-md-4">
-					</div>
+</div>	--%>
+				</div>
 				</div>
 			</div>
 		</div>
 	</section>	
 </div>
+<script>
+	const orderType = document.getElementById('order_type');
+	orderType.onchange = function(){
+		document.getElementById('searchFrm').submit();
+	}
+</script>
+
+<!-- <script>
+	$('.review_list tbody tr').click(function(){
+		const reviewNo = $(this).data('review-no');
+		location.href='/reviewDetail?review_no='+reviewNo;
+	})
+</script> -->  
+
+<%@ include file="/views/include/nav.jsp" %>
 </body>
 </html>

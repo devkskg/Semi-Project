@@ -80,9 +80,9 @@ public class MemberBoardService {
 		session.close();
 		return klass;
 	}
-	public ReviewAttach selectNoImgReview(int reviewNo) {
+	public List<ReviewAttach> selectNoImgReview(int reviewNo) {
 		SqlSession session = getSqlSession();
-		ReviewAttach a = new MemberBoardDao().selectNoImgReview(session,reviewNo);
+		List<ReviewAttach> a = new MemberBoardDao().selectNoImgReview(session,reviewNo);
 		session.close();
 		return a;
 	}
