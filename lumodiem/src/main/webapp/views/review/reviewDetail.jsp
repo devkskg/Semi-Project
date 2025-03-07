@@ -14,7 +14,10 @@
 <!-- Bootstrap Bundle (JS + Popper.js) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<link rel="stylesheet" href="<c:url value='/views/css/reviewComment.css'/>">
 <title>클래스 조회</title>
+<style>		
+</style>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -108,33 +111,40 @@
 		    </div>
 		  </div>
 		</div>
-		<div class="reivew_cmt_list">
+		<div>
 		<form>
-			<table border="1">
-				<thead>
+			<table border="1" class="reivew_cmt_list">
+				<!-- <thead>
 					<tr>
 						<th>내용</th>
 						<th>닉네임</th>
 					</tr>
-				</thead>
-				<tbody>
+				</thead>-->
+				<tbody> 
 					<c:choose>
 						<c:when test="${not empty reviewCmt }">
 						
 							<c:forEach var="list" items="${reviewCmt }" varStatus="vs">
-							
+							<thead>
+									<tr>
+										<th colspan="2">${list.accountNickname}</th>
+										
+									</tr>
+								</thead>
+								<tbody>
 							<tr>
 								<td>
+									
 									<input type="hidden" class="review_cmt_no" value="${list.reviewCmtNo}">
 									<textarea class="review_cmt_txt" readonly="readonly" >${list.reviewCmtTxt}</textarea>
 								</td>
-								<td>
+								<%-- <td>
 									<input type="text" class="account_nickname" value="${list.accountNickname}" readonly="readonly">
-								</td>
+								</td> --%>
 								
 								<c:choose>
 									<c:when test="${list.accountNo eq account.accountNo}">
-										<td>
+										<td  class="mt-3 d-flex gap-2 justify-content-center">
 											<input class="a" type="button" value="수정">
 											<input type="button" class="delete_btn" value="삭제" style="display:none;">
 										</td>
@@ -159,7 +169,8 @@
 				<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 				<%-- <input type="hidden" name="account_no" value="${review.accountNo }"> --%>
 				<input type="hidden" name="review_no" value="${review.reviewNo }">
-				<input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요.">
+				<!-- <input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요."> -->
+				<textarea class="review_cmt_txt" name="review_cmt_txt" placeholder="내용을 입력하세요."></textarea>
 				<input type="button" id="create_comment" value="등록">
 			</form>
 		</div>
