@@ -16,6 +16,7 @@ import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.hostboard.vo.KlassMapping;
 import com.lumodiem.board.hostboard.vo.KlassReport;
+import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Reservation;
 import com.lumodiem.board.memberboard.vo.Review;
 
@@ -346,14 +347,22 @@ public class HostBoardService {
 		session.close();
 		return result;
 	}
-	
-//	예약 번호로 예약 정보 조회
-	public Reservation selectReservationOne(int resNo) {
+
+	public Reservation selectResNo(int resNo) {
 		SqlSession session = getSqlSession();
-		Reservation reservaion = new HostBoardDao().selectReservationOne(session,resNo);
+		Reservation reservation = new HostBoardDao().selectResNo(session,resNo);
 		session.close();
-		return reservaion;
+		return reservation;
 	}
+
+	public int cnclReservation(int resNo) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().cnclReservation(session,resNo);
+		commitRollback(session, result);
+		session.close();
+		return result;
+	}
+	
 //	결제 성공시 C -> R 변경
 	public int updateReservationOneCtoR(int resNo) {
 		SqlSession session = getSqlSession();
@@ -367,6 +376,13 @@ public class HostBoardService {
 		int result = new HostBoardDao().updateReservationOneRtoC(session,resNo);
 		commitRollback(result, session);
 		return result;
+	}
+//	예약 번호로 예약 정보 조회
+	public Reservation selectReservationOne(int resNo) {
+		SqlSession session = getSqlSession();
+		Reservation reservaion = new HostBoardDao().selectReservationOne(session,resNo);
+		session.close();
+		return reservaion;
 	}
 	
 }

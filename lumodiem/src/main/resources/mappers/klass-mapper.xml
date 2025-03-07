@@ -31,6 +31,7 @@
 		<result property="klassEnd" column="klass_end"/>
 		<result property="klassCount" column="klass_count"/>
 		<result property="klassMax" column="klass_max"/>
+		<result property="resNo" column="res_no"/>
 	</resultMap>
 	
 	<resultMap type="klassAttachVo" id="klassAttachMap">
@@ -368,12 +369,10 @@
 		WHERE account_no = #{accountNo}
 		AND klass_date_no = #{klassDateNo}
 	</select>
-	<!-- res_no로 예약 테이블 정보 조회 -->
-	<select id='selectReservationOne' resultMap="reservationMap" parameterType="reservationVo">
-		SELECT *
-		FROM `reservation`
-		WHERE res_no = #{resNo}
-	</select>
+	<delete id="cnclReservation" parameterType="reservationVo">
+		DELETE FROM `reservation`
+		WHERE res_no = #{resNo};
+	</delete>
 	<!-- 결제 성공시 C -> R 변경 -->
 	<update id="updateReservationOneCtoR" parameterType="_int">
 		UPDATE `reservation`
@@ -386,4 +385,10 @@
 		SET pay_status = 'C'
 		WHERE res_no = #{resNo}
 	</update>
+	<!-- res_no로 예약 테이블 정보 조회 -->
+	<select id='selectReservationOne' resultMap="reservationMap" parameterType="reservationVo">
+		SELECT *
+		FROM `reservation`
+		WHERE res_no = #{resNo}
+	</select>
 </mapper>
