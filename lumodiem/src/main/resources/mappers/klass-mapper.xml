@@ -31,6 +31,7 @@
 		<result property="klassEnd" column="klass_end"/>
 		<result property="klassCount" column="klass_count"/>
 		<result property="klassMax" column="klass_max"/>
+		<result property="resNo" column="res_no"/>
 	</resultMap>
 	
 	<resultMap type="klassAttachVo" id="klassAttachMap">
@@ -356,10 +357,11 @@
 	</select>
 	<!-- 클래스 예약 가능인원,클래스예약 최대인원 -->
 	<select id='klassCountByKlassMax' resultMap="klassDateMap" parameterType="klassDateVo">
-		SELECT d.* ,k.klass_max
+		SELECT d.* ,k.klass_max ,r.res_no
 		FROM `klass_date` d
 		JOIN `klass` k
 		ON d.klass_no = k.klass_no
+		JOIN `reservation` r ON r.klass_date_no = d.klass_date_no
 		WHERE d.klass_date_no = #{klassDateNo}
 	</select>
 	<select id='resSelect' resultMap="reservationMap" parameterType="reservationVo">
@@ -368,22 +370,10 @@
 		WHERE account_no = #{accountNo}
 		AND klass_date_no = #{klassDateNo}
 	</select>
-	<select id="selectResNo" resultMap="reservationMap" parameterType="_int">
-		SELECT *
-		FROM `reservation`
-		WHERE res_no = #{resNo}
-	</select>
 	<delete id="cnclReservation" parameterType="reservationVo">
 		DELETE `reservation`
 		WHERE res_no = #{resNo};
 	</delete>
-	<!-- res_no로 예약 테이블 정보 조회 -->
-	<select id='selectReservationOne' resultMap="reservationMap" parameterType="reservationVo">
-		SELECT *
-		FROM `reservation` 
-		WHERE klass_date_no = #{klassDateNo}
-		AND account_no = #{accountNo}
-	</select>
 	<!-- 결제 성공시 C -> R 변경 -->
 	<update id="updateReservationOneCtoR" parameterType="_int">
 		UPDATE `reservation`

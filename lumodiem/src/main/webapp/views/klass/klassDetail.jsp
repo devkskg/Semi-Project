@@ -406,8 +406,8 @@
 		}
 	});
 	
-	$(document).on('click','#cnclBtn',function(){
-		const resNo = "${reservation.resNo}";
+	/* $(document).on('click','#cnclBtn',function(){
+		const resNo = ${reservation.resNo};
 		// const kdn = "${reservation.klassDateNo}";
 		console.log(resNo);
 		const deleteCheck = confirm("예약 취소하시겠습니까?");
@@ -429,7 +429,7 @@
 			});
 		}
 		
-	});
+	}); */
 </script>
 
 	<script>

@@ -165,9 +165,6 @@ public class HostBoardDao {
 		return session.delete("klassMapper.cnclReservation",resNo);
 	}
 
-	public Reservation selectReservationOne(SqlSession session, int resNo) {
-		return session.selectOne("klassMapper.selectReservationOne",resNo);
-	}
 
 	public int updateReservationOneCtoR(SqlSession session, int resNo) {
 		return session.update("klassMapper.updateReservationOneCtoR",resNo);

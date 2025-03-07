@@ -29,7 +29,6 @@ public class KlassReservationServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String url = request.getContextPath() + "/";
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
@@ -39,21 +38,13 @@ public class KlassReservationServelt extends HttpServlet {
 		int klassDate = 0;
 		List<Reservation> res = null;
 		KlassDate option = KlassDate.builder().klassDateNo(klassDateNo).klassNo(klassNo).build();
+		System.out.println(option);
 		KlassDate kd = new HostBoardService().klassCountByKlassMax(option);
 		Account ac = null;
 		HttpSession session = request.getSession();
 		if(session != null && session.getAttribute("account") != null) {
 			ac = (Account)session.getAttribute("account");
 			accountNo = ac.getAccountNo();
-			
-//			System.out.println(request.getParameter("res_no"));
-//			int resNo = Integer.parseInt(request.getParameter("res_no"));
-//			System.out.println(resNo);
-//			Reservation RES = new HostBoardService().selectReservationOne(resNo);
-//			url= request.getContextPath() + "/views/klass/klassDetail.jsp";
-//			RequestDispatcher view = request.getRequestDispatcher(url);
-//			request.setAttribute("reservation", RES);
-//			view.forward(request, response);
 		}
 
 		// 예약테이블 account_no 랑 klass_date 테이블에서 account_no 랑 비교해서 같으면 예약X

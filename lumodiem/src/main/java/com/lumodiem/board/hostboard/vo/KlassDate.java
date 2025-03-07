@@ -23,5 +23,5 @@ public class KlassDate {
 	private String klassEnd;
 	private int klassCount;
 	private int klassMax;
-	
+	private int resNo;
 }
