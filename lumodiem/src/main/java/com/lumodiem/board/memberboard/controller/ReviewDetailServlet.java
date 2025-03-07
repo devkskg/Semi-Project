@@ -34,6 +34,7 @@ public class ReviewDetailServlet extends HttpServlet {
 		int totalLikeCount = 0;
 		int myLikeCount = 0;
 		ReviewLike reviewLike = null;
+		List<ReviewAttach> noImg = null;
 		List<ReviewCmt> reviewCmt = null;
 		if(session != null && session.getAttribute("account") != null) {
 			Account account = (Account)session.getAttribute("account");
@@ -41,7 +42,7 @@ public class ReviewDetailServlet extends HttpServlet {
 			System.out.println("리뷰넘버 : "+reviewNo);
 			Review review = null;
 			
-			ReviewAttach noImg = new MemberBoardService().selectNoImgReview(reviewNo);
+			noImg = new MemberBoardService().selectNoImgReview(reviewNo);
 			if(noImg == null) {
 				review = new MemberBoardService().selectReviewNo(reviewNo);
 				System.out.println("사진 없는 거 조회");
