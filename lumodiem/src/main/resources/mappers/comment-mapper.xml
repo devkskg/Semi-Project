@@ -18,6 +18,8 @@
 	<resultMap type="commentVo" id="commentMap">
 		<result property="reviewCmtNo" column="review_cmt_no"/>
 		<result property="accountNo" column="account_no"/>
+		
+		<result property="accountGrade" column="account_grade"/>
 		<result property="reviewNo" column="review_no"/>
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
@@ -29,6 +31,7 @@
 		<where>
 			review_no = #{reviewNo}
 		</where>
+		
 	</select>
 	
 	<select id="commentSelect" parameterType="commentVo" resultMap="commentMap">
