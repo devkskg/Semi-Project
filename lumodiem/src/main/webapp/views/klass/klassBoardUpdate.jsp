@@ -31,49 +31,51 @@
 <div class="klass_update">
 
 	<form action="" name="update_klass_form">
-		<fieldset>
-			<legend>게시글 수정</legend>
+		<fieldset style="align-content: center;">
+			<legend style="text-align: center;">게시글 수정</legend>
 			<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 					
-			<label for="klass_name">클래스명 : </label>
-			<input type="text" name="klass_name" id="klass_name" required value="${klass.klassName}"><br>
+			<label for="klass_name" style="width: 150px; text-align: center;">클래스명 : </label>
+			<input type="text" name="klass_name" id="klass_name" required value="${klass.klassName}" style="width: 600px;"><br>
 			
-			<label for="account_nickname">주최자명 :</label>
-			<input type="text" readonly value="${account.accountNickname}" name="account_nickname" id="account_nickname"><br>
+			<label for="account_nickname" style="width: 150px; text-align: center;">주최자명 :</label>
+			<input type="text" readonly value="${account.accountNickname}" name="account_nickname" id="account_nickname" style="width: 600px;"><br>
 			
-			<label for="klass_address">주소 : </label>
-			<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address"><br>
+			<label for="klass_address" style="width: 150px; text-align: center;">주소 : </label>
+			<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address" style="width: 600px;"><br>
 			
-			<label for="klass_date">날짜 : </label>
-			<input type=date name="klass_date" id="klass_date" required value="${fn:substring(klassDate[0].klassStart , 0, 10 )}"><br>
+			<label for="klass_date" style="width: 150px; text-align: center;">날짜 : </label>
+			<input type=date name="klass_date" id="klass_date" required value="${fn:substring(klassDate[0].klassStart , 0, 10 )}" style="width: 600px;"><br>
 			
-			<label for="klass_start">시작 : </label>
-			<input type="time" name="klass_start" id="klass_start" required value="${fn:substring(klassDate[0].klassStart , 11, 16 )}"><br>
+			<label for="klass_start" style="width: 150px; text-align: center;">시작 : </label>
+			<input type="time" name="klass_start" id="klass_start" required value="${fn:substring(klassDate[0].klassStart , 11, 16 )}" style="width: 600px;"><br>
 			
-			<label for="klass_end">종료 : </label>
-			<input type="time" name="klass_end" id="klass_end" required value="${fn:substring(klassDate[0].klassEnd , 11, 16 )}"><br>
+			<label for="klass_end" style="width: 150px; text-align: center;">종료 : </label>
+			<input type="time" name="klass_end" id="klass_end" required value="${fn:substring(klassDate[0].klassEnd , 11, 16 )}" style="width: 600px;"><br>
 			
-			<label for="klass_max">최대 참가인원 : </label>
+			<label for="klass_max" style="width: 150px; text-align: center;">최대 참가인원 : </label>
 			<input type="number" name="klass_max" id="klass_max" 
-			required placeholder="숫자만 입력해주세요." value="${klass.klassMax}"><br>
+			required placeholder="숫자만 입력해주세요." value="${klass.klassMax}" style="width: 600px;"><br>
 			
-			<label for="klass_price">수강료 : </label>
+			<label for="klass_price" style="width: 150px; text-align: center;">수강료 : </label>
 			<input type="number" required name="klass_price" id="klass_price" 
-			placeholder="숫자만 입력해주세요." value="${klass.klassPrice}"><br>
+			placeholder="숫자만 입력해주세요." value="${klass.klassPrice}" style="width: 600px;"><br>
 			
-			<label for="klass_txt">클래스 상세 내용</label><br>
-			<%-- <textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea> --%>
-			<div id="klass_txt"></div>
+		<!-- 	<label for="klass_txt">클래스 상세 내용</label><br> -->
+			<textarea name="klass_txt" id="klass_txt" required style="width: 600px;">${klass.klassTxt}</textarea>
+			<!-- <div id="klass_txt"></div> -->
 			
-			<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" value="${list.attachOri}"><br>
+			<!-- <input type="file" name="klass_file" accept=".png,.jpg,.jpeg" style="display: none;"><br> -->
 			<%-- <c:forEach var="list" items="${klassAttach }" varStatus="vs">
 				<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" value="${list.attachOri}"><br>
 			</c:forEach> --%>
-			<button type="button" id="updateBtn">수정하기</button>
 			<!-- <button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button> -->
 		
 		</fieldset>
+		<div class="mt-3 d-flex gap-2 justify-content-end">
+			<button type="button" id="updateBtn">수정하기</button>
+		</div>
 	
 	</form>
 

@@ -51,7 +51,7 @@
 					<label for="klass_txt">클래스 상세 내용</label><br>
 					<textarea name="klass_txt" id="klass_txt" required></textarea>
 					
-					<input type="file" name="klass_file" accept=".png,.jpg,.jpeg"><br>
+					<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" style="display: none;"><br>
 					
 					<button type="button" id="insertBtn">등록</button>					
 				</fieldset>
