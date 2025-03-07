@@ -15,6 +15,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 <title>클래스 조회</title>
+<style>
+	.review_cmt_txt{resize: none;
+					}
+</style>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
