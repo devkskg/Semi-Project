@@ -1,5 +1,7 @@
 package com.lumodiem.board.hostboard.controller;
 
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -11,7 +13,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,23 +21,33 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.board.hostboard.service.HostBoardService;
+import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.memberboard.vo.Reservation;
 
 @WebServlet("/klassReservation")
 public class KlassReservationServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	// 우리 어플리케이션 전용 REST_API_KEY
+	private static final String KAKAO_API_KEY = "DEV304A343721CE2DA5F9531A21BCB556C7C6F06";
+	// 테스트 CID(이렇게 써야 카카오에서 테스트 정보인지 확인 가능)
+    private static final String CID = "TC0ONETIME";
        
     public KlassReservationServelt() {
         super();
     }
 
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
 		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
@@ -44,7 +55,6 @@ public class KlassReservationServelt extends HttpServlet {
 		int klassDate = 0;
 		List<Reservation> res = null;
 		KlassDate option = KlassDate.builder().klassDateNo(klassDateNo).klassNo(klassNo).build();
-		System.out.println(option);
 		KlassDate kd = new HostBoardService().klassCountByKlassMax(option);
 		Account ac = null;
 		HttpSession session = request.getSession();
@@ -72,9 +82,10 @@ public class KlassReservationServelt extends HttpServlet {
 						}
 					}
 				}
-				if(count == 0) {
-					klassDate = new HostBoardService().reserveKlass(reservation);
-				} else {
+			}
+			if(count == 0) {
+				klassDate = new HostBoardService().reserveKlass(reservation);
+			} else {
 //				count 1인 경우 이미 같은 시간대 예약 했음.
 				}
 				
@@ -150,12 +161,64 @@ public class KlassReservationServelt extends HttpServlet {
 
 		    System.err.println("카카오페이 요청 실패 응답: " + errorResponse.toString());
 		    throw new RuntimeException("카카오페이 요청 실패! 응답 확인 필요.");
->>>>>>> refs/heads/develop
 		}
+//
+		
+		
+//      응답 받는 곳
+		StringBuilder sb = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        }
+        // JSON 응답 확인
+        System.out.println("카카오페이 응답 데이터: " + sb.toString());
+        
+        
+
+        JSONParser parser = new JSONParser();
+        JSONObject paymentResponse = null;
+
+        try {
+            paymentResponse = (JSONObject) parser.parse(sb.toString().trim());
+        } catch (ParseException e) {
+            System.err.println("JSON 파싱 오류: 응답 데이터를 확인하세요.");
+            e.printStackTrace();
+            throw new RuntimeException("카카오페이 응답 JSON 파싱 실패", e);
+        }
+        
+
+        // 결제 요청 후, 응답에서 TID 가져오기
+        // TID를 세션에 저장
+        // TID란 카카오 페이에서 받은 응답이다.
+        // TID가 있다? -> 결제 요청을 했다.
+        // 세션 || DB 저장 방법 중 세션 저장 방법을 선택했음.
+        // 성공시 변동하는 값인 TID 필요!
+        // TID 저장
+        String tid = (String) paymentResponse.get("tid");
+        if (tid != null) {
+            session.setAttribute("tid", tid);
+        } else {
+            throw new RuntimeException("카카오페이 결제 요청 실패: TID를 받을 수 없음.");
+        }
+		System.out.println("ready tid : " + tid);
+		
+		
+		
+		
+
+
+		
+		
+		
+		
 		JSONObject obj = new JSONObject();
+		obj.put("paymentResponse", paymentResponse);
 		if(klassDate > 0) {
 			obj.put("res_code","200");
-			obj.put("res_msg", "예약이 완료 되었습니다");
+			obj.put("res_msg", "예약 되었습니다. 결제를 진행합니다!");
 		}else {
 			obj.put("res_code","500");
 			obj.put("res_msg", "예약시도중 문제가 발생하였습니다.");
