@@ -117,7 +117,7 @@ public class HostBoardDao {
 	}
 	public int reserveKlassRes(SqlSession session, Reservation reservation) {
 		int result = session.insert("klassMapper.resKlassRes",reservation);
-		return result;
+		return reservation.getResNo();
 	}
 
 	public int countLikeByKlassNo(SqlSession session, int klassNo) {
@@ -163,6 +163,18 @@ public class HostBoardDao {
 
 	public int cnclReservation(SqlSession session, int resNo) {
 		return session.delete("klassMapper.cnclReservation",resNo);
+	}
+
+	public Reservation selectReservationOne(SqlSession session, int resNo) {
+		return session.selectOne("klassMapper.selectReservationOne",resNo);
+	}
+
+	public int updateReservationOneCtoR(SqlSession session, int resNo) {
+		return session.update("klassMapper.updateReservationOneCtoR",resNo);
+	}
+
+	public int updateReservationOneRtoC(SqlSession session, int resNo) {
+		return session.update("klassMapper.updateReservationOneRtoC",resNo);
 	}
 
 }
