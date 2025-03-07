@@ -43,6 +43,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 		<typeAlias type="com.lumodiem.board.hostboard.vo.Chat" alias="chatVo"/>
 		<typeAlias type="com.lumodiem.board.hostboard.vo.KlassReport" alias="klassReportVo"/>
+		
+		<typeAlias type="com.lumodiem.common.payment.vo.PaymentDTO" alias="paymentDTOVo"/>
 	</typeAliases>
 	
 	<!-- 연결하는 DB 설정 시작 -->
@@ -73,6 +75,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="/mappers/mypage-mapper.xml"/>
 		<mapper resource="/mappers/report-mapper.xml"/>
 		<mapper resource="/mappers/approve-mapper.xml"/>
+		<mapper resource="/mappers/payment-mapper.xml"/>
 		
 		<!-- 추가하려면 아래처럼 하면 좋다. -->
 		<!-- <mapper resource="/mappers/member-mapper.xml"/> -->

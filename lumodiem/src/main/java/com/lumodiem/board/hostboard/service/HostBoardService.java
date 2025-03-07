@@ -347,4 +347,26 @@ public class HostBoardService {
 		return result;
 	}
 	
+//	예약 번호로 예약 정보 조회
+	public Reservation selectReservationOne(int resNo) {
+		SqlSession session = getSqlSession();
+		Reservation reservaion = new HostBoardDao().selectReservationOne(session,resNo);
+		session.close();
+		return reservaion;
+	}
+//	결제 성공시 C -> R 변경
+	public int updateReservationOneCtoR(int resNo) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().updateReservationOneCtoR(session,resNo);
+		commitRollback(result, session);
+		return result;
+	}
+
+	public int updateReservationOneRtoC(int resNo) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().updateReservationOneRtoC(session,resNo);
+		commitRollback(result, session);
+		return result;
+	}
+	
 }
