@@ -29,7 +29,7 @@ public class KakaoPayApproveServlet extends HttpServlet {
         super();
     }
 //    	KAKAO_API_KEY, 
-	    private static final String SECRET_KEY = "DEV304A343721CE2DA5F9531A21BCB556C7C6F06"; // 카카오 REST API 키
+	    private static final String KAKAO_API_KEY = "DEV304A343721CE2DA5F9531A21BCB556C7C6F06"; // 카카오 REST API 키
 	    private static final String CID = "TC0ONETIME"; // 테스트용 CID
 	    private static final String APPROVE_URL = "https://open-api.kakaopay.com/online/v1/payment/approve";
 //	    private  String TID = "T1234567890123456789"; // 결제 요청 때 받은 tid 값 (DB에서 불러와야 함)
@@ -118,6 +118,7 @@ public class KakaoPayApproveServlet extends HttpServlet {
         System.out.println("partnerUserId :" + partnerUserId);
         System.out.println("pgToken :" + pgToken);
         if (tid == null || partnerOrderId == null || partnerUserId == null || pgToken == null) {
+        	System.out.println("4가지 항목 중 하나라도 null인 경우!");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "결제 승인에 필요한 정보가 없습니다.");
             return;
         }
@@ -128,52 +129,52 @@ public class KakaoPayApproveServlet extends HttpServlet {
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setRequestMethod("POST");
 //        conn.setRequestProperty("Authorization", "KakaoAK " + KAKAO_API_KEY);
-		conn.setRequestProperty("Authorization", "SECRET_KEY " + SECRET_KEY);
+		conn.setRequestProperty("Authorization", "SECRET_KEY " + KAKAO_API_KEY);
 
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-//        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+//		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);
 		
-        String params = "cid=TC0ONETIME"
-        	    + "&tid=" + tid
-        	    + "&partner_order_id=" + URLEncoder.encode(partnerOrderId, "UTF-8")
-        	    + "&partner_user_id=" + URLEncoder.encode(partnerUserId, "UTF-8")
-        	    + "&pg_token=" + pgToken;
-////      JSON에 요청 데이터를 넣기
-//        JSONObject jsonParams = new JSONObject();
-//        jsonParams.put("cid", CID);
-//        jsonParams.put("approve tid", tid);
-//        jsonParams.put("partner_order_id", partnerOrderId);
-//        jsonParams.put("partner_user_id", partnerUserId);
-//        jsonParams.put("pg_token", pgToken);
+//        String params = "cid=TC0ONETIME"
+//        	    + "&tid=" + tid
+//        	    + "&partner_order_id=" + URLEncoder.encode(partnerOrderId, "UTF-8")
+//        	    + "&partner_user_id=" + URLEncoder.encode(partnerUserId, "UTF-8")
+//        	    + "&pg_token=" + pgToken;
+//      JSON에 요청 데이터를 넣기
+        JSONObject jsonParams = new JSONObject();
+        jsonParams.put("cid", CID);
+        jsonParams.put("tid", tid);
+        jsonParams.put("partner_order_id", partnerOrderId);
+        jsonParams.put("partner_user_id", partnerUserId);
+        jsonParams.put("pg_token", pgToken);
         
-//        System.out.println("카카오페이 승인 요청 JSON 데이터: " + jsonParams.toJSONString());
+        System.out.println("카카오페이 승인 요청 JSON 데이터: " + jsonParams.toJSONString());
 //      카카오 페이 승인 응답 코드 확인
-        int responseCode = conn.getResponseCode();
-        System.out.println("카카오페이 승인 응답 코드: " + responseCode);
-        if (responseCode != 200) {
-        	BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-        	StringBuilder errorResponse = new StringBuilder();
-        	String errorLine;
-        	while ((errorLine = errorReader.readLine()) != null) {
-        		errorResponse.append(errorLine);
-        	}
-        	errorReader.close();
-        	
-        	System.err.println("카카오페이 승인 요청 실패 응답: " + errorResponse.toString());
-        	throw new RuntimeException("카카오페이 승인 요청 실패! 응답 확인 필요.");
-        	
-        }
+//        int responseCode = conn.getResponseCode();
+//        System.out.println("카카오페이 승인 응답 코드: " + responseCode);
+//        if (responseCode != 200) {
+//        	BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+//        	StringBuilder errorResponse = new StringBuilder();
+//        	String errorLine;
+//        	while ((errorLine = errorReader.readLine()) != null) {
+//        		errorResponse.append(errorLine);
+//        	}
+//        	errorReader.close();
+//        	
+//        	System.err.println("카카오페이 승인 요청 실패 응답: " + errorResponse.toString());
+//        	throw new RuntimeException("카카오페이 승인 요청 실패! 응답 확인 필요.");
+//        	
+//        }
         
 //      JSON 데이터 전송
-//        try (OutputStream os = conn.getOutputStream()) {
-//            os.write(jsonParams.toJSONString().getBytes("UTF-8"));
-//            os.flush();
-//        }
-        OutputStream os = conn.getOutputStream();
-        os.write(params.getBytes());
-        os.flush();
-        os.close();
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(jsonParams.toJSONString().getBytes("UTF-8"));
+            os.flush();
+        }
+//        OutputStream os = conn.getOutputStream();
+//        os.write(params.getBytes());
+//        os.flush();
+//        os.close();
         
         
         
@@ -207,9 +208,8 @@ public class KakaoPayApproveServlet extends HttpServlet {
             obj.put("approveResponse", approveResponse); 
         }
 
-        
 //      응답 데이터 반환
-        response.setContentType("application/json; charset=utf-8");
+        response.setContentType("application/json");
         response.getWriter().print(obj);
         
         
