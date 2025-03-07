@@ -21,41 +21,42 @@
 <div>
 	<form name="create_klass_form" action="">
 				<fieldset>
-					<legend>게시글</legend>
+					<legend style="text-align: center;">게시글</legend>
 					<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 					
-					<label for="klass_name">클래스명 : </label>
-					<input type="text" name="klass_name" id="klass_name" required><br>
+					<label for="klass_name" style="width: 150px; text-align: center;">클래스명 : </label>
+					<input type="text" name="klass_name" id="klass_name" required style="width: 600px;"><br>
 					
-					<label for="account_nickname">주최자명 :</label>
-					<input type="text" readonly value="${account.accountNickname}" name="account_nickname" id="account_nickname"><br>
+					<label for="account_nickname" style="width: 150px; text-align: center;">주최자명 :</label>
+					<input type="text" readonly value="${account.accountNickname}" name="account_nickname" id="account_nickname" style="width: 600px;"><br>
 					
-					<label for="klass_address">주소 : </label>
-					<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address"><br>
+					<label for="klass_address" style="width: 150px; text-align: center;">주소 : </label>
+					<input type="text" readonly value="${account.accountAddress}" name="klass_address" id="klass_address" style="width: 600px;"><br>
 					
-					<label for="klass_date">날짜 : </label>
-					<input type=date name="klass_date" id="klass_date" required><br>
+					<label for="klass_date" style="width: 150px; text-align: center;">날짜 : </label>
+					<input type=date name="klass_date" id="klass_date" required style="width: 600px;"><br>
 					
-					<label for="klass_start">시작 : </label>
-					<input type="time" name="klass_start" id="klass_start" required><br>
+					<label for="klass_start" style="width: 150px; text-align: center;">시작 : </label>
+					<input type="time" name="klass_start" id="klass_start" required style="width: 600px;"><br>
 					
-					<label for="klass_end">종료 : </label>
-					<input type="time" name="klass_end" id="klass_end" required><br>
+					<label for="klass_end" style="width: 150px; text-align: center;">종료 : </label>
+					<input type="time" name="klass_end" id="klass_end" required style="width: 600px;"><br>
 					
-					<label for="klass_max">최대 참가인원 : </label>
-					<input type="number" name="klass_max" id="klass_max" required placeholder="숫자만 입력해주세요."><br>
+					<label for="klass_max" style="width: 150px; text-align: center;">최대 참가인원 : </label>
+					<input type="number" name="klass_max" id="klass_max" required placeholder="숫자만 입력해주세요." style="width: 600px;"><br>
 					
-					<label for="klass_price">수강료 : </label>
-					<input type="number" required name="klass_price" id="klass_price" placeholder="숫자만 입력해주세요."><br>
+					<label for="klass_price" style="width: 150px; text-align: center;">수강료 : </label>
+					<input type="number" required name="klass_price" id="klass_price" placeholder="숫자만 입력해주세요." style="width: 600px;"><br>
 					
-					<label for="klass_txt">클래스 상세 내용</label><br>
+					<label for="klass_txt" style="width: 150px; text-align: center;">클래스 상세 내용</label><br>
 					<textarea name="klass_txt" id="klass_txt" required></textarea>
 					
-					<input type="file" name="klass_file" accept=".png,.jpg,.jpeg"><br>
+					<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" style="display: none;"><br>
 					
-					<button type="button" id="insertBtn">등록</button>					
 				</fieldset>
-			
+				<div class="mt-3 d-flex gap-2 justify-content-end">
+					<button type="button" id="insertBtn">등록</button>					
+				</div>
 	</form>
 </div>
 	
@@ -144,7 +145,7 @@
 			}
 		});
 		 $('#klass_txt').summernote({
-			  width: 900,           // 가로 크기
+			  width: 800,           // 가로 크기
 		      height: 400,          // 높이 설정
 		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
 		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스
