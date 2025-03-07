@@ -19,6 +19,7 @@ public class KakaoPayFailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pay/fail.jsp");
+        System.out.println("/pay/fail");
         dispatcher.forward(request, response);
 	}
 
