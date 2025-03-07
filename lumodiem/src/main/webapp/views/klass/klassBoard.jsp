@@ -85,7 +85,7 @@
 						
 					</p>
 				</div>
-				<p class="mb-4">${list.klassTxt }</p>
+				<%-- <p class="mb-4">${list.klassTxt }</p> --%>
 				<p><a href="/klassDetail?klass_no=${list.klassNo}" class="btn-custom">더 보기..<span class="ion-ios-arrow-forward"></span></a></p>
 			</div>
 		</div>
