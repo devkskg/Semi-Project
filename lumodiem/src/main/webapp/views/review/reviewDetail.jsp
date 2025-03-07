@@ -128,7 +128,7 @@
 							<thead>
 									<tr>
 										<th colspan="2">${list.accountNickname}</th>
-										<%-- <th>${list.accountGrade }</th> --%>
+										
 									</tr>
 								</thead>
 								<tbody>
