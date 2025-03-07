@@ -31,7 +31,7 @@
 <div class="klass_update">
 
 	<form action="" name="update_klass_form">
-		<fieldset style="align-content: center;">
+		<fieldset>
 			<legend style="text-align: center;">게시글 수정</legend>
 			<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
@@ -66,17 +66,18 @@
 			<textarea name="klass_txt" id="klass_txt" required style="width: 600px;">${klass.klassTxt}</textarea>
 			<!-- <div id="klass_txt"></div> -->
 			
-			<!-- <input type="file" name="klass_file" accept=".png,.jpg,.jpeg" style="display: none;"><br> -->
+			 <input type="file" name="klass_file" accept=".png,.jpg,.jpeg" style="display: none;">
 			<%-- <c:forEach var="list" items="${klassAttach }" varStatus="vs">
 				<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" value="${list.attachOri}"><br>
 			</c:forEach> --%>
 			<!-- <button type="button" id="deleteBtn" onclick="deleteKlass();">삭제하기</button> -->
+			<!-- <div class="mt-3 d-flex gap-2 justify-content-end"></div> --> <!-- 버튼 위치 조정하려고 밑에 따로 담아 옮겼는데 수정 안먹혀 -->
+			
 		
 		</fieldset>
 		<div class="mt-3 d-flex gap-2 justify-content-end">
-			<button type="button" id="updateBtn">수정하기</button>
+				<button type="button" id="updateBtn">수정하기</button>
 		</div>
-	
 	</form>
 
 </div>	
@@ -138,7 +139,7 @@
 		});
 		
 	    $('#klass_txt').summernote({
-	    	width: 900,           // 가로 크기
+	    	width: 800,           // 가로 크기
 		      height: 400,          // 높이 설정
 		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
 		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스
