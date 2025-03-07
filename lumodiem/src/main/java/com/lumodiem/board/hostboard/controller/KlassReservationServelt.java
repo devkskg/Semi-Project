@@ -31,7 +31,7 @@ public class KlassReservationServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		
+		int resNo = Integer.parseInt(request.getParameter("res_no"));
 		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
 		int resPpl = Integer.parseInt(request.getParameter("res_ppl"));
 		int klassNo = Integer.parseInt(request.getParameter("klass_no"));
@@ -50,14 +50,15 @@ public class KlassReservationServelt extends HttpServlet {
 		// 예약테이블 account_no 랑 klass_date 테이블에서 account_no 랑 비교해서 같으면 예약X
 		
 		Reservation reservation = Reservation.builder()
+				.resNo(resNo)
 				.klassDateNo(klassDateNo)
 				.resPpl(resPpl)
 				.accountNo(accountNo)
 				.build();
 		
-//		request.setAttribute("reservation", reservation);
-//		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassDetail.jsp");
-//		view.forward(request, response);
+		request.setAttribute("reservation", reservation);
+		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassDetail.jsp");
+		view.forward(request, response);
 		
 		int count = 0;
 		LocalDateTime klassTimeStart =  LocalDateTime.parse(kd.getKlassStart(),dtf);

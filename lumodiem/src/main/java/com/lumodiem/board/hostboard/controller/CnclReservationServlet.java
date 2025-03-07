@@ -25,7 +25,7 @@ public class CnclReservationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int resNo = Integer.parseInt(request.getParameter("res_no"));
-		int klassDateNo = Integer.parseInt(request.getParameter("klass_date_no"));
+		int klassDateNo = Integer.parseInt(request.getParameter("kdn"));
 		int accountNo = 0;
 		int result = 0;
 		KlassDate option = KlassDate.builder().klassDateNo(klassDateNo).build();

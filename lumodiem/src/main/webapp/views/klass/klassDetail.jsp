@@ -182,14 +182,15 @@
 				<span id="minusSpan">➖</span>
 				<span id="numberSpan">1</span>
 				<span id="plusSpan">➕</span>
-			<c:choose>
-				<c:when test="${reservation == null or reservation.resNo == null}">
+			<%-- <c:choose>     결제 되면 예약취소로
+				<c:when test="${reservation.pay_status eq 'C'}"> --%>
 				<button type="button" id="resBtn" name="resBtn">예약하기</button>
-				</c:when>
-				<c:otherwise>
 		            <button type="button" id="cnclBtn" name="cnclBtn">예약취소</button>
+				<%-- </c:when>
+				<c:otherwise>
 				</c:otherwise>
-			</c:choose>
+			</c:choose> --%>
+			
 			</c:when>
 		</c:choose>
 			<%-- <c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}"> --%>
@@ -396,6 +397,31 @@
 				}
 			});
 		}
+	});
+	
+	$(document).on('click','#cnclBtn',function(){
+		const resNo = "${reservation.resNo}";
+		const kdn = "${reservation.klassDateNo}";
+		console.log(resNo)
+		console.log(kdn)
+		
+		const deleteCheck = confirm("예약 취소하시겠습니까?");
+		if(deleteCheck){
+			$.ajax({
+				url:"/cnclReservation",
+				type:"post",
+				data:{"res_no" : resNo ,"kdn" : kdn},
+				dataType:"json",
+				success:function(data){
+					alert(data.res_msg);
+					if(data.res_code == "200"){
+						location.href="/klassBoardList";
+					} else{
+						location.href='/';
+					}
+			});
+		}
+		
 	});
 </script>
 
