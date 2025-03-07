@@ -139,11 +139,11 @@
 		
 	});
 	
-	
+/* 	
 	
 	const updateReviewForm = function(){
 		let form = document.update_review_form;
-	}
+	} */
 </script>
 </div>
 
