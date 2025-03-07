@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +54,11 @@ public class KlassReservationServelt extends HttpServlet {
 				.resPpl(resPpl)
 				.accountNo(accountNo)
 				.build();
+		
+//		request.setAttribute("reservation", reservation);
+//		RequestDispatcher view = request.getRequestDispatcher("/views/klass/klassDetail.jsp");
+//		view.forward(request, response);
+		
 		int count = 0;
 		LocalDateTime klassTimeStart =  LocalDateTime.parse(kd.getKlassStart(),dtf);
 		res = new HostBoardService().resSelect(reservation);
