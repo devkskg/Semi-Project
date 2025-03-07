@@ -27,6 +27,7 @@
 		<result property="klassName" column="klass_name"/>
 		<result property="accountNickname" column="account_nickname"/>
 		<result property="klassTxt" column="klass_txt"/>
+		<result property="reportKlassTxt" column="report_klass_txt"/>
 		
 
 		<result property="klassAddress" column="klass_address"/>
@@ -55,7 +56,7 @@
 		<result property="attachNo" column="attach_no"/>
 		<result property="attachPath" column="attach_path"/>
 		
-		
+		<result property="reportReviewTxt" column="report_review_txt"/>
 		
 	</resultMap>
 	<resultMap type="reportReviewCmtVo" id="reportReviewCmtMap">
@@ -67,6 +68,7 @@
 		<result property="reviewName" column="review_name"/>
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 		<result property="accountNickname" column="account_nickname"/>
+		<result property="reportReviewCmtTxt" column="report_review_cmt_txt"/>
 	</resultMap>
 	
 	<delete id="deleteReportReviewCmt" parameterType="_int">
@@ -80,6 +82,7 @@
 	SELECT rc.review_cmt_txt
 	,a.account_nickname
 	,rrc.review_cmt_no
+	,rrc.report_review_cmt_txt
 	FROM `report_review_cmt` rrc
 	JOIN `review_cmt` rc
 	ON rrc.review_cmt_no = rc.review_cmt_no
@@ -129,6 +132,7 @@
 	SELECT r.*
 	,a.account_nickname
 	,rr.report_review_no
+	,rr.report_review_txt
 	FROM `report_review` rr
 	JOIN `review` r
 	ON rr.review_no = r.review_no
@@ -178,6 +182,7 @@
 
 			SELECT k.*
 			,a.account_nickname
+			,kr.report_klass_txt
 			FROM `klass_report` kr 
 			JOIN `klass` k 
 			ON kr.klass_no = k.klass_no

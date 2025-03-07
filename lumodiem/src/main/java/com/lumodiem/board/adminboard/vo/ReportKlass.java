@@ -20,7 +20,7 @@ public class ReportKlass {
 	private int reportKlassNo;
 	private int klassNo;
 	private int accountNo;
-	
+	private String reportKlassTxt;
 	// 클래스 신고 내역 참조용
 	private String klassName;
 	private String accountNickname;

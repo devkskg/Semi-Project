@@ -8,8 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
-<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<%-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script> --%>
+<!-- summer note -->
+<!-- <script src="/js/summernote-lite.js"></script>
+<script src="/js/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> -->
+<!-- summer note -->
 </head>
+
+
+
 <body>
 <%@ include file="/views/include/nav.jsp" %>
 <div id="colorlib-main">
@@ -53,7 +63,8 @@
 			placeholder="숫자만 입력해주세요." value="${klass.klassPrice}"><br>
 			
 			<label for="klass_txt">클래스 상세 내용</label><br>
-			<textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea>
+			<%-- <textarea name="klass_txt" id="klass_txt" required >${klass.klassTxt}</textarea> --%>
+			<div id="klass_txt"></div>
 			
 			<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" value="${list.attachOri}"><br>
 			<%-- <c:forEach var="list" items="${klassAttach }" varStatus="vs">
@@ -67,7 +78,7 @@
 	</form>
 
 </div>	
-<script type="text/javascript">
+<script>
 	$(function(){
 		const form = document.update_klass_form;
 		const klassNo = '${klass.klassNo}';
@@ -122,11 +133,28 @@
 					});
 				}
 			}
-			
-			
-			
-		})
-	})
+		});
+		
+	    $('#klass_txt').summernote({
+	    	width: 900,           // 가로 크기
+		      height: 400,          // 높이 설정
+		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
+		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스
+		      lang: 'ko-KR',        // 한국어 설정 (lang 파일 필요)
+		      toolbar: [
+		        // 툴바 그룹/버튼 구성
+		        ['groupName', ['list of button']],
+		        ['insert', ['picture']],
+		        ['style', ['fontname']],
+		        ['fontname', ['fontname']],
+		        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+		        ['color', ['color', 'backcolor']],
+		        ['para', ['ul', 'ol', 'paragraph']],
+		        ['height', ['height']],
+		        ['view', ['fullscreen', 'codeview', 'help']]
+		      ]
+		});
+	});
 	
 
 

@@ -36,7 +36,8 @@
 				<thead>
 					<tr>		
 						<th>내용</th>			
-						<th>닉네임</th>			
+						<th>닉네임</th>	
+						<th>신고 사유</th>		
 					</tr>
 				</thead>
 				<tbody>
@@ -46,6 +47,7 @@
 								<tr>
 									<td>${list.reviewCmtTxt}</td>
 									<td>${list.accountNickname }</td>
+									<td>${list.reportReviewCmtTxt }</td>
 									<td><button type='button' data-review-cmt-no="${list.reviewCmtNo }">삭제</button></td>
 								</tr>
 							</c:forEach>
