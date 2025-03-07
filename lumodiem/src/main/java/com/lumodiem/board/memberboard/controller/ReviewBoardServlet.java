@@ -9,7 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.lumodiem.account.vo.Account;
+import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.vo.Review;
 
@@ -43,6 +46,8 @@ public class ReviewBoardServlet extends HttpServlet {
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewBoard.jsp");
 		view.forward(request, response);
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
