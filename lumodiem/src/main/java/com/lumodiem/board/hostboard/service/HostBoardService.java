@@ -358,7 +358,7 @@ public class HostBoardService {
 	public int cnclReservation(int resNo) {
 		SqlSession session = getSqlSession();
 		int result = new HostBoardDao().cnclReservation(session,resNo);
-//		commitRollback(session, result);
+		commitRollback(session, result);
 		session.close();
 		return result;
 	}
@@ -376,6 +376,13 @@ public class HostBoardService {
 		int result = new HostBoardDao().updateReservationOneRtoC(session,resNo);
 		commitRollback(result, session);
 		return result;
+	}
+//	예약 번호로 예약 정보 조회
+	public Reservation selectReservationOne(int resNo) {
+		SqlSession session = getSqlSession();
+		Reservation reservaion = new HostBoardDao().selectReservationOne(session,resNo);
+		session.close();
+		return reservaion;
 	}
 	
 }

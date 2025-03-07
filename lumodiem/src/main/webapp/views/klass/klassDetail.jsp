@@ -189,7 +189,6 @@
 				<c:otherwise>
 				</c:otherwise>
 			</c:choose> --%>
-			
 			</c:when>
 		</c:choose>
 			<%-- <c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H'}"> --%>
@@ -300,6 +299,7 @@
 		</div>
 	</section>
 </div>
+
  <script>
 		$('.btn-primary').click(function(){
 			const klassNo = ${klass.klassNo};
@@ -402,34 +402,38 @@
 			    const urlParams = new URLSearchParams(window.location.search);
 			    return urlParams.get("pg_token");
 			} */
-			
+		
 		}
 	});
 	
-	/* $(document).on('click','#cnclBtn',function(){
-		const resNo = ${reservation.resNo};
-		// const kdn = "${reservation.klassDateNo}";
-		console.log(resNo);
-		const deleteCheck = confirm("예약 취소하시겠습니까?");
-		if(deleteCheck){
-			$.ajax({
-				url:"/cnclReservation",
-				type:"post",
-				data:{"res_no" : resNo},
-				dataType:"json",
-				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-				success:function(data){
-					alert(data.res_msg);
-					if(data.res_code == "200"){
-						location.href="/klassBoardList";
-					} else{
-						location.href='/';
-					}
+	
+	
+</script>
+<script>
+$(document).on('click','#cnclBtn',function(){
+	const resNumber = ${res_no};
+	// const kdn = "${reservation.klassDateNo}";
+	console.log(resNumber);
+	const deleteCheck = confirm("예약 취소하시겠습니까?");
+	if(deleteCheck){
+		$.ajax({
+			url:"/cnclReservation",
+			type:"post",
+			data:{"res_no" : resNumber},
+			dataType:"json",
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			success:function(data){
+				alert(data.res_msg);
+				if(data.res_code == "200"){
+					location.href="/klassBoardList";
+				} else{
+					location.href='/';
 				}
-			});
-		}
-		
-	}); */
+			}
+		});
+	}
+	
+}); 
 </script>
 
 	<script>

@@ -173,5 +173,7 @@ public class HostBoardDao {
 	public int updateReservationOneRtoC(SqlSession session, int resNo) {
 		return session.update("klassMapper.updateReservationOneRtoC",resNo);
 	}
-
+	public Reservation selectReservationOne(SqlSession session, int resNo) {
+		return session.selectOne("klassMapper.selectReservationOne",resNo);
+	}
 }
