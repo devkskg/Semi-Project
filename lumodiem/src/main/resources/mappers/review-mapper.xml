@@ -107,6 +107,7 @@
 			AND a.account_nickname LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
 	</where>
+	
 	<if test='orderType != null and orderType.equals("x") == false'>
 		<choose>
 			<when test='orderType.equals("b") == true'>
@@ -119,11 +120,12 @@
 				ORDER BY r.review_reg_date DESC
 			</otherwise>
 		</choose>
+	</if>
 	<if test="orderType == null or orderType.equals('x') == true">
 		ORDER BY r.review_reg_date DESC
 	</if>
-	</if>
 	</select>
+	
 	<select id="reviewOne" resultMap="reviewMap" parameterType="_int">
 		SELECT r.*, a.account_nickname, ra.attach_no ,ra.attach_path
 		FROM `review` r
