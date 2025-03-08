@@ -19,9 +19,21 @@
 					<div class="col-xl-8 py-5 px-md-5">
 						<div class="row pt-md-4">
 <div class="review_list">			
+		<form action="<c:url value='/reviewBoard'/>" method="post" id="searchFrm">
+			<fieldset>		
+				<legend>정렬하기</legend>
+				<select name="order_type" id="order_type">
+					<option value="x">정렬하기</option>
+					<option value="a">최신순</option>
+					<option value="b">오래된순</option>
+					<option value="c">좋아요순</option>
+				</select>
+			</fieldset>	
 	<c:choose>
 		<c:when test="${account.accountGrade eq 'M' or account.accountGrade eq 'H' or account.accountGrade eq 'A'}">
-		<button type="button" class="selectBtn" name="insert">
+		<button type="button" class="selectBtn" name="insert"
+		style="background-color: #FFD1DC; background: linear-gradient(to bottom, #FFD1DC, #F9BFCB);
+        border: 1px solid #F9BFCB; color: #444444; font-weight: 700;">
 			<a href="<c:url value='/insertReviewPage'/>">리뷰 게시글 추가</a>
 		</button>
 		</c:when>
@@ -36,27 +48,7 @@
 			</script>
 		</c:otherwise> --%>
 	</c:choose>
-	
-		<form action="<c:url value='/reviewBoard'/>" method="post" id="searchFrm">
-			<select name="search_type" id="search_type">
-				<option value="0">선택</option>			
-				<option value="1">리뷰제목</option>			
-				<option value="2">닉네임</option>			
-				<option value="3">내용</option>			
-			</select>
-			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
-			<button name="searchBtn" id="searchBtn">검색</button>
-			<fieldset>		
-				<legend>정렬하기</legend>
-				<select name="order_type" id="order_type">
-					<option value="x">정렬하기</option>
-					<option value="a">최신순</option>
-					<option value="b">오래된순</option>
-					<option value="c">좋아요순</option>
-				</select>
-			</fieldset>	
 		</form>
-		
 	<c:choose>
 		<c:when test="${not empty resultList }">
 			<c:forEach var="list" varStatus="vs" items="${resultList }">
@@ -99,51 +91,31 @@
 	<form>
 		<p>페이징 위치(중앙 정렬 할거임)</p>
 	</form>
+	<div style="text-align: center; margin-top: 20px;">
+		<form action="<c:url value='/reviewBoard'/>" method="post" id="searchFrm" style="display: inline-block;">
+			<select name="search_type" id="search_type">
+				<option value="0">선택</option>			
+				<option value="1">리뷰제목</option>			
+				<option value="2">닉네임</option>			
+				<option value="3">내용</option>			
+			</select>
+			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
+			<button name="searchBtn" id="searchBtn" 
+			style="background-color: #7AA0CB; background: linear-gradient(to bottom, #8BB4D8, #7AA0CB);
+			 border: 1px solid #6b8eb6; color: #444444; font-weight: 700;">
+			 검색
+			</button>
+		</form>
+	</div>
 		
-		
-		
-		
-		
-		
-		
-		
-		<%-- <table border="1">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>내용</th>
-				<th>닉네임</th>
-			</tr>
-	</thead>
-		<tbody>
-			<c:choose>
-				<c:when test="${not empty resultList }">
-					<c:forEach items="${resultList}" var="rb" varStatus="vs">
-						<tr data-review-no="${rb.reviewNo}">
-							<td><c:out value="${vs.count}" /></td>
-							<td><c:out value="${rb.reviewName}" /></td>
-							<td><c:out value="${rb.reviewTxt}" /></td>
-							<td><c:out value="${rb.accountNickname}"/></td>
-						</tr>
-						
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="4">자료없음!</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</tbody>
-	</table>
-</div>	--%>
-				</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>	
 </div>
+	
+
 <script>
 	const orderType = document.getElementById('order_type');
 	orderType.onchange = function(){

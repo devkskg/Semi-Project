@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>⭐리뷰 게시글 추가⭐</title>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+
+
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -21,7 +23,7 @@
 	<div>
 		<form action="<c:url value='/insertReviewPageEnd'/>" method="post" name="create_review_form" enctype="multipart/form-data">	
 			<fieldset>
-				<legend>리뷰 작성</legend>
+				<legend style="text-align: center;">리뷰 작성</legend>
 				<select name="res_no">
 				<!-- 2. jsp 에서 홈화면 보내는 방법  -->
 					<c:choose>
@@ -36,28 +38,19 @@
 					</c:choose>
 				</select> 
 				<br>
-				<label for="review_name">게시글 제목 : </label>
-				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요."><br>
-				<label for="review_txt">내용 : </label><br>
+				<label for="review_name" style="width: 150px; text-align: center;">게시글 제목 : </label>
+				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요." style="width : 600px;"><br>
+				
 				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
+				
 				<input type="hidden" name="account_no" value="${account.accountNo}">
 				
-				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
-				<button type="button" id="insertBtn">작성하기</button>
-				<c:choose>
-					<c:when test="${not empty klass}">
-						<p>
-						<c:forEach var="li" items="${klass}" varStatus="vs">
-							클래스 제목 : ${li.klassName }					
-						</c:forEach>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<p style="color: red;">예약 정보가 없습니다.</p>
-					</c:otherwise>
-				</c:choose>
-		
+				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"  style="display: none;"><br>
 			</fieldset>
+				<div class="mt-3 d-flex gap-2 justify-content-end">	
+				<button type="button" id="insertBtn" style="background-color: #E8DAEF; color: #4A235A;">작성하기</button>
+				</div>		
+			
 		</form>	
 	</div>		
 <script>
@@ -130,9 +123,8 @@
 				
 			}
 		});
-		// summernote 동작
 		$('#review_txt').summernote({
-			  width: 900,           // 가로 크기
+			  width: 800,           // 가로 크기
 		      height: 400,          // 높이 설정
 		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
 		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스

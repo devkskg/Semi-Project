@@ -26,12 +26,11 @@
 			<input type="hidden" name="account_no" value="${account.accountNo}">
 			
 			<label for="review_name">게시글 제목 : </label>
-			<input type="text" name="review_name" id="review_name" required value="<c:out value='${review.reviewName}'/>"><br>
+			<input type="text" name="review_name" id="review_name" required value="<c:out value='${review.reviewName}'/>"  style="width : 600px;"><br>
 			
 			<label>작성자 : </label>
-			<input type="text" name="nickName" id="nickName" readonly value="${review.accountNickname}"><br>
+			<input type="text" name="nickName" id="nickName" readonly value="${review.accountNickname}"  style="width : 600px;"><br>
 			
-			<label for="review_txt">내용 : </label>
 			<textarea name="review_txt" id="review_txt"  placeholder="수정하실 내용을 입력하세요."><c:out value='${review.reviewTxt }'/></textarea><br>
 			
 			<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
@@ -116,7 +115,7 @@
 	
 		// summernote 동작
 		$('#review_txt').summernote({
-			  width: 900,           // 가로 크기
+			  width: 800,           // 가로 크기
 		      height: 400,          // 높이 설정
 		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
 		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스
