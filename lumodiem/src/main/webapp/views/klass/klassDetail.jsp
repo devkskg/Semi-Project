@@ -394,7 +394,7 @@
 					}
 				},
 				error : function(a, b, c){
-					alert('결제 요청 중 오류 발생' + "a: " + a + ", b: " + b + ", c:" + c);
+					alert('예약 중 오류가 발생했습니다.');
 				}
 			});
 			/* // URL에서 pg_token 추출
