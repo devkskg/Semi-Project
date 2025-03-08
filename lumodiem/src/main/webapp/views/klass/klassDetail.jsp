@@ -33,7 +33,7 @@
             <h3 style="text-align: center; margin-bottom: 20px;">클래스 상세 정보</h3>
             <div class="klass_detail"
               style="
-                max-width: 60%; 
+                max-width: 100%; 
                 margin: 0 auto; 
                 border: 1px solid #ddd; 
                 border-radius: 10px; 
@@ -65,7 +65,23 @@
 
               <ul style="list-style: none; padding: 0;">
                 <li style="text-align: center; margin-bottom: 20px;">
-                  이미지칸
+                  <c:choose>
+					<c:when test="${not empty klassAttach }">
+						<c:forEach var="list" varStatus="vs" items="${klassAttach }">
+						<%-- <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2" style="display: flex; 
+				          justify-content: center; align-items: center; width: 244px; height: 244px; background-image: url();"> --%>
+				          <img alt="사진" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" 
+				          style="max-width: 100%; max-height: 100%;" >
+				         <!--  </a> -->
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<%-- <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2" style="background-image: url();"> --%>
+						<img alt="사진" src="" style="height: 244 px;">
+							NoImage
+						<!-- </a> -->
+					</c:otherwise>
+				</c:choose>
                 </li>
                 <li>
                   <table style="width: 100%; border-collapse: collapse;">
@@ -77,11 +93,11 @@
                       <th style="font-weight: bold; padding: 8px;">주최자</th>
                       <td style="padding: 8px;">${klass.accountNickname}</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
+                   <%--  <tr style="border-bottom: 1px solid #ddd;">
                       <th style="font-weight: bold; padding: 8px;">내용</th>
                       <td style="padding: 8px;">${fn:substring(klass.klassTxt,0,5)}</td>
                       <!-- 전체 내용: ${klass.klassTxt} -->
-                    </tr>
+                    </tr> --%>
                     <tr style="border-bottom: 1px solid #ddd;">
                       <th style="font-weight: bold; padding: 8px;">일정</th>
                       <td style="padding: 8px;">
@@ -223,7 +239,7 @@
             <!-- 🚨 신고 버튼 끝 -->
 
             <!-- 리뷰 목록 -->
-            <div style="width: 100%; max-width: 700px; margin: 20px auto; 
+            <div style="width: 100%; max-width: 100%; margin: 20px auto; 
                         border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
               <form>
                 <table class="review_by_klass_list"
@@ -291,6 +307,7 @@
        style="
          border: 2px solid #D1B5E0;  /* 원하는 파스텔 보라 테두리 */
          border-radius: 10px;       /* 둥근 모서리 */
+         box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
        ">
 
     <!-- 카드 헤더 (진한 보라) -->
