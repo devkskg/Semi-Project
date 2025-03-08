@@ -23,11 +23,11 @@ public class MypageDao {
 		return session.selectList("mypageMapper.selectReviewListByHostAccountNo", option);
 	}
 
-	public List<KlassLike> selectKlassLikeByAccountNo(SqlSession session, Klass option) {
+	public List<Klass> selectKlassLikeByAccountNo(SqlSession session, Klass option) {
 		return session.selectList("mypageMapper.selectKlassLikeByAccountNo", option);
 	}
 
-	public List<ReviewLike> selectReviewLikeByAccountNo(SqlSession session, Klass option) {
+	public List<Review> selectReviewLikeByAccountNo(SqlSession session, Klass option) {
 		return session.selectList("mypageMapper.selectReviewLikeByAccountNo", option);
 	}
 

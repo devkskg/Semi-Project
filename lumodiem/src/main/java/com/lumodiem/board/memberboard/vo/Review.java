@@ -34,5 +34,6 @@ public class Review {
 	private int reviewLikeCount;
 	private String searchTxt;
 	private String searchType;
+	private String klassNo;
 }
 
