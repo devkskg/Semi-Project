@@ -28,12 +28,12 @@
      
       color: #333;
       padding: 8px 16px;
-      border-radius: 12px; /* 둥글기 정도 조절 */
+      border-radius: 8px; /* 둥글기 정도 조절 */
       cursor: pointer;
       transition: background-color 0.2s ease;
       margin-right: 8px; /* 버튼 간격 */
-      font-weight: 600;
-      padding: 6px 16px;
+      font-weight: 500;
+      padding: 3px 10px;
       cursor: pointer;
       text-shadow: 0 1px 0 rgba(255,255,255,0.8),
                    0 1px 2px rgba(0,0,0,0.2);
@@ -61,10 +61,10 @@
 
       /* 테두리: 차콜색 or 연한 차콜 */
       border: 1px solid #2c3e50;
-      border-radius: 12px;
+      border-radius: 7px;
 
       /* 안쪽 여백 + 크기 조절 */
-      padding: 6px 12px;
+      padding: 3px 10px;
       cursor: pointer;
 
       /* 약간의 입체감(그림자) 주고 싶다면 */
@@ -120,9 +120,10 @@
 				 <button type="button" id="insertBtn" name="insertBtn"
               		onclick="location.href='/klassBoardCreate'" class="btn-pastel" 
               		style="background-color: #FFD1DC; background: linear-gradient(to bottom, #FFD1DC, #F9BFCB);
-              		border: 1px solid #F9BFCB; color: #444444; font-weight: 700;">
+              		border: 1px solid #F9BFCB; color: #333333; font-weight: 550;"> 
 		        	작성하기
 		      	</button>
+		      	<!-- #FFFFFF 화이트 -->
 			</c:when>
 			
 		</c:choose>
@@ -250,7 +251,7 @@
 				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 				<button name="searchBtn" id="searchBtn" class="btn-pastel" 
 					style="background-color: #7AA0CB; background: linear-gradient(to bottom, #8BB4D8, #7AA0CB);
-					 border: 1px solid #6b8eb6; color: #444444; font-weight: 700;">
+					 border: 1px solid #6b8eb6; color: #444444; font-weight: 550;">
 					검색
 				</button>
 		</form>
