@@ -28,7 +28,13 @@
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 	<%-- <script src="<c:url value='/js/google-map.js'/>"></script> --%>
 	<script src="<c:url value='/js/main.js'/>"></script>
-	<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>   
+	<script src="<c:url value='/views/jquery-3.7.1.js'/>"></script> 
+	  
+	  
+	  
+	  
+	  
+	  
 	<!-- Bootstrap 5 CSS (CDN) -->
 	<link rel="stylesheet"
 	      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
@@ -44,6 +50,38 @@
 	<script
 	    src="<c:url value='/css/summernote/summernote-bs5.min.js'/>">
     </script>
+    <!-- Bootstrap 4 CSS (CDN) -->
+	<%-- <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+	<!-- Bootstrap 4 JS (CDN) -->
+	<script type="text/javascript"
+   		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js">
+	</script>
+
+	<!-- Summernote (BS4 버전) CSS/JS (로컬) -->
+	<link rel="stylesheet"
+      href="<c:url value='/css/summernote/summernote-bs4.min.css'/>">
+	<script
+ 		src="<c:url value='/css/summernote/summernote-bs4.min.js'/>">
+	</script> --%>
+	
+	<!-- 부트스트랩 4 CSS -->
+	<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	부트스트랩 4 JS
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+	섬머노트 CSS
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+	섬머노트 JS
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> -->
+	
+    
+    
+    
+    
+    
+    
+    
     </head>
     
     <body>
@@ -61,7 +99,7 @@
 			<c:import url="${nav}"/> --%>
 			<!-- c태그 이상시 아래의 include 태그 활성화 -->
 			<%-- <%@ include file="/views/include/nav.jsp" %> --%>
-			<nav id="colorlib-main-menu" role="navigation">
+		<nav id="colorlib-main-menu" role="navigation">
 	<ul>
 		<li class="colorlib-active">
 			<a href="/">홈</a>

@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>클래스 상세조회</title>
 
+<link rel="stylesheet" href="<c:url value='/chatcss/chat.css'/>">
+
 <!-- jQuery (조금 최신 버전) -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -621,8 +623,9 @@
 
   // 채팅 전송 (버튼)
   $(document).on('click', '#sendBtn', function(){
-    let klassAccountNo = "${account.accountNo}";
+    let klassAccountNo = "${klass.accountNo}";
     let chatTxt = $('#sendInput').val();
+    $('#chatStartBtn').hide();
     if(chatTxt == ''){
       alert('메세지를 입력해주세요!');
       return;
