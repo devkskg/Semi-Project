@@ -40,7 +40,7 @@
 	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
 	}
 	.mypage-box {
-	    background-color: #FFFFEF;  /* 연한 살구색 */
+	    /* background-color: #FFFFEF; */  /* 연한 살구색 */
 	    border: 1px solid #E6B0AA;  /* 은은한 로즈 컬러 테두리 */
 	    border-radius: 10px;
 	    padding: 20px;
