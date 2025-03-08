@@ -80,7 +80,7 @@
 			<div class="container">
 				<div class="row d-flex">
 				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-				        <div class="mypage-box" style="max-width: 80%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
+				        <div class="mypage-box" style="max-width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
 				            <h3 class="text-primary text-center mb-4">
 				            	<c:choose>
 									<c:when test="${approveCode eq 'A' }">
@@ -115,7 +115,9 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-													<div>해당되는 게시글이 존재하지 않습니다.</div>
+													<tr>
+														<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+													</tr>
 												</c:otherwise>
 											</c:choose>							        
 								        </tbody>

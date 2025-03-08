@@ -98,7 +98,11 @@
 																	</ul>
 																	</c:when>
 																	<c:otherwise>
-																		<div>리뷰가 없습니다.</div>
+																		<ul>
+																			<li>
+																				리뷰가 없습니다.
+																			</li>
+																		</ul>
 																	</c:otherwise>
 																</c:choose>
 												        	</td>
@@ -107,7 +111,9 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-													<div>개설된 클래스가 존재하지 않습니다.</div>
+													<tr>
+														<td colspan="3">개설된 클래스가 존재하지 않습니다.</td>
+													</tr>
 												</c:otherwise>
 											</c:choose>							        
 								        </tbody>

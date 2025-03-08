@@ -75,7 +75,7 @@
 			<div class="container">
 				<div class="row d-flex">
 				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-				        <div class="mypage-box" style="max-width: 60%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
+				        <div class="mypage-box" style="max-width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
 				            <h3 class="text-primary text-center mb-4">마이페이지</h3>
 							<ul class="list-group mb-4">
 							    

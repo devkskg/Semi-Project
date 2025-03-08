@@ -53,6 +53,7 @@
 		<result property="reviewCmtNo" column="review_cmt_no"/>
 		<result property="accountNo" column="account_no"/>
 		<result property="reviewNo" column="review_no"/>
+		<result property="reviewName" column="review_name"/>
 		<result property="reviewCmtTxt" column="review_cmt_txt"/>
 	</resultMap>
 	<resultMap type="klassDateVo" id="klassDateMap">
@@ -134,9 +135,10 @@
 	
 	<!-- review_cmt 테이블 -> 호스트 회원 번호 기준으로 리뷰 댓글 조회  -->
 	<select id="selectReviewCmtListByAccountNo" resultMap="reviewCmtMap" parameterType="klassVo">
-		SELECT *
-		FROM `review_cmt`
-		WHERE account_no = ${accountNo}
+		SELECT c.*, r.review_name
+		FROM `review_cmt`c
+		JOIN `review` r ON c.review_no = r.review_no
+		WHERE c.account_no = ${accountNo}
 	</select>
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->

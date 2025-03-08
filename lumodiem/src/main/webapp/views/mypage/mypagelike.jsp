@@ -61,7 +61,7 @@
 			<div class="container">
 				<div class="row d-flex">
 				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-				        <div class="mypage-box" style="max-width: 80%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
+				        <div class="mypage-box" style="max-width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
 				            <h3 class="text-primary text-center mb-4">
 									좋아요 클래스 목록
 				            </h3>
@@ -88,7 +88,9 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-													<div>좋아요를 누른 클래스가 없습니다.</div>
+													<tr>
+														<td colspan="3">좋아요를 누른 클래스가 없습니다.</td>
+													</tr>
 												</c:otherwise>
 											</c:choose>							        
 								        </tbody>
@@ -104,7 +106,7 @@
 		    	
 				<div class="row d-flex">
 				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-				        <div class="mypage-box" style="max-width: 80%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
+				        <div class="mypage-box" style="max-width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
 				            <h3 class="text-primary text-center mb-4">
 									좋아요 리뷰 목록
 				            </h3>
@@ -129,7 +131,9 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-													<div>좋아요 누른 리뷰가 없습니다.</div>
+													<tr>
+														<td colspan="3">좋아요를 누른 리뷰가 없습니다.</td>
+													</tr>
 												</c:otherwise>
 											</c:choose>							        
 								        </tbody>
