@@ -50,7 +50,7 @@
   table {
     width: 100%;
     border-collapse: collapse;  /* 테두리 겹침 제거 */
-    background-color: var(--base-200);
+    /* background-color: var(--base-200); */
     margin: 16px 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     border: 1px solid var(--border-color);
@@ -145,7 +145,9 @@
 
 <!-- 페이지 제목  -->
 <h3 style="text-align: center; margin-bottom: 20px;">승인 대기 클래스 목록</h3>
-<div class="approve_list">
+<!-- <div class="approve_list"> --> <!-- 지울지 말지 이따 보자 -->
+	
+<div style="text-align: center; margin-top: 20px;">	
 	<!-- 정렬하기 + 작성하기 (한 줄 정렬) -->
 	<!-- approve 가 아니라 arreoveList는 뭔데....오타 이거 고쳐야해 말아야해 -->
 	<form action="/arreoveList" id="arrangeKlass" name="arrangeKlass"
@@ -157,119 +159,55 @@
 			<option value="b">오래된순</option>
 		</select>
 	</form>
-	
+</div>	
 	<!-- 대기중인 클래스 목록 -->
-	
-	
-	<!-- 썸네일 사진 부분 -->
-<c:choose>
-	<c:when test="${not empty resultList }">
-		<c:forEach var="list" varStatus="vs" items="${resultList }">
-			<div class="col-md-12">
-				<div class="blog-entry ftco-animate d-md-flex">
-					<c:choose>
-						<c:when test="${list.attachNo > 0}">		
-							<a href="/klassDetail?klass_no=${list.klassNo}"
-									class="img img-2"
-									style="display: flex; justify-content: center; align-items: center;
-									width: 244px; height: 244px;">
-								<img alt="사진"
-								     src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}"
-								style="max-width: 100%; max-height: 100%;">
-							</a>
-						</c:when>
-						<c:otherwise>
-							<a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2"
-								style="width: 244px; height: 244px;">
-							  	NoImage
-							</a>
-                        </c:otherwise>
-					</c:choose>
-	<!-- 클래스 제목 등, 목록 -->
-				<div class="text text-2 pl-md-4">
-					<h3 class="mb-2">
-						<a href="/klassDetail?klass_no=${list.klassNo}">
-						 	${list.klassName}
-						</a>
-					</h3>
-			 		<div class="meta-wrap">
-						<p class="meta">
-							<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
-								<c:choose>
-									<c:when test="${not empty list.dateList }">
-										<c:forEach var="d" items="${list.dateList }">
-											<span><i class="icon-users mr-2"></i>${d.klassCount}명/${list.klassMax}명</span>
-										</c:forEach>
-									</c:when>
-									<c:otherwise>
-										<span>미정</span>
-									</c:otherwise>
-								</c:choose>
-							<span>
-								<a href="single.html">
-									<i class="icon-heart mr-2" style="color: #FF4848;"></i>
-										${list.klassLikeCount}
-								</a>
-							 </span> 
-						</p>  
-		             </div>  
-						<p>
-						  <a href="/klassDetail?klass_no=${list.klassNo}" class="btn-custom" 
-						 	style="text-decoration: none; color: #724AA9">
-						    더 보기..
-						    <span class="ion-ios-arrow-forward"></span>
-						  </a>
-						</p> 
-		            </div>
-				</div>
-			</div>
-		</c:forEach>
-	</c:when>
-	<c:otherwise>
-	  <p>해당 게시글이 없습니다.</p>
-	</c:otherwise>
-</c:choose>  
-	
-	<%-- <form>
-		<table border="1">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>클래스명</th>			
-				<th>닉네임</th>			
-				<th>내용</th>			
-			</tr>
-		</thead>
+<div class="approve_list" style="width: 100%; max-width: 100%; margin: 20px auto; 
+                        border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
+	<form>
+		<table class="report_klass_list" style="
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0 5px;
+				text-align: center;
+				border: 1px solid #ddd;">
+			<thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
+				<tr style="border-bottom: 1px solid #ddd; text-align: center;">
+					<th style="width: 60px; padding: 8px; text-align: center;">No.</th>
+					<th style="width: 300px; padding: 8px; text-align: center;">클래스명</th>			
+					<th style="width: 100px; padding: 8px; text-align: center;">닉네임</th>			
+					<!-- <th>내용</th>	 -->		
+				</tr>
+			</thead>
 			<tbody>
-				<tr data-klass-no="${list.klassNo }">
-					<td>${vs.count}</td>
-					<td>${list.klassName}</td>
-					<td>${list.accountNickname}</td>
-					<td>${list.klassTxt }</td>
-				</tr>
-				</c:forEach>
-				
-				</c:when>
-				<c:otherwise>
-				<tr>
-					<td colspan="4">해당되는 게시글이 존재하지 않습니다.</td>
-				</tr>
-		
-			</c:otherwise>
-	
-		</c:choose>
-			
+				<c:choose>	
+					<c:when test="${not empty resultList }">
+						<c:forEach var="list" varStatus="vs" items="${resultList }">
+							<tr data-klass-no="${list.klassNo }" style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+								<td style="padding: 8px;">${vs.count}</td>
+								<td style="padding: 8px;">${list.klassName}</td>
+								<td style="padding: 8px;">${list.accountNickname}</td>
+								<%-- <td>${list.klassTxt }</td> --%>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+							<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			</tbody>
-		
 		</table>
-	</form> --%>
+	</form>
+</div>
+
 				
 <!-- 페이징 위치 예시 -->
 <form>
   <p style="text-align: center;">페이징 위치</p>
 </form>		
 				
-		 <!-- 검색 (한 줄 정렬) -->
+<!-- 검색 (한 줄 정렬) -->
 <div style="text-align: center; margin-top: 20px;">		
 	<form action="/arreoveList" id="searchApproveList" method="post"
 			class="inline-form-group"
@@ -286,11 +224,7 @@
 </div>
 	
 	
-	
-	
-	
-	
-						</div><!-- .approve_list -->
+						<!-- </div> --><!-- .approve_list -->
 					</div> <!-- .row pt-md-4 -->
 				</div> <!-- .col-xl-8 -->
 			</div> <!-- .row d-flex -->

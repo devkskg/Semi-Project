@@ -140,96 +140,102 @@
 				<div class="row d-flex">
 					<div class="col-xl-8 py-5 px-md-5">
 						<div class="row pt-md-4">
-	<!-- 페이지 제목  -->
-	<h3 style="text-align: center; margin-bottom: 20px;">신고된 리뷰 댓글 목록</h3>						
-		<!-- 선택 / 검색하기 -->	
-	<div style="text-align: center; margin-top: 20px;">	
-		
-		<form action="<c:url value='/reportReviewCmt'/>" id="search_report_klass" method="post"
-			class="inline-form-group" style="display: inline-flex;">
-				<select name="search_type" id="search_type">
-					<option value="0">선택</option>					
-					<option value="1">닉네임</option>			
-					<option value="2">내용</option>			
-				</select>
-				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
-				<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
-		</form>
-	</div>
+
+
+<!-- 페이지 제목  -->
+<h3 style="text-align: center; margin-bottom: 20px;">신고된 리뷰 댓글 목록</h3>						
+
 	
 	<!-- 신고된 리뷰 댓글 목록 출력 부분 -->
-	<div class="report_review_cmt_list" style="width: 100%; max-width: 100%; margin: 20px auto; 
-                        border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
-	
-		<form>
-				<table class="report_review_cmt_list" style="
-                    width: 100%;
-                    border-collapse: separate;
-                    border-spacing: 0 5px;
-                    text-align: center;
-                    border: 1px solid #ddd;">
-					
-					<thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
-						<tr style="border-bottom: 1px solid #ddd; text-align: center;">		
-							<th style="width: 300px; padding: 8px; text-align: center;">내용</th>			
-							<th style="width: 100px; padding: 8px; text-align: center;">닉네임</th>	
-							<th style="width: 60px; padding: 8px; text-align: center;">신고 사유</th>		
-						</tr>
-					</thead>
-					<tbody>
-						<c:choose>
-							<c:when test="${not empty resultList }">
-								<c:forEach var="list" varStatus="vs" items="${resultList }">
-									<tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
-										<td style="padding: 8px;">${list.reviewCmtTxt}</td>
-										<td style="padding: 8px;">${list.accountNickname }</td>
-										<td style="padding: 8px;">${list.reportReviewCmtTxt }</td>
-										<td style="padding: 8px;"><button type='button' data-review-cmt-no="${list.reviewCmtNo }">삭제</button></td>
-									</tr>
-								</c:forEach>
-							
-							</c:when>
-							<c:otherwise>
+<div class="report_review_cmt_list" style="width: 100%; max-width: 100%; margin: 20px auto; 
+                       border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
+	<form>
+			<table class="report_review_cmt_list" style="
+                   width: 100%;
+                   border-collapse: separate;
+                   border-spacing: 0 5px;
+                   text-align: center;
+                   border: 1px solid #ddd;">
+				
+				<thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
+					<tr style="border-bottom: 1px solid #ddd; text-align: center;">		
+						<th style="width: 300px; padding: 8px; text-align: center;">내용</th>			
+						<th style="width: 100px; padding: 8px; text-align: center;">닉네임</th>	
+						<th style="width: 60px; padding: 8px; text-align: center;">신고 사유</th>		
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${not empty resultList }">
+							<c:forEach var="list" varStatus="vs" items="${resultList }">
 								<tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
-									<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+									<td style="padding: 8px;">${list.reviewCmtTxt}</td>
+									<td style="padding: 8px;">${list.accountNickname }</td>
+									<td style="padding: 8px;">${list.reportReviewCmtTxt }</td>
+									<td style="padding: 8px;"><button type='button' data-review-cmt-no="${list.reviewCmtNo }">삭제</button></td>
 								</tr>
-							
-							</c:otherwise>
+							</c:forEach>
 						
-						</c:choose>
-					</tbody>
-				</table>
-		</form>
-	</div>
-						</div>
+						</c:when>
+						<c:otherwise>
+							<tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+								<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+							</tr>
+						
+						</c:otherwise>
+					
+					</c:choose>
+				</tbody>
+			</table>
+	</form>
+</div>
+	
+	<!-- 페이징 위치 -->
+	<form style="text-align: center;">페이징 위치</form>
+	
+<!-- 선택 / 검색하기 -->	
+<div style="text-align: center; margin-top: 20px;">	
+
+	<form action="<c:url value='/reportReviewCmt'/>" id="search_report_klass" method="post"
+			class="inline-form-group" style="display: inline-flex;">
+		<select name="search_type" id="search_type">
+			<option value="0">선택</option>					
+			<option value="1">닉네임</option>			
+			<option value="2">내용</option>			
+		</select>
+		<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
+		<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
+	</form>
+</div>	
+						
+						
 					</div>
 				</div>
 			</div>
-		</section>
-	</div>
-	<script>
-		
+		</div>
+	</section>
+</div>
+<script>
  		 
  		 $('.report_review_cmt_list tbody button').click(function(){
  			if(confirm("삭제하시겠습니까?")){
  				const reportReviewCmtNo = $(this).data('review-cmt-no');
-				
  				
- 			$.ajax({
-				url : "/deleteReportReviewCmt",
-				type : "post",
-				data : {"review_cmt_no":reportReviewCmtNo},
-				dataType : "JSON",
-				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-				
-				success:function(data){
-					alert(data.res_msg);
+	 			$.ajax({
+					url : "/deleteReportReviewCmt",
+					type : "post",
+					data : {"review_cmt_no":reportReviewCmtNo},
+					dataType : "JSON",
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 					
-					if(data.res_code==200){
-						location.href="";
+					success:function(data){
+						alert(data.res_msg);
+						
+						if(data.res_code==200){
+							location.href="";
+						}
 					}
-				}
-			});
+				});
  			}else{
  				
  			}
