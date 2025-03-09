@@ -47,7 +47,7 @@
                   <div style="text-align: right; margin-bottom: 10px;">
                     <a href="/klassBoardUpdate?klass_no=${klass.klassNo}" style="text-decoration: none;">
                       <button type="button" id="updateBtn" name="updateBtn"
-                        style="background: #E8DAEF; color: white; border: none; 
+                        style="background: #D1B5E0; color: white; border: none; 
                                padding: 8px 12px; border-radius: 5px; cursor: pointer;">
                         수정
                       </button>
@@ -84,7 +84,7 @@
 				</c:choose>
                 </li>
                 <li>
-                  <table style="width: 100%; border-collapse: collapse;">
+                  <table style="width: 100%; border-collapse: collapse; ">
                     <tr style="border-bottom: 1px solid #ddd;">
                       <th style="font-weight: bold; padding: 8px;">클래스명</th>
                       <td style="padding: 8px;">${klass.klassName}</td>
@@ -158,7 +158,7 @@
                               <span id="numberSpan">1</span>
                               <span id="plusSpan">➕</span>
                               <button type="button" id="resBtn" name="resBtn"
-                                style="background-color: #E8DAEF; color: #2c3e50; border: 1px solid #d1c2dd; 
+                                style="background-color: #D1B5E0; color: #2c3e50; border: 1px solid #d1c2dd; 
                                        border-radius: 8px; padding: 8px 16px; cursor: pointer;">
                                 예약하기
                               </button>
@@ -248,9 +248,9 @@
                     border-collapse: separate;
                     border-spacing: 0 5px;
                     text-align: center;
-                    border: 1px solid #ddd;
-                  ">
-                  <thead style="border-bottom: 2px solid #aaa; background-color: #E8F7DC;">
+                    border: 1px solid #ddd;">
+                    
+                  <thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
                     <tr style="border-bottom: 1px solid #ddd;">
                       <th style="width: 60px; padding: 8px;">No.</th>
                       <th style="width: 200px; padding: 8px;">제목</th>
@@ -262,7 +262,7 @@
                     <c:choose>
                       <c:when test="${not empty review}">
                         <c:forEach var="list" items="${review}" varStatus="vs">
-                          <tr style="background-color: #F8FFEF; border-bottom: 1px solid #ddd;">
+                          <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
                             <td style="padding: 8px;">${vs.count}</td>
                             <td style="padding: 8px;">${list.reviewName}</td>
                             <td style="padding: 8px;">${list.accountNickname}</td>
@@ -271,7 +271,7 @@
                         </c:forEach>
                       </c:when>
                       <c:otherwise>
-                        <tr style="background-color: #F8FFEF; border-bottom: 1px solid #ddd;">
+                        <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
                           <td colspan="4" style="padding: 8px;">
                             작성된 리뷰가 없습니다.
                           </td>
