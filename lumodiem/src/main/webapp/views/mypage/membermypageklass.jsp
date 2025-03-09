@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,8 +89,8 @@
 								        	<th>No.</th>
 								        	<th>클래스명</th>
 								        	<th>닉네임</th>
-								        	<th>시작시간</th>
-								        	<th>종료시간</th>
+								        	<th>날짜</th>
+								        	<th>장소</th>
 								        </tr>
 											<c:choose>
 												<c:when test="${not empty afterKlassList }">
@@ -97,8 +100,12 @@
 															<td>${vs.count}</td>
 															<td>${list1.klassName}</td>
 															<td>${list1.accountNickname}</td>
-															<td>${list1.klassStart }</td>
-															<td>${list1.klassEnd }</td>
+															<td>
+															    <c:if test="${not empty list1.klassStart}">
+															        ${fn:substring(list1.klassStart, 0, 10)}
+															    </c:if>
+														    </td>
+															<td>${list1.klassAddress }</td>
 															
 												        </tr>
 													</c:forEach>
@@ -129,8 +136,8 @@
 								        	<th>No.</th>
 								        	<th>클래스명</th>
 								        	<th>닉네임</th>
-								        	<th>시작시간</th>
-								        	<th>종료시간</th>
+								        	<th>날짜</th>
+								        	<th>장소</th>
 								        </tr>
 											<c:choose>
 												<c:when test="${not empty beforeKlassList }">
@@ -140,8 +147,12 @@
 															<td>${vs.count}</td>
 															<td>${list2.klassName}</td>
 															<td>${list2.accountNickname}</td>
-															<td>${list2.klassStart }</td>
-															<td>${list2.klassEnd }</td>
+															<td>
+															    <c:if test="${not empty list2.klassStart}">
+															        ${fn:substring(list2.klassStart, 0, 10)}
+															    </c:if>
+														    </td>
+															<td>${list2.klassAddress }</td>
 															
 												        </tr>
 													</c:forEach>

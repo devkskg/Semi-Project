@@ -103,7 +103,7 @@
 						
 						        <label for="account_pw">새로운 비밀번호 :</label>
 						        <div style="position: relative; margin-bottom: 10px;">
-						            <input name="account_pw" id="account_pw" type="password" 
+						            <input placeholder="3~15자리 문자, 숫자, 특수문자 사용 가능합니다." name="account_pw" id="account_pw" type="password" 
 						                   style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 						            <ion-icon id="openEye" class="eye" name="eye-off-outline" 
 						                      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
@@ -111,12 +111,12 @@
 						        </div>
 						
 						        <label for="account_pw_check">비밀번호 확인 :</label>
-						        <input name="account_pw_check" id="account_pw_check" type="password" 
+						        <input placeholder="비밀번호를 한번 더 입력해주세요." name="account_pw_check" id="account_pw_check" type="password" 
 						               style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 						
 						        <label for="account_nickname">닉네임 :</label>
 						        <div style="display: flex; margin-bottom: 10px;">
-						            <input name="account_nickname" id="account_nickname" type="text"
+						            <input placeholder="2~15자리 영문자, 한글, 숫자 사용 가능합니다." name="account_nickname" id="account_nickname" type="text"
 						                   value="${account.accountNickname}" 
 						                   style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 						            <button type="button" id="duplicate_nickname" 
@@ -126,7 +126,7 @@
 						
 						        <label for="account_phone">전화번호 :</label>
 						        <div style="display: flex; margin-bottom: 10px;">
-						            <input name="account_phone" id="account_phone" type="text"
+						            <input placeholder="하이픈(-)을 제외한 숫자를 입력해주세요." name="account_phone" id="account_phone" type="text"
 						                   value="${account.accountPhone}" 
 						                   style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 						            <button type="button" id="duplicate_phone" 
@@ -146,7 +146,7 @@
 			                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 						
 						        <label for="account_email">이메일 :</label>
-						        <input name="account_email" id="account_email" type="text"
+						        <input placeholder="이메일을 입력해주세요." name="account_email" id="account_email" type="text"
 						               value="${account.accountEmail}" 
 						               style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 						

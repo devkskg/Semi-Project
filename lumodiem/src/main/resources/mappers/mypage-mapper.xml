@@ -143,7 +143,7 @@
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
 	<select id="selectReservationKlassListByAccountNo" resultMap="klassMap" parameterType="klassVo">
-		SELECT k.*, a.account_nickname, d.*
+		SELECT k.*, a.account_nickname, d.*, k.klass_address
 		FROM `reservation` r
 		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no

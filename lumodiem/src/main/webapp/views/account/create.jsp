@@ -118,44 +118,44 @@
 	
 	                    <label for="account_id">아이디 :</label>
 	                    <div style="display: flex; margin-bottom: 10px;">
-	                        <input name="account_id" id="account_id" type="text" 
+	                        <input placeholder="3~15자리의 영문자와 숫자 사용 가능합니다." name="account_id" id="account_id" type="text" 
 	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 	                        <button type="button" id="duplicate_id" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
 	                    </div>
 	
 	                    <label for="account_pw">비밀번호 :</label>
 	                    <div style="position: relative; margin-bottom: 10px;">
-	                        <input name="account_pw" id="account_pw" type="password" 
+	                        <input placeholder="3~15자리 문자, 숫자, 특수문자 사용 가능합니다." name="account_pw" id="account_pw" type="password" 
 	                               style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 	                        <ion-icon id="openEye" class="eye" name="eye-off-outline" 
 	                                  style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></ion-icon>
 	                    </div>
 	
 	                    <label for="account_pw_check">비밀번호 확인 :</label>
-	                    <input name="account_pw_check" id="account_pw_check" type="password"
+	                    <input placeholder="비밀번호를 한번 더 입력해주세요." name="account_pw_check" id="account_pw_check" type="password"
 	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 	
 	                    <label for="account_name">이름 :</label>
-	                    <input name="account_name" id="account_name" type="text"
+	                    <input placeholder="이름을 입력해주세요." name="account_name" id="account_name" type="text"
 	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 	
 	                    <label for="account_nickname">닉네임 :</label>
 	                    <div style="display: flex; margin-bottom: 10px;">
-	                        <input name="account_nickname" id="account_nickname" type="text"
+	                        <input placeholder="2~15자리 영문자, 한글, 숫자 사용 가능합니다." name="account_nickname" id="account_nickname" type="text"
 	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 	                        <button type="button" id="duplicate_nickname" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
 	                    </div>
 	
 	                    <label for="account_ssn">주민등록번호 :</label>
 	                    <div style="display: flex; margin-bottom: 10px;">
-	                        <input name="account_ssn" id="account_ssn" type="text"
+	                        <input placeholder="하이픈(-)을 제외한 숫자를 입력해주세요." name="account_ssn" id="account_ssn" type="text"
 	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 	                        <button type="button" id="duplicate_ssn" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
 	                    </div>
 	
 	                    <label for="account_phone">전화번호 :</label>
 	                    <div style="display: flex; margin-bottom: 10px;">
-	                        <input name="account_phone" id="account_phone" type="text"
+	                        <input placeholder="하이픈(-)을 제외한 숫자를 입력해주세요." name="account_phone" id="account_phone" type="text"
 	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
 	                        <button type="button" id="duplicate_phone" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
 	                    </div>
@@ -172,7 +172,7 @@
 	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 	
 	                    <label for="account_email">이메일 :</label>
-	                    <input name="account_email" id="account_email" type="email" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	                    <input placeholder="이메일을 입력해주세요." name="account_email" id="account_email" type="email" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
 	
 	                    <div class="d-flex justify-content-between mt-4">
 	                        <button type="button" id="submitBtn" class="btn btn-outline-primary" style="width: 48%;">가입하기</button>
