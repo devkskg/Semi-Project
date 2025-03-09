@@ -30,7 +30,6 @@
           <div class="row pt-md-4">
 
             <!-- ====== 클래스 상세 정보 ====== -->
-            <h3 style="text-align: center; margin-bottom: 20px;">클래스 상세 정보</h3>
             <div class="klass_detail"
               style="
                 max-width: 100%; 
@@ -40,6 +39,7 @@
                 padding: 20px; 
                 box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
               ">
+            <h3 style="text-align: center; margin-bottom: 20px;">클래스 상세 정보</h3>
 
               <!-- 수정/삭제 버튼 (조건부) -->
               <c:choose>

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록 조회</title>
+<title>Report Klass</title>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
 <style>
   /* ================================
@@ -144,8 +144,7 @@
 	<!-- 선택 / 검색하기 -->		
 	<div style="text-align: center; margin-top: 20px;">					
 		<form action="<c:url value='/reportKlass'/>" id="search_report_klass" method="post"
-				class="inline-form-group"
-                 style="display: inline-flex;">
+				class="inline-form-group" style="display: inline-flex;">
 				<select name="search_type" id="search_type">
 					<option value="0">선택</option>			
 					<option value="1">제목</option>			
@@ -170,8 +169,8 @@
 				
 				<thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
 					<tr style="border-bottom: 1px solid #ddd; text-align: center;">
-						<th style="width: 150px; padding: 8px; text-align: center;">클래스명</th>			
-						<th style="width: 200px; padding: 8px; text-align: center;">내용</th>		
+						<th style="width: 300px; padding: 8px; text-align: center;">클래스명</th>			
+						<!-- <th style="width: 200px; padding: 8px; text-align: center;">내용</th>	 -->	
 						<th style="width: 100px; padding: 8px; text-align: center;">닉네임</th>			
 						<th style="width: 60px; padding: 8px; text-align: center;">신고 사유</th>	
 					</tr>
@@ -182,8 +181,7 @@
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
 								<tr data-klass-no="${list.klassNo }" style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
 									<td style="padding: 8px;">${list.klassName}</td>
-									<td style="padding: 8px;">${list.klassTxt }</td>
-									<td style="padding: 8px;">${list.accountNickname}</td>
+									<%-- <td style="padding: 8px;">${list.klassTxt }</td> --%>									<td style="padding: 8px;">${list.accountNickname}</td>
 									<td style="padding: 8px;">${list.reportKlassTxt }</td>
 								</tr>
 							</c:forEach>
@@ -191,7 +189,7 @@
 						</c:when>
 						<c:otherwise>
 							<tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
-								<td colspan="4">해당되는 게시글이 존재하지 않습니다.</td>
+								<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
 							</tr>
 						
 						</c:otherwise>
@@ -212,7 +210,7 @@
 	$('.report_klass_list tbody tr').click(function(){
 		const klassNo = $(this).data('klass-no');
 		if(klassNo!=undefined){
-			location.href='/approveDetail?klass_no='+klassNo;
+			location.href='/klassDetail?klass_no='+klassNo;
 		}else{
 			location.reload();
 		}
