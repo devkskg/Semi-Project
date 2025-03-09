@@ -32,8 +32,8 @@ public class MypageLikeServlet extends HttpServlet {
 		String urlPath = "/";
 		
 		Klass option = null;
-		List<KlassLike> klassLikeList = null;
-		List<ReviewLike> reviewLikeList = null;
+		List<Klass> klassLikeList = null;
+		List<Review> reviewLikeList = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");

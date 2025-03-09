@@ -35,7 +35,7 @@
         text-align: right;  /* 두 번째 <td> 오른쪽 정렬 */
     }
     .clickable-row:hover {
-	    background-color: #E8F7DC; /* 마우스 오버 시 색상 변경 */
+	    background-color: #D1B5E0; /* 마우스 오버 시 색상 변경 */
 	    cursor: pointer;           /* 커서를 포인터로 변경 */
 	}
     a.btn-outline-danger {
@@ -46,10 +46,10 @@
     a.btn-outline-primary {
 	    background-color: #E8DAEF !important;  /* 배경색 강제 적용 */
 	    color: #4A235A !important;                /* 글자 색상 강제 적용 */
-	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
+	    border-color: #B39EB5;                          /* 부트스트랩의 기본 테두리 제거 */
 	}
 	.mypage-box {
-	    background-color: #FFFFEF;  /* 연한 살구색 */
+	    background-color: #EAE6F2;  /* 연한 살구색 */
 	    border: 1px solid #E6B0AA;  /* 은은한 로즈 컬러 테두리 */
 	    border-radius: 10px;
 	    padding: 20px;
@@ -60,7 +60,7 @@
 	    
 </style>
 </head>
-<body>
+<body style="background-color: #FFFAFF">
     <%@ include file="/views/include/nav.jsp" %>
 
 	<div id="colorlib-main">
@@ -68,13 +68,14 @@
 			<div class="container">
 				<div class="row d-flex">
 				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-				        <div class="mypage-box" style="max-width: 60%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
+				        <div class="mypage-box" style="max-width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
 				            <h3 class="text-primary text-center mb-4">마이페이지</h3>
 							<ul class="list-group mb-4">
 							    
 							    
 							    
-								<li class="list-group-item" style="background-color: #F8FFEF;">
+								<li class="list-group-item" style="background-color: #F3D8EC;">
+								<!-- <li class="list-group-item"> -->
 								    <table style="width: 100%; border-collapse: collapse;">
 								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/memberMypageKlass'/>" style="cursor: pointer;">
 								            <td style="font-weight: bold; padding: 8px;">참여 클래스 조회</td>

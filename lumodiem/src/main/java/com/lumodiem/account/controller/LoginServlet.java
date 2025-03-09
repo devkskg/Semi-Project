@@ -31,6 +31,7 @@ public class LoginServlet extends HttpServlet {
 			if(searchIdLogin != null) {
 				request.setAttribute("searchIdLogin", searchIdLogin);
 			}
+			
 			view.forward(request, response);
 		}
 		
