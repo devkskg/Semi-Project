@@ -213,7 +213,7 @@
 		const reportReviewNo = $(this).data('report-review-no');
 
 		if(reportReviewNo!=undefined){
-			location.href='/reportReviewDetail?report_review_no='+reportReviewNo;
+			location.href='/reviewDetail?review_no='+reportReviewNo;
 		}else{
 			location.reload();
 		}
