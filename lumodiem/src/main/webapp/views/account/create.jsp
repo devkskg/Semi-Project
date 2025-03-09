@@ -6,11 +6,56 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <%-- <script src="<c:url value='/views/jquery-3.7.1.js'/>"></script> --%>
+<style>
+    .list-group-item a {
+        color: #000 !important;  /* 글자 색상 검은색 강제 변경 */
+        text-decoration: none;   /* 링크 밑줄 제거 */
+    }
+
+    h3.text-primary {
+        color: #000 !important;  /* "마이페이지" 글자 검은색 */
+    }
+
+    .list-group-item {
+        border-bottom: 1px solid #ddd; /* 밑줄 추가 */
+        display: flex;
+        align-items: center; /* 세로 정렬 */
+    }
+
+    .list-group-item .badge {
+        margin-left: auto; /* "+" 기호만 우측 정렬 */
+    }
+
+    .clickable-row:hover {
+	    background-color: #E8F7DC; /* 마우스 오버 시 색상 변경 */
+	    cursor: pointer;           /* 커서를 포인터로 변경 */
+	}
+    a.btn-outline-danger {
+	    background-color: #F1948A !important;  /* 배경색 강제 적용 */
+	    color: #fff !important;                /* 글자 색상 강제 적용 */
+	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
+	}
+    a.btn-outline-primary {
+	    background-color: #E8DAEF !important;  /* 배경색 강제 적용 */
+	    color: #4A235A !important;                /* 글자 색상 강제 적용 */
+	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
+	}
+	.mypage-box {
+	    background-color: #FFFFEF;  /* 연한 살구색 */
+	    border: 1px solid #E6B0AA;  /* 은은한 로즈 컬러 테두리 */
+	    border-radius: 10px;
+	    padding: 20px;
+	    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
+	}
+
+	
+	    
+</style>
 </head>
 <body>
 	<%@ include file="/views/include/nav.jsp" %>
 	
-	<div id="colorlib-main">
+	<!-- <div id="colorlib-main">
 		<section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
 			
@@ -22,7 +67,7 @@
 					<label for="account_pw">비밀번호 : </label><input name="account_pw" id="account_pw" type="password">
 					<label for="account_pw_check">비밀번호 확인 : </label><input name="account_pw_check" id="account_pw_check" type="password">
 					<span class="dis" style="vertical-align: middle;"><ion-icon id="openEye" class="eye" name="eye-off-outline" size="large" style=""></span>
-					<!-- <span class="dis" style="vertical-align: middle;"><ion-icon id="closeEye" class="eye dis" name="eye-off-outline " size="large" style=""></span> -->
+					<span class="dis" style="vertical-align: middle;"><ion-icon id="closeEye" class="eye dis" name="eye-off-outline " size="large" style=""></span>
 					
 					<span class="icon eye-off-outline"></span>
 					<br>
@@ -37,7 +82,7 @@
 					<label for="account_phone">전화번호 : </label><input name="account_phone" id="account_phone" type="text">
 					<button type="button" id="duplicate_phone" name="duplicate_phone" class="duplicate">중복확인</button> <br>
 					
-					<!-- <label for="account_address">주소 : </label><input name="account_address" id="account_address" type="text"><br> -->
+					<label for="account_address">주소 : </label><input name="account_address" id="account_address" type="text"><br>
 					
 					
 					<input type="text" name="postcode" id="postcode" placeholder="우편번호">
@@ -59,10 +104,88 @@
 			
 			</div>
 		</section>
+	</div> -->
+	
+	
+	
+	
+	<div id="colorlib-main">
+	    <section class="ftco-section ftco-no-pt ftco-no-pb">
+	        <div class="container">
+	            <div class="mypage-box" style="max-width: 500px; margin: 0 auto;">
+	                <form name="create_member_form" action="">
+	                    <input name="account_grade" style="display: none" value=${select}><br>
+	
+	                    <label for="account_id">아이디 :</label>
+	                    <div style="display: flex; margin-bottom: 10px;">
+	                        <input name="account_id" id="account_id" type="text" 
+	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+	                        <button type="button" id="duplicate_id" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
+	                    </div>
+	
+	                    <label for="account_pw">비밀번호 :</label>
+	                    <div style="position: relative; margin-bottom: 10px;">
+	                        <input name="account_pw" id="account_pw" type="password" 
+	                               style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+	                        <ion-icon id="openEye" class="eye" name="eye-off-outline" 
+	                                  style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></ion-icon>
+	                    </div>
+	
+	                    <label for="account_pw_check">비밀번호 확인 :</label>
+	                    <input name="account_pw_check" id="account_pw_check" type="password"
+	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	
+	                    <label for="account_name">이름 :</label>
+	                    <input name="account_name" id="account_name" type="text"
+	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	
+	                    <label for="account_nickname">닉네임 :</label>
+	                    <div style="display: flex; margin-bottom: 10px;">
+	                        <input name="account_nickname" id="account_nickname" type="text"
+	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+	                        <button type="button" id="duplicate_nickname" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
+	                    </div>
+	
+	                    <label for="account_ssn">주민등록번호 :</label>
+	                    <div style="display: flex; margin-bottom: 10px;">
+	                        <input name="account_ssn" id="account_ssn" type="text"
+	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+	                        <button type="button" id="duplicate_ssn" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
+	                    </div>
+	
+	                    <label for="account_phone">전화번호 :</label>
+	                    <div style="display: flex; margin-bottom: 10px;">
+	                        <input name="account_phone" id="account_phone" type="text"
+	                               style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+	                        <button type="button" id="duplicate_phone" class="btn btn-outline-primary" style="margin-left: 10px;">중복확인</button>
+	                    </div>
+	
+	                    <label for="postcode">우편번호 :</label>
+	                    <input type="text" name="postcode" id="postcode" placeholder="우편번호"
+	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	                    <input type="button" name="findPostCode_btn" id="findPostCode_btn" value="우편번호 찾기" class="btn btn-outline-primary mb-2" style="width: 100%;">
+	
+	                    <label for="address">주소 :</label>
+	                    <input type="text" name="address" id="address" placeholder="주소"
+	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	                    <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"
+	                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	
+	                    <label for="account_email">이메일 :</label>
+	                    <input name="account_email" id="account_email" type="email" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+	
+	                    <div class="d-flex justify-content-between mt-4">
+	                        <button type="button" id="submitBtn" class="btn btn-outline-primary" style="width: 48%;">가입하기</button>
+	                        <a href="/" class="btn btn-outline-danger" style="width: 48%;">홈으로 돌아가기</a>
+	                    </div>
+	                </form>
+	            </div>
+	        </div>
+	    </section>
 	</div>
 	
 	
-	<!-- 이후에 쓸 것 -->
+	
 	<script>
 		$(function(){
 			const form = document.create_member_form;
@@ -128,6 +251,7 @@
 				}
 			});
 			
+
 			/* 아이디 정규식 검사 */
 			let idBoolean = false;
 			$('#account_id').keyup(function(){
@@ -340,7 +464,7 @@
 	                $('#closeEye').toggleClass('dis');
 	                $('#openEye').toggleClass('dis');
 	            });
-	        })
+	        });
 			
 			/* 주소입력 API */
 			$('#findPostCode_btn').click(function(){
@@ -362,9 +486,59 @@
 			            $('#postcode').val(data.zonecode);
 			            $("#address").val(addr + extraAddr);
 			            $("#detailAddress").focus();
+			            $('#postcode').css('backgroundColor', '#98FB98');
+			            $('#address').css('backgroundColor', '#98FB98');
 			        }
 			    }).open();
 			});
+				
+				$('#postcode').keyup(function(){
+					let postcode = $('#postcode').val();
+					if(postcode){
+						$('#postcode').css('backgroundColor', '#98FB98');
+					} else{
+						$('#postcode').css('backgroundColor', '#FFFFFF');
+					}
+				});
+				$('#address').keyup(function(){
+					let address = $('#address').val();
+					if(address){
+						$('#address').css('backgroundColor', '#98FB98');
+					} else{
+						$('#address').css('backgroundColor', '#FFFFFF');
+					}
+				});
+				$('#detailAddress').keyup(function(){
+					let detailAddress = $('#detailAddress').val();
+					if(detailAddress){
+						$('#detailAddress').css('backgroundColor', '#98FB98');
+					} else{
+						$('#detailAddress').css('backgroundColor', '#FFFFFF');
+					}
+				});
+				$('#account_name').keyup(function(){
+					let account_name = $('#account_name').val();
+					if(account_name){
+						$('#account_name').css('backgroundColor', '#98FB98');
+					} else{
+						$('#account_name').css('backgroundColor', '#FFFFFF');
+					}
+				});
+				/* 이메일 정규식 검사 */
+				let emailBoolean = false;
+				$('#account_email').keyup(function(){
+					let emailInput = form.account_email.value;
+					let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+					if(emailReg.test(emailInput)){
+						$('#account_email').css('backgroundColor', '#98FB98');
+						emailBoolean = true;
+					} else{
+						$('#account_email').css('backgroundColor', '#FF9999');
+						emailBoolean = false;
+					}
+				});
+			
+			
 			
 		})
 		
