@@ -6,66 +6,57 @@
 <meta charset="UTF-8">
 <title>회원 정보 수정 실패</title>
 <style>
-.mypage-box {
-	color: black;
-    background-color: #FFFFEF; /* 부드러운 배경색 */
-    border: 2px solid #E6B0AA; /* 연한 로즈 컬러 */
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 50px auto;
-    text-align: center;
-}
+    .list-group-item a {
+        color: #000 !important;  /* 글자 색상 검은색 강제 변경 */
+        text-decoration: none;   /* 링크 밑줄 제거 */
+    }
 
-.mypage-box h3 {
-	color: black;
-    margin-bottom: 20px;
-}
+    h3.text-primary {
+        color: #000 !important;  /* "마이페이지" 글자 검은색 */
+    }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
+    .list-group-item {
+        border-bottom: 1px solid #ddd; /* 밑줄 추가 */
+        display: flex;
+        align-items: center; /* 세로 정렬 */
+    }
 
-#openEye {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
+    .list-group-item .badge {
+        margin-left: auto; /* "+" 기호만 우측 정렬 */
+    }
 
-.btn-outline-primary {
-    background-color: #E8DAEF !important;
-    color: #4A235A !important;
-    border: none;
-    width: 48%;
-}
+    .clickable-row:hover {
+	    background-color: #E8F7DC; /* 마우스 오버 시 색상 변경 */
+	    cursor: pointer;           /* 커서를 포인터로 변경 */
+	}
+	.mypage-box {
+	    background-color: #FFFFFF;
+	    border: 1px solid #ddd;
+	    border-radius: 10px;
+	    padding: 20px;
+	    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
+	}
+    a.btn-outline-danger {
+	    background-color: #F0F2EF !important;  /* 배경색 강제 적용 */
+	    color: #000000 !important;                /* 글자 색상 강제 적용 */
+	    border: 1px solid #ccc !important;                  /* 부트스트랩의 기본 테두리 제거 */
+	}
+	.btn-outline-primary {
+	    color: #ffffff !important;
+	    border: solid thin !important;
+	    border-color: #D1B5E0 !important;
+	    background-color: #D1B5E0 !important;
+	    
+	}
+	div a{
+		color: #724AA9;
+	}
+	div a:hover{
+		color: #724AA9;
+	}
 
-.btn-outline-danger {
-    background-color: #F1948A !important;
-    color: #fff !important;
-    border: none;
-    width: 48%;
-}
-
-.mypage-box .d-flex {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-a {
-    text-decoration: none;
-    color: #4A235A;
-}
-    
+	
+	    
 </style>
 </head>
 <body>
@@ -94,7 +85,7 @@ a {
 			<div class="container">
 				<div class="row d-flex">
 				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-						<div class="mypage-box">
+						<div class="mypage-box" style="text-align: center;">
 						    <h3 class="text-center mb-4">회원 정보 수정 실패</h3>
 						    <p>회원 정보 수정에 실패했습니다.</p>
 						

@@ -512,7 +512,7 @@
           }
         },
         error : function(a,b,c){
-          alert('결제 요청 중 오류 발생: '+a+', '+b+', '+c);
+          alert('결제 요청 중 오류 발생');
         }
       });
     }
@@ -520,6 +520,7 @@
 
   // === 예약취소 ===
   $('#cnclBtn').click(function(){
+	  
     if(!res_no || res_no == "" || res_no == "null"){
       alert("예약 정보가 없습니다.");
       return;

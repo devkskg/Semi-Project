@@ -379,12 +379,19 @@
 		SET pay_status = 'R'
 		WHERE res_no = #{resNo}
 	</update>
-	<!-- 결제 실패시 R -> C 변경 -->
-	<update id="updateReservationOneRtoC" parameterType="_int">
+	
+	
+	
+	<!-- 결제 실패시 reservation 테이블에서 delete -->
+	<!-- <delete id="deleteReservationOneRtoC" parameterType="_int">
+		DELETE FROM `reservation`
+		WHERE res_no = #{resNo};
+	</delete> -->
+	<!-- <update id="updateReservationOneRtoC" parameterType="_int">
 		UPDATE `reservation`
 		SET pay_status = 'C'
 		WHERE res_no = #{resNo}
-	</update>
+	</update> -->
 	<!-- res_no로 예약 테이블 정보 조회 -->
 	<select id='selectReservationOne' resultMap="reservationMap" parameterType="reservationVo">
 		SELECT *

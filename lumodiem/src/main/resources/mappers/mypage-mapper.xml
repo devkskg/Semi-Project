@@ -104,6 +104,7 @@
 				AND p.approve_code = #{approveCode}
 			</if>
 		</where>
+		ORDER BY k.klass_reg_date DESC
 	</select>
 	
 	<!-- review 테이블 -> 호스트 회원 번호 기준으로 내 클래스의 review 조회  -->
@@ -113,33 +114,37 @@
 		JOIN `reservation` v ON r.res_no = v.res_no
 		JOIN `klass_date` d ON v.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
-		WHERE k.account_no = #{accountNo};
+		WHERE k.account_no = #{accountNo}
+		ORDER BY r.review_reg_date DESC
 	</select>
 	
-	<!-- klass_like 테이블 -> 호스트 회원 번호 기준으로 좋아요한 클래스 조회  -->
+	<!-- klass_like 테이블 -> 회원 번호 기준으로 좋아요한 클래스 조회  -->
 	<select id="selectKlassLikeByAccountNo" resultMap="klassMap" parameterType="klassVo">
 		SELECT a.account_nickname, k.*
 		FROM `klass_like` l
 		JOIN `klass` k ON l.klass_no = k.klass_no
 		JOIN `account` a ON k.account_no = a.account_no
-		WHERE l.account_no = #{accountNo};
+		WHERE l.account_no = #{accountNo}
+		ORDER BY l.klass_like_no DESC
 	</select>
 	
-	<!-- review_like 테이블 -> 호스트 회원 번호 기준으로 좋아요한 리뷰 조회  -->
+	<!-- review_like 테이블 -> 회원 번호 기준으로 좋아요한 리뷰 조회  -->
 	<select id="selectReviewLikeByAccountNo" resultMap="reviewMap" parameterType="klassVo">
 		SELECT a.account_nickname, r.*
 		FROM `review_like` l
 		JOIN `review` r ON l.review_no = r.review_no
 		JOIN `account` a ON r.account_no = a.account_no
-		WHERE l.account_no = #{accountNo};
+		WHERE l.account_no = #{accountNo}
+		ORDER BY l.review_like_no DESC
 	</select>
 	
-	<!-- review_cmt 테이블 -> 호스트 회원 번호 기준으로 리뷰 댓글 조회  -->
+	<!-- review_cmt 테이블 -> 회원 번호 기준으로 리뷰 댓글 조회  -->
 	<select id="selectReviewCmtListByAccountNo" resultMap="reviewCmtMap" parameterType="klassVo">
 		SELECT c.*, r.review_name
 		FROM `review_cmt`c
 		JOIN `review` r ON c.review_no = r.review_no
 		WHERE c.account_no = ${accountNo}
+		ORDER BY c.review_cmt_no DESC
 	</select>
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
@@ -149,7 +154,8 @@
 		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
 		JOIN `account` a ON k.account_no = a.account_no
-		WHERE r.account_no = #{accountNo};
+		WHERE r.account_no = #{accountNo}
+		ORDER BY d.klass_start ASC
 	</select>
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
@@ -160,7 +166,7 @@
 		JOIN `klass_date` d ON res.klass_date_no = d.klass_date_no
 		JOIN `klass` k ON d.klass_no = k.klass_no
 		JOIN `account` a ON k.account_no = a.account_no
-		WHERE r.account_no = #{accountNo};
+		WHERE r.account_no = #{accountNo}
 	</select>
 	
 	<!-- 회원탈퇴 -->
