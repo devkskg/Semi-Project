@@ -141,20 +141,7 @@
 						<div class="row pt-md-4">
 	<!-- 페이지 제목  -->
 	<h3 style="text-align: center; margin-bottom: 20px;">신고된 클래스 목록</h3>		
-	<!-- 선택 / 검색하기 -->		
-	<div style="text-align: center; margin-top: 20px;">					
-		<form action="<c:url value='/reportKlass'/>" id="search_report_klass" method="post"
-				class="inline-form-group" style="display: inline-flex;">
-				<select name="search_type" id="search_type">
-					<option value="0">선택</option>			
-					<option value="1">제목</option>			
-					<option value="2">닉네임</option>			
-					<option value="3">내용</option>			
-				</select>
-				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
-				<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
-		</form>
-	</div>	
+
 	
 	<!-- 신고된 클래스 목록 출력 부분 -->	
 	<div class="report_klass_list" style="width: 100%; max-width: 100%; margin: 20px auto; 
@@ -199,6 +186,26 @@
 			</table>
 		</form>
 	</div>
+	
+<!-- 페이징 위치-->	
+<form style="text-align: center;">페이징 위치</form>	
+	
+<!-- 선택 / 검색하기 -->		
+<div style="text-align: center; margin-top: 20px;">					
+	<form action="<c:url value='/reportKlass'/>" id="search_report_klass" method="post"
+			class="inline-form-group" style="display: inline-flex;">
+		<select name="search_type" id="search_type">
+			<option value="0">선택</option>			
+			<option value="1">클래스명</option>			
+			<option value="2">닉네임</option>			
+			<option value="3">신고사유</option>			
+		</select>
+		<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
+		<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
+	</form>
+</div>	
+	
+	
 						</div>
 					</div>
 				</div>

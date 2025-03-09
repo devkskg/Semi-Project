@@ -142,20 +142,7 @@
 						<div class="row pt-md-4">
 	<!-- 페이지 제목  -->
 	<h3 style="text-align: center; margin-bottom: 20px;">신고된 리뷰 목록</h3>	
-	<!-- 선택 / 검색하기 -->	
-	<div style="text-align: center; margin-top: 20px;">					
-		<form action="<c:url value='/reportReview'/>" id="search_report_review" method="post"
-			class="inline-form-group" style="display: inline-flex;">
-				<select name="search_type" id="search_type">
-					<option value="0">선택</option>			
-					<option value="1">제목</option>			
-					<option value="2">닉네임</option>			
-					<option value="3">내용</option>			
-				</select>
-				<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
-				<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
-		</form>
-	</div>
+
 	
 	<!-- 신고된 리뷰 목록 출력 부분 -->
 	<div class="report_review_list" style="width: 100%; max-width: 100%; margin: 20px auto; 
@@ -171,9 +158,9 @@
                     border: 1px solid #ddd;">
 				<thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
 					<tr style="border-bottom: 1px solid #ddd; text-align: center;">
-						<th style="width: 300px; padding: 8px; text-align: center;">리뷰 제목</th>			
+						<th style="width: 300px; padding: 8px; text-align: center;">리뷰명</th>			
 						<!-- <th>리뷰 내용</th>	 -->		
-						<th style="width: 100px; padding: 8px; text-align: center;">회원 아이디</th>		
+						<th style="width: 100px; padding: 8px; text-align: center;">닉네임</th>		
 						<th style="width: 60px; padding: 8px; text-align: center;">신고 사유</th>	
 					</tr>
 				</thead>
@@ -202,6 +189,24 @@
 			</table>
 		</form>
 	</div>
+	
+	<!-- 페이징 -->
+	<form style="text-align: center;">페이징 위치</form>
+<!-- 선택 / 검색하기 -->	
+<div style="text-align: center; margin-top: 20px;">					
+	<form action="<c:url value='/reportReview'/>" id="search_report_review" method="post"
+			class="inline-form-group" style="display: inline-flex;">
+		<select name="search_type" id="search_type">
+			<option value="0">선택</option>			
+			<option value="1">리뷰명</option>			
+			<option value="2">닉네임</option>			
+			<option value="3">신고사유</option>			
+		</select>
+		<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
+		<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
+	</form>
+</div>
+	
 						</div>
 					</div>
 				</div>
@@ -213,7 +218,7 @@
 		const reportReviewNo = $(this).data('report-review-no');
 
 		if(reportReviewNo!=undefined){
-			location.href='/reportReviewDetail?report_review_no='+reportReviewNo;
+			location.href='/reviewDetail?review_no='+reportReviewNo;
 		}else{
 			location.reload();
 		}

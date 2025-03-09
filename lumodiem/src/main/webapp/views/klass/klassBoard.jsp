@@ -146,7 +146,7 @@
           <div class="col-xl-8 py-5 px-md-5"> 
             <div class="row pt-md-4">
 
-              <div class="klass_list">
+         <div class="klass_list">
                 <!-- 정렬하기 + 작성하기 (한 줄 정렬) -->
                 <form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass"
                       class="inline-form-group"
@@ -209,7 +209,7 @@
                                     </c:forEach>
                                   </c:when>
                                   <c:otherwise>
-                                    <span>없어요 test</span>
+                                    <span>미정</span>
                                   </c:otherwise>
                                 </c:choose>
                                 <span>
