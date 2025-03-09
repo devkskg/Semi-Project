@@ -32,15 +32,15 @@ public class MypageService {
 		return list;
 	}
 
-	public List<KlassLike> selectKlassLikeByAccountNo(Klass option) {
+	public List<Klass> selectKlassLikeByAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
-		List<KlassLike> list = new MypageDao().selectKlassLikeByAccountNo(session, option);
+		List<Klass> list = new MypageDao().selectKlassLikeByAccountNo(session, option);
 		return list;
 	}
 
-	public List<ReviewLike> selectReviewLikeByAccountNo(Klass option) {
+	public List<Review> selectReviewLikeByAccountNo(Klass option) {
 		SqlSession session = getSqlSession();
-		List<ReviewLike> list = new MypageDao().selectReviewLikeByAccountNo(session, option);
+		List<Review> list = new MypageDao().selectReviewLikeByAccountNo(session, option);
 		return list;
 	}
 
