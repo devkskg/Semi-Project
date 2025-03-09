@@ -11,7 +11,7 @@
 
 <!-- index.jsp 전용 CSS가 필요하다면 여기 추가 -->
 <!-- Bootstrap 5, jQuery, Summernote는 nav.jsp에서 이미 로드됨 -->
-<link rel="stylesheet" href="<c:url value='/views/css/nav.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 <body>
 
