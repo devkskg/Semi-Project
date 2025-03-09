@@ -39,4 +39,5 @@ public class Klass {
 	private String klassOfDate;
 	private int klassLikeCount;
 	private List<KlassDate> dateList;
+	private String approveFb;
 }
