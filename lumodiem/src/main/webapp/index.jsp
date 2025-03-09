@@ -60,7 +60,7 @@
 										<div class="blog-entry ftco-animate d-md-flex">
 											<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src=""></a>
 											<div class="text text-2 pl-md-4">
-												<h3 class="mb-2"><a href="single.html">제목 겸 a태그</a></h3>
+												<h3 class="mb-2"><a href="single.html">${test}</a></h3>
 												<div class="meta-wrap">
 													<p class="meta">
 														<span><i class="icon-calendar mr-2"></i>날짜 넣기</span>
@@ -129,7 +129,7 @@
 	
 	  <!-- nav.jsp include (마지막에) -->
 	<%-- 이거 왜 아래 있어야 적용되는거야.. --%>
-	<%@ include file="/views/include/nav.jsp" %>
+<%@ include file="/views/include/nav.jsp" %>
 
 </body>
 </html>

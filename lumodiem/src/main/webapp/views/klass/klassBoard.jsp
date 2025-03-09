@@ -147,6 +147,9 @@
             <div class="row pt-md-4">
 
          <div class="klass_list">
+         
+         <h3 style="text-align: center; margin-bottom: 20px;">클래스 게시판</h3>
+		<hr>
                 <!-- 정렬하기 + 작성하기 (한 줄 정렬) -->
                 <form action="/klassBoardList" id="arrangeKlass" name="arrangeKlass"
                       class="inline-form-group"
