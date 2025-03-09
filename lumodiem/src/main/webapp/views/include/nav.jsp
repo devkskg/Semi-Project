@@ -161,8 +161,10 @@
 			
 			<!-- 왼쪽 네비게이션바 -->
 			<div class="colorlib-footer">
-				<h1 id="colorlib-logo" class="mb-4"><a href="https://namu.wiki/w/%EB%A1%9C%EC%BC%93%EB%8B%A8"
-						style="background-image: url(images/bg_1.jpg);">Lumo Diem<span>Moore</span></a></h1>
+				<h1 id="colorlib-logo" class="mb-4">
+				<!-- <a href="https://namu.wiki/w/%EB%A1%9C%EC%BC%93%EB%8B%A8" style="background-image: url(images/bg_1.jpg);">Lumo Diem</a> -->
+				<a href="https://namu.wiki/w/%EB%A1%9C%EC%BC%93%EB%8B%A8" style="background-color: #D1B5E0">Lumo Diem</a>
+				</h1>
 				
 				<div class="mb-4">
 					<h3>Subscribe for newsletter</h3>

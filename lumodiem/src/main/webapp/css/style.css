@@ -133,12 +133,15 @@ sup {
   top: -.5em; }
 
 a {
-  color: #007bff;
+  color: #D1B5E0;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #0056b3;
-    text-decoration: underline; }
+    color: #D1B5E0;
+    text-decoration: underline;
+    text-decoration-color: #D1B5E0;  /* 밑줄 색상을 강제로 설정 */
+}
+
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -1617,7 +1620,7 @@ pre {
   .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
+    border-color: #D1B5E0;
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
@@ -8268,7 +8271,8 @@ h1, h2, h3, h4, h5,
           bottom: 7px;
           left: 0;
           right: 0;
-          background-color: #1eafed;
+          /* 찾았다 */
+          background-color: #D1B5E0;
           visibility: hidden;
           -webkit-transform: scaleX(0);
           -moz-transform: scaleX(0);
@@ -8293,7 +8297,8 @@ h1, h2, h3, h4, h5,
       #colorlib-aside #colorlib-main-menu ul li.colorlib-active {
         font-weight: 600; }
         #colorlib-aside #colorlib-main-menu ul li.colorlib-active a {
-          color: #1eafed; }
+        /* 찾았다 */
+          color: #D1B5E0; }
           #colorlib-aside #colorlib-main-menu ul li.colorlib-active a:after {
             visibility: visible;
             -webkit-transform: scaleX(1);
@@ -8329,7 +8334,8 @@ h1, h2, h3, h4, h5,
         #colorlib-aside .colorlib-footer .colorlib-subscribe-form .form-group input {
           padding-right: 40px;
           background: #fff !important;
-          border: 1px solid #7cd1f5 !important;
+          /* 찾았다 */
+          border: 1px solid #D1B5E0 !important;
           color: rgba(0, 0, 0, 0.4) !important;
           font-size: 14px;
           -webkit-border-radius: 0;

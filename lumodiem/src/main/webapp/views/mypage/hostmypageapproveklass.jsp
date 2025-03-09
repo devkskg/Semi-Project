@@ -99,13 +99,36 @@
 								<li class="list-group-item" style="background-color: #F8FFEF;">
 								    <table style="width: 100%; border-collapse: collapse; text-align: center;">
 								    	<tbody>
-								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row">
-								        	<th>No.</th>
-								        	<th>클래스명</th>
-								        	<th>닉네임</th>
-								        </tr>
+								    	<c:choose>
+								    		<c:when test="${approveCode eq 'D'}">
+										        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row">
+										        	<th>No.</th>
+										        	<th>클래스명</th>
+										        	<th>닉네임</th>
+										        	<th>사유</th>
+										        </tr>
+								    		</c:when>
+								    		<c:otherwise>
+										        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row">
+										        	<th>No.</th>
+										        	<th>클래스명</th>
+										        	<th>닉네임</th>
+										        </tr>
+								    		</c:otherwise>
+								    	</c:choose>
+								        
 											<c:choose>
-												<c:when test="${not empty approveList }">
+												<c:when test="${not empty approveList and approveCode eq 'D'}">
+													<c:forEach var="list" varStatus="vs" items="${approveList }">
+								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/klassDetail?klass_no=${list.klassNo}'/>" style="cursor: pointer;">
+															<td>${vs.count}</td>
+															<td>${list.klassName}</td>
+															<td>${list.accountNickname}</td>
+															<td>${list.approveFb}</td>
+												        </tr>
+													</c:forEach>
+												</c:when>
+												<c:when test="${not empty approveList and (approveCode eq 'A' or approveCode eq 'S')}">
 													<c:forEach var="list" varStatus="vs" items="${approveList }">
 								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/klassDetail?klass_no=${list.klassNo}'/>" style="cursor: pointer;">
 															<td>${vs.count}</td>
@@ -115,9 +138,18 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-													<tr>
-														<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
-													</tr>
+													<c:choose>
+														<c:when test="${approveCode eq 'D'}">
+															<tr>
+																<td colspan="4">해당되는 게시글이 존재하지 않습니다.</td>
+															</tr>
+														</c:when>
+														<c:otherwise>
+															<tr>
+																<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+															</tr>
+														</c:otherwise>
+													</c:choose>
 												</c:otherwise>
 											</c:choose>							        
 								        </tbody>

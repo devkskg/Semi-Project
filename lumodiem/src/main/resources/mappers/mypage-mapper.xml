@@ -23,6 +23,7 @@
 		
 		<result property="klassStart" column="klass_start"/>
 		<result property="klassEnd" column="klass_end"/>
+		<result property="approveFb" column="approve_fb"/>
 	</resultMap>
 	<resultMap type="reviewVo" id="reviewMap">
 		<result property="reviewNo" column="review_no"/>
@@ -89,7 +90,7 @@
 	
 	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
 	<select id="klassListSearch" resultMap="klassMap" parameterType="klassVo">
-		SELECT k.* ,a.account_nickname ,p.approve_code
+		SELECT k.* ,a.account_nickname ,p.approve_code ,p.approve_fb
 		FROM `klass` k
 		JOIN `account` a
 		ON k.account_no = a.account_no
