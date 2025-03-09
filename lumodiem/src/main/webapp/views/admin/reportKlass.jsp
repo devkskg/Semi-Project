@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록 조회</title>
+<title>Report Klass</title>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
 <style>
   /* ================================
@@ -144,8 +144,7 @@
 	<!-- 선택 / 검색하기 -->		
 	<div style="text-align: center; margin-top: 20px;">					
 		<form action="<c:url value='/reportKlass'/>" id="search_report_klass" method="post"
-				class="inline-form-group"
-                 style="display: inline-flex;">
+				class="inline-form-group" style="display: inline-flex;">
 				<select name="search_type" id="search_type">
 					<option value="0">선택</option>			
 					<option value="1">제목</option>			
