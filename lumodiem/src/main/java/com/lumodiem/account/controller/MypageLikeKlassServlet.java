@@ -47,7 +47,7 @@ public class MypageLikeKlassServlet extends HttpServlet {
 				}
 				System.out.println("option : " + option);
 				
-				int totalData = new MypageService().klassListCount(option);
+				int totalData = new MypageService().klassLikeListCount(option);
 				option.setTotalData(totalData);
 				request.setAttribute("paging", option);
 //				페이징 추가

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lumodiem.account.service.MypageService;
 import com.lumodiem.board.adminboard.service.ReportService;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.hostboard.vo.Klass;
@@ -39,17 +40,22 @@ public class ReportKlassServlet extends HttpServlet {
 				.searchTxt(searchTxt)
 				.orderType(orderType)
 				.build();
-		List<ReportKlass> resultList = new ReportService().selectReportKlassList(option);
 
+//		페이징 추가
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
-//		페이징 추가중
-//		int totalCount = new ReportService().selectReportKlassCount(option);
+		System.out.println("option : " + option);
+		
+		int totalData = new ReportService().reportKlassListCount(option);
+		option.setTotalData(totalData);
+		request.setAttribute("paging", option);
+//		페이징 추가
 		
 		
 		
+		List<ReportKlass> resultList = new ReportService().selectReportKlassList(option);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportKlass.jsp");
 		request.setAttribute("resultList", resultList);

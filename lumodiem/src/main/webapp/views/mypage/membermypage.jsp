@@ -103,8 +103,12 @@
 								            <td style="font-weight: bold; padding: 8px;">작성 리뷰 조회</td>
 								            <td style="padding: 8px;">(+)</td>
 								        </tr>
-								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/mypageLike'/>" style="cursor: pointer;">
-								            <td style="font-weight: bold; padding: 8px;">좋아요 목록 조회</td>
+								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/mypageLikeKlass'/>" style="cursor: pointer;">
+								            <td style="font-weight: bold; padding: 8px;">좋아요 클래스 조회</td>
+								            <td style="padding: 8px;">(+)</td>
+								        </tr>
+								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/mypageLikeReview'/>" style="cursor: pointer;">
+								            <td style="font-weight: bold; padding: 8px;">좋아요 리뷰 조회</td>
 								            <td style="padding: 8px;">(+)</td>
 								        </tr>
 								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/mypageCmt'/>" style="cursor: pointer;">

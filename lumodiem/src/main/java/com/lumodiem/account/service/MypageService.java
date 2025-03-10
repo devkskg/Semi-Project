@@ -84,6 +84,34 @@ public class MypageService {
 		return result;
 	}
 
+	public int reservationKlassListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new MypageDao().reservationKlassListCount(session, option);
+		session.close();
+		return result;
+	}
+
+	public int klassLikeListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new MypageDao().klassLikeListCount(session, option);
+		session.close();
+		return result;
+	}
+
+	public int reviewLikeListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new MypageDao().reviewLikeListCount(session, option);
+		session.close();
+		return result;
+	}
+
+	public int reviewCmtListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new MypageDao().reviewCmtListCount(session, option);
+		session.close();
+		return result;
+	}
+
 
 	
 	

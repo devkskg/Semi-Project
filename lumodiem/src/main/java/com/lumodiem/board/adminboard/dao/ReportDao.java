@@ -51,4 +51,8 @@ public class ReportDao {
 	public List<ReportKlass> selectReportKlassList (Klass option,SqlSession session){
 		return session.selectList("reportMapper.selectReportKlass",option);
 	}
+
+	public int klassListCount(SqlSession session, Klass option) {
+		return session.selectOne("reportMapper.klassListCount",option);
+	}
 }
