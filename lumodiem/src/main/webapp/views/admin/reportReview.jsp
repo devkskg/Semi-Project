@@ -191,7 +191,7 @@
 	</div>
 	
 	<!-- 페이징 -->
-	<form style="text-align: center;">페이징 위치</form>
+	<form style="text-align: center;">1</form>
 <!-- 선택 / 검색하기 -->	
 <div style="text-align: center; margin-top: 20px;">					
 	<form action="<c:url value='/reportReview'/>" id="search_report_review" method="post"

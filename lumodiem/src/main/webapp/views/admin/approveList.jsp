@@ -204,7 +204,7 @@
 				
 <!-- 페이징 위치 예시 -->
 <form>
-  <p style="text-align: center;">페이징 위치</p>
+  <p style="text-align: center;">1</p>
 </form>		
 				
 <!-- 검색 (한 줄 정렬) -->

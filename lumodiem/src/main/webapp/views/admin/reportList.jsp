@@ -110,8 +110,8 @@ a.btn-outline-primary {
 											style="width: 30%;">신고된 클래스</button>
 										<button type="button" class="btn btn-outline-danger" id="reportReviewBtn" 
 											style="width: 30%;">신고된 리뷰</button>
-										<button type="button" class="btn btn-outline-danger" id="reportReviewCmtBtn" 
-											style="width: 30%;">신고된 리뷰 댓글</button>
+										<!-- <button type="button" class="btn btn-outline-danger" id="reportReviewCmtBtn" 
+											style="width: 30%;">신고된 리뷰 댓글</button> -->
 									</div>
 								</form>
 							</div>
