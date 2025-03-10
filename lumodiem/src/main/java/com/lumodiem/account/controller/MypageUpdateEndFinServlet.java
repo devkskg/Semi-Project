@@ -32,7 +32,11 @@ public class MypageUpdateEndFinServlet extends HttpServlet {
 			String pw = request.getParameter("account_pw");
 			String nickname = request.getParameter("account_nickname");
 			String phone = request.getParameter("account_phone");
-			String address = request.getParameter("account_address");
+			String address1 = request.getParameter("postcode");
+			String address2 = request.getParameter("address");
+			String address3 = request.getParameter("detailAddress");
+			String address = address1 + address2 + address3; 
+//			String address = request.getParameter("account_address");
 			String email = request.getParameter("account_email");
 //			LocalDateTime ldt = LocalDateTime.now();
 //			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

@@ -92,40 +92,40 @@ public class KlassReservationServelt extends HttpServlet {
 			}
 			
 		
-		
-		
-		Klass klassPayment = new HostBoardService().selectKlassOne(klassNo);
-		Reservation resPayment = new HostBoardService().selectReservationOne(klassDate);
-		session.setAttribute("res_no", resPayment.getResNo());
-		
+		JSONObject obj = new JSONObject();
+		if(klassDate > 0) {
+			Klass klassPayment = new HostBoardService().selectKlassOne(klassNo);
+			Reservation resPayment = new HostBoardService().selectReservationOne(klassDate);
+			session.setAttribute("res_no", resPayment.getResNo());
+			
 //		카카오로 보내는 url
-		URL url = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
-		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Authorization", "SECRET_KEY " + KAKAO_API_KEY);
+			URL url = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
+			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "SECRET_KEY " + KAKAO_API_KEY);
 //		conn.setRequestProperty("Authorization", "KakaoAK " + KAKAO_API_KEY);
-		
-		conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-		conn.setDoOutput(true);
-		
-
-        
-        String orderId = String.valueOf(resPayment.getResNo());
-        Integer quantity = Integer.valueOf(resPayment.getResPpl());
-        Integer total_amount = Integer.valueOf((resPayment.getResPpl() * klassPayment.getKlassPrice()));
-        Integer tax_free_amount = Integer.valueOf(0);
+			
+			conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+			conn.setDoOutput(true);
+			
+			
+			
+			String orderId = String.valueOf(resPayment.getResNo());
+			Integer quantity = Integer.valueOf(resPayment.getResPpl());
+			Integer total_amount = Integer.valueOf((resPayment.getResPpl() * klassPayment.getKlassPrice()));
+			Integer tax_free_amount = Integer.valueOf(0);
 // 		요청 데이터 설정
-		JSONObject jsonParams = new JSONObject();
-		jsonParams.put("cid", CID);
-        jsonParams.put("partner_order_id", orderId);
-        session.setAttribute("partner_order_id", orderId);
-        jsonParams.put("partner_user_id", ac.getAccountId());
-        session.setAttribute("partner_user_id", ac.getAccountId());
-        jsonParams.put("item_name", klassPayment.getKlassName());
-        jsonParams.put("quantity", quantity);
-        jsonParams.put("total_amount", total_amount);
+			JSONObject jsonParams = new JSONObject();
+			jsonParams.put("cid", CID);
+			jsonParams.put("partner_order_id", orderId);
+			session.setAttribute("partner_order_id", orderId);
+			jsonParams.put("partner_user_id", ac.getAccountId());
+			session.setAttribute("partner_user_id", ac.getAccountId());
+			jsonParams.put("item_name", klassPayment.getKlassName());
+			jsonParams.put("quantity", quantity);
+			jsonParams.put("total_amount", total_amount);
 //        jsonParams.put("vat_amount", "0");
-        jsonParams.put("tax_free_amount", tax_free_amount);
+			jsonParams.put("tax_free_amount", tax_free_amount);
 //        jsonParams.put("approval_url", "http://localhost:8090/pay/approve");
 //        String approvalUrl = URLEncoder.encode("http://localhost:8090/pay/success", "UTF-8");
 //        String cancelUrl = URLEncoder.encode("http://localhost:8090/pay/cancel", "UTF-8");
@@ -133,95 +133,94 @@ public class KlassReservationServelt extends HttpServlet {
 //        jsonParams.put("approval_url", approvalUrl);
 //        jsonParams.put("cancel_url", cancelUrl);
 //        jsonParams.put("fail_url", failUrl);
-        jsonParams.put("approval_url", "http://localhost:8090/pay/success");
-        jsonParams.put("cancel_url", "http://localhost:8090/pay/cancel");
-        jsonParams.put("fail_url", "http://localhost:8090/pay/fail");
-
-		
-        
-		System.out.println("카카오페이 요청 시작...");
-		System.out.println("Authorization 헤더: KakaoAK " + KAKAO_API_KEY);
-		System.out.println("요청 URL: " + url);
-		System.out.println("JSON 데이터 : " + jsonParams.toJSONString());
-		
-		try (OutputStream os = conn.getOutputStream()) {
-            os.write(jsonParams.toJSONString().getBytes("UTF-8"));
-            os.flush();
-        }
-		
+			jsonParams.put("approval_url", "http://localhost:8090/pay/success");
+			jsonParams.put("cancel_url", "http://localhost:8090/pay/cancel");
+			jsonParams.put("fail_url", "http://localhost:8090/pay/fail");
+			
+			
+			
+			System.out.println("카카오페이 요청 시작...");
+			System.out.println("Authorization 헤더: KakaoAK " + KAKAO_API_KEY);
+			System.out.println("요청 URL: " + url);
+			System.out.println("JSON 데이터 : " + jsonParams.toJSONString());
+			
+			try (OutputStream os = conn.getOutputStream()) {
+				os.write(jsonParams.toJSONString().getBytes("UTF-8"));
+				os.flush();
+			}
+			
 //		
-		int responseCode = conn.getResponseCode();
-		System.out.println("카카오페이 응답 코드: " + responseCode);
-
-		if (responseCode != 200) {
-		    BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-		    StringBuilder errorResponse = new StringBuilder();
-		    String errorLine;
-		    while ((errorLine = errorReader.readLine()) != null) {
-		        errorResponse.append(errorLine);
-		    }
-		    errorReader.close();
-
-		    System.err.println("카카오페이 요청 실패 응답: " + errorResponse.toString());
-		    throw new RuntimeException("카카오페이 요청 실패! 응답 확인 필요.");
-		}
+			int responseCode = conn.getResponseCode();
+			System.out.println("카카오페이 응답 코드: " + responseCode);
+			
+			if (responseCode != 200) {
+				BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+				StringBuilder errorResponse = new StringBuilder();
+				String errorLine;
+				while ((errorLine = errorReader.readLine()) != null) {
+					errorResponse.append(errorLine);
+				}
+				errorReader.close();
+				
+				System.err.println("카카오페이 요청 실패 응답: " + errorResponse.toString());
+				throw new RuntimeException("카카오페이 요청 실패! 응답 확인 필요.");
+			}
 //
-		
-		
+			
+			
 //      응답 받는 곳
-		StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        }
-        // JSON 응답 확인
-        System.out.println("카카오페이 응답 데이터: " + sb.toString());
-        
-        
-
-        JSONParser parser = new JSONParser();
-        JSONObject paymentResponse = null;
-
-        try {
-            paymentResponse = (JSONObject) parser.parse(sb.toString().trim());
-        } catch (ParseException e) {
-            System.err.println("JSON 파싱 오류: 응답 데이터를 확인하세요.");
-            e.printStackTrace();
-            throw new RuntimeException("카카오페이 응답 JSON 파싱 실패", e);
-        }
-        
-
-        // 결제 요청 후, 응답에서 TID 가져오기
-        // TID를 세션에 저장
-        // TID란 카카오 페이에서 받은 응답이다.
-        // TID가 있다? -> 결제 요청을 했다.
-        // 세션 || DB 저장 방법 중 세션 저장 방법을 선택했음.
-        // 성공시 변동하는 값인 TID 필요!
-        // TID 저장
-        String tid = (String) paymentResponse.get("tid");
-        if (tid != null) {
-            session.setAttribute("tid", tid);
-        } else {
-            throw new RuntimeException("카카오페이 결제 요청 실패: TID를 받을 수 없음.");
-        }
-		System.out.println("ready tid : " + tid);
-		
-		
-		
-		
-
-
-		
-		
-		
-		
-		JSONObject obj = new JSONObject();
-		obj.put("paymentResponse", paymentResponse);
-		if(klassDate > 0) {
+			StringBuilder sb = new StringBuilder();
+			try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+				String line;
+				while ((line = br.readLine()) != null) {
+					sb.append(line);
+				}
+			}
+			// JSON 응답 확인
+			System.out.println("카카오페이 응답 데이터: " + sb.toString());
+			
+			
+			
+			JSONParser parser = new JSONParser();
+			JSONObject paymentResponse = null;
+			
+			try {
+				paymentResponse = (JSONObject) parser.parse(sb.toString().trim());
+			} catch (ParseException e) {
+				System.err.println("JSON 파싱 오류: 응답 데이터를 확인하세요.");
+				e.printStackTrace();
+				throw new RuntimeException("카카오페이 응답 JSON 파싱 실패", e);
+			}
+			
+			
+			// 결제 요청 후, 응답에서 TID 가져오기
+			// TID를 세션에 저장
+			// TID란 카카오 페이에서 받은 응답이다.
+			// TID가 있다? -> 결제 요청을 했다.
+			// 세션 || DB 저장 방법 중 세션 저장 방법을 선택했음.
+			// 성공시 변동하는 값인 TID 필요!
+			// TID 저장
+			String tid = (String) paymentResponse.get("tid");
+			if (tid != null) {
+				session.setAttribute("tid", tid);
+			} else {
+				throw new RuntimeException("카카오페이 결제 요청 실패: TID를 받을 수 없음.");
+			}
+			System.out.println("ready tid : " + tid);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			obj.put("paymentResponse", paymentResponse);
 			obj.put("res_code","200");
-			obj.put("res_msg", "예약 되었습니다. 결제를 진행합니다!");
+			obj.put("res_msg", "결제를 진행합니다!");
 		}else {
 			obj.put("res_code","500");
 			obj.put("res_msg", "예약시도중 문제가 발생하였습니다.");
