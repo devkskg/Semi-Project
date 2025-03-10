@@ -55,4 +55,8 @@ public class ReportDao {
 	public int klassListCount(SqlSession session, Klass option) {
 		return session.selectOne("reportMapper.klassListCount",option);
 	}
+
+	public int reportReviewListCount(SqlSession session, ReportReview option) {
+		return session.selectOne("reportMapper.reportReviewListCount",option);
+	}
 }

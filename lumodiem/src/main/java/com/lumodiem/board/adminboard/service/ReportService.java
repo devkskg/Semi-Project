@@ -92,6 +92,13 @@ public class ReportService {
 		session.close();
 		return result;
 	}
+
+	public int reportReviewListCount(ReportReview option) {
+		SqlSession session = getSqlSession();
+		int result = new ReportDao().reportReviewListCount(session, option);
+		session.close();
+		return result;
+	}
 	
 	
 }

@@ -81,6 +81,38 @@
 				</otherwise>
 			</choose>
 		</if>
+		LIMIT #{limitPageNo} ,#{numPerPage}
+	</select>
+	<!-- 페이징을 위한 카운트 -->
+	<select id="approveListCount" resultType="_int" parameterType="klassVo">
+		SELECT count(*)
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+		JOIN approve ap
+		ON ap.klass_no = k.klass_no
+		<where>
+		AND ap.approve_code = 'S'
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
+		<if test='orderType != null and orderType.equals("x") == false'>
+			<choose>
+				<when test='orderType.equals("a") == true'>
+					ORDER BY k.klass_reg_date DESC
+				</when>
+				<otherwise>
+					ORDER BY k.klass_reg_date ASC
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 	
 

@@ -16,4 +16,8 @@ public class ApproveDao {
 	public List<Klass> selectApproveList(Klass option,SqlSession session){
 		return session.selectList("approveMapper.approveList", option);
 	}
+
+	public int approveListCount(SqlSession session, Klass option) {
+		return session.selectOne("approveMapper.approveListCount",option);
+	}
 }
