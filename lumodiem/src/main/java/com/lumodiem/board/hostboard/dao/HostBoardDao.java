@@ -176,4 +176,8 @@ public class HostBoardDao {
 	public Reservation selectReservationOne(SqlSession session, int resNo) {
 		return session.selectOne("klassMapper.selectReservationOne",resNo);
 	}
+
+	public int selectKlassCount(SqlSession session, Klass option) {
+		return session.selectOne("klassMapper.selectKlassCount",option);
+	}
 }

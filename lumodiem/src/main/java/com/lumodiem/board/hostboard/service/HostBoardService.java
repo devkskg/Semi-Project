@@ -384,5 +384,12 @@ public class HostBoardService {
 		session.close();
 		return reservaion;
 	}
+
+	public int selectKlassCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new HostBoardDao().selectKlassCount(session, option);
+		session.close();
+		return result;
+	}
 	
 }

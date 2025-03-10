@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
+import com.lumodiem.board.memberboard.service.MemberBoardService;
 
 @WebServlet("/klassBoardList")
 public class KlassBoardListServlet extends HttpServlet {
@@ -53,6 +54,29 @@ public class KlassBoardListServlet extends HttpServlet {
 			List<KlassDate> dateList = new HostBoardService().selectDateList(klassNo);
 			k.setDateList(dateList);
 		}
+		
+		
+//		페이징 추가
+		String nowPage = request.getParameter("nowPage");
+		if(nowPage != null) {
+			option.setNowPage(Integer.parseInt(nowPage));
+		}
+		if(searchType != null) {
+			option.setSearchType(searchType);
+		} else {
+			option.setSearchType("0");
+		}
+		option.setSearchTxt(searchTxt);
+		System.out.println(option);
+		
+		int totalData = new HostBoardService().selectKlassCount(option);
+		option.setTotalData(totalData);
+		request.setAttribute("paging", option);
+//		페이징 추가
+		
+		
+		
+		
 		
 		
 		System.out.println("게시판 result"+resultList);
