@@ -66,7 +66,7 @@
               <ul style="list-style: none; padding: 0;">
                 <li style="text-align: center; margin-bottom: 20px;">
                   <c:choose>
-					<c:when test="${not empty klassAttach }">
+					<c:when test="${not empty klassAttach}">
 						<c:forEach var="list" varStatus="vs" items="${klassAttach }">
 						<%-- <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2" style="display: flex; 
 				          justify-content: center; align-items: center; width: 244px; height: 244px; background-image: url();"> --%>
@@ -77,8 +77,7 @@
 					</c:when>
 					<c:otherwise>
 						<%-- <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2" style="background-image: url();"> --%>
-						<img alt="사진" src="" style="height: 244 px;">
-							NoImage
+						<img alt="썸네일" src="/views/mainpage/thumbnail.jpg" style="height: 244px; width:244px;">
 						<!-- </a> -->
 					</c:otherwise>
 				</c:choose>
@@ -262,7 +261,7 @@
                     <c:choose>
                       <c:when test="${not empty review}">
                         <c:forEach var="list" items="${review}" varStatus="vs">
-                          <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+                          <tr data-review-no="${list.reviewNo }" style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
                             <td style="padding: 8px;">${vs.count}</td>
                             <td style="padding: 8px;">${list.reviewName}</td>
                             <td style="padding: 8px;">${list.accountNickname}</td>
@@ -448,6 +447,13 @@
       });
     }
   });
+  
+  // === 댓글 클릭시 리뷰 상세페이지 넘김 === 
+  $('.review_by_klass_list tr').click(function(){
+		const reviewNum = $(this).data('review-no');
+		location.href='/reviewDetail?review_no='+reviewNum;
+	})	
+  
 
   // === 삭제 ===
   $('#deleteBtn').click(function(){
