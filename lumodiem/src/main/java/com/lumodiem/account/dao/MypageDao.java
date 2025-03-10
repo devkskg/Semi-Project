@@ -51,6 +51,10 @@ public class MypageDao {
 		return session.update("mypageMapper.deleteAccount", act);
 	}
 
+	public int klassListCount(SqlSession session, Klass option) {
+		return session.selectOne("mypageMapper.klassListCount",option);
+	}
+
 
 
 }

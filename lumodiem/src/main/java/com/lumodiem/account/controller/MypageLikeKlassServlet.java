@@ -18,11 +18,11 @@ import com.lumodiem.board.hostboard.vo.KlassLike;
 import com.lumodiem.board.memberboard.vo.Review;
 import com.lumodiem.board.memberboard.vo.ReviewLike;
 
-@WebServlet("/mypageLike")
-public class MypageLikeServlet extends HttpServlet {
+@WebServlet("/mypageLikeKlass")
+public class MypageLikeKlassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MypageLikeServlet() {
+    public MypageLikeKlassServlet() {
         super();
     }
 
@@ -33,7 +33,6 @@ public class MypageLikeServlet extends HttpServlet {
 		
 		Klass option = null;
 		List<Klass> klassLikeList = null;
-		List<Review> reviewLikeList = null;
 		
 		if(session != null && session.getAttribute("account") != null) {
 			account = (Account)session.getAttribute("account");
@@ -41,12 +40,21 @@ public class MypageLikeServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).build();
 			
 			if(option != null) {
-				klassLikeList = new MypageService().selectKlassLikeByAccountNo(option);
-				reviewLikeList = new MypageService().selectReviewLikeByAccountNo(option);
-				request.setAttribute("klassLikeList", klassLikeList);
-				request.setAttribute("reviewLikeList", reviewLikeList);
+//				페이징 추가
+				String nowPage = request.getParameter("nowPage");
+				if(nowPage != null) {
+					option.setNowPage(Integer.parseInt(nowPage));
+				}
+				System.out.println("option : " + option);
 				
-				urlPath = request.getContextPath()+"/views/mypage/mypagelike.jsp";
+				int totalData = new MypageService().klassListCount(option);
+				option.setTotalData(totalData);
+				request.setAttribute("paging", option);
+//				페이징 추가
+				klassLikeList = new MypageService().selectKlassLikeByAccountNo(option);
+				request.setAttribute("klassLikeList", klassLikeList);
+				
+				urlPath = request.getContextPath()+"/views/mypage/mypagelikeklass.jsp";
 				RequestDispatcher view = request.getRequestDispatcher(urlPath);
 				view.forward(request, response);
 			} else {

@@ -39,6 +39,19 @@ public class HostMypageReviewServlet extends HttpServlet {
 			option = Klass.builder().accountNo(accountNo).approveCode("A").build();
 			
 			if(option != null) {
+				
+//				페이징 추가
+				String nowPage = request.getParameter("nowPage");
+				if(nowPage != null) {
+					option.setNowPage(Integer.parseInt(nowPage));
+				}
+				System.out.println("option : " + option);
+				
+				int totalData = new MypageService().klassListCount(option);
+				option.setTotalData(totalData);
+				request.setAttribute("paging", option);
+//				페이징 추가
+				
 				approveList = new MypageService().selectApproveListByAccountNo(option);
 				reviewList = new MypageService().selectReviewListByHostAccountNo(option);
 				request.setAttribute("approveList", approveList);

@@ -227,5 +227,11 @@ public class MemberBoardService {
 		session.close();
 		return result;
 	}
+	public int selectReviewCount(Review option) {
+		SqlSession session = getSqlSession();
+		int result = new MemberBoardDao().selectReviewCount(session, option);
+		session.close();
+		return result;
+	}
 	
 }

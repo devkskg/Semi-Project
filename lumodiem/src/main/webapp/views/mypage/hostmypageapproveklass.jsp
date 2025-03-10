@@ -145,9 +145,10 @@
 								        
 											<c:choose>
 												<c:when test="${not empty approveList and approveCode eq 'D'}">
+													<c:set var="startNo" value="${(paging.nowPage - 1) * paging.numPerPage}" />
 													<c:forEach var="list" varStatus="vs" items="${approveList }">
 								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/klassDetail?klass_no=${list.klassNo}'/>" style="cursor: pointer;">
-															<td>${vs.count}</td>
+															<td>${startNo + vs.index + 1}</td>
 															<td>${list.klassName}</td>
 															<td>${list.accountNickname}</td>
 															<td>${list.approveFb}</td>
@@ -155,9 +156,10 @@
 													</c:forEach>
 												</c:when>
 												<c:when test="${not empty approveList and (approveCode eq 'A' or approveCode eq 'S')}">
+													<c:set var="startNo" value="${(paging.nowPage - 1) * paging.numPerPage}" />
 													<c:forEach var="list" varStatus="vs" items="${approveList }">
 								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/klassDetail?klass_no=${list.klassNo}'/>" style="cursor: pointer;">
-															<td>${vs.count}</td>
+															<td>${startNo + vs.index + 1}</td>
 															<td>${list.klassName}</td>
 															<td>${list.accountNickname}</td>
 												        </tr>
@@ -177,9 +179,34 @@
 														</c:otherwise>
 													</c:choose>
 												</c:otherwise>
-											</c:choose>							        
+											</c:choose>
 								        </tbody>
 								    </table>
+											<!-- 페이징 시작 -->
+											<form style="text-align: center;">
+													<c:if test="${not empty paging}">
+															
+														<c:if test="${paging.prev}">
+															<!-- c:url 사용해보자! -->
+															<c:url var="testUrl1" value="/hostMypageApproveKlass">
+																<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+															</c:url>
+															<a style="color: #724AA9;" href="${testUrl1}">&laquo;</a>
+														</c:if>
+														
+														
+														<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+															<a class="pagingNumber" style="color: #724AA9;" href="/hostMypageApproveKlass?nowPage=${vs.index }&approve_code=${approveCode}">${vs.index }</a>
+														</c:forEach>
+														
+														
+														<c:if test="${paging.next }">
+															<a style="color: #724AA9;" href="/hostMypageApproveKlass=${paging.pageBarEnd + 1}">&raquo;</a>
+														</c:if>
+																
+													</c:if>
+											</form>
+											<!-- 페이징 끝 -->					        
 								</li>
 							</ul>
 				        </div>

@@ -75,6 +75,7 @@ public class ReviewDetailServlet extends HttpServlet {
             request.setAttribute("myLikeCount", myLikeCount);
             request.setAttribute("review", review);
             request.setAttribute("reviewCmt", reviewCmt);
+            System.out.println("테스트123");
             view.forward(request, response);
         } else {
             response.sendRedirect(url);
