@@ -100,11 +100,11 @@
 		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
 			AND r.review_name LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
-			AND r.review_txt LIKE CONCAT('%',#{searchTxt},'%')
-		</if>
 		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
 			AND a.account_nickname LIKE CONCAT('%',#{searchTxt},'%')
+		</if>
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+			AND r.review_txt LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
 	</where>
 	
