@@ -14,10 +14,12 @@
 <!-- Bootstrap Bundle (JS + Popper.js) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
-<link rel="stylesheet" href="<c:url value='/views/css/reviewComment.css'/>">
+<link rel="stylesheet" href="<c:url value='/views/css/reviewComment.css'/>"> 
 <%-- <link rel="stylesheet" href="<c:url value='/views/css/reviewCmtTest.css'/>"> --%>
 <title>클래스 조회</title>
+<style>
 
+</style>
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -101,7 +103,7 @@
     
     <!-- 수정/삭제 버튼 (조건부) -->
     <c:choose>
-        <c:when test="${review.accountNo eq account.accountNo}">
+        <c:when test="${review.accountNo eq account.accountNo or account.accountGrade eq 'A'}">
             <div style="text-align: right; margin-bottom: 10px;">
                     <a href="/updateReviewPage?review_no=${review.reviewNo}" style="text-decoration: none;">
 		                <button type="button" id="updateBtn" name="updateBtn" 
@@ -279,9 +281,10 @@
             <thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
                <tr style="border-bottom: 1px solid #ddd;">
                  <th style="width: 60px; padding: 8px;">No.</th>
-                 <th style="width: 200px; padding: 8px;">제목</th>
+                 <th style="width: 200px; padding: 8px;">내용</th>
                  <th style="width: 100px; padding: 8px;">닉네임</th>
-                 <th style="width: 150px; padding: 8px;">작성일</th>
+                 <th style="width: 100px; padding: 8px;">수정/삭제</th>
+                 <!-- <th style="width: 150px; padding: 8px;">작성일</th> -->
                </tr>
             </thead>
             
@@ -290,23 +293,29 @@
                 <c:choose>
                     <c:when test="${not empty reviewCmt}">
                         <c:forEach var="list" items="${reviewCmt}" varStatus="vs">
-                                <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+                                <%-- <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
                                     <th colspan="2" style="padding: 8px;">
                                         ${list.accountNickname}
                                     </th>
-                                </tr>
+                                </tr> --%>
                                 <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+                                    <th style="padding: 8px;">${vs.count}</th> 
                                     <td style="padding: 8px;">
                                         <input type="hidden" class="review_cmt_no" value="${list.reviewCmtNo}">
-                                        <textarea class="review_cmt_txt" readonly="readonly" style="width: 100%; height: 80px; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; resize: none;">${list.reviewCmtTxt}</textarea>
+                                        <textarea class="review_cmt_txt" readonly="readonly" style=" width: 100%; text-align: center; align-items: center; justify-content: center; background-color: #E8DAEF;  height: 80px; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; resize: none;">${list.reviewCmtTxt}</textarea>
+                                    	
                                     </td>
+                                    <td>${list.accountNickname}</td>
                                     <c:choose>
                                         <c:when test="${list.accountNo eq account.accountNo}">
                                             <td style="padding: 8px;">
-                                                <input class="a" type="button" value="수정" style="padding: 5px 10px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer;"><br>
+                                                <input class="a" type="button" value="수정" style="padding: 5px 10px; border: none; background-color: #D1B5E0; color: white; border-radius: 5px; cursor: pointer;"><br>
                                                 <input type="button" class="delete_btn" value="삭제" style="padding: 5px 10px; border: none; background-color: #dc3545; color: white; border-radius: 5px; cursor: pointer;">
                                             </td>
                                         </c:when>
+                                        <c:otherwise>
+                                        	<td style="padding: 8px;"></td>
+                                        </c:otherwise>
                                     </c:choose>
                                 </tr>
                         </c:forEach>
