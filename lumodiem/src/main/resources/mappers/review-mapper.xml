@@ -92,11 +92,14 @@
 	
 	
 	<select id="reviewList" resultMap="reviewMap" parameterType="reviewVo">
-	SELECT r.* , a.account_nickname ,t.attach_no
+	SELECT r.* , a.account_nickname ,t.attach_no ,k.klass_name
 	FROM `review` r
 	JOIN `account` a ON r.account_no = a.account_no
 	LEFT JOIN `review_mapping` m ON r.review_no = m.review_no
 	LEFT JOIN `review_attach` t ON t.attach_no = m.attach_no
+	LEFT JOIN `reservation` s ON r.res_no = s.res_no
+	LEFT JOIN `klass_date` d ON s.klass_date_no = d.klass_date_no
+	LEFT JOIN `klass` k ON d.klass_no = k.klass_no
 	<where>
 		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
 			AND r.review_name LIKE CONCAT('%',#{searchTxt},'%')
