@@ -321,7 +321,7 @@
                                         <c:when test="${list.accountNo eq account.accountNo}">
                                             <td style="padding: 8px;">
                                                 <input class="a" type="button" value="수정" style="padding: 5px 10px; border: none; background-color: #D1B5E0; color: white; border-radius: 5px; cursor: pointer;"><br>
-                                                <input type="button" class="delete_btn" value="삭제" style="padding: 5px 10px; border: none; background-color: #dc3545; color: white; border-radius: 5px; cursor: pointer;">
+                                                <input type="button" class="delete_btn" value="삭제" style="padding: 5px 10px; border: none; background-color: #FF6058; color: white; border-radius: 5px; cursor: pointer;">
                                             </td>
                                         </c:when>
                                         <c:otherwise>
