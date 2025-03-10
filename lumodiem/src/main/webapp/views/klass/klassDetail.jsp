@@ -451,7 +451,9 @@
   // === 댓글 클릭시 리뷰 상세페이지 넘김 === 
   $('.review_by_klass_list tr').click(function(){
 		const reviewNum = $(this).data('review-no');
-		location.href='/reviewDetail?review_no='+reviewNum;
+		if(reviewNum != null && reviewNum >0){
+			location.href='/reviewDetail?review_no='+reviewNum;
+		}
 	})	
   
 
