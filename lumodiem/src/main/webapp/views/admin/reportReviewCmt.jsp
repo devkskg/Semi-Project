@@ -162,6 +162,7 @@
 						<th style="width: 300px; padding: 8px; text-align: center;">내용</th>			
 						<th style="width: 100px; padding: 8px; text-align: center;">닉네임</th>	
 						<th style="width: 60px; padding: 8px; text-align: center;">신고 사유</th>		
+						<th style="width: 60px; padding: 8px; text-align: center;">삭제</th>		
 					</tr>
 				</thead>
 				<tbody>
