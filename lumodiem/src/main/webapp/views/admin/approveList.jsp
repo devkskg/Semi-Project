@@ -203,9 +203,32 @@
 
 				
 <!-- 페이징 위치 예시 -->
-<form>
-  <p style="text-align: center;">페이징 위치</p>
-</form>		
+			<!-- 페이징 시작 -->
+			<form style="text-align: center;">
+					<c:if test="${not empty paging}">
+							
+						<c:if test="${paging.prev}">
+							<!-- c:url 사용해보자! -->
+							<c:url var="testUrl" value="/arreoveList">
+								<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+							</c:url>
+							<a style="color: #724AA9;" href="${testUrl}">&laquo;</a>
+						</c:if>
+						
+						
+						<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+							<a class="pagingNumber" style="color: #724AA9;" href="/arreoveList=${i}">${i}</a>
+						</c:forEach>
+						
+						
+						<c:if test="${paging.next }">
+							<a style="color: #724AA9;" href="/arreoveList?nowPage=${paging.pageBarEnd + 1}">&raquo;</a>
+						</c:if>
+								
+					</c:if>
+					<c:if test="${empty paging }">123</c:if>
+			</form>
+			<!-- 페이징 끝 -->	
 				
 <!-- 검색 (한 줄 정렬) -->
 <div style="text-align: center; margin-top: 20px;">		

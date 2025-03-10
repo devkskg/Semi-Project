@@ -102,7 +102,7 @@ a.btn-outline-primary {
 				<div class="container">
 					<div class="row d-flex">
 					    <div class="col-xl-8 py-5 px-md-5">	
-						<div class="row pt-md-4 mypage-box">
+						<div class="mypage-box" style="width: 500px">
 								<h3 class="text-primary text-center mb-4">신고 목록</h3>
 								<form action="/accountCreateMove" method="post">
 									<div class="d-flex justify-content-between">
@@ -110,8 +110,8 @@ a.btn-outline-primary {
 											style="width: 30%;">신고된 클래스</button>
 										<button type="button" class="btn btn-outline-danger" id="reportReviewBtn" 
 											style="width: 30%;">신고된 리뷰</button>
-										<button type="button" class="btn btn-outline-danger" id="reportReviewCmtBtn" 
-											style="width: 30%;">신고된 리뷰 댓글</button>
+										<!-- <button type="button" class="btn btn-outline-danger" id="reportReviewCmtBtn" 
+											style="width: 30%;">신고된 리뷰 댓글</button> -->
 									</div>
 								</form>
 							</div>
@@ -120,6 +120,16 @@ a.btn-outline-primary {
 				</div>
 			</section>
 		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	<script>
 		$(function(){

@@ -190,8 +190,33 @@
 		</form>
 	</div>
 	
-	<!-- 페이징 -->
-	<form style="text-align: center;">페이징 위치</form>
+			<!-- 페이징 시작 -->
+			<form style="text-align: center;">
+					<c:if test="${not empty paging}">
+							
+						<c:if test="${paging.prev}">
+							<!-- c:url 사용해보자! -->
+							<c:url var="testUrl" value="/reportReview">
+								<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+							</c:url>
+							<a style="color: #724AA9;" href="${testUrl}">&laquo;</a>
+						</c:if>
+						
+						
+						<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+							<a class="pagingNumber" style="color: #724AA9;" href="/reportReview?nowPage=${i}">${i}</a>
+						</c:forEach>
+						
+						
+						<c:if test="${paging.next }">
+							<a style="color: #724AA9;" href="/reportReview?nowPage=${paging.pageBarEnd + 1}">&raquo;</a>
+						</c:if>
+								
+					</c:if>
+					<c:if test="${empty paging }">123</c:if>
+			</form>
+			<!-- 페이징 끝 -->	
+			
 <!-- 선택 / 검색하기 -->	
 <div style="text-align: center; margin-top: 20px;">					
 	<form action="<c:url value='/reportReview'/>" id="search_report_review" method="post"
@@ -206,6 +231,12 @@
 		<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button>
 	</form>
 </div>
+
+
+
+
+
+
 	
 						</div>
 					</div>
