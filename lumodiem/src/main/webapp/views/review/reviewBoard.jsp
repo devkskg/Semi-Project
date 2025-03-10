@@ -238,8 +238,6 @@
 	<!-- 페이징 위치 예시 -->
 	<form style="text-align: center;">
 			<c:if test="${not empty paging}">
-				<div class="center">
-					<div class="pagination">
 					
 						<c:if test="${paging.prev}">
 							<!-- c:url 사용해보자! -->
@@ -252,17 +250,16 @@
 						
 						
 						<c:forEach begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
-							<a href="/reviewBoard?nowPage=${vs.index }&board_title=${paging.boardTitle}">${vs.index }</a>
+							<a href="/reviewBoard?nowPage=${vs.index }&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">${vs.index }</a>
 						</c:forEach>
 						
 						
 						<c:if test="${paging.next }">
-							<a href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.boardTitle}">&raquo;</a>
+							<a href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">&raquo;</a>
 						</c:if>
 						
-					</div>
-				</div>
 			</c:if>
+			<c:if test="${empty paging }">123</c:if>
 	</form>
 		
 	 <!-- 검색 (한 줄 정렬) -->

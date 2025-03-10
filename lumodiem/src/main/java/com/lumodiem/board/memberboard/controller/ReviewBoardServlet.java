@@ -49,13 +49,15 @@ public class ReviewBoardServlet extends HttpServlet {
 		}
 		if(searchType != null) {
 			option.setSearchType(searchType);
-			option.setSearchTxt(searchTxt);
 		} else {
 			option.setSearchType("0");
 		}
+		option.setSearchTxt(searchTxt);
+		System.out.println(option);
+		
 		int totalData = new MemberBoardService().selectReviewCount(option);
 		option.setTotalData(totalData);
-		request.setAttribute("paging", nowPage);
+		request.setAttribute("paging", option);
 //		페이징 추가
 		
 		
