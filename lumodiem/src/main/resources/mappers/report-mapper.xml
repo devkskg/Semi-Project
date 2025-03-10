@@ -187,7 +187,7 @@
 			JOIN `klass` k 
 			ON kr.klass_no = k.klass_no
 			JOIN `account` a
-			ON a.account_no = kr. account_no
+			ON a.account_no = kr.account_no
 		<where>
 			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
 				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
@@ -199,7 +199,30 @@
 				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
 			</if>
 		</where>
+		ORDER BY kr.report_klass_no DESC
+		LIMIT #{limitPageNo} ,#{numPerPage}
 
+	</select>
+	<!-- 페이징을 위한 카운트 -->
+	<select id="klassListCount"  resultType="_int" parameterType="klassVo">
+
+			SELECT count(*)
+			FROM `klass_report` kr 
+			JOIN `klass` k 
+			ON kr.klass_no = k.klass_no
+			JOIN `account` a
+			ON a.account_no = kr.account_no
+		<where>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
 	</select>
 
 </mapper>

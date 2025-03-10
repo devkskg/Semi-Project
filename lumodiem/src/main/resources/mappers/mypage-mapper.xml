@@ -123,6 +123,7 @@
 		JOIN `klass` k ON d.klass_no = k.klass_no
 		WHERE k.account_no = #{accountNo}
 		ORDER BY r.review_reg_date DESC
+		LIMIT #{limitPageNo} ,#{numPerPage}
 	</select>
 	
 	<!-- klass_like 테이블 -> 회원 번호 기준으로 좋아요한 클래스 조회  -->
@@ -166,6 +167,7 @@
 		JOIN `account` a ON k.account_no = a.account_no
 		WHERE r.account_no = #{accountNo}
 		ORDER BY d.klass_start ASC
+		LIMIT #{limitPageNo} ,#{numPerPage}
 	</select>
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
@@ -188,7 +190,7 @@
 			AND account_pw = #{accountPw}
 		</where>
 	</delete>
-	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
+	<!-- 페이징을 위한 카운트 -->
 	<select id="klassListCount" resultType="_int" parameterType="klassVo">
 		SELECT count(*)
 		FROM `klass` k
@@ -210,6 +212,38 @@
 		<if test='approveCode != "S"'>
 			ORDER BY k.klass_reg_date DESC
 		</if>
+	</select>
+		<!-- 페이징을 위한 카운트  -->
+	<select id="reservationKlassListCount" resultType="_int" parameterType="klassVo">
+		SELECT count(*)
+		FROM `reservation` r
+		JOIN `klass_date` d ON r.klass_date_no = d.klass_date_no
+		JOIN `klass` k ON d.klass_no = k.klass_no
+		JOIN `account` a ON k.account_no = a.account_no
+		WHERE r.account_no = #{accountNo}
+	</select>
+		<!-- 페이징을 위한 카운트  -->
+	<select id="klassLikeListCount" resultType="_int" parameterType="klassVo">
+		SELECT count(*)
+		FROM `klass_like` l
+		JOIN `klass` k ON l.klass_no = k.klass_no
+		JOIN `account` a ON k.account_no = a.account_no
+		WHERE l.account_no = #{accountNo}
+	</select>
+		<!-- 페이징을 위한 카운트  -->
+	<select id="reviewLikeListCount" resultType="_int" parameterType="klassVo">
+		SELECT count(*)
+		FROM `review_like` l
+		JOIN `review` r ON l.review_no = r.review_no
+		JOIN `account` a ON r.account_no = a.account_no
+		WHERE l.account_no = #{accountNo}
+	</select>
+		<!-- 페이징을 위한 카운트  -->
+	<select id="reviewCmtListCount" resultType="_int" parameterType="klassVo">
+		SELECT c.*, r.review_name
+		FROM `review_cmt`c
+		JOIN `review` r ON c.review_no = r.review_no
+		WHERE c.account_no = ${accountNo}
 	</select>
 	
 	

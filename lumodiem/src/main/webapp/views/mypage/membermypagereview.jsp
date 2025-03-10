@@ -110,9 +110,10 @@
 								        </tr>
 											<c:choose>
 												<c:when test="${not empty beforeKlassList }">
+												<c:set var="startNo" value="${(paging.nowPage - 1) * paging.numPerPage}" />
 													<c:forEach var="list1" varStatus="vs" items="${beforeKlassList }">
 								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/reviewDetail?review_no=${reviewDTO[0].reviewNo}'/>" style="cursor: pointer;">
-															<td>${vs.count}</td>
+															<td>${startNo + vs.index + 1}</td>
 															<td>${list1.klassName}</td>
 															<td>${list1.accountNickname}</td>
 															<c:if test="${not empty reviewDTO }">
@@ -160,6 +161,31 @@
 								    </table>
 								</li>
 							</ul>
+							<!-- 페이징 시작 -->
+							<form style="text-align: center;">
+									<c:if test="${not empty paging}">
+											
+										<c:if test="${paging.prev}">
+											<!-- c:url 사용해보자! -->
+											<c:url var="testUrl1" value="/memberMypageReview">
+												<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+											</c:url>
+											<a style="color: #724AA9;" href="${testUrl1}">&laquo;</a>
+										</c:if>
+										
+										
+										<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+											<a class="pagingNumber" style="color: #724AA9;" href="/memberMypageReview?nowPage=${vs.index }&approve_code=${approveCode}">${vs.index }</a>
+										</c:forEach>
+										
+										
+										<c:if test="${paging.next }">
+											<a style="color: #724AA9;" href="memberMypageReview=${paging.pageBarEnd + 1}">&raquo;</a>
+										</c:if>
+												
+									</c:if>
+							</form>
+							<!-- 페이징 끝 -->	
 				        </div>
 				    </div>
 		    	</div>

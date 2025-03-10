@@ -2,6 +2,8 @@ package com.lumodiem.board.adminboard.vo;
 
 
 
+import com.lumodiem.common.vo.Paging;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +17,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class ReportKlass {
+public class ReportKlass extends Paging {
 	
 	private int reportKlassNo;
 	private int klassNo;
