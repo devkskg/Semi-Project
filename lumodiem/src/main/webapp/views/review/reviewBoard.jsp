@@ -235,7 +235,7 @@
 		</c:otherwise>
 	
 	</c:choose>	
-	<!-- 페이징 위치 예시 -->
+	<!-- 페이징 시작 -->
 	<form style="text-align: center;">
 			<c:if test="${not empty paging}">
 					
@@ -245,22 +245,22 @@
 								<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
 								<%-- <c:param name="board_title" value="${paging.boardTitle}"/> --%>
 							</c:url>
-							<a href="${testUrl}">&laquo;</a>
+							<a style="color: #724AA9;" href="${testUrl}">&laquo;</a>
 						</c:if>
 						
 						
 						<c:forEach begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
-							<a href="/reviewBoard?nowPage=${vs.index }&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">${vs.index }</a>
+							<a style="color: #724AA9;" href="/reviewBoard?nowPage=${vs.index }&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">${vs.index }</a>
 						</c:forEach>
 						
 						
 						<c:if test="${paging.next }">
-							<a href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">&raquo;</a>
+							<a style="color: #724AA9;" href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">&raquo;</a>
 						</c:if>
 						
 			</c:if>
-			<c:if test="${empty paging }">123</c:if>
 	</form>
+	<!-- 페이징 끝 -->
 		
 	 <!-- 검색 (한 줄 정렬) -->
 	 <div style="text-align: center; margin-top: 20px;">
