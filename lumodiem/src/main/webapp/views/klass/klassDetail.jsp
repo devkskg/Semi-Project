@@ -40,24 +40,37 @@
                 box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
               ">
             <h3 style="text-align: center; margin-bottom: 20px;">클래스 상세 정보</h3>
-
+				
               <!-- 수정/삭제 버튼 (조건부) -->
               <c:choose>
                 <c:when test="${klass.accountNo eq account.accountNo or account.accountGrade eq 'A'}">
-                  <div style="text-align: right; margin-bottom: 10px;">
-                    <a href="/klassBoardUpdate?klass_no=${klass.klassNo}" style="text-decoration: none;">
-                      <button type="button" id="updateBtn" name="updateBtn"
-                        style="background: #D1B5E0; color: white; border: none; 
-                               padding: 8px 12px; border-radius: 5px; cursor: pointer;">
-                        수정
-                      </button>
-                    </a>
-                    <button type="button" id="deleteBtn" name="deleteBtn"
-                      style="background: #FF6058; color: white; border: none; 
-                             padding: 8px 12px; border-radius: 5px; cursor: pointer;">
-                      삭제
-                    </button>
-                  </div>
+                	<%-- <!-- 추가 -->
+                	<c:choose  >
+                		 <c:when test="${klass.approveCode eq 'S' }">
+                			<button type="button" id="updateBtn" name="updateBtn">승인</button>
+							<button type="button" id="rejectBtn" name="rejectBtn">반려</button>
+						</c:when>
+						<c:otherwise> --%>
+                	 <!-- 추가 -->
+	                  <div style="text-align: right; margin-bottom: 10px;">
+	                    <a href="/klassBoardUpdate?klass_no=${klass.klassNo}" style="text-decoration: none;">
+	                      <button type="button" id="updateBtn" name="updateBtn"
+	                        style="background: #D1B5E0; color: white; border: none; 
+	                               padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+	                        수정
+	                      </button>
+	                    </a>
+	                    <button type="button" id="deleteBtn" name="deleteBtn"
+	                      style="background: #FF6058; color: white; border: none; 
+	                             padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+	                      삭제
+	                    </button>
+	                  </div>
+	                  <%-- <!-- 추가 -->
+	                  </c:otherwise>
+	                  
+                  	</c:choose>
+                  	 <!-- 추가 --> --%>
                 </c:when>
               </c:choose>
 
