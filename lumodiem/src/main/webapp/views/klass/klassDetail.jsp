@@ -157,12 +157,12 @@
                               <span id="numberSpan">1</span>
                               <span id="plusSpan">➕</span>
                               <button type="button" id="resBtn" name="resBtn"
-                                style="background-color: #D1B5E0; color: #2c3e50; border: 1px solid #d1c2dd; 
+                                style="background-color: #D1B5E0; color: white; border: 1px solid #d1c2dd; 
                                        border-radius: 8px; padding: 8px 16px; cursor: pointer;">
                                 예약하기
                               </button>
                               <button type="button" id="cnclBtn" name="cnclBtn"
-                                style="background-color: #F0F2EF; color: #2c3e50; border: 1px solid #ccc; 
+                                style="background-color: #F0F2EF; color: white; border: 1px solid #ccc; 
                                        border-radius: 8px; padding: 8px 16px; cursor: pointer;">
                                 예약취소
                               </button>
