@@ -16,6 +16,85 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> -->
 <!-- summer note -->
+<style>
+ :root {
+    /* 메인 컬러(base-500) 기준: #D1B5E0 (원하시는 값) */
+    --base-100: #F4ECF8;
+    --base-200: #EBE0F2;
+    --base-300: #E2D5ED;
+    --base-400: #D8C9E7;
+    --base-500: #D1B5E0; /* 메인 컬러 */
+    --base-600: #BFA3CE;
+    --base-700: #AD91BC;
+    --base-800: #9B7FAA;
+    --base-900: #8A6E99;
+
+    /* 텍스트/테두리 등 */
+    --text-color: #333;
+    --border-color: #CABED1;
+  }
+/* ================================
+     3) input, button
+        모서리/높이 통일
+        
+        => 해당 input type만 사용할 것 
+        	date나 time 같은 쓰지 않는 페이지의 input type은 지우기
+     ================================ */
+  input[type="date"], input[type="time"], input[type="number"], input[type="text"], button {
+    /* 모서리 둥글기 통일 */
+    border-radius: 6px;
+    /* 테두리 색 통일 */
+    border: 1px solid var(--border-color);
+    /* 높이·패딩 통일 */
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+                background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+   /*input은 흰 배경 + 기본 텍스트 */
+  input[type="date"], input[type="time"], input[type="number"], input[type="text"] {
+    background-color: #fff;
+    color: var(--text-color);
+  }
+  input[type="date"]:focus, input[type="time"]:focus, input[type="number"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--base-500);
+    box-shadow: 0 0 0 2px rgba(209,181,224,0.2);
+  }
+
+  /* 버튼은 메인 컬러(기본 상태) */
+  button {
+    background-color: var(--base-500);
+    color: #fff;
+    cursor: pointer;
+  }
+  /* 버튼 호버 */
+  button:hover {
+    background-color: var(--base-600);
+  }
+  /* 버튼 클릭(액티브) */
+  button:active {
+    background-color: var(--base-700);
+    transform: translateY(1px);
+  }
+
+  /* ================================
+     4) 한 줄 정렬: .inline-form-group
+     ================================ */
+  .inline-form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 요소 간 간격 */
+    margin: 8px 0; /* 위아래 여백 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+  }
+
+
+</style>
+
 </head>
 
 
@@ -75,8 +154,8 @@
 			
 		
 		</fieldset>
-		<div class="mt-3 d-flex gap-2 justify-content-end">
-				<button type="button" id="updateBtn">수정하기</button>
+		<div class="inline-form-group">
+				<button type="button" id="updateBtn" style="border-radius: 6px;">수정하기</button>
 		</div>
 	</form>
 

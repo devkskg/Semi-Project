@@ -12,16 +12,34 @@
 <!-- index.jsp 전용 CSS가 필요하다면 여기 추가 -->
 <!-- Bootstrap 5, jQuery, Summernote는 nav.jsp에서 이미 로드됨 -->
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-</head>
-<body style="background-image: url('${pageContext.request.contextPath}/views/mainpage/mainpage01.jpg')">
+<!-- <style>
+    body {
+        background-image: url('${pageContext.request.contextPath}/views/mainpage/mainpage01.jpg');
+        background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+    }
 
-	
+    @media (max-width: 768px) {
+        body {
+            background-size: contain;
+        }
+    }
+</style> -->
+
+</head>
+<%-- <body style="background-image: url('${pageContext.request.contextPath}/views/mainpage/mainpage01.jpg')"> --%>
+<!-- 홈 화면 배경 사진  -->
+<body style="
+    background-image: url('${pageContext.request.contextPath}/views/mainpage/mainpage01.jpg');
+    background-size: 23%; /* 이미지를 작게 설정 */
+    background-repeat: repeat;
+">
+
 	<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
 	<c:import url="${nav}"/> --%>
 	<!-- c태그 이상시 아래의 include 태그 활성화 -->
 	<%-- <%@ include file="/views/include/nav.jsp" %> --%>
-				
-				
 				
 				<!-- 이거 가져다 쓰세요 -->
 						<!-- 
