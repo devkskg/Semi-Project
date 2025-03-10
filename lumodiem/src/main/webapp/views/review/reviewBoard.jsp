@@ -197,8 +197,8 @@
 							
 							</c:when>
 							<c:otherwise>
-								<a href="/reviewDetail?review_no=${list.reviewNo}" class="img img-2" style="background-image: url();">
-									<img alt="사진" src="" style="height: 244 px;">NoImage
+								<a href="/reviewDetail?review_no=${list.reviewNo}">
+									<img alt="사진" src="/views/mainpage/thumbnail.jpg" style="height: 244px; width:244px;">
 								</a>
 							</c:otherwise>
 						</c:choose>
@@ -212,12 +212,12 @@
 							<div class="meta-wrap">
 								<p class="meta">
 									<span><i class="icon-user mr-2"></i>${list.accountNickname}</span>
+									<span><i class="icon-book mr-2"></i>${list.klassName}</span>
 									<span><a href="single.html"><i class="icon-heart mr-2" style="color: #FF4848;"></i>${list.reviewLikeCount}</a></span>
-									<span>${kName.klassName}</span>
 								</p>
 							</div>
 							<p>
-								<a href="/reviewDetail?review_no=${list.reviewNo}" class="btn-custom"
+								<a href="/reviewDetail?review_no=${review.reviewNo}" class="btn-custom"
 									style="text-decoration: none; color: #724AA9">
 									더 보기.. 
 									<span class="ion-ios-arrow-forward"></span>

@@ -125,13 +125,12 @@
     <ul style="list-style: none; padding: 0;">
         <li style="text-align: center; margin-bottom: 20px;">
             <c:choose>
-                <c:when test="${not empty review.attachNo}">
+                <c:when test="${review.attachNo > 0}">
                     <img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" 
                     	style="max-width: 100%; max-height: 100%;">
                 </c:when>
                 <c:otherwise>
-                    <img alt="사진" src="" style="height: 244 px;">
-							NoImage
+                    <img alt="사진" src="/views/mainpage/thumbnail.jpg" style="height: 244px; width:244px;">
                 </c:otherwise>
             </c:choose>
         </li>
@@ -144,6 +143,10 @@
                 <tr style="border-bottom: 1px solid #ddd;">
                     <td style="font-weight: bold; padding: 8px;">내용</td>
                     <td style="padding: 8px;">${review.reviewTxt}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="font-weight: bold; padding: 8px;">클래스명</td>
+                    <td style="padding: 8px;">${review.klassName}</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #ddd;">
                     <td style="font-weight: bold; padding: 8px;">작성자</td>
@@ -352,8 +355,7 @@
 		            background-color: #D1B5E0;
 		            color: #fff;
 		            border: none;
-		            cursor: pointer;
-          ">
+		            cursor: pointer;">
 					등록
 				</button>
 			</form>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lumodiem.account.vo.Account;
-import com.lumodiem.board.adminboard.vo.ReportReview;
+import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -35,13 +35,14 @@ public class ReviewDetailServlet extends HttpServlet {
         ReviewLike reviewLike = null;
         List<ReviewAttach> noImg = null;
         List<ReviewCmt> reviewCmt = null;
-
+        Account account = null;
         if(session != null && session.getAttribute("account") != null) {
-            Account account = (Account)session.getAttribute("account");
+            account = (Account)session.getAttribute("account");
             int reviewNo = Integer.parseInt(request.getParameter("review_no"));
             System.out.println("리뷰 번호: " + reviewNo);
             
             Review review = null;
+           
             noImg = new MemberBoardService().selectNoImgReview(reviewNo);
 
             // 이미지 여부 체크 방식 개선
@@ -66,7 +67,8 @@ public class ReviewDetailServlet extends HttpServlet {
             // 리뷰 댓글 불러오기
             ReviewCmt option = ReviewCmt.builder().reviewNo(reviewNo).build();
             reviewCmt = new ReviewCommentService().selectReviewComment(option);
-
+            
+            
             // JSP 페이지로 데이터 전달
             RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
             request.setAttribute("totalLikeCount", totalLikeCount);
