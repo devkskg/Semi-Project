@@ -2,6 +2,8 @@ package com.lumodiem.board.hostboard.vo;
 
 import java.util.List;
 
+import com.lumodiem.common.vo.Paging;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +17,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class Klass {
+public class Klass extends Paging {
 	private  int klassNo;
 	private int accountNo;
 	private String klassName;

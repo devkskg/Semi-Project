@@ -40,6 +40,17 @@ public class ReportKlassServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		List<ReportKlass> resultList = new ReportService().selectReportKlassList(option);
+
+		String nowPage = request.getParameter("nowPage");
+		if(nowPage != null) {
+			option.setNowPage(Integer.parseInt(nowPage));
+		}
+//		페이징 추가중
+//		int totalCount = new ReportService().selectReportKlassCount(option);
+		
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/views/admin/reportKlass.jsp");
 		request.setAttribute("resultList", resultList);
 		view.forward(request, response);
