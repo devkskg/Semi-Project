@@ -144,7 +144,7 @@
                 </tr>
                 <tr style="border-bottom: 1px solid #ddd;">
                     <td style="font-weight: bold; padding: 8px;">클래스명</td>
-                    <td style="padding: 8px;">${klass.klassName}</td>
+                    <td style="padding: 8px;">${review.klassName}</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #ddd;">
                     <td style="font-weight: bold; padding: 8px;">작성자</td>
