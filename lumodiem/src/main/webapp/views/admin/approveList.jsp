@@ -238,7 +238,8 @@
 		}
 	$('.approve_list tbody tr').click(function(){
 		const klassNo = $(this).data('klass-no');
-		location.href='/klassDetail?klass_no='+klassNo;
+		/* location.href='/approveDetail?klass_no='+klassNo; */
+ 		location.href='/klassDetail?klass_no='+klassNo; 
 	})
 
 </script>
