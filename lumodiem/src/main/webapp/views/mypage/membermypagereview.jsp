@@ -175,7 +175,7 @@
 										
 										
 										<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
-											<a class="pagingNumber" style="color: #724AA9;" href="/memberMypageReview?nowPage=${vs.index }&approve_code=${approveCode}">${vs.index }</a>
+											<a class="pagingNumber" style="color: #724AA9;" href="/memberMypageReview?nowPage=${i}">${i}</a>
 										</c:forEach>
 										
 										

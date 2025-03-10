@@ -240,7 +240,7 @@
 	</select>
 		<!-- 페이징을 위한 카운트  -->
 	<select id="reviewCmtListCount" resultType="_int" parameterType="klassVo">
-		SELECT c.*, r.review_name
+		SELECT count(*)
 		FROM `review_cmt`c
 		JOIN `review` r ON c.review_no = r.review_no
 		WHERE c.account_no = ${accountNo}

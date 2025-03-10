@@ -168,7 +168,7 @@
 					<c:choose>
 						<c:when test="${not empty resultList }">
 							<c:forEach var="list" varStatus="vs" items="${resultList }">
-								<tr data-report-review-no="${list.reportReviewNo }" style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+								<tr data-report-review-no="${list.reviewNo }" style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
 									<td style="padding: 8px;">${list.reviewName}</td>
 									<%-- <td>${list.reviewTxt}</td> --%>
 									<td style="padding: 8px;">${list.accountNickname }</td>
@@ -249,8 +249,8 @@
 	$('.report_review_list tbody tr').click(function(){
 		const reportReviewNo = $(this).data('report-review-no');
 
-		if(reportReviewNo!=undefined){
-			location.href='/reviewDetail?review_no='+reportReviewNo;
+		if(reportReviewNo != undefined){
+			location.href = '/reviewDetail?review_no='+reportReviewNo;
 		}else{
 			location.reload();
 		}
