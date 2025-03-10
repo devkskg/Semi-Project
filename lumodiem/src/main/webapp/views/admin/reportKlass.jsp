@@ -186,9 +186,34 @@
 			</table>
 		</form>
 	</div>
+			<!-- 페이징 시작 -->
+			<form style="text-align: center;">
+					<c:if test="${not empty paging}">
+							
+						<c:if test="${paging.prev}">
+							<!-- c:url 사용해보자! -->
+							<c:url var="testUrl" value="/reportKlass">
+								<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+							</c:url>
+							<a style="color: #724AA9;" href="${testUrl}">&laquo;</a>
+						</c:if>
+						
+						
+						<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+							<a class="pagingNumber" style="color: #724AA9;" href="/reportKlass?nowPage=${i}">${i}</a>
+						</c:forEach>
+						
+						
+						<c:if test="${paging.next }">
+							<a style="color: #724AA9;" href="/reportKlass?nowPage=${paging.pageBarEnd + 1}">&raquo;</a>
+						</c:if>
+								
+					</c:if>
+					<c:if test="${empty paging }">123</c:if>
+			</form>
+			<!-- 페이징 끝 -->	
 	
 <!-- 페이징 위치-->	
-<form style="text-align: center;">1</form>	
 	
 <!-- 선택 / 검색하기 -->		
 <div style="text-align: center; margin-top: 20px;">					

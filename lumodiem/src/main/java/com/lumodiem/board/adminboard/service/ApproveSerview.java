@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.adminboard.dao.ApproveDao;
+import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.Approve;
 import com.lumodiem.board.hostboard.vo.Klass;
 
@@ -30,5 +31,15 @@ public class ApproveSerview {
 		List<Klass> resultList = dao.selectApproveList(option, session);
 		session.close();
 		return resultList;
+	}
+
+
+
+
+	public int approveListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = dao.approveListCount(session, option);
+		session.close();
+		return result;
 	}
 }

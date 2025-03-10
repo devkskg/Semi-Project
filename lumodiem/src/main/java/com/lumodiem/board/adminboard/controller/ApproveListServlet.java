@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lumodiem.board.adminboard.service.ApproveSerview;
+import com.lumodiem.board.adminboard.service.ReportService;
 import com.lumodiem.board.hostboard.service.HostBoardService;
 import com.lumodiem.board.hostboard.vo.Klass;
 
@@ -41,6 +42,19 @@ public class ApproveListServlet extends HttpServlet {
 				.approveCode(approveCode)
 				.build();
  		System.out.println(option);
+ 		
+//		페이징 추가
+		String nowPage = request.getParameter("nowPage");
+		if(nowPage != null) {
+			option.setNowPage(Integer.parseInt(nowPage));
+		}
+		System.out.println("option : " + option);
+		
+		int totalData = new ApproveSerview().approveListCount(option);
+		option.setTotalData(totalData);
+		request.setAttribute("paging", option);
+//		페이징 추가
+		
 		//List<Klass> resultList = new HostBoardService().searchBoardList(option);
 		List<Klass> resultList = new ApproveSerview().selectApproveList(option);
 		request.setAttribute("resultList", resultList);

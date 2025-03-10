@@ -42,6 +42,19 @@ public class MemberMypageKlassServlet extends HttpServlet {
 			int accountNo = account.getAccountNo();
 			option = Klass.builder().accountNo(accountNo).build();
 			if(option != null) {
+				
+//				페이징 추가
+				String nowPage = request.getParameter("nowPage");
+				if(nowPage != null) {
+					option.setNowPage(Integer.parseInt(nowPage));
+				}
+				System.out.println("option : " + option);
+				
+				int totalData = new MypageService().reservationKlassListCount(option);
+				option.setTotalData(totalData);
+				request.setAttribute("paging", option);
+//				페이징 추가
+				
 				klassList = new MypageService().selectReservationKlassListByAccountNo(option);
 				beforeKlassList = new ArrayList<Klass>();
 				afterKlassList = new ArrayList<Klass>();

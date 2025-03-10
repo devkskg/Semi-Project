@@ -45,7 +45,7 @@ public class MypageLikeReviewServlet extends HttpServlet {
 				}
 				System.out.println("option : " + option);
 				
-				int totalData = new MypageService().klassListCount(option);
+				int totalData = new MypageService().reviewLikeListCount(option);
 				option.setTotalData(totalData);
 				request.setAttribute("paging", option);
 //				페이징 추가

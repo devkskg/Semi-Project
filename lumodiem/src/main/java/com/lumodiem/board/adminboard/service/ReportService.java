@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.lumodiem.account.dao.MypageDao;
 import com.lumodiem.board.adminboard.dao.ReportDao;
 import com.lumodiem.board.adminboard.vo.ReportKlass;
 import com.lumodiem.board.adminboard.vo.ReportReview;
@@ -83,6 +84,20 @@ public class ReportService {
 		List<ReportKlass> resultList = dao.selectReportKlassList(option,session);
 		session.close();
 		return resultList;
+	}
+
+	public int reportKlassListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new ReportDao().klassListCount(session, option);
+		session.close();
+		return result;
+	}
+
+	public int reportReviewListCount(ReportReview option) {
+		SqlSession session = getSqlSession();
+		int result = new ReportDao().reportReviewListCount(session, option);
+		session.close();
+		return result;
 	}
 	
 	

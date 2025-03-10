@@ -55,6 +55,22 @@ public class MypageDao {
 		return session.selectOne("mypageMapper.klassListCount",option);
 	}
 
+	public int reservationKlassListCount(SqlSession session, Klass option) {
+		return session.selectOne("mypageMapper.reservationKlassListCount",option);
+	}
+
+	public int klassLikeListCount(SqlSession session, Klass option) {
+		return session.selectOne("mypageMapper.klassLikeListCount",option);
+	}
+
+	public int reviewLikeListCount(SqlSession session, Klass option) {
+		return session.selectOne("mypageMapper.reviewLikeListCount",option);
+	}
+
+	public int reviewCmtListCount(SqlSession session, Klass option) {
+		return session.selectOne("mypageMapper.reviewCmtListCount",option);
+	}
+
 
 
 }

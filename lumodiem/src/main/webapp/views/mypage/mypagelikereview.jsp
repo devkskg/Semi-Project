@@ -125,29 +125,31 @@
 								        </tbody>
 								    </table>
 									<!-- 페이징 시작 -->
-									<form style="text-align: center;">
-									    <c:if test="${not empty paging}">
-									        <c:if test="${paging.prev}">
-									            <c:url var="testUrl2" value="/mypageLikeReview">
-									                <c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
-									            </c:url>
-									            <a style="color: #724AA9;" href="${testUrl2}">&laquo;</a>
-									        </c:if>
-									        
-									        <!-- 실제 페이지 번호 i 사용 -->
-									        <c:forEach var="i" begin="${paging.pageBarStart}" end="${paging.pageBarEnd}">
-									            <a class="pagingNumber" style="color: #724AA9;" href="/mypageLikeReview?nowPage=${i}">${i}</a>
-									        </c:forEach>
-									        
-									        <c:if test="${paging.next}">
-									            <c:url var="nextUrl" value="/mypageLikeReview">
-									                <c:param name="nowPage" value="${paging.pageBarEnd + 1}"/>
-									            </c:url>
-									            <a style="color: #724AA9;" href="${nextUrl}">&raquo;</a>
-									        </c:if>
-									    </c:if>
-									</form>
-									<!-- 페이징 끝 -->
+							<!-- 페이징 시작 -->
+							<form style="text-align: center;">
+									<c:if test="${not empty paging}">
+											
+										<c:if test="${paging.prev}">
+											<!-- c:url 사용해보자! -->
+											<c:url var="testUrl1" value="/mypageLikeReview">
+												<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+											</c:url>
+											<a style="color: #724AA9;" href="${testUrl1}">&laquo;</a>
+										</c:if>
+										
+										
+										<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+											<a class="pagingNumber" style="color: #724AA9;" href="/mypageLikeReview?nowPage=${i}">${i}</a>
+										</c:forEach>
+										
+										
+										<c:if test="${paging.next }">
+											<a style="color: #724AA9;" href="/mypageLikeReview=${paging.pageBarEnd + 1}">&raquo;</a>
+										</c:if>
+												
+									</c:if>
+							</form>
+							<!-- 페이징 끝 -->	
 								</li>
 							</ul>
 				        </div>
