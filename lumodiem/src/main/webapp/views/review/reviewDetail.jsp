@@ -482,8 +482,8 @@
 			});
 		})
 		$(document).on('click', '.a', function () {
-			    const row = $(this).closest('tr'); // 클릭한 버튼이 속한 <tr> 찾기
-			    const textarea = row.find('.review_cmt_txt'); // 해당 <tr> 내부의 textarea 찾기
+			    const row = $(this).closest('tr');
+			    const textarea = row.find('.review_cmt_txt');
 			
 			    if (textarea.length) {
 			        textarea.removeAttr("readonly"); 
@@ -491,7 +491,7 @@
 			    }
 			
 			    $(this).removeClass('a');
-			    $(this).addClass('b'); // 'a' 클래스를 제거하고 'b' 추가
+			    $(this).addClass('b');
 			    $(this).val("저장");
 			    row.find('.delete_btn').show();
 			    alert('수정하십시오');
