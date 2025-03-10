@@ -190,8 +190,10 @@
                             </c:when>
                             <c:otherwise>
                               <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2"
-                                 style="width: 244px; height: 244px;">
-                                NoImage
+                                 style="display: flex; justify-content: center; align-items: center;
+                                        width: 244px; height: 244px;">
+                               <img alt="사진" src="/views/mainpage/thumbnail.jpg" style="height: 244px; width:244px;">
+
                               </a>
                             </c:otherwise>
                           </c:choose>
