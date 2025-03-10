@@ -9,6 +9,81 @@
 <meta charset="UTF-8">
 <title>⭐리뷰 게시글 추가⭐</title>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
+<style>
+ :root {
+    /* 메인 컬러(base-500) 기준: #D1B5E0 (원하시는 값) */
+    --base-100: #F4ECF8;
+    --base-200: #EBE0F2;
+    --base-300: #E2D5ED;
+    --base-400: #D8C9E7;
+    --base-500: #D1B5E0; /* 메인 컬러 */
+    --base-600: #BFA3CE;
+    --base-700: #AD91BC;
+    --base-800: #9B7FAA;
+    --base-900: #8A6E99;
+
+    /* 텍스트/테두리 등 */
+    --text-color: #333;
+    --border-color: #CABED1;
+  }
+/* ================================
+     3) input, button
+        모서리/높이 통일
+     ================================ */
+	select,input[type="text"], button {
+    /* 모서리 둥글기 통일 */
+    border-radius: 6px;
+    /* 테두리 색 통일 */
+    border: 1px solid var(--border-color);
+    /* 높이·패딩 통일 */
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+                background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+   /*input은 흰 배경 + 기본 텍스트 */
+	select,input[type="text"] {
+    background-color: #fff;
+    color: var(--text-color);
+  }
+   	select:focus,input[type="text"]:focus {
+    outline: none;
+    border-color: var(--base-500);
+    box-shadow: 0 0 0 2px rgba(209,181,224,0.2);
+  }
+
+  /* 버튼은 메인 컬러(기본 상태) */
+  button {
+    background-color: var(--base-500);
+    color: #fff;
+    cursor: pointer;
+  }
+  /* 버튼 호버 */
+  button:hover {
+    background-color: var(--base-600);
+  }
+  /* 버튼 클릭(액티브) */
+  button:active {
+    background-color: var(--base-700);
+    transform: translateY(1px);
+  }
+
+  /* ================================
+     4) 한 줄 정렬: .inline-form-group
+     ================================ */
+  .inline-form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 요소 간 간격 */
+    margin: 8px 0; /* 위아래 여백 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+  }
+  
+</style>
+
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -21,7 +96,8 @@
 	<div>
 		<form action="<c:url value='/insertReviewPageEnd'/>" method="post" name="create_review_form" enctype="multipart/form-data">	
 			<fieldset>
-				<legend>리뷰 작성</legend>
+				<legend style="text-align: center;">리뷰 작성</legend>
+				<label style="width: 150px; text-align: center;">수강완료 클래스 : </label>
 				<select name="res_no">
 				<!-- 2. jsp 에서 홈화면 보내는 방법  -->
 					<c:choose>
@@ -35,29 +111,20 @@
 						</c:otherwise>
 					</c:choose>
 				</select> 
-				<br>
-				<label for="review_name">게시글 제목 : </label>
-				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요."><br>
-				<label for="review_txt">내용 : </label><br>
+				<br><br>
+				<label for="review_name" style="width: 150px; text-align: center;">게시글 제목 : </label>
+				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요." style="width : 600px;"><br><br>
+				
 				<textarea name="review_txt" id="review_txt"  placeholder="내용을 입력하세요."></textarea><br>
+				
 				<input type="hidden" name="account_no" value="${account.accountNo}">
 				
-				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"><br>
-				<button type="button" id="insertBtn">작성하기</button>
-				<c:choose>
-					<c:when test="${not empty klass}">
-						<p>
-						<c:forEach var="li" items="${klass}" varStatus="vs">
-							클래스 제목 : ${li.klassName }					
-						</c:forEach>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<p style="color: red;">예약 정보가 없습니다.</p>
-					</c:otherwise>
-				</c:choose>
-		
+				<input type="file" name="res_file" accept=".png,.jpg,.jpeg"  style="display: none;"><br>
 			</fieldset>
+				<div class="inline-form-group">	
+				<button type="button" id="insertBtn" style="border-radius: 6px;">작성하기</button>
+				</div>		
+			
 		</form>	
 	</div>		
 <script>
@@ -130,9 +197,8 @@
 				
 			}
 		});
-		// summernote 동작
 		$('#review_txt').summernote({
-			  width: 900,           // 가로 크기
+			  width: 800,           // 가로 크기
 		      height: 400,          // 높이 설정
 		      placeholder: '내용을 입력해주세요...',  // 플레이스홀더(기본 안내 문구)
 		      focus: true,          // 초기 로딩 후 편집 영역에 커서 포커스
