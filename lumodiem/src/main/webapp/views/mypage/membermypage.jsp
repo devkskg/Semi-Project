@@ -78,7 +78,7 @@
 
 </style>
 </head>
-<body style="background-color: #FFFAFF">
+<body>
     <%@ include file="/views/include/nav.jsp" %>
 
 	<div id="colorlib-main">

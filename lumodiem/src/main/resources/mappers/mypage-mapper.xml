@@ -104,7 +104,12 @@
 				AND p.approve_code = #{approveCode}
 			</if>
 		</where>
-		ORDER BY k.klass_reg_date DESC
+		<if test='approveCode == "S"'>
+			ORDER BY k.klass_reg_date ASC
+		</if>
+		<if test='approveCode != "S"'>
+			ORDER BY k.klass_reg_date DESC
+		</if>
 	</select>
 	
 	<!-- review 테이블 -> 호스트 회원 번호 기준으로 내 클래스의 review 조회  -->
