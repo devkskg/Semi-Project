@@ -47,8 +47,7 @@ public class MemberMypageReviewServlet extends HttpServlet {
 				if(nowPage != null) {
 					option.setNowPage(Integer.parseInt(nowPage));
 				}
-				System.out.println("option : " + option);
-				
+ 				
 				int totalData = new MypageService().reservationKlassListCount(option);
 				option.setTotalData(totalData);
 				request.setAttribute("paging", option);
