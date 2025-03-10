@@ -45,7 +45,7 @@
 								승인
 							</button>
 							<button type="button" id="rejectBtn" name="rejectBtn"
-									style="background: #F0F2EF; color: white; border: none; 
+									style="background: #FF6058; color: white; border: none; 
 							      	padding: 8px 12px; border-radius: 5px; cursor: pointer;">
 								반려
 							</button>
