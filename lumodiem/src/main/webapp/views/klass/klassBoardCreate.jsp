@@ -95,7 +95,7 @@
 <div>
 	<form name="create_klass_form" action="">
 				<fieldset>
-					<legend style="text-align: center;">게시글</legend>
+					<legend style="text-align: center;">게시글</legend><br><br>
 					<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 					
 					<label for="klass_name" style="width: 150px; text-align: center;">클래스명 : </label>

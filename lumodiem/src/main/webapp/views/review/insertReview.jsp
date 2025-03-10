@@ -111,7 +111,7 @@
 						</c:otherwise>
 					</c:choose>
 				</select> 
-				<br><br>
+				<br>
 				<label for="review_name" style="width: 150px; text-align: center;">게시글 제목 : </label>
 				<input type="text" name="review_name" id="review_name" placeholder="제목을 입력하세요." style="width : 600px;"><br><br>
 				

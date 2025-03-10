@@ -17,8 +17,16 @@
 <link rel="stylesheet" href="<c:url value='/views/css/reviewComment.css'/>"> 
 <%-- <link rel="stylesheet" href="<c:url value='/views/css/reviewCmtTest.css'/>"> --%>
 <title>클래스 조회</title>
-<style>
 
+<style>
+.inline-form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 요소 간 간격 */
+    margin: 8px 0; /* 위아래 여백 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    padding-right: 30px; /* 오른쪽에서 30px 떨어뜨림 */
+}
 </style>
 </head>
 <body>
@@ -345,6 +353,12 @@
 				<input type="hidden" name="review_no" value="${review.reviewNo }">
 				<!-- <input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요."> -->
 				<textarea class="review_cmt_txt" name="review_cmt_txt" placeholder="내용을 입력하세요."></textarea>
+				
+				
+			</form>
+		</div>
+		<br><br>
+		<div class="inline-form-group">
 				<button type="button" id="create_comment"
 					style="
 		            position: absolute; 
@@ -355,10 +369,11 @@
 		            background-color: #D1B5E0;
 		            color: #fff;
 		            border: none;
-		            cursor: pointer;">
+		            cursor: pointer;
+		            margin-right: 40px;
+		            margin-top: 30px;">
 					등록
 				</button>
-			</form>
 		</div>
 	</div>
 	<div>
