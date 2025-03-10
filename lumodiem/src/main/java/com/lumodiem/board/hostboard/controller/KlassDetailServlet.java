@@ -63,6 +63,7 @@ public class KlassDetailServlet extends HttpServlet {
 			
 			
 			url= request.getContextPath() + "/views/klass/klassDetail.jsp";
+			url= request.getContextPath() + "/views/review/reviewDetail.jsp";
 			RequestDispatcher view = request.getRequestDispatcher(url);
 			request.setAttribute("klass", klass);
 			request.setAttribute("klassDate", klassDate);

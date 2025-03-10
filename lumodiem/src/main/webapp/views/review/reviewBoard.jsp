@@ -197,8 +197,8 @@
 							
 							</c:when>
 							<c:otherwise>
-								<a href="/reviewDetail?review_no=${list.reviewNo}" class="img img-2" style="background-image: url();">
-									<img alt="사진" src="" style="height: 244 px;">NoImage
+								<a href="/reviewDetail?review_no=${list.reviewNo}">
+									<img alt="사진" src="/views/mainpage/thumbnail.jpg" style="height: 244px; width:244px;">
 								</a>
 							</c:otherwise>
 						</c:choose>

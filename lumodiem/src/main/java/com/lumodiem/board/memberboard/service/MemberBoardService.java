@@ -1,14 +1,13 @@
 package com.lumodiem.board.memberboard.service;
 
-import static com.lumodiem.common.sql.SqlSessionTemplate.getSqlSession;
 import static com.lumodiem.common.sql.SqlSessionTemplate.commitRollback;
+import static com.lumodiem.common.sql.SqlSessionTemplate.getSqlSession;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.lumodiem.board.adminboard.vo.ReportReview;
-import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.dao.MemberBoardDao;
 import com.lumodiem.board.memberboard.vo.Review;

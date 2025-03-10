@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lumodiem.account.vo.Account;
-import com.lumodiem.board.adminboard.vo.ReportReview;
+import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.memberboard.service.MemberBoardService;
 import com.lumodiem.board.memberboard.service.ReviewCommentService;
 import com.lumodiem.board.memberboard.vo.Review;
@@ -66,7 +66,8 @@ public class ReviewDetailServlet extends HttpServlet {
             // 리뷰 댓글 불러오기
             ReviewCmt option = ReviewCmt.builder().reviewNo(reviewNo).build();
             reviewCmt = new ReviewCommentService().selectReviewComment(option);
-
+            
+            
             // JSP 페이지로 데이터 전달
             RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewDetail.jsp");
             request.setAttribute("totalLikeCount", totalLikeCount);
