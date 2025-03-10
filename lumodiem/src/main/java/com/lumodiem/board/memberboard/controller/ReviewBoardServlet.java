@@ -42,6 +42,26 @@ public class ReviewBoardServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		
+//		페이징 추가
+		String nowPage = request.getParameter("nowPage");
+		if(nowPage != null) {
+			option.setNowPage(Integer.parseInt(nowPage));
+		}
+		if(searchType != null) {
+			option.setSearchType(searchType);
+			option.setSearchTxt(searchTxt);
+		} else {
+			option.setSearchType("0");
+		}
+		int totalData = new MemberBoardService().selectReviewCount(option);
+		option.setTotalData(totalData);
+		request.setAttribute("paging", nowPage);
+//		페이징 추가
+		
+		
+		
+		
+		
 		List<Review> resultList = new MemberBoardService().selectReviewList(option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/review/reviewBoard.jsp");

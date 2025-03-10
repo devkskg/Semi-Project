@@ -1,5 +1,7 @@
 package com.lumodiem.board.memberboard.vo;
 
+import com.lumodiem.common.vo.Paging;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class Review {
+public class Review extends Paging {
 
 	private int reviewNo; // 리뷰번호
 	private int accountNo; // 회원번호

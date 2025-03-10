@@ -89,5 +89,8 @@ public class MemberBoardDao {
 	public int insertReportReview(SqlSession session, ReportReview rev) {
 		return session.insert("reviewMapper.insertReportReview",rev);
 	}
+	public int selectReviewCount(SqlSession session, Review option) {
+		return session.selectOne("reviewMapper.selectReviewCount", option);
+	}
 	
 }

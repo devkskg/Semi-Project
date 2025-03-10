@@ -379,7 +379,23 @@
 		SET pay_status = 'R'
 		WHERE res_no = #{resNo}
 	</update>
-	
+	<!-- 페이징을 위한 카운트 -->
+	<select id='selectReviewCount' resultMap="reviewMap" parameterType="reviewVo">
+		SELECT count(*)
+		FROM `review`
+		<where>
+			AND	p.approve_code = 'A'
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
+				AND k.klass_name LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+				AND a.account_nickname LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+			<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+				AND k.klass_txt LIKE CONCAT('%' ,#{searchTxt} ,'%')
+			</if>
+		</where>
+	</select>
 	
 	
 	<!-- 결제 실패시 reservation 테이블에서 delete -->

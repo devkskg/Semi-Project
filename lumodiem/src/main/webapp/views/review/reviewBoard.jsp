@@ -237,7 +237,32 @@
 	</c:choose>	
 	<!-- 페이징 위치 예시 -->
 	<form style="text-align: center;">
-		<p>페이징 위치(중앙 정렬 할거임)</p>
+			<c:if test="${not empty paging}">
+				<div class="center">
+					<div class="pagination">
+					
+						<c:if test="${paging.prev}">
+							<!-- c:url 사용해보자! -->
+							<c:url var="testUrl" value="/reviewBoard">
+								<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+								<%-- <c:param name="board_title" value="${paging.boardTitle}"/> --%>
+							</c:url>
+							<a href="${testUrl}">&laquo;</a>
+						</c:if>
+						
+						
+						<c:forEach begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+							<a href="/reviewBoard?nowPage=${vs.index }&board_title=${paging.boardTitle}">${vs.index }</a>
+						</c:forEach>
+						
+						
+						<c:if test="${paging.next }">
+							<a href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.boardTitle}">&raquo;</a>
+						</c:if>
+						
+					</div>
+				</div>
+			</c:if>
 	</form>
 		
 	 <!-- 검색 (한 줄 정렬) -->
