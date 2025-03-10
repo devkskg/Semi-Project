@@ -180,7 +180,7 @@
 						</c:when>
 						<c:otherwise>
 							<tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
-								<td colspan="3">해당되는 게시글이 존재하지 않습니다.</td>
+								<td colspan="4">해당되는 게시글이 존재하지 않습니다.</td>
 							</tr>
 						
 						</c:otherwise>
