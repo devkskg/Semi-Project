@@ -30,9 +30,9 @@
 	    cursor: pointer;           /* 커서를 포인터로 변경 */
 	}
     a.btn-outline-danger {
-	    background-color: #F1948A !important;  /* 배경색 강제 적용 */
-	    color: #fff !important;                /* 글자 색상 강제 적용 */
-	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
+	    background-color: #F0F2EF !important;  /* 배경색 강제 적용 */
+	    color: #000000 !important;                /* 글자 색상 강제 적용 */
+	    border: 1px solid #ccc !important;                  /* 부트스트랩의 기본 테두리 제거 */
 	}
     a.btn-outline-primary {
 	    background-color: #E8DAEF !important;  /* 배경색 강제 적용 */
@@ -40,11 +40,18 @@
 	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
 	}
 	.mypage-box {
-	    background-color: #FFFFEF;  /* 연한 살구색 */
-	    border: 1px solid #E6B0AA;  /* 은은한 로즈 컬러 테두리 */
+	    background-color: #FFFFFF;
+	    border: 1px solid #ddd;
 	    border-radius: 10px;
 	    padding: 20px;
 	    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
+	}
+	.btn-outline-primary {
+	    color: #ffffff !important;
+	    border: solid thin !important;
+	    border-color: #D1B5E0 !important;
+	    background-color: #D1B5E0 !important;
+	    
 	}
 
 	
@@ -163,35 +170,6 @@
 	</div>
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 	<script>
 		$(function(){
 			const form = document.update_member_form;
@@ -200,22 +178,22 @@
 					alert("비밀번호를 입력하세요.");
 					$('#account_pw').focus();
 				} else if(!$('#account_pw_check').val()){
-					alert("비밀번호 확인을 입력하세요.")
+					alert("비밀번호 확인을 입력하세요.");
 					$('#account_pw_check').focus();
 				} else if($('#account_pw').val() != $('#account_pw_check').val()){
-					alert("비밀번호가 일치하지 않습니다.")
+					alert("비밀번호가 일치하지 않습니다.");
 					$('#account_pw_check').focus();
 				}else if(!$('#account_nickname').val()){
-					alert("닉네임을 입력하세요.")
+					alert("닉네임을 입력하세요.");
 					$('#account_nickname').focus();
 				}else if(!$('#account_phone').val()){
-					alert("전화번호을 입력하세요.")
+					alert("전화번호을 입력하세요.");
 					$('#account_phone').focus();
-				} else if(!$('#account_address').val()){
-					alert("주소를 입력하세요.")
-					$('#account_address').focus();
+				} else if(!$('#address').val()){
+					alert("주소를 입력하세요.");
+					$('#address').focus();
 				}  else if(!$('#account_email').val()){
-					alert("이메일을 입력하세요.")
+					alert("이메일을 입력하세요.");
 					$('#account_email').focus();
 				} else{
 					$.ajax({
@@ -225,7 +203,9 @@
 							"account_pw" : $('#account_pw').val(),
 							"account_nickname" : $('#account_nickname').val(),
 							"account_phone" : $('#account_phone').val(),
-							"account_address" : $('#account_address').val(),
+							"postcode" : $('#postcode').val(),
+							"address" : $('#address').val(),
+							"detailAddress" : $('#detailAddress').val(),
 							"account_email" : $('#account_email').val()
 						},
 						dataType : "JSON",

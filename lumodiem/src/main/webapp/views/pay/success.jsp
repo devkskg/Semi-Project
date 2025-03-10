@@ -33,10 +33,10 @@
 	            dataType: "json",
 	            success: function(data) {
 	                if (data.res_code === "200") {
-	                    alert("결제 완료! 예약이 확정되었습니다.");
+	                    alert("결제가 완료 되었습니다.");
 	                    location.href = "/reservation/success";
 	                } else {
-	                    alert("결제 승인 실패");
+	                    alert("결제에 실패했습니다.");
 	                    location.href = "/reservation/fail";
 	                }
 	            },

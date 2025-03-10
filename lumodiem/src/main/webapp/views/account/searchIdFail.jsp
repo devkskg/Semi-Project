@@ -29,24 +29,31 @@
 	    background-color: #E8F7DC; /* 마우스 오버 시 색상 변경 */
 	    cursor: pointer;           /* 커서를 포인터로 변경 */
 	}
-    a.btn-outline-danger {
-	    background-color: #F1948A !important;  /* 배경색 강제 적용 */
-	    color: #fff !important;                /* 글자 색상 강제 적용 */
-	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
-	}
-    a.btn-outline-primary {
-	    background-color: #E8DAEF !important;  /* 배경색 강제 적용 */
-	    color: #4A235A !important;                /* 글자 색상 강제 적용 */
-	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
-	}
 	.mypage-box {
-	    background-color: #FFFFEF;  /* 연한 살구색 */
-	    border: 1px solid #E6B0AA;  /* 은은한 로즈 컬러 테두리 */
+	    background-color: #FFFFFF;
+	    border: 1px solid #ddd;
 	    border-radius: 10px;
 	    padding: 20px;
 	    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
 	}
-
+    a.btn-outline-danger {
+	    background-color: #F0F2EF !important;  /* 배경색 강제 적용 */
+	    color: #000000 !important;                /* 글자 색상 강제 적용 */
+	    border: 1px solid #ccc !important;                  /* 부트스트랩의 기본 테두리 제거 */
+	}
+	.btn-outline-primary {
+	    color: #ffffff !important;
+	    border: solid thin !important;
+	    border-color: #D1B5E0 !important;
+	    background-color: #D1B5E0 !important;
+	    
+	}
+	div a{
+		color: #724AA9;
+	}
+	div a:hover{
+		color: #724AA9;
+	}
 	
 	    
 </style>

@@ -370,13 +370,13 @@ public class HostBoardService {
 		commitRollback(result, session);
 		return result;
 	}
-
-	public int updateReservationOneRtoC(int resNo) {
-		SqlSession session = getSqlSession();
-		int result = new HostBoardDao().updateReservationOneRtoC(session,resNo);
-		commitRollback(result, session);
-		return result;
-	}
+//	결제 실패
+//	public int deleteReservationOneRtoC(int resNo) {
+//		SqlSession session = getSqlSession();
+//		int result = new HostBoardDao().deleteReservationOneRtoC(session,resNo);
+//		commitRollback(result, session);
+//		return result;
+//	}
 //	예약 번호로 예약 정보 조회
 	public Reservation selectReservationOne(int resNo) {
 		SqlSession session = getSqlSession();

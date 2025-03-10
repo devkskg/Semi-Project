@@ -40,18 +40,37 @@ a.btn-outline-danger {
 }
 
 a.btn-outline-primary {
-	background-color: #E8DAEF !important; /* 배경색 강제 적용 */
-	color: #4A235A !important; /* 글자 색상 강제 적용 */
+	background-color: #D1B5E0 !important; /* 배경색 강제 적용 */
+	color: #D1B5E0 !important; /* 글자 색상 강제 적용 */
 	border: none; /* 부트스트랩의 기본 테두리 제거 */
 }
 
 .mypage-box {
-	background-color: #FFFFEF; /* 연한 살구색 */
-	border: 1px solid #E6B0AA; /* 은은한 로즈 컬러 테두리 */
 	border-radius: 10px;
 	padding: 20px;
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
 }
+.btn-outline-primary {
+    color: #000000 !important;
+    border: solid thin !important;
+    border-color: #D1B5E0 !important;
+}
+.btn-outline-primary:hover {
+    background-color: #D1B5E0 !important;
+    color: #fff !important;
+    border: none !important;
+}
+.btn-outline-danger {
+    color: #000000 !important;
+    border: solid thin !important;
+    border-color: #D1B5E0 !important;
+}
+.btn-outline-danger:hover {
+    background-color: #D1B5E0 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
 </style>
 </head>
 <body>

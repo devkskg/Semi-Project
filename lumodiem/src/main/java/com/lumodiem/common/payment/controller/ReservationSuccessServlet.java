@@ -22,12 +22,11 @@ public class ReservationSuccessServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-        System.out.println("/reservation/success");
 		if(session != null && session.getAttribute("account") != null) {
-			String temp = (String)request.getAttribute("res_no");
-			int resNo = 0;
-			if(temp != null) resNo = Integer.parseInt(temp);
+			int resNo = (int)session.getAttribute("res_no");
 			int result = new HostBoardService().updateReservationOneCtoR(resNo);
+			System.out.println(resNo);
+			System.out.println(result);
 			RequestDispatcher view = request.getRequestDispatcher("/memberMypageKlass");
 			view.forward(request, response);
 		} else {

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     .list-group-item a {
-        color: #000 !important;  /* 글자 색상 검은색 강제 변경 */
+        color: #000;  /* 글자 색상 검은색 강제 변경 */
         text-decoration: none;   /* 링크 밑줄 제거 */
     }
 
@@ -25,39 +25,57 @@
     .list-group-item .badge {
         margin-left: auto; /* "+" 기호만 우측 정렬 */
     }
+	table {
+		background-color: white !important;
+	    border: 1px solid #ddd !important;
+	    border-spacing: 0 10px !important; /* 간격을 더 넓게 조정 */
+	    border-collapse: separate !important; 
+	}
+	
+	tr {
+	    background-color: #E8DAEF; /* 행마다 구분감을 주기 위해 화이트 배경 */
+	    border-bottom: 2px solid #aaa;
+	}
+	
+	tr:last-child{
+		background-color: #ffffff;
+	}
+	
+	td:first-child {
+	    text-align: left; /* 첫 번째 <td> 왼쪽 정렬 */
+	}
+	
+	td:last-child {
+	    text-align: right; /* 마지막 <td> 오른쪽 정렬 */
+	}
 
-    /* TD 정렬 설정 */
-    td:first-child {
-        text-align: left;  /* 첫 번째 <td> 왼쪽 정렬 */
-    }
-
-    td:last-child {
-        text-align: right;  /* 두 번째 <td> 오른쪽 정렬 */
-    }
     .clickable-row:hover {
 	    background-color: #D1B5E0; /* 마우스 오버 시 색상 변경 */
 	    cursor: pointer;           /* 커서를 포인터로 변경 */
 	}
-    a.btn-outline-danger {
-	    background-color: #F1948A !important;  /* 배경색 강제 적용 */
-	    color: #fff !important;                /* 글자 색상 강제 적용 */
-	    border: none;                          /* 부트스트랩의 기본 테두리 제거 */
+    .btn-outline-danger {
+	    background-color: #F0F2EF !important;  /* 배경색 강제 적용 */
+	    color: #000000 !important;                /* 글자 색상 강제 적용 */
+	    border: 1px solid #ccc !important;                  /* 부트스트랩의 기본 테두리 제거 */
 	}
-    a.btn-outline-primary {
-	    background-color: #E8DAEF !important;  /* 배경색 강제 적용 */
-	    color: #4A235A !important;                /* 글자 색상 강제 적용 */
-	    border-color: #B39EB5;                          /* 부트스트랩의 기본 테두리 제거 */
+	.btn-outline-primary {
+	    color: #ffffff !important;
+	    border: solid thin !important;
+	    border-color: #D1B5E0 !important;
+	    background-color: #D1B5E0 !important;
+	    
 	}
 	.mypage-box {
-	    background-color: #EAE6F2;  /* 연한 살구색 */
-	    border: 1px solid #E6B0AA;  /* 은은한 로즈 컬러 테두리 */
+	    background-color: #FFFFFF;
+	    border: 1px solid #ddd;
 	    border-radius: 10px;
 	    padding: 20px;
 	    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 은은한 그림자 */
 	}
+	/* .list-group-item{
+		background-color: #E8DAEF !important;
+	} */
 
-	
-	    
 </style>
 </head>
 <body style="background-color: #FFFAFF">
@@ -74,7 +92,7 @@
 							    
 							    
 							    
-								<li class="list-group-item" style="background-color: #F3D8EC;">
+								<li class="list-group-item">
 								<!-- <li class="list-group-item"> -->
 								    <table style="width: 100%; border-collapse: collapse;">
 								        <tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/memberMypageKlass'/>" style="cursor: pointer;">
