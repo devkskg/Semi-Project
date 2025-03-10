@@ -103,10 +103,11 @@
 								        </tr>
 											<c:choose>
 												<c:when test="${not empty reviewCmtList }">
+													<c:set var="startNo" value="${(paging.nowPage - 1) * paging.numPerPage}" />
 													<c:forEach var="list1" varStatus="vs" items="${reviewCmtList }">
 								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/reviewDetail?review_no=${list1.reviewNo}'/>" style="cursor: pointer;">
 								       					
-															<td>${vs.count}</td>
+															<td>${startNo + vs.index + 1}</td>
 															<td>${list1.reviewCmtTxt}</td>
 															
 												        </tr>
@@ -120,6 +121,31 @@
 											</c:choose>							        
 								        </tbody>
 								    </table>
+									<!-- 페이징 시작 -->
+									<form style="text-align: center;">
+											<c:if test="${not empty paging}">
+													
+												<c:if test="${paging.prev}">
+													<!-- c:url 사용해보자! -->
+													<c:url var="testUrl1" value="/mypageCmt">
+														<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+													</c:url>
+													<a style="color: #724AA9;" href="${testUrl1}">&laquo;</a>
+												</c:if>
+												
+												
+												<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+													<a class="pagingNumber" style="color: #724AA9;" href="/mypageCmt?nowPage=${i}">${i}</a>
+												</c:forEach>
+												
+												
+												<c:if test="${paging.next }">
+													<a style="color: #724AA9;" href="/mypageCmt=${paging.pageBarEnd + 1}">&raquo;</a>
+												</c:if>
+														
+											</c:if>
+									</form>
+									<!-- 페이징 끝 -->	
 								</li>
 							</ul>
 				        </div>

@@ -106,9 +106,11 @@
 		</where>
 		<if test='approveCode == "S"'>
 			ORDER BY k.klass_reg_date ASC
+			LIMIT #{limitPageNo} ,#{numPerPage}
 		</if>
 		<if test='approveCode != "S"'>
 			ORDER BY k.klass_reg_date DESC
+			LIMIT #{limitPageNo} ,#{numPerPage}
 		</if>
 	</select>
 	
@@ -131,6 +133,7 @@
 		JOIN `account` a ON k.account_no = a.account_no
 		WHERE l.account_no = #{accountNo}
 		ORDER BY l.klass_like_no DESC
+		LIMIT #{limitPageNo} ,#{numPerPage}
 	</select>
 	
 	<!-- review_like 테이블 -> 회원 번호 기준으로 좋아요한 리뷰 조회  -->
@@ -141,6 +144,7 @@
 		JOIN `account` a ON r.account_no = a.account_no
 		WHERE l.account_no = #{accountNo}
 		ORDER BY l.review_like_no DESC
+		LIMIT #{limitPageNo} ,#{numPerPage}
 	</select>
 	
 	<!-- review_cmt 테이블 -> 회원 번호 기준으로 리뷰 댓글 조회  -->
@@ -150,6 +154,7 @@
 		JOIN `review` r ON c.review_no = r.review_no
 		WHERE c.account_no = ${accountNo}
 		ORDER BY c.review_cmt_no DESC
+		LIMIT #{limitPageNo} ,#{numPerPage}
 	</select>
 	
 	<!-- klass 테이블 -> 멤버 회원 번호 기준으로 reservation테이블 조회하여 예약 이력이 있는 클래스 조회  -->
@@ -183,6 +188,29 @@
 			AND account_pw = #{accountPw}
 		</where>
 	</delete>
+	<!-- approve 테이블 -> 내가 올린 클래스 중에서 승인,대기,반려(A,S,D)인 클래스 조회 -->
+	<select id="klassListCount" resultType="_int" parameterType="klassVo">
+		SELECT count(*)
+		FROM `klass` k
+		JOIN `account` a
+		ON k.account_no = a.account_no
+		JOIN `approve` p
+		ON k.klass_no = p.klass_no
+		<where>
+			<if test='accountNo != null'>
+				AND k.account_no = #{accountNo}
+			</if>
+			<if test="approveCode != null">
+				AND p.approve_code = #{approveCode}
+			</if>
+		</where>
+		<if test='approveCode == "S"'>
+			ORDER BY k.klass_reg_date ASC
+		</if>
+		<if test='approveCode != "S"'>
+			ORDER BY k.klass_reg_date DESC
+		</if>
+	</select>
 	
 	
 </mapper>

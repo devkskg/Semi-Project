@@ -47,13 +47,6 @@ public class KlassBoardListServlet extends HttpServlet {
 				.orderType(orderType)
 				.build();
 		
-		List<Klass> resultList = new HostBoardService().searchImgBoardList(option);
-//		resultList = new HostBoardService().searchImgBoardList(option);
-		for(Klass k : resultList) {
-			int klassNo = k.getKlassNo();
-			List<KlassDate> dateList = new HostBoardService().selectDateList(klassNo);
-			k.setDateList(dateList);
-		}
 		
 		
 //		페이징 추가
@@ -61,13 +54,7 @@ public class KlassBoardListServlet extends HttpServlet {
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
-		if(searchType != null) {
-			option.setSearchType(searchType);
-		} else {
-			option.setSearchType("0");
-		}
-		option.setSearchTxt(searchTxt);
-		System.out.println(option);
+		System.out.println("option : " + option);
 		
 		int totalData = new HostBoardService().selectKlassCount(option);
 		option.setTotalData(totalData);
@@ -76,6 +63,13 @@ public class KlassBoardListServlet extends HttpServlet {
 		
 		
 		
+		List<Klass> resultList = new HostBoardService().searchImgBoardList(option);
+//		resultList = new HostBoardService().searchImgBoardList(option);
+		for(Klass k : resultList) {
+			int klassNo = k.getKlassNo();
+			List<KlassDate> dateList = new HostBoardService().selectDateList(klassNo);
+			k.setDateList(dateList);
+		}
 		
 		
 		

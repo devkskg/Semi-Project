@@ -128,6 +128,7 @@
 	<if test="orderType == null or orderType.equals('x') == true">
 		ORDER BY r.review_reg_date DESC
 	</if>
+		LIMIT #{limitPageNo}, #{numPerPage}
 	</select>
 	
 	<select id="reviewOne" resultMap="reviewMap" parameterType="_int">
@@ -244,10 +245,10 @@
 		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("1")'>
 			AND r.review_name LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
 			AND a.account_nickname LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
-		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("2")'>
+		<if test='searchType != null and searchType.equals("0") == false and searchType.equals("3")'>
 			AND r.review_txt LIKE CONCAT('%',#{searchTxt},'%')
 		</if>
 	</where>

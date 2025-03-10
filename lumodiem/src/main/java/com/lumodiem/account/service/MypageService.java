@@ -11,6 +11,7 @@ import com.lumodiem.account.dao.AccountDao;
 import com.lumodiem.account.dao.MypageDao;
 import com.lumodiem.account.vo.Account;
 import com.lumodiem.account.vo.ReviewDTO;
+import com.lumodiem.board.hostboard.dao.HostBoardDao;
 import com.lumodiem.board.hostboard.vo.Klass;
 import com.lumodiem.board.hostboard.vo.KlassDate;
 import com.lumodiem.board.hostboard.vo.KlassLike;
@@ -72,6 +73,13 @@ public class MypageService {
 		SqlSession session = getSqlSession();
 		int result = new MypageDao().deleteAccount(session, act);
 		commitRollback(session, result);
+		session.close();
+		return result;
+	}
+
+	public int klassListCount(Klass option) {
+		SqlSession session = getSqlSession();
+		int result = new MypageDao().klassListCount(session, option);
 		session.close();
 		return result;
 	}

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>좋아요 목록 조회</title>
+<title>좋아요 리뷰 조회</title>
 <style>
     .list-group-item a {
         color: #000 !important;  /* 글자 색상 검은색 강제 변경 */
@@ -85,47 +85,6 @@
 	<div id="colorlib-main">
 		<section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
-				<div class="row d-flex">
-				    <div id="colorlib-main" class="container mt-5" style="justify-content: center;">
-				        <div class="mypage-box" style="max-width: 100%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); ">
-				            <h3 class="text-primary text-center mb-4">
-									좋아요 클래스 목록
-				            </h3>
-							<ul class="list-group mb-4">
-							    
-								<li class="list-group-item">
-								    <table style="width: 100%; border-collapse: collapse; text-align: center;">
-								    	<tbody>
-								        <tr style="border-bottom: 1px solid #ddd; width: 100%; border-collapse: separate; border-spacing: 0 5px; text-align: center; border: 1px solid #ddd;">
-								        	<th>No.</th>
-								        	<th>클래스명</th>
-								        	<th>닉네임</th>
-								        </tr>
-											<c:choose>
-												<c:when test="${not empty klassLikeList }">
-													<c:forEach var="list1" varStatus="vs" items="${klassLikeList }">
-								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/klassDetail?klass_no=${list1.klassNo}'/>" style="cursor: pointer;">
-								       					
-															<td>${vs.count}</td>
-															<td>${list1.klassName}</td>
-															<td>${list1.accountNickname}</td>
-															
-												        </tr>
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-													<tr>
-														<td colspan="3">좋아요를 누른 클래스가 없습니다.</td>
-													</tr>
-												</c:otherwise>
-											</c:choose>							        
-								        </tbody>
-								    </table>
-								</li>
-							</ul>
-				        </div>
-				    </div>
-		    	</div>
 		    	
 		    	
 		    	
@@ -147,23 +106,48 @@
 								        	<th>닉네임</th>
 								        </tr>
 											<c:choose>
-												<c:when test="${not empty reviewLikeList }">
-													<c:forEach var="list2" varStatus="vs" items="${reviewLikeList }">
-								       					<tr style="border-bottom: 1px solid #ddd;" class="clickable-row" data-url="<c:url value='/reviewDetail?review_no=${list2.reviewNo}'/>" style="cursor: pointer;">
-															<td>${vs.count}</td>
-															<td>${list2.reviewName}</td>
-															<td>${list2.accountNickname}</td>
-												        </tr>
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-													<tr>
-														<td colspan="3">좋아요를 누른 리뷰가 없습니다.</td>
-													</tr>
-												</c:otherwise>
-											</c:choose>							        
+											    <c:when test="${not empty reviewLikeList}">
+											        <c:set var="startNo" value="${(paging.nowPage - 1) * paging.numPerPage}" />
+											        <c:forEach var="list2" varStatus="vs" items="${reviewLikeList}">
+											            <tr class="clickable-row" data-url="<c:url value='/reviewDetail?review_no=${list2.reviewNo}'/>" style="cursor: pointer;">
+											                <td>${startNo + vs.index + 1}</td>
+											                <td>${list2.reviewName}</td>
+											                <td>${list2.accountNickname}</td>
+											            </tr>
+											        </c:forEach>
+											    </c:when>
+											    <c:otherwise>
+											        <tr>
+											            <td colspan="3">좋아요를 누른 리뷰가 없습니다.</td>
+											        </tr>
+											    </c:otherwise>
+											</c:choose>						        
 								        </tbody>
 								    </table>
+									<!-- 페이징 시작 -->
+									<form style="text-align: center;">
+									    <c:if test="${not empty paging}">
+									        <c:if test="${paging.prev}">
+									            <c:url var="testUrl2" value="/mypageLikeReview">
+									                <c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+									            </c:url>
+									            <a style="color: #724AA9;" href="${testUrl2}">&laquo;</a>
+									        </c:if>
+									        
+									        <!-- 실제 페이지 번호 i 사용 -->
+									        <c:forEach var="i" begin="${paging.pageBarStart}" end="${paging.pageBarEnd}">
+									            <a class="pagingNumber" style="color: #724AA9;" href="/mypageLikeReview?nowPage=${i}">${i}</a>
+									        </c:forEach>
+									        
+									        <c:if test="${paging.next}">
+									            <c:url var="nextUrl" value="/mypageLikeReview">
+									                <c:param name="nowPage" value="${paging.pageBarEnd + 1}"/>
+									            </c:url>
+									            <a style="color: #724AA9;" href="${nextUrl}">&raquo;</a>
+									        </c:if>
+									    </c:if>
+									</form>
+									<!-- 페이징 끝 -->
 								</li>
 							</ul>
 				        </div>

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>⭐리뷰 게시판⭐</title>
-<%-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script> --%>
+<script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
   <style>
   /* ================================
      1) 톤온톤 컬러 팔레트 설정
@@ -243,19 +243,18 @@
 							<!-- c:url 사용해보자! -->
 							<c:url var="testUrl" value="/reviewBoard">
 								<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
-								<%-- <c:param name="board_title" value="${paging.boardTitle}"/> --%>
 							</c:url>
 							<a style="color: #724AA9;" href="${testUrl}">&laquo;</a>
 						</c:if>
 						
 						
 						<c:forEach begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
-							<a style="color: #724AA9;" href="/reviewBoard?nowPage=${vs.index }&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">${vs.index }</a>
+							<a style="color: #724AA9;" href="/reviewBoard?nowPage=${vs.index }&search_type=${paging.searchType}&search_txt=${paging.searchTxt}&order_type=${paging.orderType}">${vs.index }</a>
 						</c:forEach>
 						
 						
 						<c:if test="${paging.next }">
-							<a style="color: #724AA9;" href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}">&raquo;</a>
+							<a style="color: #724AA9;" href="/reviewBoard?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.searchType}&search_Txt=${paging.searchTxt}&order_type=${paging.orderType}">&raquo;</a>
 						</c:if>
 						
 			</c:if>
@@ -268,10 +267,10 @@
                 class="inline-form-group"
                 style="display: inline-flex;">
 			<select name="search_type" id="search_type">
-				<option value="0">선택</option>			
-				<option value="1">리뷰제목</option>			
-				<option value="2">닉네임</option>			
-				<option value="3">내용</option>			
+				<option value="0">선택</option>
+				<option value="1">리뷰제목</option>	
+				<option value="2">닉네임</option>	
+				<option value="3">내용</option>
 			</select>
 			<input type="text" name="search_txt" placeholder="검색어를 입력하세요.">
 			<button name="searchBtn" id="searchBtn" style="border-radius: 6px;">검색</button> 

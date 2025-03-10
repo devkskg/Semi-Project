@@ -1,3 +1,9 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>클래스 게시판</title>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
@@ -5,15 +11,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumodiem.board.hostboard.vo.Klass" %>    
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>클래스 게시판</title>
   
   <!-- 필요한 스크립트/라이브러리 있으면 추가 -->
-  <!-- <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script> -->
+  <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js"></script>
   
   <style>
   /* ================================
@@ -242,10 +242,31 @@
                   </c:otherwise>
                 </c:choose>
 
-                <!-- 페이징 위치 예시 -->
-                <form>
-                  <p style="text-align: center;">페이징 위치</p>
-                </form>
+				<!-- 페이징 시작 -->
+				<form style="text-align: center;">
+						<c:if test="${not empty paging}">
+								
+									<c:if test="${paging.prev}">
+										<!-- c:url 사용해보자! -->
+										<c:url var="testUrl1" value="/klassBoardList">
+											<c:param name="nowPage" value="${paging.pageBarStart - 1}"/>
+										</c:url>
+										<a style="color: #724AA9;" href="${testUrl1}">&laquo;</a>
+									</c:if>
+									
+									
+									<c:forEach var="i" begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" varStatus="vs">
+										<a class="pagingNumber" style="color: #724AA9;" href="/klassBoardList?nowPage=${vs.index }&search_type=${paging.searchType}&search_txt=${paging.searchTxt}&order_type=${paging.orderType}">${vs.index }</a>
+									</c:forEach>
+									
+									
+									<c:if test="${paging.next }">
+										<a style="color: #724AA9;" href="/klassBoardList?nowPage=${paging.pageBarEnd + 1}&search_type=${paging.searchType}&search_txt=${paging.searchTxt}&order_type=${paging.orderType}">&raquo;</a>
+									</c:if>
+									
+						</c:if>
+				</form>
+				<!-- 페이징 끝 -->
 
                 <!-- 검색 (한 줄 정렬) -->
                 <div style="text-align: center; margin-top: 20px;">
@@ -274,11 +295,29 @@
   <!-- 정렬 select 변경 시 submit -->
   <script>
     const orderType = document.getElementById('order_type');
-    if(orderType){
-      orderType.onchange = function(){
-        document.getElementById('arrangeKlass').submit();
-      }
-    }
+    
+    $(document).ready(function(){
+        $('#order_type').on('change', function(){
+            $('#arrangeKlass').submit();
+        });
+    });
+
+    
+    
+    $(document).ready(function(){
+        $('#search_type').on('change', function(){
+            $('#search_type').submit();
+        });
+    });
+
+    
+    /* $(document).on('click', '.pagingNumber', function(){
+    	alert('123');
+    }); */
+    
+    
+    
+    
   </script>
 
   <%@ include file="/views/include/nav.jsp" %>

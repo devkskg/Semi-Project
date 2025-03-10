@@ -41,19 +41,14 @@ public class ReviewBoardServlet extends HttpServlet {
 				.searchTxt(searchTxt)
 				.orderType(orderType)
 				.build();
+		System.out.println("option : " + option);
 		
 //		페이징 추가
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
-		if(searchType != null) {
-			option.setSearchType(searchType);
-		} else {
-			option.setSearchType("0");
-		}
-		option.setSearchTxt(searchTxt);
-		System.out.println(option);
+		System.out.println("option : " + option);
 		
 		int totalData = new MemberBoardService().selectReviewCount(option);
 		option.setTotalData(totalData);
