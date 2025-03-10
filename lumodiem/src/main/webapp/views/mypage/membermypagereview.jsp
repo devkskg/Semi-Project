@@ -126,7 +126,7 @@
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td colspan="3">수강 완료한 클래스가 존재하지 않습니다.</td>
+														<td colspan="4">수강 완료한 클래스가 존재하지 않습니다.</td>
 													</tr>
 												</c:otherwise>
 											</c:choose>							        

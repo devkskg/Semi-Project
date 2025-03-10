@@ -13,7 +13,7 @@
 <!-- Bootstrap 5, jQuery, Summernote는 nav.jsp에서 이미 로드됨 -->
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
-<body>
+<body style="background-image: url('${pageContext.request.contextPath}/views/mainpage/mainpage01.jpg')">
 
 	
 	<%-- <c:url value="/views/include/nav.jsp" var="nav"/>
@@ -55,7 +55,7 @@
 								
 								
 									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
-									<div class="col-md-12 ">
+									<%-- <div class="col-md-12 ">
 										<div class="blog-entry ftco-animate d-md-flex">
 											<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src=""></a>
 											<div class="text text-2 pl-md-4">
@@ -71,12 +71,12 @@
 												<p><a href="#" class="btn-custom">더 보기.. (a태그 속성에 url 써주자)<span class="ion-ios-arrow-forward"></span></a></p>
 											</div>
 										</div>
-									</div>
+									</div> --%>
 									<!-- 한 줄 끝! -->
 									
 									
 									<!-- (게시판 작성할때 한 줄이라고 생각 하면 됨!) -->
-									<div class="col-md-12">
+									<!-- <div class="col-md-12">
 										<div class="blog-entry ftco-animate d-md-flex">
 											<a href="single.html" class="img img-2" style="background-image: url();"><img alt="뚱이" src=""></a>
 											<div class="text text-2 pl-md-4">
@@ -93,11 +93,11 @@
 											</div>
 										</div>
 									</div>
-									<!-- 한 줄 끝! -->
+									한 줄 끝!
 									
 									<div>
 										<label for="test123">sdf : </label><input type="text" id="test123">
-									</div>
+									</div> -->
 									
 									
 								</div>
@@ -115,16 +115,7 @@
 
 	
 	
-	
-	<div id="colorlib-main">
-		<section class="ftco-section ftco-no-pt ftco-no-pb">
-			<div class="container">
-				<a class="blog-entry ftco-animate">부트스트랩 적용 전이라 이상한 페이지</a><br>
-				<a class="blog-entry ftco-animate" href="/views/bootTest/test01.jsp">부트스트랩 테스트 페이지 이동</a><br>
-				<a class="blog-entry ftco-animate" href="/createComment">댓글 구현 테스트</a>
-			</div>
-		</section>
-	</div>
+
 	
 	  <!-- nav.jsp include (마지막에) -->
 	<%-- 이거 왜 아래 있어야 적용되는거야.. --%>
