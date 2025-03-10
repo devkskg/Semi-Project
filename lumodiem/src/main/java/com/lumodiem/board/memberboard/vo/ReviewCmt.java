@@ -21,6 +21,7 @@ public class ReviewCmt {
 	private int reviewNo; // 리뷰 번호
 	private String reviewCmtTxt; // 리뷰 댓글 내용
 	private String accountNickname; 
+	private String reviewName;
 	
 	
 	

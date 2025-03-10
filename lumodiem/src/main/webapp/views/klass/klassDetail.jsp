@@ -9,12 +9,14 @@
 <meta charset="UTF-8">
 <title>클래스 상세조회</title>
 
+<link rel="stylesheet" href="<c:url value='/chatcss/chat.css'/>">
+
 <!-- jQuery (조금 최신 버전) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
 
 <!-- Bootstrap 5 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
 </head>
 <body>
@@ -28,16 +30,16 @@
           <div class="row pt-md-4">
 
             <!-- ====== 클래스 상세 정보 ====== -->
-            <h3 style="text-align: center; margin-bottom: 20px;">클래스 상세 정보</h3>
             <div class="klass_detail"
               style="
-                max-width: 60%; 
+                max-width: 100%; 
                 margin: 0 auto; 
                 border: 1px solid #ddd; 
                 border-radius: 10px; 
                 padding: 20px; 
                 box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
               ">
+            <h3 style="text-align: center; margin-bottom: 20px;">클래스 상세 정보</h3>
 
               <!-- 수정/삭제 버튼 (조건부) -->
               <c:choose>
@@ -45,7 +47,7 @@
                   <div style="text-align: right; margin-bottom: 10px;">
                     <a href="/klassBoardUpdate?klass_no=${klass.klassNo}" style="text-decoration: none;">
                       <button type="button" id="updateBtn" name="updateBtn"
-                        style="background: #E8DAEF; color: white; border: none; 
+                        style="background: #D1B5E0; color: white; border: none; 
                                padding: 8px 12px; border-radius: 5px; cursor: pointer;">
                         수정
                       </button>
@@ -63,10 +65,26 @@
 
               <ul style="list-style: none; padding: 0;">
                 <li style="text-align: center; margin-bottom: 20px;">
-                  이미지칸
+                  <c:choose>
+					<c:when test="${not empty klassAttach }">
+						<c:forEach var="list" varStatus="vs" items="${klassAttach }">
+						<%-- <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2" style="display: flex; 
+				          justify-content: center; align-items: center; width: 244px; height: 244px; background-image: url();"> --%>
+				          <img alt="사진" src="<%=request.getContextPath()%>/klassFilePath?attach_no=${list.attachNo}" 
+				          style="max-width: 100%; max-height: 100%;" >
+				         <!--  </a> -->
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<%-- <a href="/klassDetail?klass_no=${list.klassNo}" class="img img-2" style="background-image: url();"> --%>
+						<img alt="사진" src="" style="height: 244 px;">
+							NoImage
+						<!-- </a> -->
+					</c:otherwise>
+				</c:choose>
                 </li>
                 <li>
-                  <table style="width: 100%; border-collapse: collapse;">
+                  <table style="width: 100%; border-collapse: collapse; ">
                     <tr style="border-bottom: 1px solid #ddd;">
                       <th style="font-weight: bold; padding: 8px;">클래스명</th>
                       <td style="padding: 8px;">${klass.klassName}</td>
@@ -75,11 +93,11 @@
                       <th style="font-weight: bold; padding: 8px;">주최자</th>
                       <td style="padding: 8px;">${klass.accountNickname}</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
+                   <%--  <tr style="border-bottom: 1px solid #ddd;">
                       <th style="font-weight: bold; padding: 8px;">내용</th>
                       <td style="padding: 8px;">${fn:substring(klass.klassTxt,0,5)}</td>
                       <!-- 전체 내용: ${klass.klassTxt} -->
-                    </tr>
+                    </tr> --%>
                     <tr style="border-bottom: 1px solid #ddd;">
                       <th style="font-weight: bold; padding: 8px;">일정</th>
                       <td style="padding: 8px;">
@@ -140,7 +158,7 @@
                               <span id="numberSpan">1</span>
                               <span id="plusSpan">➕</span>
                               <button type="button" id="resBtn" name="resBtn"
-                                style="background-color: #E8DAEF; color: #2c3e50; border: 1px solid #d1c2dd; 
+                                style="background-color: #D1B5E0; color: #2c3e50; border: 1px solid #d1c2dd; 
                                        border-radius: 8px; padding: 8px 16px; cursor: pointer;">
                                 예약하기
                               </button>
@@ -221,7 +239,7 @@
             <!-- 🚨 신고 버튼 끝 -->
 
             <!-- 리뷰 목록 -->
-            <div style="width: 100%; max-width: 700px; margin: 20px auto; 
+            <div style="width: 100%; max-width: 100%; margin: 20px auto; 
                         border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
               <form>
                 <table class="review_by_klass_list"
@@ -230,9 +248,9 @@
                     border-collapse: separate;
                     border-spacing: 0 5px;
                     text-align: center;
-                    border: 1px solid #ddd;
-                  ">
-                  <thead style="border-bottom: 2px solid #aaa; background-color: #E8F7DC;">
+                    border: 1px solid #ddd;">
+                    
+                  <thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
                     <tr style="border-bottom: 1px solid #ddd;">
                       <th style="width: 60px; padding: 8px;">No.</th>
                       <th style="width: 200px; padding: 8px;">제목</th>
@@ -244,7 +262,7 @@
                     <c:choose>
                       <c:when test="${not empty review}">
                         <c:forEach var="list" items="${review}" varStatus="vs">
-                          <tr style="background-color: #F8FFEF; border-bottom: 1px solid #ddd;">
+                          <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
                             <td style="padding: 8px;">${vs.count}</td>
                             <td style="padding: 8px;">${list.reviewName}</td>
                             <td style="padding: 8px;">${list.accountNickname}</td>
@@ -253,7 +271,7 @@
                         </c:forEach>
                       </c:when>
                       <c:otherwise>
-                        <tr style="background-color: #F8FFEF; border-bottom: 1px solid #ddd;">
+                        <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
                           <td colspan="4" style="padding: 8px;">
                             작성된 리뷰가 없습니다.
                           </td>
@@ -289,6 +307,7 @@
        style="
          border: 2px solid #D1B5E0;  /* 원하는 파스텔 보라 테두리 */
          border-radius: 10px;       /* 둥근 모서리 */
+         box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
        ">
 
     <!-- 카드 헤더 (진한 보라) -->
@@ -621,8 +640,9 @@
 
   // 채팅 전송 (버튼)
   $(document).on('click', '#sendBtn', function(){
-    let klassAccountNo = "${account.accountNo}";
+    let klassAccountNo = "${klass.accountNo}";
     let chatTxt = $('#sendInput').val();
+    $('#chatStartBtn').hide();
     if(chatTxt == ''){
       alert('메세지를 입력해주세요!');
       return;

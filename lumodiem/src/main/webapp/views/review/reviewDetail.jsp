@@ -15,15 +15,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/jquery-3.7.1.js">></script>
 <link rel="stylesheet" href="<c:url value='/views/css/reviewComment.css'/>">
+<%-- <link rel="stylesheet" href="<c:url value='/views/css/reviewCmtTest.css'/>"> --%>
 <title>클래스 조회</title>
 
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
-	<div id="colorlib-main">
-		<section class="ftco-section ftco-no-pt ftco-no-pb">
-			<div class="container">
-				<div class="row d-flex">
+	
+<div id="colorlib-main">
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
+		<div class="container">
+			<div class="row d-flex">
+				<div class="col-xl-8 py-5 px-md-5">
+					<div class="row pt-md-4">
+			
+			
 			<!-- css 적용전  -->
 	<%-- <h3>리뷰 상세 정보</h3>
 	<div class="review">
@@ -80,30 +86,50 @@
 		</ul> 
 		<hr>
 		</div>  --%>
-		<h3 style="text-align: center; margin-bottom: 20px;">리뷰 상세 정보</h3>
-<div class="review" style="max-width: 60%; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+		
+<!-- ==================== 리뷰 상세 정보 =========== -->		
+<div class="review" 
+	style="
+		max-width: 100%; 
+        margin: 0 auto; 
+        border: 1px solid #ddd; 
+        border-radius: 10px; 
+        padding: 20px; 
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+       ">
+	<h3 style="text-align: center; margin-bottom: 20px;">리뷰 상세 정보</h3>
+    
+    <!-- 수정/삭제 버튼 (조건부) -->
     <c:choose>
         <c:when test="${review.accountNo eq account.accountNo}">
             <div style="text-align: right; margin-bottom: 10px;">
-                <button type="button" id="updateBtn" name="updateBtn" style="background: #4CAF50; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
-                    <a href="/updateReviewPage?review_no=${review.reviewNo}" style="color: white; text-decoration: none;">수정</a>
-                </button>
-                <button type="button" id="deleteBtn" name="deleteBtn" style="background: #f44336; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+                    <a href="/updateReviewPage?review_no=${review.reviewNo}" style="text-decoration: none;">
+		                <button type="button" id="updateBtn" name="updateBtn" 
+		                style="background: #D1B5E0; color: white; border: none; 
+                               padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+		                    수정
+		                </button>
+                    </a>
+                <button type="button" id="deleteBtn" name="deleteBtn" 
+                 style="background: #FF6058; color: white; border: none; 
+                             padding: 8px 12px; border-radius: 5px; cursor: pointer;">
                     삭제
                 </button>
             </div>
         </c:when>
     </c:choose>
+    
+    
     <ul style="list-style: none; padding: 0;">
         <li style="text-align: center; margin-bottom: 20px;">
             <c:choose>
                 <c:when test="${not empty review.attachNo}">
-                    <img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" style="width: 100%; max-width: 300px; border-radius: 10px;">
+                    <img src="${request.getContextPath}/filePath?attach_no=${review.attachNo}" 
+                    	style="max-width: 100%; max-height: 100%;">
                 </c:when>
                 <c:otherwise>
-                    <div style="width: 100%; max-width: 300px; height: 200px; border-radius: 10px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa;">
-                        이미지 없음
-                    </div>
+                    <img alt="사진" src="" style="height: 244 px;">
+							NoImage
                 </c:otherwise>
             </c:choose>
         </li>
@@ -150,7 +176,7 @@
     </ul>
 </div> 
 
-		
+		<!-- 🚨 신고 버튼 -->
 		<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
 		    style="position: absolute; top: 10px; right: 10px; font-size: 14px; padding: 6px 8px; width: 40px; height: 40px; line-height: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
 		    🚨
@@ -237,41 +263,59 @@
 			</table>
 		</form>
 		</div> --%>
-	<div style="width: 100%; max-width: 600px; margin: 20px auto; border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
+		
+		
+	<!-- 리뷰 목록 -->	
+	<div style="width: 100%; max-width: 100%; margin: 20px auto; 
+                border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
     <form>
-        <table border="1" class="review_cmt_list" style="width: 100%; border-collapse: collapse;">
+        <table class="review_cmt_list"
+                  style="
+                    width: 100%;
+                    border-collapse: separate;
+                    border-spacing: 0 5px;
+                    text-align: center;
+                    border: 1px solid #ddd;">
+            <thead style="border-bottom: 2px solid #aaa; background-color: #D1B5E0;">
+               <tr style="border-bottom: 1px solid #ddd;">
+                 <th style="width: 60px; padding: 8px;">No.</th>
+                 <th style="width: 200px; padding: 8px;">제목</th>
+                 <th style="width: 100px; padding: 8px;">닉네임</th>
+                 <th style="width: 150px; padding: 8px;">작성일</th>
+               </tr>
+            </thead>
+            
+            
             <tbody>
                 <c:choose>
                     <c:when test="${not empty reviewCmt}">
                         <c:forEach var="list" items="${reviewCmt}" varStatus="vs">
-                            <thead>
-                                <tr style="background-color: #f9f9f9; border-bottom: 2px solid #ddd;">
-                                    <th colspan="2" style="padding: 10px; text-align: left; font-size: 14px; color: #333;">
+                                <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+                                    <th colspan="2" style="padding: 8px;">
                                         ${list.accountNickname}
                                     </th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 10px; width: 100%;">
+                                <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+                                    <td style="padding: 8px;">
                                         <input type="hidden" class="review_cmt_no" value="${list.reviewCmtNo}">
                                         <textarea class="review_cmt_txt" readonly="readonly" style="width: 100%; height: 80px; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; resize: none;">${list.reviewCmtTxt}</textarea>
                                     </td>
                                     <c:choose>
                                         <c:when test="${list.accountNo eq account.accountNo}">
-                                            <td style="width: 120px; text-align: center;">
+                                            <td style="padding: 8px;">
                                                 <input class="a" type="button" value="수정" style="padding: 5px 10px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer;"><br>
                                                 <input type="button" class="delete_btn" value="삭제" style="padding: 5px 10px; border: none; background-color: #dc3545; color: white; border-radius: 5px; cursor: pointer;">
                                             </td>
                                         </c:when>
                                     </c:choose>
                                 </tr>
-                            </tbody>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <tr>
-                            <td colspan="5" style="padding: 15px; text-align: center; color: #777;">작성된 리뷰가 없습니다.</td>
+                        <tr style="background-color: #E8DAEF; border-bottom: 1px solid #ddd;">
+                            <td colspan="5" style="padding: 8px;">
+                         	   작성된 댓글이 없습니다.
+                            </td>
                         </tr>
                     </c:otherwise>
                 </c:choose>
@@ -281,13 +325,28 @@
 </div>
 	
 		<div class="create_comment_form">
-			<form name="create_comment_form" method="post">
+			<form name="create_comment_form" method="post"
+				class="inline-form-group"
+                style="justify-content: space-between; width: 100%;">
 				<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
-				<%-- <input type="hidden" name="account_no" value="${review.accountNo }"> --%>
+				<%--  <input type="hidden" name="account_no" value="${review.accountNo }"> --%>
 				<input type="hidden" name="review_no" value="${review.reviewNo }">
 				<!-- <input type="text" name="review_cmt_txt" placeholder="내용을 입력하세요."> -->
 				<textarea class="review_cmt_txt" name="review_cmt_txt" placeholder="내용을 입력하세요."></textarea>
-				<input type="button" id="create_comment" value="등록">
+				<button type="button" id="create_comment"
+					style="
+		            position: absolute; 
+		            right: 10px; 
+		            bottom: 10px;
+		            padding: 6px 12px;
+		            border-radius: 6px;
+		            background-color: #D1B5E0;
+		            color: #fff;
+		            border: none;
+		            cursor: pointer;
+          ">
+					등록
+				</button>
 			</form>
 		</div>
 	</div>
@@ -346,7 +405,7 @@
 			}
 		})
 	</script>
-					<div class="col-xl-8 py-5 px-md-5">
+					</div>
 				</div>
 			</div>
 		</div>
