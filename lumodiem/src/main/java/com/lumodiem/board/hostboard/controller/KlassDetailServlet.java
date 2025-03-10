@@ -38,6 +38,7 @@ public class KlassDetailServlet extends HttpServlet {
 		List<KlassDate> klassDate = null;
 		List<KlassAttach> klassAttach = null;
 		List<Review> review = null;
+		
 		if(session != null && session.getAttribute("account") != null) {
 			int klassNo = Integer.parseInt(request.getParameter("klass_no"));
 //			System.out.println(klassNo);
