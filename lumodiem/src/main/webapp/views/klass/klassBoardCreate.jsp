@@ -9,6 +9,80 @@
 <meta charset="UTF-8">
 <title>게시글 작성하기</title>
 <script src="<c:url value='/views/jquery-3.7.1.js'/>"></script>
+<style>
+ :root {
+    /* 메인 컬러(base-500) 기준: #D1B5E0 (원하시는 값) */
+    --base-100: #F4ECF8;
+    --base-200: #EBE0F2;
+    --base-300: #E2D5ED;
+    --base-400: #D8C9E7;
+    --base-500: #D1B5E0; /* 메인 컬러 */
+    --base-600: #BFA3CE;
+    --base-700: #AD91BC;
+    --base-800: #9B7FAA;
+    --base-900: #8A6E99;
+
+    /* 텍스트/테두리 등 */
+    --text-color: #333;
+    --border-color: #CABED1;
+  }
+/* ================================
+     3) input, button
+        모서리/높이 통일
+     ================================ */
+  input[type="date"], input[type="time"], input[type="number"], input[type="text"], button {
+    /* 모서리 둥글기 통일 */
+    border-radius: 6px;
+    /* 테두리 색 통일 */
+    border: 1px solid var(--border-color);
+    /* 높이·패딩 통일 */
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+                background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+   /*input은 흰 배경 + 기본 텍스트 */
+  input[type="date"], input[type="time"], input[type="number"], input[type="text"] {
+    background-color: #fff;
+    color: var(--text-color);
+  }
+  input[type="date"]:focus, input[type="time"]:focus, input[type="number"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--base-500);
+    box-shadow: 0 0 0 2px rgba(209,181,224,0.2);
+  }
+
+  /* 버튼은 메인 컬러(기본 상태) */
+  button {
+    background-color: var(--base-500);
+    color: #fff;
+    cursor: pointer;
+  }
+  /* 버튼 호버 */
+  button:hover {
+    background-color: var(--base-600);
+  }
+  /* 버튼 클릭(액티브) */
+  button:active {
+    background-color: var(--base-700);
+    transform: translateY(1px);
+  }
+
+  /* ================================
+     4) 한 줄 정렬: .inline-form-group
+     ================================ */
+  .inline-form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 요소 간 간격 */
+    margin: 8px 0; /* 위아래 여백 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+  }
+</style>
+
 </head>
 <body>
 <%@ include file="/views/include/nav.jsp" %>
@@ -47,15 +121,15 @@
 					
 					<label for="klass_price" style="width: 150px; text-align: center;">수강료 : </label>
 					<input type="number" required name="klass_price" id="klass_price" placeholder="숫자만 입력해주세요." style="width: 600px;"><br>
-					
-					<label for="klass_txt" style="width: 150px; text-align: center;">클래스 상세 내용</label><br>
+					<br>
+					<!-- <label for="klass_txt" style="width: 150px; text-align: center;">클래스 상세 내용</label><br> -->
 					<textarea name="klass_txt" id="klass_txt" required></textarea>
 					
 					<input type="file" name="klass_file" accept=".png,.jpg,.jpeg" style="display: none;"><br>
 					
 				</fieldset>
-				<div class="mt-3 d-flex gap-2 justify-content-end">
-					<button type="button" id="insertBtn">등록</button>					
+				<div class="inline-form-group">
+					<button type="button" id="insertBtn" style="border-radius: 6px;">등록</button>					
 				</div>
 	</form>
 </div>
