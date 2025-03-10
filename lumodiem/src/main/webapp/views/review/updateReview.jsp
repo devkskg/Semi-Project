@@ -96,12 +96,12 @@
 				
 	<form action="<c:url value='/updateReviewEnd'/>" method="post" name="update_review_form" enctype="multipart/form-data">
 		<fieldset >
-			<legend style="text-align: center;">리뷰 수정</legend>
+			<legend style="text-align: center;">리뷰 수정</legend><br><br>
 			<input type="hidden" name="review_no" value="${review.reviewNo}">
 			<input type="hidden" name="account_no" value="${account.accountNo}">
 			
 			<label for="review_name" style="width: 150px; text-align: center;">게시글 제목 : </label>
-			<input type="text" name="review_name" id="review_name" required value="<c:out value='${review.reviewName}'/>"  style="width : 600px;"><br><br>
+			<input type="text" name="review_name" id="review_name" required value="<c:out value='${review.reviewName}'/>"  style="width : 600px;"><br>
 			
 			<label style="width: 150px; text-align: center;">작성자 : </label>
 			<input type="text" name="nickName" id="nickName" readonly value="${review.accountNickname}"  style="width : 600px;"><br><br>

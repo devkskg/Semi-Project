@@ -111,7 +111,7 @@
 
 	<form action="" name="update_klass_form">
 		<fieldset>
-			<legend style="text-align: center;">게시글 수정</legend>
+			<legend style="text-align: center;">게시글 수정</legend><br><br>
 			<input type="hidden" value="${klass.klassNo}" name="klass_no">
 			<input type="text" value="${account.accountNo}" style="display: none" name="account_no">
 					
@@ -139,7 +139,7 @@
 			
 			<label for="klass_price" style="width: 150px; text-align: center;">수강료 : </label>
 			<input type="number" required name="klass_price" id="klass_price" 
-			placeholder="숫자만 입력해주세요." value="${klass.klassPrice}" style="width: 600px;"><br>
+			placeholder="숫자만 입력해주세요." value="${klass.klassPrice}" style="width: 600px;"><br><br>
 			
 		<!-- 	<label for="klass_txt">클래스 상세 내용</label><br> -->
 			<textarea name="klass_txt" id="klass_txt" required style="width: 600px;">${klass.klassTxt}</textarea>
